@@ -1041,14 +1041,24 @@
       "owner": "Plan za vlasnika",
       "cleaner": "Plan za osobu za čišćenje"
     },
+    "planName": {
+      "owner": "Vlasnik apartmana",
+      "cleaner": "Osoba za čišćenje"
+    },
     "month": "mjesečno",
     "renewal": "Sljedeća obnova",
+    "trialRemaining": "Preostalo probno razdoblje",
     "trialEnds": "Probno razdoblje završava: {date}",
     "checkout": "Aktiviraj pretplatu",
+    "startTrial": "Započni besplatno probno razdoblje",
     "portal": "Otvori portal za naplatu",
     "cancel": "Otkaži na kraju razdoblja",
     "resume": "Nastavi pretplatu",
     "manage": "Upravljaj pretplatom",
+    "loadErrorTitle": "Stanje pretplate trenutačno nije dostupno",
+    "loadErrorDescription": "Vaš plan ostaje dostupan u nastavku. Ponovno se prijavite ako Checkout ili portal za naplatu nisu dostupni.",
+    "actionErrorTitle": "Radnja naplate nije dostupna",
+    "actionErrorDescription": "Stripe naplatu nije moguće otvoriti. Provjerite sesiju i pokušajte ponovno.",
     "contactRestricted": "Kontaktni podaci dostupni su uz aktivnu pretplatu.",
     "mockModeTitle": "Demo naplata",
     "mockModeDescription": "Lokalno razvojno okruženje koristi deterministički simulirani tijek naplate.",
@@ -1071,9 +1081,24 @@
     "noPaymentMethod": "Način plaćanja još nije dodan.",
     "trial": {
       "title": "Probno razdoblje",
-      "remaining": "Preostalo je {days} dana probnog razdoblja."
+      "remaining": "Preostalo je {days} dana probnog razdoblja.",
+      "included": "Besplatno probno razdoblje od {days} dana"
+    },
+    "benefits": {
+      "title": "Pogodnosti",
+      "owner": {
+        "first": "Objavljujte i upravljajte poslovima čišćenja",
+        "second": "Primajte i uspoređujte ponude osoba za čišćenje",
+        "third": "Upravljajte rezervacijama i zaštićenim kontaktnim podacima"
+      },
+      "cleaner": {
+        "first": "Pregledavajte dostupne poslove čišćenja",
+        "second": "Šaljite i upravljajte ponudama",
+        "third": "Pristupite zaštićenim kontaktnim podacima nakon dodjele"
+      }
     },
     "status": {
+      "not_subscribed": "Bez pretplate",
       "trial": "Probno",
       "active": "Aktivno",
       "past_due": "Plaćanje kasni",

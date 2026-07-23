@@ -34,6 +34,8 @@ AUTH_SESSION_SECRET=
 
 If `AUTH_SESSION_SECRET` is absent, the server derives a domain-separated signing value from the server-only Stripe secret. No signing material is exposed to the client.
 
+For production hosting, configure `AUTH_SESSION_SECRET` explicitly and make sure `STRIPE_SECRET_KEY` is available to the same production environment. After changing either value, redeploy and sign in again so the browser receives a newly signed HTTP-only billing session. An HTTP 503 response from `/api/auth/billing-session` means neither signing source is available to the deployed server; Checkout cannot authenticate until the hosting variables are corrected.
+
 Required after registering a webhook endpoint:
 
 ```dotenv

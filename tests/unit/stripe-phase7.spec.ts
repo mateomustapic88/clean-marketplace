@@ -8,6 +8,10 @@ import { MockJobRepository } from '~/repositories/mock/MockJobRepository'
 import { MockOfferRepository } from '~/repositories/mock/MockOfferRepository'
 import { MockStripeEventRepository } from '~/repositories/mock/MockStripeEventRepository'
 import {
+  createBillingPresentation,
+  type PublicBillingPlan,
+} from '~/services/billing/billingPresentation'
+import {
   parseBillingMode,
   validateStripeServerConfiguration,
 } from '~/services/billing/billingConfiguration'
@@ -69,6 +73,52 @@ describe('Phase 7 Stripe architecture', () => {
     expect(saasConfig.plans.cleaner.monthlyAmount).toBe(3900)
     expect(saasConfig.currency).toBe('EUR')
     expect(saasConfig.trialDays).toBe(7)
+  })
+
+  it('presents the configured role plan when the API returns no subscription', () => {
+    const ownerPlan: PublicBillingPlan = {
+      monthlyAmount: 1900,
+      currency: 'EUR',
+      trialDays: 7,
+    }
+    const cleanerPlan: PublicBillingPlan = {
+      monthlyAmount: 3900,
+      currency: 'EUR',
+      trialDays: 7,
+    }
+
+    expect(createBillingPresentation('owner', null, ownerPlan)).toEqual({
+      role: 'owner',
+      monthlyAmount: 1900,
+      currency: 'EUR',
+      includedTrialDays: 7,
+      status: 'not_subscribed',
+      hasProviderSubscription: false,
+    })
+    expect(createBillingPresentation('cleaner', null, cleanerPlan)).toMatchObject({
+      role: 'cleaner',
+      monthlyAmount: 3900,
+      includedTrialDays: 7,
+      status: 'not_subscribed',
+      hasProviderSubscription: false,
+    })
+  })
+
+  it('presents existing subscription status without replacing public plan pricing', () => {
+    const presentation = createBillingPresentation('owner', {
+      status: 'active',
+      stripeSubscriptionId: 'provider-subscription',
+    } as Subscription, {
+      monthlyAmount: 1900,
+      currency: 'EUR',
+      trialDays: 7,
+    })
+
+    expect(presentation).toMatchObject({
+      monthlyAmount: 1900,
+      status: 'active',
+      hasProviderSubscription: true,
+    })
   })
 
   it('maps Stripe lifecycle data without trusting client subscription state', () => {

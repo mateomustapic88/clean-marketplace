@@ -1,5 +1,5 @@
 <template>
-  <BillingPage :subscription="store.subscription" :invoices="store.invoices" :payment-method="store.paymentMethod" :trial-days="store.trialDaysRemaining" @checkout="checkout" @portal="portal" @cancel="cancel" @resume="resume" />
+  <BillingPage role="owner" :subscription="store.subscription" :invoices="store.invoices" :payment-method="store.paymentMethod" :trial-days="store.trialDaysRemaining" :is-loading="store.isLoading" :load-error="store.loadError" :action-error="store.actionError" :is-action-loading="store.isActionLoading" @checkout="checkout" @portal="portal" @cancel="cancel" @resume="resume" />
 </template>
 
 <script setup lang="ts">

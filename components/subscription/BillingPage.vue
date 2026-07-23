@@ -3,26 +3,43 @@
     <header><h1>{{ t('billing.title') }}</h1><p>{{ t('billing.description') }}</p></header>
     <BaseAlert v-if="showMockWarning" variant="warning" :title="t('billing.mockModeTitle')">{{ t('billing.mockModeDescription') }}</BaseAlert>
     <BaseAlert v-else-if="showWebhookWarning" variant="warning" :title="t('billing.webhookWarningTitle')">{{ t('billing.webhookWarningDescription') }}</BaseAlert>
+    <BaseAlert v-if="loadError" variant="warning" :title="t('billing.loadErrorTitle')">{{ t('billing.loadErrorDescription') }}</BaseAlert>
+    <BaseAlert v-if="actionError" variant="error" :title="t('billing.actionErrorTitle')">{{ t('billing.actionErrorDescription') }}</BaseAlert>
     <TrialBanner :subscription="subscription" :days="trialDays" />
-    <div v-if="subscription" class="billing-page__grid">
-      <SubscriptionCard :subscription="subscription"><BillingSummary :subscription="subscription" /></SubscriptionCard>
+    <div class="billing-page__grid" :aria-busy="isLoading">
+      <SubscriptionCard :role="role" :subscription="subscription">
+        <BillingSummary v-if="subscription" :subscription="subscription" :trial-days="trialDays" />
+      </SubscriptionCard>
       <PaymentMethodCard :method="paymentMethod" />
     </div>
-    <div v-if="subscription" class="billing-page__actions">
-      <BaseButton v-if="!subscription.stripeSubscriptionId" @click="$emit('checkout')">{{ t('billing.checkout') }}</BaseButton>
-      <BaseButton v-if="subscription.stripeCustomerId" variant="secondary" @click="$emit('portal')">{{ t('billing.portal') }}</BaseButton>
-      <BaseButton v-if="subscription.cancelAtPeriodEnd || subscription.status === 'cancelled'" variant="secondary" @click="$emit('resume')">{{ t('billing.resume') }}</BaseButton>
-      <BaseButton v-else variant="danger" @click="$emit('cancel')">{{ t('billing.cancel') }}</BaseButton>
-      <BaseButton variant="ghost" disabled>{{ t('billing.downgradePlaceholder') }}</BaseButton>
-    </div>
+    <section class="billing-page__management" aria-labelledby="billing-management-title">
+      <h2 id="billing-management-title">{{ t('billing.manage') }}</h2>
+      <div class="billing-page__actions">
+        <BaseButton v-if="!hasProviderSubscription" :loading="isActionLoading" :disabled="isLoading" @click="$emit('checkout')">{{ t('billing.startTrial') }}</BaseButton>
+        <BaseButton v-if="subscription?.stripeCustomerId" variant="secondary" :loading="isActionLoading" @click="$emit('portal')">{{ t('billing.portal') }}</BaseButton>
+        <BaseButton v-if="hasProviderSubscription && (subscription?.cancelAtPeriodEnd || subscription?.status === 'cancelled')" variant="secondary" :disabled="isActionLoading" @click="$emit('resume')">{{ t('billing.resume') }}</BaseButton>
+        <BaseButton v-else-if="hasProviderSubscription" variant="danger" :disabled="isActionLoading" @click="$emit('cancel')">{{ t('billing.cancel') }}</BaseButton>
+      </div>
+    </section>
     <section><h2>{{ t('billing.invoices') }}</h2><InvoiceTable :invoices="invoices" /></section>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { BillingInvoice, PaymentMethod, Subscription } from '~/domains/subscriptions/types'
+import type { BillingRole } from '~/services/billing/billingPresentation'
 
-defineProps<{ subscription: Subscription | null, invoices: BillingInvoice[], paymentMethod: PaymentMethod | null, trialDays: number }>()
+const props = defineProps<{
+  role: BillingRole
+  subscription: Subscription | null
+  invoices: BillingInvoice[]
+  paymentMethod: PaymentMethod | null
+  trialDays: number
+  isLoading: boolean
+  loadError: boolean
+  actionError: boolean
+  isActionLoading: boolean
+}>()
 defineEmits<{ checkout: [], portal: [], cancel: [], resume: [] }>()
 const { t } = useI18n()
 const config = useRuntimeConfig()
@@ -35,8 +52,43 @@ const showWebhookWarning = computed(() =>
   && config.public.billingEnvironment.development
   && !config.public.billingEnvironment.webhookConfigured,
 )
+const hasProviderSubscription = computed(() => Boolean(props.subscription?.stripeSubscriptionId))
 </script>
 
 <style scoped lang="scss">
-.billing-page { display: grid; gap: $space-6; > header h1 { font-size: $font-size-3xl; } > header p { color: $color-text-secondary; } &__grid { display: grid; gap: $space-5; } &__actions { display: flex; flex-wrap: wrap; gap: $space-3; } section { display: grid; gap: $space-4; } @media (min-width: $breakpoint-lg) { &__grid { grid-template-columns: 1.2fr .8fr; } } }
+.billing-page {
+  display: grid;
+  gap: $space-6;
+
+  > header h1 {
+    font-size: $font-size-3xl;
+  }
+
+  > header p {
+    color: $color-text-secondary;
+  }
+
+  &__grid,
+  &__management {
+    display: grid;
+    gap: $space-5;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-3;
+  }
+
+  section {
+    display: grid;
+    gap: $space-4;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    &__grid {
+      grid-template-columns: 1.2fr .8fr;
+    }
+  }
+}
 </style>

@@ -5,7 +5,7 @@ import type {
 } from '~/domains/subscriptions/types'
 
 export interface BillingState {
-  subscription: Subscription
+  subscription: Subscription | null
   invoices: BillingInvoice[]
   paymentMethod: PaymentMethod | null
 }

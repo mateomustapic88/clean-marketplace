@@ -1038,14 +1038,24 @@
       "owner": "Owner plan",
       "cleaner": "Cleaner plan"
     },
+    "planName": {
+      "owner": "Apartment Owner",
+      "cleaner": "Cleaner"
+    },
     "month": "per month",
     "renewal": "Next renewal",
+    "trialRemaining": "Trial remaining",
     "trialEnds": "Trial ends: {date}",
     "checkout": "Activate subscription",
+    "startTrial": "Start free trial",
     "portal": "Open billing portal",
     "cancel": "Cancel at period end",
     "resume": "Resume subscription",
     "manage": "Manage subscription",
+    "loadErrorTitle": "Subscription state is unavailable",
+    "loadErrorDescription": "Your plan remains available below. Sign in again if Checkout or the billing portal is unavailable.",
+    "actionErrorTitle": "Billing action unavailable",
+    "actionErrorDescription": "We could not open Stripe billing. Check your session and try again.",
     "contactRestricted": "Contact details require an active subscription.",
     "mockModeTitle": "Mock billing",
     "mockModeDescription": "This local development environment uses the deterministic simulated billing flow.",
@@ -1068,9 +1078,24 @@
     "noPaymentMethod": "No payment method has been added.",
     "trial": {
       "title": "Free trial",
-      "remaining": "{days} trial days remaining."
+      "remaining": "{days} trial days remaining.",
+      "included": "{days}-day free trial"
+    },
+    "benefits": {
+      "title": "Benefits",
+      "owner": {
+        "first": "Publish and manage cleaning jobs",
+        "second": "Receive and compare cleaner offers",
+        "third": "Manage bookings and protected contact details"
+      },
+      "cleaner": {
+        "first": "Browse available cleaning jobs",
+        "second": "Submit and manage offers",
+        "third": "Access protected contact details after assignment"
+      }
     },
     "status": {
+      "not_subscribed": "Not subscribed",
       "trial": "Trial",
       "active": "Active",
       "past_due": "Past due",
