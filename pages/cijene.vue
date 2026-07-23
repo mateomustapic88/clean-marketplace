@@ -2,20 +2,22 @@
   <div class="pricing-page">
     <PageHero :eyebrow="t('pricing.eyebrow')" :title="t('pricing.title')" :description="t('pricing.description')" />
     <section class="pricing-page__section container">
-      <div class="pricing-page__owner">
-        <Home :size="30" />
-        <div><h2>{{ t('pricing.owner.title') }}</h2><p>{{ t('pricing.owner.description') }}</p></div>
-        <strong>{{ t('pricing.owner.price') }}</strong>
+      <div class="pricing-page__plans">
+        <article v-for="plan in pricingPlans" :key="plan.role" class="pricing-page__plan">
+          <BaseBadge variant="premium">{{ t(`pricing.${plan.translationKey}.badge`) }}</BaseBadge>
+          <h2>{{ t(`pricing.${plan.translationKey}.title`) }}</h2>
+          <p>{{ t(`pricing.${plan.translationKey}.trial`) }}</p>
+          <div><PriceDisplay :value="plan.monthlyAmount / 100" :suffix="t('pricing.plan.month')" /></div>
+          <ul>
+            <li v-for="item in plan.featureCount" :key="item">
+              <Check :size="18" />
+              {{ t(`pricing.${plan.translationKey}.features.${item}`) }}
+            </li>
+          </ul>
+          <BaseButton block size="lg" :to="getAppRoute('register', locale)">{{ t(`pricing.${plan.translationKey}.action`) }}</BaseButton>
+          <small>{{ t(`pricing.${plan.translationKey}.billingNote`) }}</small>
+        </article>
       </div>
-      <article class="pricing-page__plan">
-        <BaseBadge variant="premium">{{ t('pricing.plan.badge') }}</BaseBadge>
-        <h2>{{ t('pricing.plan.title') }}</h2>
-        <p>{{ t('pricing.plan.trial') }}</p>
-        <div><PriceDisplay :value="39" :suffix="t('pricing.plan.month')" /></div>
-        <ul><li v-for="item in 7" :key="item"><Check :size="18" />{{ t(`pricing.plan.features.${item}`) }}</li></ul>
-        <BaseButton block size="lg" :to="getAppRoute('register', locale)">{{ t('pricing.plan.action') }}</BaseButton>
-        <small>{{ t('pricing.plan.noCard') }}</small>
-      </article>
       <div class="pricing-page__notes">
         <BaseAlert variant="info" :title="t('pricing.notes.commissionTitle')">{{ t('pricing.notes.commission') }}</BaseAlert>
         <BaseAlert variant="warning" :title="t('pricing.notes.demoTitle')">{{ t('pricing.notes.demo') }}</BaseAlert>
@@ -31,11 +33,26 @@
 </template>
 
 <script setup lang="ts">
-import { Check, Home } from '@lucide/vue'
+import { Check } from '@lucide/vue'
 import { getAppRoute } from '~/utils/routes'
 
 defineI18nRoute({ paths: { hr: '/cijene', en: '/pricing' } })
 const { t, locale } = useI18n()
+const config = useRuntimeConfig()
+const pricingPlans = [
+  {
+    role: 'owner',
+    translationKey: 'owner',
+    monthlyAmount: config.public.plans.owner.monthlyAmount,
+    featureCount: 5,
+  },
+  {
+    role: 'cleaner',
+    translationKey: 'plan',
+    monthlyAmount: config.public.plans.cleaner.monthlyAmount,
+    featureCount: 7,
+  },
+] as const
 const faqItems = computed(() => Array.from({ length: 4 }, (_, index) => ({
   question: t(`pricing.faq.${index + 1}.question`),
   answer: t(`pricing.faq.${index + 1}.answer`),
@@ -57,37 +74,17 @@ usePublicSeo({
     }
   }
 
-  &__owner {
+  &__plans {
     display: grid;
-    gap: $space-4;
-    align-items: center;
-    max-width: 50rem;
-    padding: $space-6;
-    margin: 0 auto $space-8;
-    background: $color-surface;
-    border: 1px solid $color-border;
-    border-radius: $radius-xl;
-
-    svg {
-      color: $color-primary;
-    }
-
-    p {
-      color: $color-text-secondary;
-    }
-
-    strong {
-      font-size: $font-size-xl;
-      color: $color-success;
-    }
+    gap: $space-6;
+    max-width: 72rem;
+    margin-inline: auto;
   }
 
   &__plan {
     display: grid;
     justify-items: start;
-    max-width: 34rem;
     padding: $space-8;
-    margin-inline: auto;
     background: $color-surface;
     border: 2px solid $color-primary;
     border-radius: $radius-xl;
@@ -140,8 +137,8 @@ usePublicSeo({
   }
 
   @media (min-width: $breakpoint-md) {
-    &__owner {
-      grid-template-columns: auto 1fr auto;
+    &__plans {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 }

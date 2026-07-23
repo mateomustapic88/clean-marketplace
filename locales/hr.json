@@ -157,7 +157,7 @@
     "register": {
       "eyebrow": "Izradite račun",
       "title": "Odaberite kako želite koristiti platformu",
-      "description": "Registracija je besplatna za vlasnike. Osobe za čišćenje dobivaju sedam dana probnog razdoblja.",
+      "description": "Vlasnici apartmana i osobe za čišćenje dobivaju sedam dana probnog razdoblja prije mjesečne pretplate.",
       "roleLegend": "Vrsta računa",
       "ownerRole": "Vlasnik apartmana",
       "ownerRoleDescription": "Objavljujem poslove i prihvaćam ponude.",
@@ -478,11 +478,11 @@
       "mutualTitle": "Ocjene idu u oba smjera",
       "mutualDescription": "Vlasnici ocjenjuju kvalitetu, pouzdanost, komunikaciju i točnost dolaska. Osobe za čišćenje ocjenjuju opis posla, komunikaciju, organizaciju i korektnost."
     },
-    "pricing": { "eyebrow": "Jednostavna cijena", "title": "Besplatno za vlasnike, jedna pretplata za pružatelje usluge", "description": "Nema umjetnih paketa ni provizije na plaćanje čišćenja.", "action": "Pogledaj cijene" },
+    "pricing": { "eyebrow": "Jednostavne cijene", "title": "Jasna mjesečna pretplata za obje uloge", "description": "Vlasnici plaćaju 19 EUR, osobe za čišćenje 39 EUR mjesečno, bez provizije na plaćanje čišćenja.", "action": "Pogledaj cijene" },
     "faq": {
       "eyebrow": "Česta pitanja", "title": "Sve važno prije početka",
       "items": {
-        "1": { "question": "Je li korištenje besplatno za vlasnike?", "answer": "Da. Vlasnici apartmana mogu koristiti platformu bez pretplate." },
+        "1": { "question": "Koliko Clean košta vlasnike apartmana?", "answer": "Plan za vlasnike košta 19 EUR mjesečno nakon sedmodnevnog probnog razdoblja." },
         "2": { "question": "Uzima li platforma proviziju?", "answer": "Ne. Plaćanje čišćenja korisnici dogovaraju izravno." },
         "3": { "question": "Jesu li prikazani profili stvarni?", "answer": "Ne. Trenutačno su svi profili, poslovi i ocjene jasno označeni demo podaci." },
         "4": { "question": "Jesu li korisnici verificirani?", "answer": "Verifikacija još nije aktivna i ne prikazujemo tvrdnje da su korisnici provjereni." },
@@ -507,23 +507,31 @@
     "metaTitle": "Kako funkcionira Clean", "metaDescription": "Saznajte kako vlasnici apartmana i osobe za čišćenje dogovaraju posao kroz Clean."
   },
   "pricing": {
-    "eyebrow": "Transparentna cijena", "title": "Jedna jasna pretplata, bez provizije", "description": "Vlasnici koriste platformu besplatno, a osobe za čišćenje dobivaju sedmodnevno probno razdoblje.",
-    "owner": { "title": "Za vlasnike apartmana", "description": "Objava poslova i usporedba ponuda ne zahtijevaju pretplatu.", "price": "Besplatno" },
+    "eyebrow": "Transparentne cijene", "title": "Dva jasna plana bez provizije", "description": "Vlasnici apartmana plaćaju 19 EUR, a osobe za čišćenje 39 EUR mjesečno. Oba plana uključuju sedmodnevno probno razdoblje.",
+    "owner": {
+      "badge": "7 dana probno",
+      "title": "Clean za vlasnike apartmana",
+      "description": "Objava poslova, usporedba ponuda i upravljanje rezervacijama.",
+      "trial": "Nakon probnog razdoblja mjesečna pretplata od 19 EUR.",
+      "action": "Započni probno razdoblje",
+      "billingNote": "Podaci za naplatu sigurno se unose kroz Stripe Checkout.",
+      "features": { "1": "Objava i upravljanje poslovima", "2": "Primanje i usporedba ponuda", "3": "Upravljanje rezervacijama", "4": "Zaštićeni kontaktni podaci", "5": "Obavijesti i povijest suradnje" }
+    },
     "plan": {
-      "badge": "7 dana besplatno", "title": "Clean za osobe za čišćenje", "trial": "Nakon probnog razdoblja jedna mjesečna pretplata.", "month": "mjesečno", "action": "Pokreni demo probu", "noCard": "Kartica nije potrebna tijekom demo probe.",
+      "badge": "7 dana probno", "title": "Clean za osobe za čišćenje", "trial": "Nakon probnog razdoblja mjesečna pretplata od 39 EUR.", "month": "mjesečno", "action": "Započni probno razdoblje", "billingNote": "Podaci za naplatu sigurno se unose kroz Stripe Checkout.",
       "features": { "1": "Javni profil", "2": "Pregled poslova", "3": "Slanje ponuda", "4": "Povijest ponuda", "5": "Povijest poslova", "6": "Međusobne ocjene", "7": "Obavijesti" }
     },
     "notes": {
-      "commissionTitle": "Bez provizije na čišćenje", "commission": "Plaćanje čišćenja dogovara se izravno između korisnika.", "demoTitle": "Plaćanje nije aktivno", "demo": "Beta verzija ne naplaćuje pretplatu i nema aktivnu integraciju plaćanja."
+      "commissionTitle": "Bez provizije na čišćenje", "commission": "Plaćanje čišćenja dogovara se izravno između korisnika.", "demoTitle": "Sigurna pretplata", "demo": "Pretplatom i načinom plaćanja upravlja se kroz Stripe Checkout i Billing Portal."
     },
     "faqTitle": "Pitanja o pretplati",
     "faq": {
       "1": { "question": "Mogu li otkazati pretplatu?", "answer": "Da. Buduća aktivna pretplata moći će se otkazati prije sljedećeg obračuna." },
-      "2": { "question": "Treba li kartica za probu?", "answer": "Ne. Demo probno razdoblje ne traži podatke kartice." },
+      "2": { "question": "Treba li način plaćanja za probno razdoblje?", "answer": "Da. Stripe Checkout sigurno prikuplja podatke za buduću mjesečnu pretplatu." },
       "3": { "question": "Plaćam li proviziju po poslu?", "answer": "Ne. Clean ne uzima proviziju na dogovorenu cijenu čišćenja." },
-      "4": { "question": "Je li naplata već aktivna?", "answer": "Nije. Integracija plaćanja nije dio javne beta faze." }
+      "4": { "question": "Je li naplata aktivna?", "answer": "Da. Pretplate se pokreću kroz Stripe Checkout, a njima se upravlja kroz Billing Portal." }
     },
-    "metaTitle": "Cijene", "metaDescription": "Clean je besplatan za vlasnike, a osobama za čišćenje nudi sedmodnevnu probu i jednu mjesečnu pretplatu."
+    "metaTitle": "Cijene", "metaDescription": "Clean nudi sedmodnevno probno razdoblje, zatim vlasnički plan od 19 EUR i plan za osobe za čišćenje od 39 EUR mjesečno."
   },
   "contact": {
     "eyebrow": "Kontakt", "title": "Kako vam možemo pomoći?", "description": "Pošaljite demo upit. Obrazac ne šalje poruku stvarnoj službi podrške.",

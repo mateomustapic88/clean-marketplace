@@ -95,11 +95,16 @@
     <section class="public-home__section">
       <div class="container">
         <SectionHeader :eyebrow="t('publicHome.pricing.eyebrow')" :title="t('publicHome.pricing.title')" :description="t('publicHome.pricing.description')" />
-        <BaseCard class="public-home__price-card">
-          <div><h3>{{ t('pricing.plan.title') }}</h3><p>{{ t('pricing.plan.trial') }}</p></div>
-          <PriceDisplay :value="39" :suffix="t('pricing.plan.month')" />
-          <BaseButton :to="getAppRoute('pricing', locale)">{{ t('publicHome.pricing.action') }}</BaseButton>
-        </BaseCard>
+        <div class="public-home__price-grid">
+          <BaseCard v-for="plan in pricingPlans" :key="plan.role" class="public-home__price-card">
+            <div>
+              <h3>{{ t(`pricing.${plan.translationKey}.title`) }}</h3>
+              <p>{{ t(`pricing.${plan.translationKey}.trial`) }}</p>
+            </div>
+            <PriceDisplay :value="plan.monthlyAmount / 100" :suffix="t('pricing.plan.month')" />
+            <BaseButton :to="getAppRoute('pricing', locale)">{{ t('publicHome.pricing.action') }}</BaseButton>
+          </BaseCard>
+        </div>
       </div>
     </section>
     <section id="faq" class="public-home__section public-home__section--tinted">
@@ -142,6 +147,7 @@ defineI18nRoute({ paths: { hr: '/', en: '/' } })
 const { t, locale } = useI18n()
 const jobsStore = useJobsStore()
 const userStore = useUserStore()
+const config = useRuntimeConfig()
 await Promise.all([jobsStore.loadJobs(), userStore.loadDirectory()])
 const featuredJobs = computed(() => jobsStore.jobs
   .filter((job) => ['published', 'receiving_offers'].includes(job.status)).slice(0, 3))
@@ -159,6 +165,18 @@ const transparencyItems = [
   { key: 'agreement', icon: ShieldCheck },
   { key: 'ratings', icon: Sparkles },
 ]
+const pricingPlans = [
+  {
+    role: 'owner',
+    translationKey: 'owner',
+    monthlyAmount: config.public.plans.owner.monthlyAmount,
+  },
+  {
+    role: 'cleaner',
+    translationKey: 'plan',
+    monthlyAmount: config.public.plans.cleaner.monthlyAmount,
+  },
+] as const
 const ownerSteps = Array.from({ length: 5 }, (_, index) => `how.steps.owner.${index + 1}`)
 const faqItems = computed(() => Array.from({ length: 5 }, (_, index) => ({
   question: t(`publicHome.faq.items.${index + 1}.question`),
@@ -326,12 +344,17 @@ useHead({
     }
   }
 
-  &__price-card {
+  &__price-grid {
     display: grid;
     gap: $space-6;
-    align-items: center;
-    max-width: 48rem;
+    max-width: 64rem;
     margin: $space-10 auto 0;
+  }
+
+  &__price-card {
+    display: grid;
+    gap: $space-5;
+    align-content: start;
 
     h3 {
       font-size: $font-size-xl;
@@ -353,8 +376,8 @@ useHead({
       grid-template-columns: repeat(3, 1fr);
     }
 
-    &__price-card {
-      grid-template-columns: 1fr auto auto;
+    &__price-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 

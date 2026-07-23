@@ -33,10 +33,29 @@ test('browses cleaners and opens a public profile', async ({ page }) => {
 })
 
 test('opens pricing and registration', async ({ page }) => {
+  await openHydratedPage(page, '/')
+  await expect(page.getByRole('heading', {
+    name: 'Jasna mjesečna pretplata za obje uloge',
+  })).toBeVisible()
+  await expect(page.getByText(/19\s*€/).first()).toBeVisible()
+  await expect(page.getByText(/39\s*€/).first()).toBeVisible()
+
   await openHydratedPage(page, '/cijene')
-  await expect(page.getByText('39')).toBeVisible()
+  await expect(page.getByRole('heading', {
+    name: 'Clean za vlasnike apartmana',
+  })).toBeVisible()
+  await expect(page.getByRole('heading', {
+    name: 'Clean za osobe za čišćenje',
+  })).toBeVisible()
+  await expect(page.getByText(/19\s*€/).first()).toBeVisible()
+  await expect(page.getByText(/39\s*€/).first()).toBeVisible()
+  await expect(page.getByText('Besplatno za vlasnike')).toHaveCount(0)
+
   await openHydratedPage(page, '/registracija')
   await expect(page.getByRole('radio', { name: /Vlasnik apartmana/ })).toBeVisible()
+  await expect(page.getByText(
+    'Vlasnici apartmana i osobe za čišćenje dobivaju sedam dana probnog razdoblja prije mjesečne pretplate.',
+  )).toBeVisible()
 })
 
 test('mobile navigation is keyboard accessible', async ({ page }) => {
