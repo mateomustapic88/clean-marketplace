@@ -1,0 +1,61 @@
+@use 'tokens' as *;
+
+@mixin focus-ring {
+  outline: 3px solid rgba($color-primary, 0.24);
+  outline-offset: 2px;
+}
+
+@mixin container {
+  width: min(100% - 2rem, $container-width);
+  margin-inline: auto;
+
+  @media (min-width: $breakpoint-md) {
+    width: min(100% - 4rem, $container-width);
+  }
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@mixin field-base {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.75rem 0.875rem;
+  color: $color-text-primary;
+  background: $color-surface;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-md;
+  transition:
+    border-color $transition-fast,
+    box-shadow $transition-fast;
+
+  &::placeholder {
+    color: $color-text-secondary;
+    opacity: 0.8;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: $color-primary;
+  }
+
+  &:focus-visible {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.14);
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background: $color-background;
+  }
+}

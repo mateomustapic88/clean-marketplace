@@ -1,0 +1,4036 @@
+[
+  {
+    "id": "cleaner-01",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-01",
+    "firstName": "Marija",
+    "lastName": "Knežević",
+    "phone": "+385 98 600 100",
+    "cityCode": "zagreb",
+    "hourlyRate": 14,
+    "minimumJobPrice": 35,
+    "serviceRadiusKm": 15,
+    "serviceAreas": [
+      {
+        "cityCode": "zagreb",
+        "radiusKm": 20
+      },
+      {
+        "cityCode": "split",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 1,
+    "biography": "Pouzdano i temeljito održavam apartmane između smjena gostiju. Demo profil za prikaz funkcionalnosti platforme.",
+    "companyName": "Demo servis Sjaj 1",
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en",
+      "de"
+    ],
+    "ownTransportation": false,
+    "bringsSupplies": false,
+    "sameDayAvailable": true,
+    "weekendAvailable": true,
+    "averageRating": null,
+    "ratingCount": 0,
+    "completedJobs": 0
+  },
+  {
+    "id": "cleaner-02",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-02",
+    "firstName": "Ivana",
+    "lastName": "Barišić",
+    "phone": "+385 98 600 101",
+    "cityCode": "split",
+    "hourlyRate": 15,
+    "minimumJobPrice": 40,
+    "serviceRadiusKm": 20,
+    "serviceAreas": [
+      {
+        "cityCode": "split",
+        "radiusKm": 25
+      },
+      {
+        "cityCode": "zadar",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 2,
+    "biography": "Imam iskustvo u čišćenju turističkog smještaja i organizaciji brzih promjena gostiju. Svi podaci su demonstracijski.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": 4.2,
+    "ratingCount": 4,
+    "completedJobs": 5
+  },
+  {
+    "id": "cleaner-03",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-03",
+    "firstName": "Sandra",
+    "lastName": "Milić",
+    "phone": "+385 98 600 102",
+    "cityCode": "zadar",
+    "hourlyRate": 16,
+    "minimumJobPrice": 45,
+    "serviceRadiusKm": 25,
+    "serviceAreas": [
+      {
+        "cityCode": "zadar",
+        "radiusKm": 30
+      },
+      {
+        "cityCode": "dubrovnik",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 3,
+    "biography": "Fokus mi je uredan, detaljan i pravovremen rad uz jasan dogovor s vlasnikom. Ovo je isključivo demo profil.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": true,
+    "averageRating": 4.3,
+    "ratingCount": 5,
+    "completedJobs": 6
+  },
+  {
+    "id": "cleaner-04",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-04",
+    "firstName": "Jelena",
+    "lastName": "Tomić",
+    "phone": "+385 98 600 103",
+    "cityCode": "dubrovnik",
+    "hourlyRate": 17,
+    "minimumJobPrice": 50,
+    "serviceRadiusKm": 30,
+    "serviceAreas": [
+      {
+        "cityCode": "dubrovnik",
+        "radiusKm": 35
+      },
+      {
+        "cityCode": "rijeka",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 4,
+    "biography": "Dostupna sam za redovita i povremena čišćenja apartmana. Profil i iskustvo služe samo kao primjer.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": false,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": 4.4,
+    "ratingCount": 6,
+    "completedJobs": 7
+  },
+  {
+    "id": "cleaner-05",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-05",
+    "firstName": "Martina",
+    "lastName": "Lončar",
+    "phone": "+385 98 600 104",
+    "cityCode": "rijeka",
+    "hourlyRate": 18,
+    "minimumJobPrice": 55,
+    "serviceRadiusKm": 35,
+    "serviceAreas": [
+      {
+        "cityCode": "rijeka",
+        "radiusKm": 20
+      },
+      {
+        "cityCode": "pula",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 5,
+    "biography": "Pouzdano i temeljito održavam apartmane između smjena gostiju. Demo profil za prikaz funkcionalnosti platforme.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en",
+      "de"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": true,
+    "weekendAvailable": true,
+    "averageRating": 4.5,
+    "ratingCount": 7,
+    "completedJobs": 8
+  },
+  {
+    "id": "cleaner-06",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-06",
+    "firstName": "Kristina",
+    "lastName": "Kralj",
+    "phone": "+385 98 600 105",
+    "cityCode": "pula",
+    "hourlyRate": 19,
+    "minimumJobPrice": 60,
+    "serviceRadiusKm": 15,
+    "serviceAreas": [
+      {
+        "cityCode": "pula",
+        "radiusKm": 25
+      },
+      {
+        "cityCode": "sibenik",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 6,
+    "biography": "Imam iskustvo u čišćenju turističkog smještaja i organizaciji brzih promjena gostiju. Svi podaci su demonstracijski.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": false,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": 4.6,
+    "ratingCount": 8,
+    "completedJobs": 9
+  },
+  {
+    "id": "cleaner-07",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-07",
+    "firstName": "Andrea",
+    "lastName": "Ilić",
+    "phone": "+385 98 600 106",
+    "cityCode": "sibenik",
+    "hourlyRate": 20,
+    "minimumJobPrice": 35,
+    "serviceRadiusKm": 20,
+    "serviceAreas": [
+      {
+        "cityCode": "sibenik",
+        "radiusKm": 30
+      },
+      {
+        "cityCode": "makarska",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 7,
+    "biography": "Fokus mi je uredan, detaljan i pravovremen rad uz jasan dogovor s vlasnikom. Ovo je isključivo demo profil.",
+    "companyName": "Demo servis Sjaj 7",
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": false,
+    "sameDayAvailable": false,
+    "weekendAvailable": true,
+    "averageRating": 4.7,
+    "ratingCount": 9,
+    "completedJobs": 10
+  },
+  {
+    "id": "cleaner-08",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-08",
+    "firstName": "Nina",
+    "lastName": "Petrović",
+    "phone": "+385 98 600 107",
+    "cityCode": "makarska",
+    "hourlyRate": 21,
+    "minimumJobPrice": 40,
+    "serviceRadiusKm": 25,
+    "serviceAreas": [
+      {
+        "cityCode": "makarska",
+        "radiusKm": 35
+      },
+      {
+        "cityCode": "rovinj",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 8,
+    "biography": "Dostupna sam za redovita i povremena čišćenja apartmana. Profil i iskustvo služe samo kao primjer.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": null,
+    "ratingCount": 0,
+    "completedJobs": 0
+  },
+  {
+    "id": "cleaner-09",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-09",
+    "firstName": "Antonija",
+    "lastName": "Župan",
+    "phone": "+385 98 600 108",
+    "cityCode": "rovinj",
+    "hourlyRate": 22,
+    "minimumJobPrice": 45,
+    "serviceRadiusKm": 30,
+    "serviceAreas": [
+      {
+        "cityCode": "rovinj",
+        "radiusKm": 20
+      },
+      {
+        "cityCode": "trogir",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 9,
+    "biography": "Pouzdano i temeljito održavam apartmane između smjena gostiju. Demo profil za prikaz funkcionalnosti platforme.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en",
+      "de"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": true,
+    "weekendAvailable": true,
+    "averageRating": 4.9,
+    "ratingCount": 11,
+    "completedJobs": 12
+  },
+  {
+    "id": "cleaner-10",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-10",
+    "firstName": "Renata",
+    "lastName": "Katić",
+    "phone": "+385 98 600 109",
+    "cityCode": "trogir",
+    "hourlyRate": 14,
+    "minimumJobPrice": 50,
+    "serviceRadiusKm": 35,
+    "serviceAreas": [
+      {
+        "cityCode": "trogir",
+        "radiusKm": 25
+      },
+      {
+        "cityCode": "zagreb",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 10,
+    "biography": "Imam iskustvo u čišćenju turističkog smještaja i organizaciji brzih promjena gostiju. Svi podaci su demonstracijski.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": false,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": 4.1,
+    "ratingCount": 12,
+    "completedJobs": 13
+  },
+  {
+    "id": "cleaner-11",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-11",
+    "firstName": "Dora",
+    "lastName": "Blažević",
+    "phone": "+385 98 600 110",
+    "cityCode": "zagreb",
+    "hourlyRate": 15,
+    "minimumJobPrice": 55,
+    "serviceRadiusKm": 15,
+    "serviceAreas": [
+      {
+        "cityCode": "zagreb",
+        "radiusKm": 30
+      },
+      {
+        "cityCode": "split",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 11,
+    "biography": "Fokus mi je uredan, detaljan i pravovremen rad uz jasan dogovor s vlasnikom. Ovo je isključivo demo profil.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": false,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": true,
+    "averageRating": 4.2,
+    "ratingCount": 13,
+    "completedJobs": 14
+  },
+  {
+    "id": "cleaner-12",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-12",
+    "firstName": "Mirjana",
+    "lastName": "Klarić",
+    "phone": "+385 98 600 111",
+    "cityCode": "split",
+    "hourlyRate": 16,
+    "minimumJobPrice": 60,
+    "serviceRadiusKm": 20,
+    "serviceAreas": [
+      {
+        "cityCode": "split",
+        "radiusKm": 35
+      },
+      {
+        "cityCode": "zadar",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 12,
+    "biography": "Dostupna sam za redovita i povremena čišćenja apartmana. Profil i iskustvo služe samo kao primjer.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": 4.3,
+    "ratingCount": 14,
+    "completedJobs": 15
+  },
+  {
+    "id": "cleaner-13",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-13",
+    "firstName": "Tanja",
+    "lastName": "Rukavina",
+    "phone": "+385 98 600 112",
+    "cityCode": "zadar",
+    "hourlyRate": 17,
+    "minimumJobPrice": 35,
+    "serviceRadiusKm": 25,
+    "serviceAreas": [
+      {
+        "cityCode": "zadar",
+        "radiusKm": 20
+      },
+      {
+        "cityCode": "dubrovnik",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 1,
+    "biography": "Pouzdano i temeljito održavam apartmane između smjena gostiju. Demo profil za prikaz funkcionalnosti platforme.",
+    "companyName": "Demo servis Sjaj 13",
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en",
+      "de"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": false,
+    "sameDayAvailable": true,
+    "weekendAvailable": true,
+    "averageRating": 4.4,
+    "ratingCount": 15,
+    "completedJobs": 16
+  },
+  {
+    "id": "cleaner-14",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-14",
+    "firstName": "Vesna",
+    "lastName": "Đurić",
+    "phone": "+385 98 600 113",
+    "cityCode": "dubrovnik",
+    "hourlyRate": 18,
+    "minimumJobPrice": 40,
+    "serviceRadiusKm": 30,
+    "serviceAreas": [
+      {
+        "cityCode": "dubrovnik",
+        "radiusKm": 25
+      },
+      {
+        "cityCode": "rijeka",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 2,
+    "biography": "Imam iskustvo u čišćenju turističkog smještaja i organizaciji brzih promjena gostiju. Svi podaci su demonstracijski.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": 4.5,
+    "ratingCount": 16,
+    "completedJobs": 17
+  },
+  {
+    "id": "cleaner-15",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-15",
+    "firstName": "Valentina",
+    "lastName": "Brkić",
+    "phone": "+385 98 600 114",
+    "cityCode": "rijeka",
+    "hourlyRate": 19,
+    "minimumJobPrice": 45,
+    "serviceRadiusKm": 35,
+    "serviceAreas": [
+      {
+        "cityCode": "rijeka",
+        "radiusKm": 30
+      },
+      {
+        "cityCode": "pula",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 3,
+    "biography": "Fokus mi je uredan, detaljan i pravovremen rad uz jasan dogovor s vlasnikom. Ovo je isključivo demo profil.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": true,
+    "averageRating": null,
+    "ratingCount": 0,
+    "completedJobs": 0
+  },
+  {
+    "id": "cleaner-16",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-16",
+    "firstName": "Irena",
+    "lastName": "Mandić",
+    "phone": "+385 98 600 115",
+    "cityCode": "pula",
+    "hourlyRate": 20,
+    "minimumJobPrice": 50,
+    "serviceRadiusKm": 15,
+    "serviceAreas": [
+      {
+        "cityCode": "pula",
+        "radiusKm": 35
+      },
+      {
+        "cityCode": "sibenik",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 4,
+    "biography": "Dostupna sam za redovita i povremena čišćenja apartmana. Profil i iskustvo služe samo kao primjer.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": false,
+    "bringsSupplies": false,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": 4.7,
+    "ratingCount": 18,
+    "completedJobs": 19
+  },
+  {
+    "id": "cleaner-17",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-17",
+    "firstName": "Gabrijela",
+    "lastName": "Soldo",
+    "phone": "+385 98 600 116",
+    "cityCode": "sibenik",
+    "hourlyRate": 21,
+    "minimumJobPrice": 55,
+    "serviceRadiusKm": 20,
+    "serviceAreas": [
+      {
+        "cityCode": "sibenik",
+        "radiusKm": 20
+      },
+      {
+        "cityCode": "makarska",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 5,
+    "biography": "Pouzdano i temeljito održavam apartmane između smjena gostiju. Demo profil za prikaz funkcionalnosti platforme.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en",
+      "de"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": true,
+    "weekendAvailable": true,
+    "averageRating": 4.8,
+    "ratingCount": 19,
+    "completedJobs": 20
+  },
+  {
+    "id": "cleaner-18",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-18",
+    "firstName": "Lorena",
+    "lastName": "Pranjić",
+    "phone": "+385 98 600 117",
+    "cityCode": "makarska",
+    "hourlyRate": 22,
+    "minimumJobPrice": 60,
+    "serviceRadiusKm": 25,
+    "serviceAreas": [
+      {
+        "cityCode": "makarska",
+        "radiusKm": 25
+      },
+      {
+        "cityCode": "rovinj",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 6,
+    "biography": "Imam iskustvo u čišćenju turističkog smještaja i organizaciji brzih promjena gostiju. Svi podaci su demonstracijski.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": 4.9,
+    "ratingCount": 3,
+    "completedJobs": 21
+  },
+  {
+    "id": "cleaner-19",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-19",
+    "firstName": "Ema",
+    "lastName": "Vidak",
+    "phone": "+385 98 600 118",
+    "cityCode": "rovinj",
+    "hourlyRate": 14,
+    "minimumJobPrice": 35,
+    "serviceRadiusKm": 30,
+    "serviceAreas": [
+      {
+        "cityCode": "rovinj",
+        "radiusKm": 30
+      },
+      {
+        "cityCode": "trogir",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 7,
+    "biography": "Fokus mi je uredan, detaljan i pravovremen rad uz jasan dogovor s vlasnikom. Ovo je isključivo demo profil.",
+    "companyName": "Demo servis Sjaj 19",
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": false,
+    "sameDayAvailable": false,
+    "weekendAvailable": true,
+    "averageRating": 4.1,
+    "ratingCount": 4,
+    "completedJobs": 22
+  },
+  {
+    "id": "cleaner-20",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-20",
+    "firstName": "Helena",
+    "lastName": "Lukić",
+    "phone": "+385 98 600 119",
+    "cityCode": "trogir",
+    "hourlyRate": 15,
+    "minimumJobPrice": 40,
+    "serviceRadiusKm": 35,
+    "serviceAreas": [
+      {
+        "cityCode": "trogir",
+        "radiusKm": 35
+      },
+      {
+        "cityCode": "zagreb",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 8,
+    "biography": "Dostupna sam za redovita i povremena čišćenja apartmana. Profil i iskustvo služe samo kao primjer.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": 4.2,
+    "ratingCount": 5,
+    "completedJobs": 23
+  },
+  {
+    "id": "cleaner-21",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-21",
+    "firstName": "Sara",
+    "lastName": "Krpan",
+    "phone": "+385 98 600 120",
+    "cityCode": "zagreb",
+    "hourlyRate": 16,
+    "minimumJobPrice": 45,
+    "serviceRadiusKm": 15,
+    "serviceAreas": [
+      {
+        "cityCode": "zagreb",
+        "radiusKm": 20
+      },
+      {
+        "cityCode": "split",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 9,
+    "biography": "Pouzdano i temeljito održavam apartmane između smjena gostiju. Demo profil za prikaz funkcionalnosti platforme.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en",
+      "de"
+    ],
+    "ownTransportation": false,
+    "bringsSupplies": true,
+    "sameDayAvailable": true,
+    "weekendAvailable": true,
+    "averageRating": 4.3,
+    "ratingCount": 6,
+    "completedJobs": 24
+  },
+  {
+    "id": "cleaner-22",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-22",
+    "firstName": "Ines",
+    "lastName": "Jakovljević",
+    "phone": "+385 98 600 121",
+    "cityCode": "split",
+    "hourlyRate": 17,
+    "minimumJobPrice": 50,
+    "serviceRadiusKm": 20,
+    "serviceAreas": [
+      {
+        "cityCode": "split",
+        "radiusKm": 25
+      },
+      {
+        "cityCode": "zadar",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 10,
+    "biography": "Imam iskustvo u čišćenju turističkog smještaja i organizaciji brzih promjena gostiju. Svi podaci su demonstracijski.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": false,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": null,
+    "ratingCount": 0,
+    "completedJobs": 0
+  },
+  {
+    "id": "cleaner-23",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-23",
+    "firstName": "Paula",
+    "lastName": "Mikulić",
+    "phone": "+385 98 600 122",
+    "cityCode": "zadar",
+    "hourlyRate": 18,
+    "minimumJobPrice": 55,
+    "serviceRadiusKm": 25,
+    "serviceAreas": [
+      {
+        "cityCode": "zadar",
+        "radiusKm": 30
+      },
+      {
+        "cityCode": "dubrovnik",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 11,
+    "biography": "Fokus mi je uredan, detaljan i pravovremen rad uz jasan dogovor s vlasnikom. Ovo je isključivo demo profil.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": true,
+    "averageRating": 4.5,
+    "ratingCount": 8,
+    "completedJobs": 26
+  },
+  {
+    "id": "cleaner-24",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-24",
+    "firstName": "Monika",
+    "lastName": "Erceg",
+    "phone": "+385 98 600 123",
+    "cityCode": "dubrovnik",
+    "hourlyRate": 19,
+    "minimumJobPrice": 60,
+    "serviceRadiusKm": 30,
+    "serviceAreas": [
+      {
+        "cityCode": "dubrovnik",
+        "radiusKm": 35
+      },
+      {
+        "cityCode": "rijeka",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 12,
+    "biography": "Dostupna sam za redovita i povremena čišćenja apartmana. Profil i iskustvo služe samo kao primjer.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": 4.6,
+    "ratingCount": 9,
+    "completedJobs": 27
+  },
+  {
+    "id": "cleaner-25",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-25",
+    "firstName": "Tamara",
+    "lastName": "Varga",
+    "phone": "+385 98 600 124",
+    "cityCode": "rijeka",
+    "hourlyRate": 20,
+    "minimumJobPrice": 35,
+    "serviceRadiusKm": 35,
+    "serviceAreas": [
+      {
+        "cityCode": "rijeka",
+        "radiusKm": 20
+      },
+      {
+        "cityCode": "pula",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 1,
+    "biography": "Pouzdano i temeljito održavam apartmane između smjena gostiju. Demo profil za prikaz funkcionalnosti platforme.",
+    "companyName": "Demo servis Sjaj 25",
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en",
+      "de"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": false,
+    "sameDayAvailable": true,
+    "weekendAvailable": true,
+    "averageRating": 4.7,
+    "ratingCount": 10,
+    "completedJobs": 28
+  },
+  {
+    "id": "cleaner-26",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-26",
+    "firstName": "Danijela",
+    "lastName": "Bašić",
+    "phone": "+385 98 600 125",
+    "cityCode": "pula",
+    "hourlyRate": 21,
+    "minimumJobPrice": 40,
+    "serviceRadiusKm": 15,
+    "serviceAreas": [
+      {
+        "cityCode": "pula",
+        "radiusKm": 25
+      },
+      {
+        "cityCode": "sibenik",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 2,
+    "biography": "Imam iskustvo u čišćenju turističkog smještaja i organizaciji brzih promjena gostiju. Svi podaci su demonstracijski.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": false,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": 4.8,
+    "ratingCount": 11,
+    "completedJobs": 29
+  },
+  {
+    "id": "cleaner-27",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-27",
+    "firstName": "Karla",
+    "lastName": "Vukelić",
+    "phone": "+385 98 600 126",
+    "cityCode": "sibenik",
+    "hourlyRate": 22,
+    "minimumJobPrice": 45,
+    "serviceRadiusKm": 20,
+    "serviceAreas": [
+      {
+        "cityCode": "sibenik",
+        "radiusKm": 30
+      },
+      {
+        "cityCode": "makarska",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 3,
+    "biography": "Fokus mi je uredan, detaljan i pravovremen rad uz jasan dogovor s vlasnikom. Ovo je isključivo demo profil.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": true,
+    "averageRating": 4.9,
+    "ratingCount": 12,
+    "completedJobs": 30
+  },
+  {
+    "id": "cleaner-28",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-28",
+    "firstName": "Lea",
+    "lastName": "Magaš",
+    "phone": "+385 98 600 127",
+    "cityCode": "makarska",
+    "hourlyRate": 14,
+    "minimumJobPrice": 50,
+    "serviceRadiusKm": 25,
+    "serviceAreas": [
+      {
+        "cityCode": "makarska",
+        "radiusKm": 35
+      },
+      {
+        "cityCode": "rovinj",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 4,
+    "biography": "Dostupna sam za redovita i povremena čišćenja apartmana. Profil i iskustvo služe samo kao primjer.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": false,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": 4.1,
+    "ratingCount": 13,
+    "completedJobs": 31
+  },
+  {
+    "id": "cleaner-29",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-29",
+    "firstName": "Barbara",
+    "lastName": "Pavlović",
+    "phone": "+385 98 600 128",
+    "cityCode": "rovinj",
+    "hourlyRate": 15,
+    "minimumJobPrice": 55,
+    "serviceRadiusKm": 30,
+    "serviceAreas": [
+      {
+        "cityCode": "rovinj",
+        "radiusKm": 20
+      },
+      {
+        "cityCode": "trogir",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 5,
+    "biography": "Pouzdano i temeljito održavam apartmane između smjena gostiju. Demo profil za prikaz funkcionalnosti platforme.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en",
+      "de"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": true,
+    "weekendAvailable": true,
+    "averageRating": null,
+    "ratingCount": 0,
+    "completedJobs": 0
+  },
+  {
+    "id": "cleaner-30",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-30",
+    "firstName": "Mateja",
+    "lastName": "Cindrić",
+    "phone": "+385 98 600 129",
+    "cityCode": "trogir",
+    "hourlyRate": 16,
+    "minimumJobPrice": 60,
+    "serviceRadiusKm": 35,
+    "serviceAreas": [
+      {
+        "cityCode": "trogir",
+        "radiusKm": 25
+      },
+      {
+        "cityCode": "zagreb",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 6,
+    "biography": "Imam iskustvo u čišćenju turističkog smještaja i organizaciji brzih promjena gostiju. Svi podaci su demonstracijski.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": 4.3,
+    "ratingCount": 15,
+    "completedJobs": 5
+  },
+  {
+    "id": "cleaner-31",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-31",
+    "firstName": "Anita",
+    "lastName": "Kovačević",
+    "phone": "+385 98 600 130",
+    "cityCode": "zagreb",
+    "hourlyRate": 17,
+    "minimumJobPrice": 35,
+    "serviceRadiusKm": 15,
+    "serviceAreas": [
+      {
+        "cityCode": "zagreb",
+        "radiusKm": 30
+      },
+      {
+        "cityCode": "split",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 7,
+    "biography": "Fokus mi je uredan, detaljan i pravovremen rad uz jasan dogovor s vlasnikom. Ovo je isključivo demo profil.",
+    "companyName": "Demo servis Sjaj 31",
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": false,
+    "bringsSupplies": false,
+    "sameDayAvailable": false,
+    "weekendAvailable": true,
+    "averageRating": 4.4,
+    "ratingCount": 16,
+    "completedJobs": 6
+  },
+  {
+    "id": "cleaner-32",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-32",
+    "firstName": "Mirela",
+    "lastName": "Bilić",
+    "phone": "+385 98 600 131",
+    "cityCode": "split",
+    "hourlyRate": 18,
+    "minimumJobPrice": 40,
+    "serviceRadiusKm": 20,
+    "serviceAreas": [
+      {
+        "cityCode": "split",
+        "radiusKm": 35
+      },
+      {
+        "cityCode": "zadar",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 8,
+    "biography": "Dostupna sam za redovita i povremena čišćenja apartmana. Profil i iskustvo služe samo kao primjer.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": 4.5,
+    "ratingCount": 17,
+    "completedJobs": 7
+  },
+  {
+    "id": "cleaner-33",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-33",
+    "firstName": "Zrinka",
+    "lastName": "Lovrić",
+    "phone": "+385 98 600 132",
+    "cityCode": "zadar",
+    "hourlyRate": 19,
+    "minimumJobPrice": 45,
+    "serviceRadiusKm": 25,
+    "serviceAreas": [
+      {
+        "cityCode": "zadar",
+        "radiusKm": 20
+      },
+      {
+        "cityCode": "dubrovnik",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 9,
+    "biography": "Pouzdano i temeljito održavam apartmane između smjena gostiju. Demo profil za prikaz funkcionalnosti platforme.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en",
+      "de"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": true,
+    "weekendAvailable": true,
+    "averageRating": 4.6,
+    "ratingCount": 18,
+    "completedJobs": 8
+  },
+  {
+    "id": "cleaner-34",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-34",
+    "firstName": "Silvija",
+    "lastName": "Šimić",
+    "phone": "+385 98 600 133",
+    "cityCode": "dubrovnik",
+    "hourlyRate": 20,
+    "minimumJobPrice": 50,
+    "serviceRadiusKm": 30,
+    "serviceAreas": [
+      {
+        "cityCode": "dubrovnik",
+        "radiusKm": 25
+      },
+      {
+        "cityCode": "rijeka",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 10,
+    "biography": "Imam iskustvo u čišćenju turističkog smještaja i organizaciji brzih promjena gostiju. Svi podaci su demonstracijski.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": false,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": 4.7,
+    "ratingCount": 19,
+    "completedJobs": 9
+  },
+  {
+    "id": "cleaner-35",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-35",
+    "firstName": "Tea",
+    "lastName": "Ćosić",
+    "phone": "+385 98 600 134",
+    "cityCode": "rijeka",
+    "hourlyRate": 21,
+    "minimumJobPrice": 55,
+    "serviceRadiusKm": 35,
+    "serviceAreas": [
+      {
+        "cityCode": "rijeka",
+        "radiusKm": 30
+      },
+      {
+        "cityCode": "pula",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 11,
+    "biography": "Fokus mi je uredan, detaljan i pravovremen rad uz jasan dogovor s vlasnikom. Ovo je isključivo demo profil.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": true,
+    "averageRating": 4.8,
+    "ratingCount": 3,
+    "completedJobs": 10
+  },
+  {
+    "id": "cleaner-36",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-36",
+    "firstName": "Ksenija",
+    "lastName": "Kordić",
+    "phone": "+385 98 600 135",
+    "cityCode": "pula",
+    "hourlyRate": 22,
+    "minimumJobPrice": 60,
+    "serviceRadiusKm": 15,
+    "serviceAreas": [
+      {
+        "cityCode": "pula",
+        "radiusKm": 35
+      },
+      {
+        "cityCode": "sibenik",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": false,
+        "ranges": []
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 12,
+    "biography": "Dostupna sam za redovita i povremena čišćenja apartmana. Profil i iskustvo služe samo kao primjer.",
+    "companyName": null,
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en"
+    ],
+    "ownTransportation": false,
+    "bringsSupplies": true,
+    "sameDayAvailable": false,
+    "weekendAvailable": false,
+    "averageRating": null,
+    "ratingCount": 0,
+    "completedJobs": 0
+  },
+  {
+    "id": "cleaner-37",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "cleaner-user-37",
+    "firstName": "Natali",
+    "lastName": "Maretić",
+    "phone": "+385 98 600 136",
+    "cityCode": "sibenik",
+    "hourlyRate": 14,
+    "minimumJobPrice": 35,
+    "serviceRadiusKm": 20,
+    "serviceAreas": [
+      {
+        "cityCode": "sibenik",
+        "radiusKm": 20
+      },
+      {
+        "cityCode": "makarska",
+        "radiusKm": 15
+      }
+    ],
+    "availability": [
+      {
+        "weekday": 0,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 1,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 2,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 3,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 4,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 5,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": 6,
+        "enabled": true,
+        "ranges": [
+          {
+            "start": "08:00",
+            "end": "16:00"
+          }
+        ]
+      }
+    ],
+    "yearsOfExperience": 1,
+    "biography": "Pouzdano i temeljito održavam apartmane između smjena gostiju. Demo profil za prikaz funkcionalnosti platforme.",
+    "companyName": "Demo servis Sjaj 37",
+    "oib": null,
+    "website": null,
+    "languages": [
+      "hr",
+      "en",
+      "de"
+    ],
+    "ownTransportation": true,
+    "bringsSupplies": false,
+    "sameDayAvailable": true,
+    "weekendAvailable": true,
+    "averageRating": 4.1,
+    "ratingCount": 5,
+    "completedJobs": 12
+  }
+]

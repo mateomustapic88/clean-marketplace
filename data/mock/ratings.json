@@ -1,0 +1,350 @@
+[
+  {
+    "id": "rating-01-owner",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "jobId": "job-05",
+    "authorId": "owner-user-05",
+    "subjectId": "cleaner-user-05",
+    "categoryScores": [
+      {
+        "category": "cleaning_quality",
+        "score": 4
+      },
+      {
+        "category": "reliability",
+        "score": 5
+      },
+      {
+        "category": "communication",
+        "score": 4
+      },
+      {
+        "category": "punctuality",
+        "score": 5
+      }
+    ],
+    "overallScore": 4,
+    "comment": "Demo recenzija za prikaz završenog poslovnog tijeka."
+  },
+  {
+    "id": "rating-01-cleaner",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "jobId": "job-05",
+    "authorId": "cleaner-user-05",
+    "subjectId": "owner-user-05",
+    "categoryScores": [
+      {
+        "category": "description_accuracy",
+        "score": 5
+      },
+      {
+        "category": "communication",
+        "score": 4
+      },
+      {
+        "category": "organization",
+        "score": 4
+      },
+      {
+        "category": "fairness",
+        "score": 5
+      }
+    ],
+    "overallScore": 4,
+    "comment": "Demo recenzija vlasnika. Sadržaj nije iskustvo stvarne osobe."
+  },
+  {
+    "id": "rating-02-owner",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "jobId": "job-11",
+    "authorId": "owner-user-11",
+    "subjectId": "cleaner-user-11",
+    "categoryScores": [
+      {
+        "category": "cleaning_quality",
+        "score": 5
+      },
+      {
+        "category": "reliability",
+        "score": 5
+      },
+      {
+        "category": "communication",
+        "score": 5
+      },
+      {
+        "category": "punctuality",
+        "score": 5
+      }
+    ],
+    "overallScore": 5,
+    "comment": "Demo recenzija za prikaz završenog poslovnog tijeka."
+  },
+  {
+    "id": "rating-02-cleaner",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "jobId": "job-11",
+    "authorId": "cleaner-user-11",
+    "subjectId": "owner-user-11",
+    "categoryScores": [
+      {
+        "category": "description_accuracy",
+        "score": 5
+      },
+      {
+        "category": "communication",
+        "score": 5
+      },
+      {
+        "category": "organization",
+        "score": 5
+      },
+      {
+        "category": "fairness",
+        "score": 5
+      }
+    ],
+    "overallScore": 5,
+    "comment": "Demo recenzija vlasnika. Sadržaj nije iskustvo stvarne osobe."
+  },
+  {
+    "id": "rating-03-owner",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "jobId": "job-17",
+    "authorId": "owner-user-02",
+    "subjectId": "cleaner-user-17",
+    "categoryScores": [
+      {
+        "category": "cleaning_quality",
+        "score": 4
+      },
+      {
+        "category": "reliability",
+        "score": 5
+      },
+      {
+        "category": "communication",
+        "score": 4
+      },
+      {
+        "category": "punctuality",
+        "score": 5
+      }
+    ],
+    "overallScore": 4,
+    "comment": "Demo recenzija za prikaz završenog poslovnog tijeka."
+  },
+  {
+    "id": "rating-03-cleaner",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "jobId": "job-17",
+    "authorId": "cleaner-user-17",
+    "subjectId": "owner-user-02",
+    "categoryScores": [
+      {
+        "category": "description_accuracy",
+        "score": 5
+      },
+      {
+        "category": "communication",
+        "score": 4
+      },
+      {
+        "category": "organization",
+        "score": 4
+      },
+      {
+        "category": "fairness",
+        "score": 5
+      }
+    ],
+    "overallScore": 4,
+    "comment": "Demo recenzija vlasnika. Sadržaj nije iskustvo stvarne osobe."
+  },
+  {
+    "id": "rating-04-owner",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "jobId": "job-23",
+    "authorId": "owner-user-08",
+    "subjectId": "cleaner-user-23",
+    "categoryScores": [
+      {
+        "category": "cleaning_quality",
+        "score": 5
+      },
+      {
+        "category": "reliability",
+        "score": 5
+      },
+      {
+        "category": "communication",
+        "score": 5
+      },
+      {
+        "category": "punctuality",
+        "score": 5
+      }
+    ],
+    "overallScore": 5,
+    "comment": "Demo recenzija za prikaz završenog poslovnog tijeka."
+  },
+  {
+    "id": "rating-04-cleaner",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "jobId": "job-23",
+    "authorId": "cleaner-user-23",
+    "subjectId": "owner-user-08",
+    "categoryScores": [
+      {
+        "category": "description_accuracy",
+        "score": 5
+      },
+      {
+        "category": "communication",
+        "score": 5
+      },
+      {
+        "category": "organization",
+        "score": 5
+      },
+      {
+        "category": "fairness",
+        "score": 5
+      }
+    ],
+    "overallScore": 5,
+    "comment": "Demo recenzija vlasnika. Sadržaj nije iskustvo stvarne osobe."
+  },
+  {
+    "id": "rating-05-owner",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "jobId": "job-29",
+    "authorId": "owner-user-14",
+    "subjectId": "cleaner-user-29",
+    "categoryScores": [
+      {
+        "category": "cleaning_quality",
+        "score": 4
+      },
+      {
+        "category": "reliability",
+        "score": 5
+      },
+      {
+        "category": "communication",
+        "score": 4
+      },
+      {
+        "category": "punctuality",
+        "score": 5
+      }
+    ],
+    "overallScore": 4,
+    "comment": "Demo recenzija za prikaz završenog poslovnog tijeka."
+  },
+  {
+    "id": "rating-05-cleaner",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "jobId": "job-29",
+    "authorId": "cleaner-user-29",
+    "subjectId": "owner-user-14",
+    "categoryScores": [
+      {
+        "category": "description_accuracy",
+        "score": 5
+      },
+      {
+        "category": "communication",
+        "score": 4
+      },
+      {
+        "category": "organization",
+        "score": 4
+      },
+      {
+        "category": "fairness",
+        "score": 5
+      }
+    ],
+    "overallScore": 4,
+    "comment": "Demo recenzija vlasnika. Sadržaj nije iskustvo stvarne osobe."
+  },
+  {
+    "id": "rating-06-owner",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "jobId": "job-35",
+    "authorId": "owner-user-05",
+    "subjectId": "cleaner-user-35",
+    "categoryScores": [
+      {
+        "category": "cleaning_quality",
+        "score": 5
+      },
+      {
+        "category": "reliability",
+        "score": 5
+      },
+      {
+        "category": "communication",
+        "score": 5
+      },
+      {
+        "category": "punctuality",
+        "score": 5
+      }
+    ],
+    "overallScore": 5,
+    "comment": "Demo recenzija za prikaz završenog poslovnog tijeka."
+  },
+  {
+    "id": "rating-06-cleaner",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "jobId": "job-35",
+    "authorId": "cleaner-user-35",
+    "subjectId": "owner-user-05",
+    "categoryScores": [
+      {
+        "category": "description_accuracy",
+        "score": 5
+      },
+      {
+        "category": "communication",
+        "score": 5
+      },
+      {
+        "category": "organization",
+        "score": 5
+      },
+      {
+        "category": "fairness",
+        "score": 5
+      }
+    ],
+    "overallScore": 5,
+    "comment": "Demo recenzija vlasnika. Sadržaj nije iskustvo stvarne osobe."
+  }
+]

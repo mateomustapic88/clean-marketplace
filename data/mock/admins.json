@@ -1,0 +1,11 @@
+[
+  {
+    "id": "admin-01",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "userId": "admin-user-01",
+    "firstName": "Marta",
+    "lastName": "Administrator"
+  }
+]

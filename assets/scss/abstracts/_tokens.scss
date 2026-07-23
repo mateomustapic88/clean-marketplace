@@ -1,0 +1,80 @@
+$color-primary-dark: #173b3f;
+$color-primary: #236a70;
+$color-primary-hover: #1b565b;
+$color-primary-light: #e7f3f2;
+$color-accent: #d9a441;
+$color-accent-light: #fbf3df;
+$color-background: #f7f8f6;
+$color-surface: #ffffff;
+$color-text-primary: #172126;
+$color-text-secondary: #667177;
+$color-border: #dce3e1;
+$color-border-strong: #b8c6c3;
+$color-success: #2f7d5a;
+$color-success-light: #e7f4ec;
+$color-warning: #9a6418;
+$color-warning-light: #fff4df;
+$color-error: #b84a4a;
+$color-error-light: #fbeaea;
+$color-info: #326b8c;
+$color-info-light: #e8f2f8;
+$color-overlay: rgba(12, 30, 32, 0.58);
+
+$font-family-base: 'Montserrat Variable', 'Montserrat', Arial, sans-serif;
+
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-md: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: clamp(1.5rem, 3vw, 2rem);
+$font-size-3xl: clamp(2rem, 5vw, 3.5rem);
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$line-height-tight: 1.2;
+$line-height-base: 1.6;
+
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-5: 1.25rem;
+$space-6: 1.5rem;
+$space-8: 2rem;
+$space-10: 2.5rem;
+$space-12: 3rem;
+$space-16: 4rem;
+$space-20: 5rem;
+$space-24: 6rem;
+
+$radius-sm: 0.5rem;
+$radius-md: 0.75rem;
+$radius-lg: 1rem;
+$radius-xl: 1.5rem;
+$radius-full: 9999px;
+
+$shadow-sm: 0 2px 8px rgba(23, 59, 63, 0.06);
+$shadow-md: 0 12px 32px rgba(23, 59, 63, 0.1);
+$shadow-lg: 0 24px 64px rgba(23, 59, 63, 0.14);
+
+$transition-fast: 150ms ease;
+$transition-base: 220ms ease;
+
+$container-width: 76rem;
+$header-height: 4.75rem;
+
+$breakpoint-sm: 30rem;
+$breakpoint-md: 48rem;
+$breakpoint-lg: 64rem;
+$breakpoint-xl: 80rem;
+$breakpoint-2xl: 90rem;
+
+$z-dropdown: 20;
+$z-sticky: 30;
+$z-drawer: 50;
+$z-modal: 60;
+$z-tooltip: 70;

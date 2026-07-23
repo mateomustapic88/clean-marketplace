@@ -1,0 +1,92 @@
+[
+  {
+    "id": "city-01",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "code": "zagreb",
+    "name": "Zagreb",
+    "county": "Grad Zagreb"
+  },
+  {
+    "id": "city-02",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "code": "split",
+    "name": "Split",
+    "county": "Splitsko-dalmatinska"
+  },
+  {
+    "id": "city-03",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "code": "zadar",
+    "name": "Zadar",
+    "county": "Zadarska"
+  },
+  {
+    "id": "city-04",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "code": "dubrovnik",
+    "name": "Dubrovnik",
+    "county": "Dubrovačko-neretvanska"
+  },
+  {
+    "id": "city-05",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "code": "rijeka",
+    "name": "Rijeka",
+    "county": "Primorsko-goranska"
+  },
+  {
+    "id": "city-06",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "code": "pula",
+    "name": "Pula",
+    "county": "Istarska"
+  },
+  {
+    "id": "city-07",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "code": "sibenik",
+    "name": "Šibenik",
+    "county": "Šibensko-kninska"
+  },
+  {
+    "id": "city-08",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "code": "makarska",
+    "name": "Makarska",
+    "county": "Splitsko-dalmatinska"
+  },
+  {
+    "id": "city-09",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "code": "rovinj",
+    "name": "Rovinj",
+    "county": "Istarska"
+  },
+  {
+    "id": "city-10",
+    "isDemo": true,
+    "createdAt": "2026-06-01T08:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z",
+    "code": "trogir",
+    "name": "Trogir",
+    "county": "Splitsko-dalmatinska"
+  }
+]

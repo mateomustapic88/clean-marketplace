@@ -1,0 +1,1132 @@
+{
+  "meta": {
+    "siteName": "Clean",
+    "homeTitle": "Reliable apartment cleaning",
+    "homeDescription": "The foundation for a platform connecting apartment owners with cleaning professionals."
+  },
+  "common": {
+    "close": "Close",
+    "menu": "Menu",
+    "loading": "Loading",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {page}",
+    "dismiss": "Dismiss notification",
+    "selectOption": "Select an option",
+    "openDropdown": "Open menu",
+    "noResultsTitle": "No results",
+    "noResultsDescription": "Try adjusting your search criteria.",
+    "notAvailable": "Not available"
+  },
+  "navigation": {
+    "primaryLabel": "Main navigation",
+    "mobileLabel": "Mobile navigation",
+    "home": "Home",
+    "foundation": "Foundation",
+    "components": "Components",
+    "nextSteps": "Next steps",
+    "jobs": "Cleaning jobs",
+    "cleaners": "Cleaning professionals",
+    "howItWorks": "How it works",
+    "pricing": "Pricing",
+    "skipToContent": "Skip to content"
+  },
+  "language": {
+    "label": "Language",
+    "hr": "HR",
+    "en": "EN",
+    "switchTo": "Switch language to {language}"
+  },
+  "header": {
+    "brandLabel": "Clean - home page",
+    "ownerAction": "Post a job",
+    "cleanerAction": "Find jobs",
+    "login": "Log in",
+    "register": "Register",
+    "dashboard": "Dashboard",
+    "logout": "Log out"
+  },
+  "footer": {
+    "description": "A professional platform for arranging apartment cleaning services in Croatia.",
+    "product": "Platform",
+    "support": "Support",
+    "legal": "Legal",
+    "howItWorks": "How it works",
+    "pricing": "Pricing",
+    "jobs": "Cleaning jobs",
+    "cleaners": "Cleaning professionals",
+    "contact": "Contact",
+    "help": "Help centre",
+    "terms": "Terms of service",
+    "privacy": "Privacy policy",
+    "rights": "All rights reserved.",
+    "copyright": "© {year} Clean. All rights reserved.",
+    "beta": "Public beta",
+    "faq": "Frequently asked questions",
+    "phaseNotice": "Demo environment - business data is not real."
+  },
+  "home": {
+    "eyebrow": "Product foundation",
+    "title": "A reliable foundation for simpler apartment cleaning",
+    "description": "The first two phases deliver an accessible, responsive, and bilingual foundation with demo data, clear sign-in flows, and role-based access.",
+    "primaryAction": "Explore the foundation",
+    "secondaryAction": "Explore components",
+    "visualLabel": "Apartment and sparkle illustration",
+    "foundation": {
+      "eyebrow": "Design system",
+      "title": "Consistent on every screen",
+      "description": "Colours, typography, spacing, shadows, and states are defined as shared tokens.",
+      "responsiveTitle": "Responsive from the start",
+      "responsiveDescription": "Navigation, content, and controls adapt to mobile, tablet, and desktop devices.",
+      "localizationTitle": "Croatian and English",
+      "localizationDescription": "Every visible string comes from translations, with Croatian as the default language.",
+      "accessibleTitle": "Accessible interactions",
+      "accessibleDescription": "Clear focus, semantic structure, and keyboard support are built into the foundation."
+    },
+    "components": {
+      "eyebrow": "Base components",
+      "title": "Prepared for real workflows",
+      "description": "Reusable controls will keep future interfaces consistent.",
+      "formLabel": "Example field",
+      "formPlaceholder": "Enter the apartment name",
+      "cityLabel": "City",
+      "cityPlaceholder": "Select a city",
+      "cityZagreb": "Zagreb",
+      "citySplit": "Split",
+      "cityZadar": "Zadar",
+      "checkboxLabel": "Available on weekends",
+      "primaryButton": "Primary action",
+      "secondaryButton": "Secondary action",
+      "status": "Ready"
+    },
+    "next": {
+      "eyebrow": "Phase 2 complete",
+      "title": "The data and authentication architecture is ready",
+      "description": "Domain models, demo data, repositories, state stores, and role access now provide a stable foundation for public pages.",
+      "action": "Back to top"
+    }
+  },
+  "validation": {
+    "required": "This field is required.",
+    "email": "Enter a valid email address.",
+    "phone": "Enter a valid phone number.",
+    "maxLength": "Use no more than {count} characters.",
+    "minLength": "Enter at least {count} characters.",
+    "passwordLength": "The password must contain at least {count} characters.",
+    "positiveNumber": "The value must be greater than zero.",
+    "nonNegativeNumber": "The value cannot be negative.",
+    "wholeNumber": "Enter a whole number.",
+    "minimumValue": "The minimum allowed value is {value}.",
+    "maximumValue": "The maximum allowed value is {value}.",
+    "oib": "The OIB must contain 11 digits.",
+    "url": "Enter a valid web address.",
+    "languages": "Select at least one language."
+    ,"consent": "You must accept data processing to send the message."
+  },
+  "demo": {
+    "profileBadge": "Demo profile",
+    "listingBadge": "Example listing",
+    "dataBadge": "Demo data"
+    ,"ratingBadge": "Demo rating"
+  },
+  "auth": {
+    "fields": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email address",
+      "emailPlaceholder": "name{'@'}example.com",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "phone": "Phone",
+      "city": "City",
+      "cityPlaceholder": "Select a city"
+    },
+    "login": {
+      "eyebrow": "Welcome back",
+      "title": "Log in to your account",
+      "description": "Manage jobs, offers, and your profile in a secure demo environment.",
+      "submit": "Log in",
+      "forgotPassword": "Forgot your password?",
+      "noAccount": "Do not have an account?",
+      "register": "Register",
+      "metaTitle": "Log in",
+      "metaDescription": "Log in to your Clean account."
+    },
+    "register": {
+      "eyebrow": "Create an account",
+      "title": "Choose how you want to use the platform",
+      "description": "Registration is free for owners. Cleaning professionals receive a seven-day trial.",
+      "roleLegend": "Account type",
+      "ownerRole": "Apartment owner",
+      "ownerRoleDescription": "I post jobs and accept offers.",
+      "cleanerRole": "I provide cleaning services",
+      "cleanerRoleDescription": "I find jobs and submit offers.",
+      "passwordHint": "At least 8 characters.",
+      "submit": "Create account",
+      "hasAccount": "Already have an account?",
+      "login": "Log in",
+      "metaTitle": "Register",
+      "metaDescription": "Create a demo Clean account as an owner or cleaning professional."
+    },
+    "forgot": {
+      "eyebrow": "Restore access",
+      "title": "Set a new password",
+      "description": "Enter your email address. No real message is sent in demo mode.",
+      "submit": "Send instructions",
+      "backToLogin": "Back to login",
+      "successTitle": "Request received",
+      "successDescription": "If the account exists, the demo password reset request has been recorded.",
+      "metaTitle": "Forgot password",
+      "metaDescription": "Start a demo Clean account recovery."
+    },
+    "demo": {
+      "title": "Demo access",
+      "description": "Use one of these clearly marked demo addresses to explore each role:",
+      "owner": "Owner: owner01{'@'}demo.clean.hr",
+      "cleaner": "Cleaning professional: cleaner01{'@'}demo.clean.hr",
+      "admin": "Administrator: admin{'@'}demo.clean.hr",
+      "password": "Password for every demo account: Demo1234"
+    },
+    "errors": {
+      "title": "Login failed",
+      "invalid_credentials": "The email address or password is incorrect.",
+      "email_exists": "An account with this email address already exists.",
+      "session_expired": "Your session has expired. Please log in again.",
+      "user_suspended": "This account is temporarily suspended.",
+      "unknown": "An unexpected error occurred. Please try again."
+    },
+    "forbidden": {
+      "title": "You cannot access this page",
+      "description": "Your user role does not have permission to view the requested content.",
+      "action": "Return to a safe area",
+      "metaTitle": "Access forbidden"
+    }
+  },
+  "dashboard": {
+    "phase2Title": "Your account architecture is active",
+    "phase2Description": "The session, user role, and demo data layer loaded successfully.",
+    "phase3Notice": "Jobs, profiles, and public directories will be built in Phase 3.",
+    "owner": {
+      "title": "Hello, {name}",
+      "description": "This is the protected apartment owner area.",
+      "metaTitle": "Owner dashboard"
+    },
+    "cleaner": {
+      "title": "Hello, {name}",
+      "description": "This is the protected cleaning professional area.",
+      "metaTitle": "Cleaning professional dashboard"
+    },
+    "admin": {
+      "title": "Hello, {name}",
+      "description": "This is the protected administration area.",
+      "metaTitle": "Administration dashboard",
+      "mockNotice": "Administration data and permissions in this phase use demo repositories only."
+    }
+  },
+  "onboarding": {
+    "foundationTitle": "Your account was created successfully",
+    "foundationDescription": "Detailed apartment and owner settings will be added in Phase 4.",
+    "continue": "Continue to dashboard",
+    "owner": {
+      "title": "Welcome as an apartment owner",
+      "description": "Your demo owner profile is ready."
+    },
+    "cleaner": {
+      "title": "Welcome as a cleaning professional",
+      "description": "Your demo profile and trial subscription are ready.",
+      "trialNotice": "Your seven-day demo trial is active. Detailed profile steps will be added in Phase 5."
+    }
+  },
+  "catalog": {
+    "search": "Search",
+    "city": "City",
+    "allCities": "All cities",
+    "allOptions": "All options",
+    "priceMin": "Minimum price",
+    "priceMax": "Maximum price",
+    "sort": "Sort",
+    "filters": "Filters",
+    "activeFilters": "Active filters",
+    "clearAll": "Clear all",
+    "resetFilters": "Reset filters",
+    "resultCount": "Results shown: {count}",
+    "emptyTitle": "No results match these filters",
+    "emptyDescription": "Change or reset your filters to see more results.",
+    "noRatings": "No ratings yet",
+    "ratingLabel": "Rating {rating} based on {count} ratings",
+    "breadcrumbs": "Breadcrumbs"
+  },
+  "languages": {
+    "hr": "Croatian",
+    "en": "English",
+    "de": "German",
+    "it": "Italian"
+  },
+  "jobs": {
+    "eyebrow": "Public job examples",
+    "title": "Find a cleaning job",
+    "description": "Browse clearly structured demo listings and find work that matches your availability.",
+    "metaTitle": "Apartment cleaning jobs",
+    "metaDescription": "Browse example apartment cleaning jobs by city, date, and budget.",
+    "pagination": "Job pages",
+    "card": {
+      "urgent": "Urgent",
+      "size": "{value} m²",
+      "rooms": "{bedrooms} bedrooms, {bathrooms} bathrooms",
+      "duration": "About {value} h",
+      "offers": "{count} offers"
+    },
+    "budgetType": { "fixed": "total", "hourly": "per hour" },
+    "filters": {
+      "title": "Filter jobs",
+      "date": "Cleaning date",
+      "priceType": "Price type",
+      "minimumSize": "Minimum size",
+      "sameDay": "Same-day guest turnover",
+      "supplies": "Supplies are provided",
+      "weekend": "Weekend job",
+      "urgent": "Urgent jobs only"
+    },
+    "sort": {
+      "newest": "Newest",
+      "date": "Date soonest",
+      "budget-high": "Highest budget",
+      "budget-low": "Lowest budget"
+    },
+    "filterLabels": {
+      "search": "Search: {value}",
+      "city": "City: {value}",
+      "priceType": "Price type: {value}",
+      "minimumPrice": "From EUR {value}",
+      "maximumPrice": "Up to EUR {value}",
+      "minimumSize": "From {value} m²",
+      "sameDay": "Same-day turnover",
+      "supplies": "Supplies provided",
+      "weekend": "Weekend",
+      "urgent": "Urgent",
+      "date": "Date: {value}"
+    }
+  },
+  "cleaners": {
+    "eyebrow": "Public demo profiles",
+    "title": "Find a cleaning professional",
+    "description": "Compare rates, availability, service areas, and clearly marked demo ratings.",
+    "metaTitle": "Apartment cleaning professionals",
+    "metaDescription": "Browse demo profiles of apartment cleaning professionals in Croatia.",
+    "pagination": "Profile pages",
+    "card": {
+      "perHour": "per hour",
+      "minimum": "Minimum visit: {price}",
+      "supplies": "Brings supplies",
+      "transport": "Own transport",
+      "completed": "Completed jobs: {count}",
+      "viewProfile": "View profile"
+    },
+    "filters": {
+      "title": "Filter profiles",
+      "maximumRate": "Maximum hourly rate",
+      "maximumMinimum": "Maximum minimum price",
+      "rating": "Minimum rating",
+      "ratingValue": "At least {value}",
+      "language": "Language",
+      "weekend": "Available on weekends",
+      "sameDay": "Available on the same day",
+      "supplies": "Brings supplies",
+      "transport": "Has own transport"
+    },
+    "sort": {
+      "rating": "Highest rating",
+      "rate": "Lowest hourly rate",
+      "completed": "Most completed jobs",
+      "newest": "Newest profile"
+    },
+    "filterLabels": {
+      "search": "Search: {value}",
+      "city": "City: {value}",
+      "maximumRate": "Up to EUR {value} per hour",
+      "maximumMinimumPrice": "Minimum visit up to EUR {value}",
+      "minimumRating": "Rating from {value}",
+      "weekend": "Weekend",
+      "sameDay": "Same day",
+      "supplies": "Brings supplies",
+      "transportation": "Own transport",
+      "language": "Language: {value}"
+    }
+  },
+  "jobDetail": {
+    "keyFacts": "Key job details",
+    "date": "Date",
+    "time": "Time",
+    "budget": "Budget",
+    "duration": "Duration",
+    "apartment": "Apartment details",
+    "size": "Size",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "beds": "Beds",
+    "services": "Required services",
+    "instructions": "Additional instructions",
+    "owner": "Apartment owner",
+    "offerCount": "Current offers: {count}",
+    "loginAction": "Log in to continue",
+    "cleanerOnly": "Browse other jobs",
+    "futureOffer": "Offers arrive in Phase 4",
+    "upgradeAction": "Review access",
+    "actionHint": "Submitting offers is not part of this phase.",
+    "related": "Similar jobs nearby",
+    "notFound": "Job not found",
+    "notFoundDescription": "The requested demo listing does not exist or is no longer available.",
+    "back": "Back to jobs",
+    "metaDescription": "Example cleaning job in {city} for a {size} m² apartment.",
+    "serviceNames": {
+      "cleaningSuppliesProvided": "Cleaning supplies are provided",
+      "linenReplacement": "Linen replacement",
+      "towelReplacement": "Towel replacement",
+      "laundry": "Laundry",
+      "balconyCleaning": "Balcony cleaning",
+      "fridgeCleaning": "Fridge cleaning",
+      "ovenCleaning": "Oven cleaning",
+      "sameDayTurnover": "Same-day guest turnover"
+    }
+  },
+  "cleanerProfile": {
+    "about": "About this profile",
+    "serviceDetails": "Service and experience",
+    "experience": "Experience",
+    "years": "{count} years",
+    "radius": "Travel radius",
+    "completed": "Completed demo jobs",
+    "languages": "Languages",
+    "weekend": "Weekend",
+    "sameDay": "Same day",
+    "supplies": "Supplies",
+    "transport": "Transport",
+    "areas": "Service areas",
+    "reviews": "Recent demo ratings",
+    "categoryRatingLabel": "{category}: {rating} out of 5",
+    "contactTitle": "Would you like to arrange cleaning?",
+    "contactDescription": "Log in so you can send an enquiry in a future workflow.",
+    "contactAction": "Log in to make contact",
+    "privateNote": "Private contact details are not displayed publicly.",
+    "related": "Similar demo profiles",
+    "notFound": "Profile not found",
+    "notFoundDescription": "The requested demo profile does not exist.",
+    "back": "Back to profiles",
+    "metaDescription": "{name} provides apartment cleaning services in the {city} area."
+  },
+  "ratingCategories": {
+    "cleaning_quality": "Cleaning quality",
+    "reliability": "Reliability",
+    "communication": "Communication",
+    "punctuality": "Punctuality",
+    "description_accuracy": "Description accuracy",
+    "organization": "Organisation",
+    "fairness": "Fairness"
+  },
+  "publicHome": {
+    "metaTitle": "Clean - reliable apartment cleaning",
+    "metaDescription": "Post an apartment cleaning job or find clearly structured demo opportunities across Croatia.",
+    "hero": {
+      "eyebrow": "Simpler cleaning arrangements",
+      "title": "Find a reliable apartment cleaning professional",
+      "description": "Post a job, receive offers, and compare prices, availability, and ratings before choosing the person who suits you best.",
+      "ownerAction": "Post a job",
+      "cleanerAction": "Find jobs",
+      "visualLabel": "Apartment illustration with an example job and demo profile",
+      "cardLabel": "Example listing",
+      "cardTitle": "Guest turnover",
+      "cardCity": "Dubrovnik",
+      "profileName": "Marija Knežević",
+      "profileShortName": "Marija K."
+    },
+    "problem": {
+      "eyebrow": "Why Clean",
+      "title": "Arranging cleaning should not depend on dozens of messages",
+      "description": "Facebook groups, recommendations, and messages play an important role, but details can easily become scattered. Clean brings them into one structured place.",
+      "items": {
+        "pricing": { "title": "Clearer pricing", "description": "The budget and price type are visible before an agreement." },
+        "comparison": { "title": "Easier comparison", "description": "Offers, profiles, and availability can be compared in one place." },
+        "communication": { "title": "Organised arrangements", "description": "Job details do not get lost across different conversations." },
+        "reliability": { "title": "Collaboration history", "description": "Structured mutual ratings create a clearer picture of collaboration." }
+      }
+    },
+    "steps": { "eyebrow": "A simple process", "title": "From listing to agreement in clear steps", "action": "See how it works" },
+    "owners": {
+      "eyebrow": "For apartment owners", "title": "More control over every guest turnover", "description": "Post all important details and compare offers before deciding.",
+      "items": { "1": "One place for job details", "2": "Compare prices and availability", "3": "Review profiles and demo ratings", "4": "A clear arrangement history" },
+      "action": "Register as an owner", "cardTitle": "A listing with every key detail", "cardDescription": "Date, time, apartment size, required services, and budget remain clearly recorded."
+    },
+    "cleanerBenefits": {
+      "eyebrow": "For cleaning professionals", "title": "Find jobs that suit how you work", "description": "Set your own rates, availability, and service areas.",
+      "items": { "1": "A public professional profile", "2": "Filter jobs by city", "3": "Your own rates and terms", "4": "Mutual ratings after a job" },
+      "action": "Browse jobs", "cardTitle": "Your service, your terms", "cardDescription": "Your profile clearly shows your hourly rate, minimum visit, and availability."
+    },
+    "featuredJobs": { "eyebrow": "Demo content", "title": "Examples of active jobs", "description": "Listings in this beta show the intended future experience.", "action": "Browse all jobs" },
+    "featuredCleaners": { "eyebrow": "Demo content", "title": "Example profiles", "description": "Every displayed profile and rating is clearly marked as demo data.", "action": "Browse all profiles" },
+    "transparency": {
+      "eyebrow": "A transparent agreement", "title": "Price and expectations are known before acceptance", "description": "Owners compare offers while cleaning professionals set their own rates and service contents.",
+      "items": {
+        "offers": { "title": "Comparable offers", "description": "Every offer clearly shows its price and included items." },
+        "agreement": { "title": "Agreement before work", "description": "Both parties know the agreed price before acceptance." },
+        "ratings": { "title": "Mutual ratings", "description": "Both parties can rate the collaboration after a completed job." }
+      },
+      "mutualTitle": "Ratings work both ways",
+      "mutualDescription": "Owners rate quality, reliability, communication, and punctuality. Cleaning professionals rate job description, communication, organisation, and fairness."
+    },
+    "pricing": { "eyebrow": "Simple pricing", "title": "Free for owners, one subscription for service providers", "description": "No artificial tiers and no commission on cleaning payments.", "action": "View pricing" },
+    "faq": {
+      "eyebrow": "Frequently asked questions", "title": "What to know before starting",
+      "items": {
+        "1": { "question": "Is it free for owners?", "answer": "Yes. Apartment owners can use the platform without a subscription." },
+        "2": { "question": "Does the platform charge commission?", "answer": "No. Users arrange cleaning payment directly." },
+        "3": { "question": "Are the displayed profiles real?", "answer": "No. All current profiles, jobs, and ratings are clearly marked demo data." },
+        "4": { "question": "Are users verified?", "answer": "Verification is not active and we do not claim users have been verified." },
+        "5": { "question": "Can I submit an offer now?", "answer": "Not in this public phase. The offer workflow belongs to the next phase." }
+      }
+    },
+    "cta": { "title": "Ready for a more organised cleaning agreement?", "description": "Create a demo account or explore the public job experience.", "primary": "Create account", "secondary": "Browse jobs" }
+  },
+  "how": {
+    "eyebrow": "How the platform works", "title": "A clear path for both sides", "description": "From the first listing to the final rating, every step has its place.",
+    "ownerEyebrow": "Apartment owners", "ownerTitle": "From posting to completed service",
+    "cleanerEyebrow": "Cleaning professionals", "cleanerTitle": "From profile to established reputation",
+    "steps": {
+      "owner": { "1": "Post a job", "2": "Receive offers", "3": "Compare prices and profiles", "4": "Choose a person", "5": "Rate the service" },
+      "cleaner": { "1": "Create a profile", "2": "Set rates and availability", "3": "Find a job", "4": "Submit an offer", "5": "Build your reputation" }
+    },
+    "details": {
+      "owner": { "1": "Enter the date, size, services, and budget.", "2": "Offers arrive in a structured format.", "3": "Check what each offer includes.", "4": "Choose the option that suits you.", "5": "Share a structured rating after the job." },
+      "cleaner": { "1": "Present your experience and service area.", "2": "Set the terms of your own service.", "3": "Filter listings by availability.", "4": "Clearly state the price and contents.", "5": "Completed jobs build collaboration history." }
+    },
+    "ctaTitle": "Try the public beta experience", "ctaDescription": "Registration is a demo and does not require a card.",
+    "metaTitle": "How Clean works", "metaDescription": "Learn how apartment owners and cleaning professionals arrange work through Clean."
+  },
+  "pricing": {
+    "eyebrow": "Transparent pricing", "title": "One clear subscription with no commission", "description": "Owners use the platform for free and cleaning professionals receive a seven-day trial.",
+    "owner": { "title": "For apartment owners", "description": "Posting jobs and comparing offers does not require a subscription.", "price": "Free" },
+    "plan": {
+      "badge": "7 days free", "title": "Clean for cleaning professionals", "trial": "One monthly subscription after the trial.", "month": "per month", "action": "Start demo trial", "noCard": "No card is required during the demo trial.",
+      "features": { "1": "Public profile", "2": "Browse jobs", "3": "Submit offers", "4": "Offer history", "5": "Job history", "6": "Mutual ratings", "7": "Notifications" }
+    },
+    "notes": {
+      "commissionTitle": "No cleaning commission", "commission": "Cleaning payments are arranged directly between users.", "demoTitle": "Payments are not active", "demo": "The beta does not charge subscriptions and has no active payment integration."
+    },
+    "faqTitle": "Subscription questions",
+    "faq": {
+      "1": { "question": "Can I cancel the subscription?", "answer": "Yes. A future active subscription can be cancelled before the next billing period." },
+      "2": { "question": "Is a card required for the trial?", "answer": "No. The demo trial does not request card details." },
+      "3": { "question": "Do I pay commission per job?", "answer": "No. Clean does not take commission from the agreed cleaning price." },
+      "4": { "question": "Is billing already active?", "answer": "No. Payment integration is not part of the public beta phase." }
+    },
+    "metaTitle": "Pricing", "metaDescription": "Clean is free for owners and offers cleaning professionals a seven-day trial and one monthly subscription."
+  },
+  "contact": {
+    "eyebrow": "Contact", "title": "How can we help?", "description": "Send a demo enquiry. The form does not contact a real support service.",
+    "fields": { "name": "Full name", "email": "Email address", "userType": "User type", "subject": "Subject", "message": "Message", "consent": "I accept processing of the data in this demo form." },
+    "userTypes": { "owner": "Apartment owner", "cleaner": "Cleaning professional", "other": "Other" },
+    "submit": "Send message", "successTitle": "Message recorded", "successDescription": "Thank you. This is a demo confirmation and no message was sent to a real support service.",
+    "metaTitle": "Contact", "metaDescription": "Send a demo enquiry to the Clean platform team."
+  },
+  "legal": {
+    "contents": "Contents", "reviewTitle": "Beta legal template", "reviewDescription": "This text requires professional legal review before a production launch.",
+    "privacy": {
+      "eyebrow": "Legal", "title": "Privacy policy", "description": "An informational beta template about data processing without invented legal entity details.", "metaTitle": "Privacy policy", "metaDescription": "Beta privacy policy template for Clean.",
+      "sections": {
+        "1": { "title": "Purpose of this document", "text": "This template describes the intended privacy approach during the public beta." },
+        "2": { "title": "Account data", "text": "The platform may process information entered during registration and profile editing." },
+        "3": { "title": "Job data", "text": "Public views use an approximate location. A full address is not displayed publicly." },
+        "4": { "title": "Local demo storage", "text": "The current demo stores authentication data and changes in the user's browser." },
+        "5": { "title": "User rights", "text": "The production version must define how access, correction, and deletion rights can be exercised." },
+        "6": { "title": "Document changes", "text": "The content will be updated after legal review and before production launch." }
+      }
+    },
+    "terms": {
+      "eyebrow": "Legal", "title": "Terms of service", "description": "An informational beta template without invented company registration details.", "metaTitle": "Terms of service", "metaDescription": "Beta terms of service template for Clean.",
+      "sections": {
+        "1": { "title": "Beta status", "text": "The platform is in a demo and beta phase. Features, data, and availability may change." },
+        "2": { "title": "Platform role", "text": "Clean provides a structured place for users to connect and is not a cleaning service provider." },
+        "3": { "title": "User agreement", "text": "Users arrange the price, scope of service, and payment directly." },
+        "4": { "title": "Responsible use", "text": "Users should enter accurate information and communicate professionally." },
+        "5": { "title": "Ratings", "text": "Ratings should describe completed collaboration. Every current beta rating is marked as demo." },
+        "6": { "title": "Legal review", "text": "Final terms, responsibilities, and procedures must be confirmed by professional legal review." }
+      }
+    }
+  },
+  "errorPage": { "title": "This page could not be found", "description": "Check the address or return to the home page.", "action": "Return home" },
+  "notifications": {
+    "navigation": "Notifications",
+    "title": "Notifications",
+    "markRead": "Mark as read",
+    "markAllRead": "Mark all as read",
+    "archive": "Archive",
+    "empty": "No new notifications",
+    "emptyDescription": "New job, offer, and subscription updates will appear here.",
+    "types": {
+      "jobPublished": {
+        "title": "Job published",
+        "message": "Your demo listing is now visible to cleaners."
+      },
+      "newOffer": {
+        "title": "A new offer was received",
+        "message": "A demo offer was submitted for your example listing."
+      },
+      "offerAccepted": {
+        "title": "Offer accepted",
+        "message": "The owner accepted your demo offer."
+      },
+      "offerRejected": {
+        "title": "Offer not selected",
+        "message": "The owner selected another demo offer."
+      },
+      "offerWithdrawn": {
+        "title": "Offer withdrawn",
+        "message": "The demo offer for this job was withdrawn."
+      },
+      "jobUpdated": {
+        "title": "Job updated",
+        "message": "The example listing details changed."
+      },
+      "jobCancelled": {
+        "title": "Job cancelled",
+        "message": "The example listing was cancelled."
+      },
+      "jobCompleted": {
+        "title": "Job completed",
+        "message": "The demo job was marked as completed."
+      },
+      "newReview": {
+        "title": "Demo rating received",
+        "message": "A new rating was submitted after a demo job."
+      },
+      "trialEnding": {
+        "title": "Trial ending soon",
+        "message": "Your demo trial will expire soon."
+      },
+      "trialExpired": {
+        "title": "Trial ended",
+        "message": "An active subscription is required to submit new offers."
+      },
+      "subscriptionActivated": {
+        "title": "Subscription active",
+        "message": "The demo subscription status changed to active."
+      },
+      "subscriptionPaymentIssue": {
+        "title": "Subscription issue",
+        "message": "The demo subscription requires your attention."
+      },
+      "subscriptionRenewal": {
+        "title": "Subscription renewed",
+        "message": "The demo subscription was renewed successfully."
+      },
+      "upcomingCleaning": {
+        "title": "Upcoming cleaning",
+        "message": "An arranged demo cleaning starts soon."
+      }
+    }
+  },
+  "owner": {
+    "navigation": {
+      "label": "Owner navigation",
+      "open": "Open owner navigation",
+      "owner": "Owner account",
+      "dashboard": "Dashboard",
+      "jobs": "My jobs",
+      "newJob": "New job",
+      "profile": "Profile",
+      "settings": "Settings"
+    },
+    "dashboard": {
+      "welcome": "Welcome, {name}",
+      "description": "Manage your profile, apartments, and cleaning jobs in one place.",
+      "publish": "Publish a new job",
+      "profileTitle": "Profile completion",
+      "profileDescription": "A complete profile makes arrangements with cleaning professionals clearer.",
+      "editProfile": "Edit profile",
+      "statistics": "Statistics",
+      "quickActions": "Quick actions",
+      "continueDraft": "Continue draft",
+      "duplicate": "Duplicate previous job",
+      "activeJobs": "Active jobs",
+      "noActive": "There are no active jobs",
+      "upcoming": "Upcoming cleaning dates",
+      "recent": "Recently viewed jobs",
+      "metaTitle": "Owner dashboard"
+    },
+    "stats": {
+      "active": "Active jobs",
+      "drafts": "Drafts",
+      "completed": "Completed jobs",
+      "offers": "Total demo offers",
+      "rating": "Average rating",
+      "completion": "Average duration"
+    },
+    "status": {
+      "draft": "Draft",
+      "published": "Published",
+      "receiving_offers": "Receiving offers",
+      "assigned": "Assigned",
+      "cleaner_confirmed": "Confirmed by cleaner",
+      "in_progress": "In progress",
+      "completed": "Completed",
+      "archived": "Archived",
+      "cancelled": "Cancelled"
+    },
+    "autosave": {
+      "saved": "Saved",
+      "saving": "Saving...",
+      "unsaved": "Unsaved changes"
+    },
+    "jobs": {
+      "title": "My cleaning jobs",
+      "description": "Search, filter, and manage your cleaning jobs.",
+      "metaTitle": "My jobs",
+      "new": "New job",
+      "details": "Details",
+      "statusFilter": "Status",
+      "dateFilter": "Cleaning date",
+      "cards": "Cards",
+      "table": "Table",
+      "actions": "Actions",
+      "empty": "No jobs found",
+      "emptyDescription": "Change the filters or create a new job.",
+      "edit": "Edit",
+      "duplicate": "Duplicate",
+      "archive": "Archive",
+      "cancel": "Cancel job",
+      "republish": "Republish",
+      "delete": "Delete draft",
+      "deleteTitle": "Delete this draft?",
+      "deleteDescription": "The draft will be permanently removed from demo storage.",
+      "sort": {
+        "newest": "Newest",
+        "oldest": "Oldest",
+        "date": "Closest cleaning date",
+        "offers": "Most offers"
+      }
+    },
+    "job": {
+      "newTitle": "Publish a cleaning job",
+      "newDescription": "Add all information needed for a clear arrangement.",
+      "newMetaTitle": "New cleaning job",
+      "editTitle": "Edit job draft",
+      "editDescription": "Changes are saved automatically to demo storage.",
+      "editMetaTitle": "Edit job",
+      "readOnly": "Published jobs are read-only. You can change their status or duplicate the job.",
+      "stepperLabel": "Job creation steps",
+      "steps": {
+        "basic": "Basic information",
+        "apartment": "Apartment",
+        "requirements": "Requirements",
+        "budget": "Budget",
+        "schedule": "Schedule",
+        "review": "Review and publish"
+      },
+      "fields": {
+        "title": "Job title",
+        "apartmentName": "Apartment name",
+        "approximateArea": "Approximate location",
+        "address": "Exact address",
+        "hideAddress": "Hide the exact address from the public listing",
+        "size": "Apartment size",
+        "bedrooms": "Bedrooms",
+        "bathrooms": "Bathrooms",
+        "beds": "Beds",
+        "guests": "Guest capacity",
+        "duration": "Estimated duration in hours",
+        "budget": "Budget",
+        "budgetType": "Budget type",
+        "urgent": "Urgent job",
+        "date": "Preferred date",
+        "time": "Start time",
+        "deadline": "Offer deadline",
+        "flexible": "Arrival time is flexible",
+        "notes": "Additional notes",
+        "photos": "Apartment photos",
+        "photoHint": "Demo preview for JPG, PNG, and WEBP files. Files are not uploaded to a server.",
+        "photoError": "Select a JPG, PNG, or WEBP file."
+      },
+      "services": {
+        "cleaningSuppliesProvided": "Cleaning supplies are provided",
+        "linenReplacement": "Linen replacement",
+        "towelReplacement": "Towel replacement",
+        "laundry": "Laundry",
+        "balconyCleaning": "Balcony cleaning",
+        "kitchenCleaning": "Kitchen cleaning",
+        "fridgeCleaning": "Fridge cleaning",
+        "ovenCleaning": "Oven cleaning",
+        "windowCleaning": "Window cleaning",
+        "sameDayTurnover": "Same-day guest turnover"
+      },
+      "untitled": "Untitled job",
+        "saveDraft": "Save draft",
+        "saveChanges": "Save changes",
+      "publish": "Publish job",
+      "validationError": "Some required information is missing. Check the marked steps.",
+      "overview": "Job overview",
+      "activity": "Activity",
+      "noNotes": "No additional notes."
+    },
+    "activity": {
+      "created": "Job created",
+      "draft_saved": "Draft saved",
+      "published": "Job published",
+      "viewed": "A cleaning professional viewed the job",
+      "offer_received": "Demo offers received: {count}",
+      "offer_submitted": "A new offer was submitted",
+      "offer_edited": "The offer was edited",
+      "offer_withdrawn": "The offer was withdrawn",
+      "offer_accepted": "The offer was accepted",
+      "offer_rejected": "The offer was rejected",
+      "cleaner_confirmed": "The cleaner confirmed the job",
+      "started": "Cleaning started",
+      "status_changed": "Status changed",
+      "completed": "Job completed"
+    },
+    "profile": {
+      "title": "Owner profile",
+      "description": "Manage your personal and business information.",
+      "metaTitle": "Owner profile",
+      "saved": "Profile saved.",
+      "avatar": "Profile photo",
+      "company": "Company, optional",
+      "agency": "Agency, optional",
+      "contactMethod": "Preferred contact method",
+      "language": "Preferred language",
+      "timeZone": "Time zone",
+      "save": "Save profile",
+      "contact": {
+        "email": "Email",
+        "phone": "Phone",
+        "sms": "SMS"
+      }
+    },
+    "settings": {
+      "title": "Account settings",
+      "description": "Choose communication and regional preferences.",
+      "metaTitle": "Owner settings",
+      "notifications": "Notification preferences",
+      "email": "Email notifications",
+      "inApp": "In-app notifications",
+      "jobUpdates": "Job updates",
+      "offers": "New demo offers",
+      "marketing": "News and tips",
+      "save": "Save settings",
+      "saved": "Settings saved."
+    },
+    "onboarding": {
+      "title": "Set up your owner account",
+      "description": "Five short steps will prepare your profile and apartment information.",
+      "metaTitle": "Owner onboarding",
+      "progress": "Onboarding progress",
+      "steps": {
+        "personal": "Personal information",
+        "contact": "Contact information",
+        "apartment": "Apartment information",
+        "preferences": "Preferences",
+        "finish": "Finish"
+      },
+      "finishDescription": "Review the information. You can change everything later in your profile.",
+      "finish": "Finish setup"
+    },
+    "offers": {
+      "title": "Job offers",
+      "metaTitle": "Compare offers",
+      "accept": "Accept offer",
+      "reject": "Reject offer",
+      "selected": "A cleaner has been selected. The other offers were rejected automatically.",
+      "empty": "No offers yet",
+      "emptyDescription": "Offers from cleaning professionals will appear here."
+    }
+  },
+  "cleaner": {
+    "navigation": {
+      "label": "Cleaner navigation",
+      "open": "Open navigation",
+      "account": "Cleaner account",
+      "dashboard": "Overview",
+      "jobs": "Find jobs",
+      "favourites": "Favourites",
+      "offers": "My offers",
+      "accepted": "Accepted jobs",
+      "availability": "Availability",
+      "profile": "Profile"
+    },
+    "dashboard": {
+      "welcome": "Welcome, {name}",
+      "description": "Manage your profile, offers, and accepted jobs.",
+      "metaTitle": "Cleaner overview",
+      "browse": "Browse jobs",
+      "profileCompletion": "Profile completion",
+      "profileHint": "A complete profile helps owners choose confidently.",
+      "completeProfile": "Complete profile",
+      "subscription": "Subscription",
+      "subscriptionPlaceholder": "Subscriptions will be available in a future phase. All demo features are currently open.",
+      "statistics": "My activity",
+      "activeOffers": "Active offers",
+      "acceptedJobs": "Accepted jobs",
+      "earnings": "Earnings coming soon",
+      "rating": "Rating",
+      "quickActions": "Quick actions",
+      "myOffers": "Open my offers",
+      "recommended": "Recommended jobs",
+      "upcoming": "Upcoming jobs"
+    },
+    "profile": {
+      "title": "My profile",
+      "description": "Edit your professional details and service areas.",
+      "metaTitle": "Cleaner profile",
+      "saved": "Profile saved.",
+      "save": "Save profile",
+      "avatar": "Profile photo",
+      "biography": "About me and experience",
+      "experience": "Years of experience",
+      "hourlyRate": "Hourly rate",
+      "minimumPrice": "Minimum job price",
+      "radius": "Service radius in kilometres",
+      "availableCities": "Cities I serve",
+      "languages": "Languages",
+      "transport": "I have my own transportation",
+      "supplies": "I bring cleaning supplies",
+      "weekend": "I am available on weekends",
+      "sameDay": "I am available for same-day jobs",
+      "completedJobs": "Completed jobs"
+    },
+    "availability": {
+      "title": "Weekly availability",
+      "description": "Choose an availability period for each day.",
+      "metaTitle": "Availability",
+      "period": "Period",
+      "vacation": "I am on vacation and currently unavailable",
+      "save": "Save availability",
+      "saved": "Availability saved.",
+      "periods": {
+        "morning": "Morning",
+        "afternoon": "Afternoon",
+        "evening": "Evening",
+        "unavailable": "Unavailable"
+      },
+      "days": {
+        "0": "Monday",
+        "1": "Tuesday",
+        "2": "Wednesday",
+        "3": "Thursday",
+        "4": "Friday",
+        "5": "Saturday",
+        "6": "Sunday"
+      }
+    },
+    "jobs": {
+      "title": "Available jobs",
+      "description": "Filter published jobs and find the right engagement.",
+      "metaTitle": "Available cleaning jobs",
+      "open": "Open job",
+      "empty": "No matching jobs",
+      "emptyDescription": "Change the filters or try again later.",
+      "filters": {
+        "distance": "Distance",
+        "kilometres": "Within {value} km",
+        "budget": "Minimum budget",
+        "date": "Date",
+        "service": "Service",
+        "size": "Maximum size",
+        "sameDay": "Same-day turnover",
+        "weekend": "Weekend only",
+        "notApplied": "Only jobs I have not applied for"
+      }
+    },
+    "favourites": {
+      "title": "Favourites",
+      "description": "Saved jobs for later review.",
+      "metaTitle": "Favourites",
+      "save": "Save",
+      "remove": "Remove",
+      "empty": "No saved jobs",
+      "emptyDescription": "Save an interesting job from the available jobs list."
+    },
+    "offer": {
+      "title": "Offer",
+      "newTitle": "Submit an offer",
+      "editTitle": "Edit offer",
+      "metaTitle": "Job offer",
+      "submit": "Submit offer",
+      "save": "Save changes",
+      "edit": "Edit offer",
+      "withdraw": "Withdraw offer",
+      "details": "Offer details",
+      "unknownJob": "Unknown job",
+      "fields": {
+        "price": "Proposed price",
+        "priceType": "Price type",
+        "duration": "Estimated duration in hours",
+        "arrival": "Arrival time",
+        "message": "Message to the owner",
+        "supplies": "Cleaning supplies are included in the price",
+        "validUntil": "Offer valid until"
+      },
+      "status": {
+        "pending": "Pending",
+        "accepted": "Accepted",
+        "rejected": "Rejected",
+        "withdrawn": "Withdrawn",
+        "expired": "Expired"
+      },
+      "errors": {
+        "duplicate": "You have already submitted an offer for this job.",
+        "active_offer_exists": "You have already submitted an offer for this job.",
+        "job_unavailable": "This job is no longer accepting offers.",
+        "job_not_accepting_offers": "This job is no longer accepting offers.",
+        "own_job": "You cannot submit an offer for your own job.",
+        "cannot_offer_own_job": "You cannot submit an offer for your own job.",
+        "forbidden": "You do not have permission for this action.",
+        "offer_not_found": "The offer was not found.",
+        "offer_not_editable": "Only a pending offer can be edited.",
+        "offer_not_withdrawable": "Only a pending offer can be withdrawn.",
+        "invalid": "Check the entered information.",
+        "unknown": "The offer cannot be saved right now."
+      }
+    },
+    "offers": {
+      "title": "My offers",
+      "description": "Track submitted, accepted, and rejected offers.",
+      "metaTitle": "My offers",
+      "empty": "No offers",
+      "emptyDescription": "Submit an offer from an available job."
+    },
+    "accepted": {
+      "title": "Accepted jobs",
+      "description": "Review agreed and completed cleanings.",
+      "metaTitle": "Accepted jobs",
+      "empty": "No accepted jobs",
+      "emptyDescription": "Accepted offers will appear here."
+    },
+    "progress": {
+      "confirm": "Confirm arrival",
+      "start": "Start cleaning",
+      "complete": "Mark as completed"
+    },
+    "onboarding": {
+      "title": "Set up your cleaner profile",
+      "description": "Add the details needed to receive jobs.",
+      "progress": "Onboarding progress",
+      "validation": "Complete the required fields and choose at least one city.",
+      "finish": "Finish setup",
+      "steps": {
+        "personal": "Personal details",
+        "professional": "Professional details",
+        "areas": "Service areas",
+        "availability": "Availability",
+        "finish": "Finish"
+      }
+    }
+  },
+  "marketplace": {
+    "contact": {
+      "title": "Contact details",
+      "owner": "Owner contact"
+    }
+  },
+  "billing": {
+    "navigation": "Billing",
+    "title": "Subscription and billing",
+    "description": "Manage your plan, payment method, and invoices.",
+    "metaTitle": "Subscription and billing",
+    "currentPlan": "Current plan",
+    "subscriptionStatus": "Subscription status",
+    "plan": {
+      "owner": "Owner plan",
+      "cleaner": "Cleaner plan"
+    },
+    "month": "per month",
+    "renewal": "Next renewal",
+    "trialEnds": "Trial ends: {date}",
+    "checkout": "Activate subscription",
+    "portal": "Open billing portal",
+    "cancel": "Cancel at period end",
+    "resume": "Resume subscription",
+    "manage": "Manage subscription",
+    "contactRestricted": "Contact details require an active subscription.",
+    "mockModeTitle": "Mock billing",
+    "mockModeDescription": "This local development environment uses the deterministic simulated billing flow.",
+    "webhookWarningTitle": "Webhook not available yet",
+    "webhookWarningDescription": "Checkout and Portal work, but subscription state will not sync automatically until the webhook is registered after deployment.",
+    "cancellationState": "Subscription renewal",
+    "cancelsAtPeriodEnd": "Cancels at period end",
+    "renewsAutomatically": "Renews automatically",
+    "lastFailedPayment": "Last failed payment",
+    "downgradePlaceholder": "Downgrading will be available when additional plans are introduced.",
+    "invoices": "Invoices",
+    "invoiceNumber": "Invoice number",
+    "date": "Date",
+    "amount": "Amount",
+    "invoiceStatus": "Status",
+    "noInvoices": "No invoices yet",
+    "noInvoicesDescription": "Invoices will appear after the first payment.",
+    "paymentMethod": "Payment method",
+    "expires": "Expires {month}/{year}",
+    "noPaymentMethod": "No payment method has been added.",
+    "trial": {
+      "title": "Free trial",
+      "remaining": "{days} trial days remaining."
+    },
+    "status": {
+      "trial": "Trial",
+      "active": "Active",
+      "past_due": "Past due",
+      "cancelled": "Cancelled",
+      "expired": "Expired",
+      "suspended": "Suspended",
+      "unpaid": "Unpaid",
+      "incomplete": "Incomplete",
+      "incomplete_expired": "Incomplete and expired",
+      "paused": "Paused"
+    },
+    "invoiceStatuses": {
+      "draft": "Draft",
+      "open": "Open",
+      "paid": "Paid",
+      "void": "Void",
+      "uncollectible": "Uncollectible"
+    }
+  },
+  "reviews": {
+    "action": "Review collaboration",
+    "title": "Review completed collaboration",
+    "description": "Review the collaboration for \"{title}\".",
+    "metaTitle": "Collaboration review",
+    "back": "Back to job",
+    "overall": "Overall rating",
+    "comment": "Comment (optional)",
+    "submit": "Submit review",
+    "update": "Save changes",
+    "saved": "Your review has been saved.",
+    "saveError": "The review could not be saved. Check the editing window and try again.",
+    "notAllowed": "Review unavailable",
+    "notAllowedDescription": "Only participants can leave a review after a completed job.",
+    "editUntil": "You can edit this review until {date}.",
+    "verified": "Verified completed job",
+    "count": "{count} reviews",
+    "ratingOption": "{value} out of 5",
+    "categories": {
+      "cleaning_quality": "Cleaning quality",
+      "reliability": "Reliability",
+      "communication": "Communication",
+      "punctuality": "Punctuality",
+      "accuracy": "Description accuracy",
+      "fairness": "Fairness",
+      "payment_experience": "Payment experience"
+    }
+  },
+  "email": {
+    "welcome": { "subject": "Welcome to Clean", "body": "Your Clean account is ready." },
+    "trialEnding": { "subject": "Your trial ends soon", "body": "Manage your subscription to keep access." },
+    "paymentSuccess": { "subject": "Payment successful", "body": "Your subscription has been renewed." },
+    "paymentFailed": { "subject": "Payment failed", "body": "Update your payment method in the billing portal." },
+    "offerReceived": { "subject": "You received a new offer", "body": "A new offer is available in your dashboard." },
+    "offerAccepted": { "subject": "Offer accepted", "body": "The owner accepted your offer." },
+    "offerRejected": { "subject": "Offer not selected", "body": "The owner selected another offer." },
+    "jobAssigned": { "subject": "Job assigned", "body": "The arranged job is available in your dashboard." },
+    "reviewReminder": { "subject": "Review completed collaboration", "body": "Share a verified review of the completed job." }
+  }
+}

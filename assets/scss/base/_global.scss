@@ -1,0 +1,67 @@
+@use '../abstracts' as *;
+
+:root {
+  color-scheme: light;
+  font-family: $font-family-base;
+  font-synthesis: none;
+  color: $color-text-primary;
+  background: $color-background;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100vh;
+  font-size: $font-size-md;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-base;
+  color: $color-text-primary;
+  background: $color-background;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.is-scroll-locked {
+  overflow: hidden;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+button {
+  color: inherit;
+}
+
+a {
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
+}
+
+::selection {
+  color: $color-surface;
+  background: $color-primary;
+}
+
+.container {
+  @include container;
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
