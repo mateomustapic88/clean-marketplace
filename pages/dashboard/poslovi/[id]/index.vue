@@ -68,7 +68,7 @@ useSeoMeta({ title: () => job.value?.title ?? t('jobDetail.notFound'), robots: '
 
 <style scoped lang="scss">
 .owner-job-detail { display: grid; gap: $space-6;
-  > header { display: flex; flex-wrap: wrap; gap: $space-4; justify-content: space-between; h1 { margin-block: $space-3; font-size: $font-size-3xl; } p { color: $color-text-secondary; } }
+  > header { display: flex; flex-wrap: wrap; gap: $space-4; align-items: flex-start; justify-content: space-between; h1 { margin-block: $space-3; font-size: $font-size-3xl; } p { color: $color-text-secondary; } :deep(.base-badge) { flex: 0 0 auto; align-self: flex-start; white-space: nowrap; } }
   &__actions { display: flex; flex-wrap: wrap; gap: $space-3; }
   &__layout { display: grid; gap: $space-5; } main { display: grid; gap: $space-5; } :deep(.base-card) { display: grid; gap: $space-4; }
   dl { display: grid; gap: $space-3; } dl div { display: flex; justify-content: space-between; gap: $space-4; padding-bottom: $space-2; border-bottom: 1px solid $color-border; } dt { color: $color-text-secondary; }

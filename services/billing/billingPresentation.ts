@@ -21,6 +21,20 @@ export interface BillingPresentation {
   hasProviderSubscription: boolean
 }
 
+export type BillingCheckoutAction
+  = | 'startTrial'
+    | 'completeTrialSetup'
+    | 'checkout'
+
+export const getBillingCheckoutAction = (
+  subscription: Subscription | null,
+): BillingCheckoutAction | null => {
+  if (subscription?.stripeSubscriptionId) return null
+  if (subscription?.status === 'trial') return 'completeTrialSetup'
+  if (!subscription) return 'startTrial'
+  return 'checkout'
+}
+
 export const createBillingPresentation = (
   role: BillingRole,
   subscription: Subscription | null,

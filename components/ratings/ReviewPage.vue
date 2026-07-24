@@ -11,6 +11,7 @@
         v-model="form"
         :categories="categories"
         :submit-label="existingRating ? t('reviews.update') : t('reviews.submit')"
+        :loading="saving"
         @submit="save"
       />
       <p v-if="existingRating" class="review-page__edit-window">
@@ -42,6 +43,7 @@ const ratings = useRatingsStore()
 const saved = ref(false)
 const ready = ref(false)
 const errorMessage = ref('')
+const saving = ref(false)
 const ownerCategories: RatingCategory[] = ['cleaning_quality', 'reliability', 'communication', 'punctuality']
 const cleanerCategories: RatingCategory[] = ['communication', 'accuracy', 'fairness', 'payment_experience']
 const categories = computed(() => props.role === 'owner' ? ownerCategories : cleanerCategories)
@@ -77,7 +79,8 @@ onMounted(async () => {
 })
 
 const save = async () => {
-  if (!job.value || !subjectId.value || !auth.user) return
+  if (!job.value || !subjectId.value || !auth.user || saving.value) return
+  saving.value = true
   errorMessage.value = ''
   saved.value = false
   try {
@@ -99,6 +102,9 @@ const save = async () => {
   }
   catch {
     errorMessage.value = t('reviews.saveError')
+  }
+  finally {
+    saving.value = false
   }
 }
 </script>

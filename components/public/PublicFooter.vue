@@ -42,7 +42,9 @@ const groups = computed(() => [
   {
     title: t('footer.support'),
     items: [
-      { label: t('footer.contact'), to: getAppRoute('contact', locale.value) },
+      { label: t('footer.contactSupport'), to: `${getAppRoute('contact', locale.value)}?topic=support` },
+      { label: t('footer.reportBug'), to: `${getAppRoute('contact', locale.value)}?topic=bug` },
+      { label: t('footer.suggestFeature'), to: `${getAppRoute('contact', locale.value)}?topic=feature` },
       { label: t('footer.faq'), to: `${getAppRoute('home', locale.value)}#faq` },
     ],
   },
@@ -51,6 +53,7 @@ const groups = computed(() => [
     items: [
       { label: t('footer.privacy'), to: getAppRoute('privacy', locale.value) },
       { label: t('footer.terms'), to: getAppRoute('terms', locale.value) },
+      { label: t('footer.cookies'), to: getAppRoute('cookies', locale.value) },
     ],
   },
 ])

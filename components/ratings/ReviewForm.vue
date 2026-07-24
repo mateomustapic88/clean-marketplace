@@ -1,19 +1,19 @@
 <template>
-  <form class="review-form" @submit.prevent="$emit('submit', model)">
+  <form class="review-form" @submit.prevent="submit">
     <BaseSelect v-model.number="model.overallScore" required :label="t('reviews.overall')" :options="ratingOptions" />
     <div class="review-form__categories">
       <BaseSelect v-for="category in categories" :key="category" :model-value="scoreFor(category)" required :label="t(`reviews.categories.${category}`)" :options="ratingOptions" @update:model-value="setScore(category, Number($event))" />
     </div>
     <BaseTextarea v-model="model.comment" :label="t('reviews.comment')" />
-    <BaseButton type="submit">{{ submitLabel }}</BaseButton>
+    <BaseButton type="submit" :loading="loading">{{ submitLabel }}</BaseButton>
   </form>
 </template>
 
 <script setup lang="ts">
 import type { RatingCategory, RatingCategoryScore } from '~/domains/ratings/types'
 
-const props = defineProps<{ categories: RatingCategory[], submitLabel: string }>()
-defineEmits<{ submit: [value: { overallScore: number, categoryScores: RatingCategoryScore[], comment: string }] }>()
+const props = withDefaults(defineProps<{ categories: RatingCategory[], submitLabel: string, loading?: boolean }>(), { loading: false })
+const emit = defineEmits<{ submit: [value: { overallScore: number, categoryScores: RatingCategoryScore[], comment: string }] }>()
 const model = defineModel<{ overallScore: number, categoryScores: RatingCategoryScore[], comment: string }>({ required: true })
 const { t } = useI18n()
 const ratingOptions = computed(() => [1, 2, 3, 4, 5].map((value) => ({ value, label: t('reviews.ratingOption', { value }) })))
@@ -23,6 +23,9 @@ const setScore = (category: RatingCategory, score: number) => {
     category: item,
     score: item === category ? score : scoreFor(item),
   }))
+}
+const submit = () => {
+  if (!props.loading) emit('submit', model.value)
 }
 </script>
 

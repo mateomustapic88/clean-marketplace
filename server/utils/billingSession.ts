@@ -76,6 +76,7 @@ export const requireBillingUser = (event: H3Event): User => {
     ? useBillingDatabase().read().users.find((item) => item.id === session.userId)
     : null
   if (!user || user.role === 'admin') {
+    clearBillingSession(event)
     throw createError({ statusCode: 401, statusMessage: 'Authentication required' })
   }
   return user

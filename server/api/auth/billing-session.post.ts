@@ -3,6 +3,7 @@ import { DomainError } from '~/domains/shared/errors'
 import { setBillingSession } from '~/server/utils/billingSession'
 import { useBillingDatabase } from '~/server/utils/billingDatabase'
 import { parseBody } from '~/server/utils/billingValidation'
+import { assertTrustedOrigin, enforceRateLimit } from '~/server/utils/requestSecurity'
 
 const schema = z.object({
   email: z.email(),
@@ -10,7 +11,15 @@ const schema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
+  assertTrustedOrigin(event)
+  enforceRateLimit(event, 'auth-login-ip', 50, 15 * 60_000)
   const body = await parseBody(event, schema)
+  enforceRateLimit(
+    event,
+    `auth-login-account:${body.email.trim().toLowerCase()}`,
+    12,
+    15 * 60_000,
+  )
   const snapshot = useBillingDatabase().read()
   const credential = snapshot.credentials.find((item) =>
     item.email.toLowerCase() === body.email.trim().toLowerCase()

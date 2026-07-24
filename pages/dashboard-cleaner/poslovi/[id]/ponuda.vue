@@ -2,7 +2,7 @@
   <div class="offer-page">
     <Breadcrumbs :items="breadcrumbs" />
     <header><h1>{{ existing ? t('cleaner.offer.editTitle') : t('cleaner.offer.newTitle') }}</h1><p>{{ job?.title }}</p></header>
-    <BaseCard v-if="job && (!existing || existing.status === 'pending')"><OfferEditor v-model="form" :submit-label="existing ? t('cleaner.offer.save') : t('cleaner.offer.submit')" :withdrawable="Boolean(existing)" :error-message="errorMessage" @submit="submit" @withdraw="withdraw" /></BaseCard>
+    <BaseCard v-if="job && (!existing || existing.status === 'pending')"><OfferEditor v-model="form" :submit-label="existing ? t('cleaner.offer.save') : t('cleaner.offer.submit')" :withdrawable="Boolean(existing)" :error-message="errorMessage" :loading="submitting" @submit="submit" @withdraw="withdraw" /></BaseCard>
     <OfferCard v-else-if="existing" :offer="existing" :job="job" />
     <BaseEmptyState v-else :title="t('jobDetail.notFound')" :description="t('jobDetail.notFoundDescription')" />
   </div>
@@ -22,6 +22,7 @@ defineI18nRoute({ paths: { hr: '/dashboard-cleaner/poslovi/[id]/ponuda', en: '/d
 const route = useRoute(), { t, locale } = useI18n()
 const authStore = useAuthStore(), jobsStore = useJobsStore(), offersStore = useOffersStore()
 const jobId = String(route.params.id), form = ref<OfferFormData>(emptyOfferForm()), errorMessage = ref('')
+const submitting = ref(false)
 const load = async (id?: string) => {
   if (!id) return
   await Promise.all([jobsStore.loadJob(jobId), offersStore.loadForCleaner(id)])
@@ -46,21 +47,25 @@ const handleError = (error: unknown) => {
   errorMessage.value = t(`cleaner.offer.errors.${code}`)
 }
 const submit = async (value: OfferFormData) => {
-  if (!authStore.user || !job.value) return
+  if (!authStore.user || !job.value || submitting.value) return
+  submitting.value = true
   try {
     if (existing.value) await offersStore.updateOffer({ id: existing.value.id, ...value }, authStore.user.id)
     else await offersStore.createOffer({ ...value, jobId, cleanerId: authStore.user.id })
     await navigateTo(getAppRoute('cleanerOffers', locale.value))
   }
   catch (error) { handleError(error) }
+  finally { submitting.value = false }
 }
 const withdraw = async () => {
-  if (!existing.value || !authStore.user) return
+  if (!existing.value || !authStore.user || submitting.value) return
+  submitting.value = true
   try {
     await offersStore.withdrawOffer(existing.value.id, authStore.user.id)
     await navigateTo(getAppRoute('cleanerOffers', locale.value))
   }
   catch (error) { handleError(error) }
+  finally { submitting.value = false }
 }
 useSeoMeta({ title: () => t('cleaner.offer.metaTitle'), robots: 'noindex, nofollow' })
 </script>

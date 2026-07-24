@@ -66,3 +66,46 @@ test('mobile navigation is keyboard accessible', async ({ page }) => {
   await page.keyboard.press('Escape')
   await expect(page.getByRole('dialog')).toBeHidden()
 })
+
+test('publishes complete private-beta legal and feedback navigation', async ({ page }) => {
+  await openHydratedPage(page, '/')
+  await expect(page.getByText('Privatna beta')).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Prijavi grešku' })).toHaveAttribute('href', '/kontakt?topic=bug')
+  await expect(page.getByRole('link', { name: 'Predloži poboljšanje' })).toHaveAttribute('href', '/kontakt?topic=feature')
+  await page.getByRole('link', { name: 'Politika kolačića' }).click()
+  await expect(page).toHaveURL(/\/politika-kolacica$/)
+  await expect(page.getByRole('heading', { level: 1, name: 'Politika kolačića' })).toBeVisible()
+})
+
+test('serves canonical social metadata, robots, sitemap, and security headers', async ({ page, request }) => {
+  const response = await page.goto('/cijene')
+  expect(response?.headers()['x-content-type-options']).toBe('nosniff')
+  expect(response?.headers()['x-frame-options']).toBe('DENY')
+  expect(response?.headers()['content-security-policy']).toContain("frame-ancestors 'none'")
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/cijene$/)
+  await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute('content', 'summary')
+
+  const robots = await request.get('/robots.txt')
+  expect(robots.ok()).toBeTruthy()
+  expect(await robots.text()).toContain('Disallow: /dashboard')
+
+  const sitemap = await request.get('/sitemap.xml')
+  expect(sitemap.ok()).toBeTruthy()
+  expect(await sitemap.text()).toContain('/politika-kolacica')
+})
+
+test('clears an expired session and redirects protected routes to login', async ({ page }) => {
+  await openHydratedPage(page, '/')
+  await page.evaluate(() => {
+    localStorage.setItem('clean_marketplace_auth_session', JSON.stringify({
+      id: 'expired-session',
+      userId: 'owner-user-01',
+      createdAt: '2026-01-01T00:00:00.000Z',
+      expiresAt: '2026-01-01T00:00:01.000Z',
+      isDemo: true,
+    }))
+  })
+  await openHydratedPage(page, '/dashboard')
+  await expect(page).toHaveURL(/\/prijava$/)
+  expect(await page.evaluate(() => localStorage.getItem('clean_marketplace_auth_session'))).toBeNull()
+})

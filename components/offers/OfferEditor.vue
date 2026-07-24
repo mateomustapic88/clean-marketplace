@@ -11,8 +11,8 @@
     <BaseCheckbox v-model="model.suppliesIncluded" :label="t('cleaner.offer.fields.supplies')" />
     <BaseAlert v-if="errorMessage" variant="error">{{ errorMessage }}</BaseAlert>
     <div class="offer-editor__actions">
-      <BaseButton type="submit">{{ submitLabel }}</BaseButton>
-      <BaseButton v-if="withdrawable" type="button" variant="danger" @click="$emit('withdraw')">{{ t('cleaner.offer.withdraw') }}</BaseButton>
+      <BaseButton type="submit" :loading="loading">{{ submitLabel }}</BaseButton>
+      <BaseButton v-if="withdrawable" type="button" variant="danger" :disabled="loading" @click="$emit('withdraw')">{{ t('cleaner.offer.withdraw') }}</BaseButton>
     </div>
   </form>
 </template>
@@ -22,13 +22,14 @@ import type { OfferFormData } from '~/schemas/validation'
 import { createOfferSchema } from '~/schemas/validation'
 import { getFieldErrors } from '~/utils/validation'
 
-withDefaults(defineProps<{ submitLabel: string, withdrawable?: boolean, errorMessage?: string }>(), { withdrawable: false, errorMessage: '' })
+const props = withDefaults(defineProps<{ submitLabel: string, withdrawable?: boolean, errorMessage?: string, loading?: boolean }>(), { withdrawable: false, errorMessage: '', loading: false })
 const emit = defineEmits<{ submit: [value: OfferFormData], withdraw: [] }>()
 const model = defineModel<OfferFormData>({ required: true })
 const { t } = useI18n()
 const errors = ref<Record<string, string>>({})
 const priceTypes = computed(() => ['fixed', 'hourly'].map((value) => ({ value, label: t(`jobs.budgetType.${value}`) })))
 const submit = () => {
+  if (props.loading) return
   const result = createOfferSchema(t).safeParse(model.value)
   if (!result.success) {
     errors.value = getFieldErrors(result.error)

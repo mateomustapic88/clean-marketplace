@@ -3,6 +3,7 @@
     <header><h1>{{ t('owner.profile.title') }}</h1><p>{{ t('owner.profile.description') }}</p></header>
     <ProgressCard :title="t('owner.dashboard.profileTitle')" :description="t('owner.dashboard.profileDescription')" :value="completion" />
     <BaseAlert v-if="saved" variant="success">{{ t('owner.profile.saved') }}</BaseAlert>
+    <BaseAlert v-if="actionError" variant="error">{{ t('common.actionError') }}</BaseAlert>
     <BaseCard v-if="profile">
       <form novalidate @submit.prevent="save">
         <div class="owner-profile-page__avatar"><BaseAvatar :name="`${form.firstName} ${form.lastName}`" size="lg" /><div><strong>{{ t('owner.profile.avatar') }}</strong><input type="file" accept=".jpg,.jpeg,.png,.webp" :aria-label="t('owner.profile.avatar')" @change="uploadAvatar"></div></div>
@@ -18,7 +19,7 @@
           <BaseSelect v-model="form.preferredLanguage" :label="t('owner.profile.language')" :options="languageOptions" />
           <BaseSelect v-model="form.timeZone" :label="t('owner.profile.timeZone')" :options="timeZoneOptions" />
         </div>
-        <BaseButton type="submit">{{ t('owner.profile.save') }}</BaseButton>
+        <BaseButton type="submit" :loading="saving">{{ t('owner.profile.save') }}</BaseButton>
       </form>
     </BaseCard>
   </div>
@@ -41,6 +42,8 @@ const profile = computed(() => userStore.profile as OwnerProfile | null)
 const normalized = (value: OwnerProfile) => ({ ...value, preferredLanguage: value.preferredLanguage ?? 'hr' as const, timeZone: value.timeZone ?? 'Europe/Zagreb', avatarUrl: value.avatarUrl ?? null, onboardingCompleted: value.onboardingCompleted ?? true, apartmentName: value.apartmentName ?? null, apartmentCityCode: value.apartmentCityCode ?? null, apartmentAddress: value.apartmentAddress ?? null })
 const form = reactive(profile.value ? normalized(profile.value) : {} as OwnerProfile)
 const email = ref(authStore.user?.email ?? ''), errors = ref<Record<string, string>>({}), saved = ref(false)
+const saving = ref(false)
+const actionError = ref(false)
 const loadOwnerProfile = async (userId?: string) => {
   if (!userId) return
   await Promise.all([
@@ -57,6 +60,9 @@ const contactOptions = computed(() => ['email', 'phone', 'sms'].map((value) => (
 const languageOptions = computed(() => ['hr', 'en'].map((value) => ({ value, label: t(`languages.${value}`) })))
 const timeZoneOptions = ['Europe/Zagreb', 'Europe/London', 'Europe/Berlin'].map((value) => ({ value, label: value }))
 const save = async () => {
+  if (saving.value) return
+  actionError.value = false
+  saved.value = false
   const result = createOwnerProfileSchema(t).safeParse(form)
   const emailResult = z.string().email().safeParse(email.value)
   if (!result.success || !emailResult.success) {
@@ -66,14 +72,27 @@ const save = async () => {
     return
   }
   errors.value = {}
-  await userStore.updateOwner({ ...form, companyName: form.companyName || null, agencyName: form.agencyName || null })
-  await authStore.updateAccount({ email: email.value, displayName: `${form.firstName} ${form.lastName}`, avatarSeed: authStore.user?.avatarSeed ?? form.id })
-  saved.value = true
+  saving.value = true
+  try {
+    await userStore.updateOwner({ ...form, companyName: form.companyName || null, agencyName: form.agencyName || null })
+    await authStore.updateAccount({ email: email.value, displayName: `${form.firstName} ${form.lastName}`, avatarSeed: authStore.user?.avatarSeed ?? form.id })
+    saved.value = true
+  }
+  catch {
+    actionError.value = true
+  }
+  finally {
+    saving.value = false
+  }
 }
 const uploadAvatar = async (event: Event) => {
   const file = (event.target as HTMLInputElement).files?.[0]
-  if (file) {
+  if (!file) return
+  try {
     form.avatarUrl = (await mockUploadService.createPreview(file)).previewUrl
+  }
+  catch {
+    actionError.value = true
   }
 }
 useSeoMeta({ title: () => t('owner.profile.metaTitle'), robots: 'noindex, nofollow' })

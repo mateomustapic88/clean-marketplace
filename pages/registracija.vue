@@ -153,6 +153,7 @@ const cityOptions = computed(() => userStore.cities.map((city) => ({
 onMounted(() => userStore.loadDirectory())
 
 const submit = async () => {
+  if (authStore.status === 'loading') return
   authStore.clearError()
   const result = createRegisterSchema(t).safeParse(form)
   if (!result.success) {

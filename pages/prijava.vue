@@ -104,6 +104,7 @@ const submitError = computed(() => authStore.errorCode
   : '')
 
 const submit = async () => {
+  if (authStore.status === 'loading') return
   authStore.clearError()
   const result = createLoginSchema(t).safeParse(form)
   if (!result.success) {

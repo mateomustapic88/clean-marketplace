@@ -50,7 +50,8 @@ test('mock checkout activates a plan and exposes invoice and card details', asyn
   await expect(page.getByRole('heading', { name: 'Pogodnosti' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Upravljaj pretplatom' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Način plaćanja' })).toBeVisible()
-  await page.getByRole('button', { name: 'Započni besplatno probno razdoblje' }).click()
+  await expect(page.getByRole('button', { name: 'Započni besplatno probno razdoblje' })).toHaveCount(0)
+  await page.getByRole('button', { name: 'Dodaj način plaćanja' }).click()
   await expect(page).toHaveURL(/checkout=success/)
   await expect(page.getByText('Aktivno', { exact: true }).first()).toBeVisible()
   await expect(page.getByText('VISA **** 4242')).toBeVisible()
@@ -90,6 +91,7 @@ test('owner billing is role-specific, responsive, and protects publishing', asyn
   await expect(page.getByText('Besplatno probno razdoblje od 7 dana')).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Pogodnosti' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Upravljaj pretplatom' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Započni besplatno probno razdoblje' })).toHaveCount(0)
   await expect(page.getByRole('heading', { name: 'Računi' })).toBeVisible()
   await expect(page.getByText('Plan za osobu za čišćenje')).toHaveCount(0)
 

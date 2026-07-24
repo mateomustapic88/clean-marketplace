@@ -12,6 +12,13 @@
       >
         {{ t('auth.forgot.successDescription') }}
       </BaseAlert>
+      <BaseAlert
+        v-if="submitError"
+        variant="error"
+        :title="t('auth.errors.title')"
+      >
+        {{ t('auth.errors.unknown') }}
+      </BaseAlert>
       <BaseInput
         v-model="email"
         type="email"
@@ -59,9 +66,12 @@ const email = ref('')
 const error = ref('')
 const submitted = ref(false)
 const loading = ref(false)
+const submitError = ref(false)
 
 const submit = async () => {
+  if (loading.value) return
   submitted.value = false
+  submitError.value = false
   const result = z.string().trim().email(t('validation.email')).safeParse(email.value)
   if (!result.success) {
     error.value = result.error.issues[0]?.message ?? t('validation.email')
@@ -73,6 +83,9 @@ const submit = async () => {
   try {
     await authStore.requestPasswordReset(result.data)
     submitted.value = true
+  }
+  catch {
+    submitError.value = true
   }
   finally {
     loading.value = false

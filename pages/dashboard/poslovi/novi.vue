@@ -1,7 +1,8 @@
 <template>
   <div class="job-editor-page">
     <header><div><h1>{{ t('owner.job.newTitle') }}</h1><p>{{ t('owner.job.newDescription') }}</p></div><DemoBadge type="listing" /></header>
-    <JobWizard v-model="form" :cities="cityOptions" :save-status="saveStatus" :invalid-steps="invalidSteps" @save="saveDraft" @publish="publish" />
+    <BaseAlert v-if="actionError" variant="error">{{ t('common.actionError') }}</BaseAlert>
+    <JobWizard v-model="form" :cities="cityOptions" :save-status="saveStatus" :invalid-steps="invalidSteps" :loading="publishing" @save="saveDraft" @publish="publish" />
   </div>
 </template>
 
@@ -26,6 +27,8 @@ const saveStatus = ref<'saved' | 'saving' | 'unsaved'>('saved')
 const invalidSteps = ref<number[]>([])
 const draftId = ref<string | null>(null)
 const ready = ref(false)
+const publishing = ref(false)
+const actionError = ref(false)
 const cityOptions = computed(() => userStore.cities.map((city) => ({ value: city.code, label: city.name })))
 const persistDraft = async () => {
   if (!authStore.user) return
@@ -40,13 +43,24 @@ watch(form, () => {
 }, { deep: true })
 const saveDraft = () => autosave.saveNow()
 const publish = async () => {
+  if (publishing.value) return
+  actionError.value = false
   const result = createJobSchema(t).safeParse(form.value)
   invalidSteps.value = invalidJobSteps(form.value)
   if (!result.success || invalidSteps.value.length) return
-  await saveDraft()
-  if (!draftId.value) return
-  await jobsStore.transitionJob(draftId.value, 'published')
-  await navigateTo(getOwnerJobRoute(draftId.value, locale.value))
+  publishing.value = true
+  try {
+    await saveDraft()
+    if (!draftId.value) return
+    await jobsStore.transitionJob(draftId.value, 'published')
+    await navigateTo(getOwnerJobRoute(draftId.value, locale.value))
+  }
+  catch {
+    actionError.value = true
+  }
+  finally {
+    publishing.value = false
+  }
 }
 onMounted(() => {
   ready.value = true

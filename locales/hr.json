@@ -16,7 +16,8 @@
     "openDropdown": "Otvori izbornik",
     "noResultsTitle": "Nema rezultata",
     "noResultsDescription": "Pokušajte promijeniti kriterije pretraživanja.",
-    "notAvailable": "Nije dostupno"
+    "notAvailable": "Nije dostupno",
+    "actionError": "Radnja nije uspjela. Provjerite podatke i pokušajte ponovno."
   },
   "navigation": {
     "primaryLabel": "Glavna navigacija",
@@ -56,12 +57,16 @@
     "jobs": "Poslovi čišćenja",
     "cleaners": "Osobe za čišćenje",
     "contact": "Kontakt",
+    "contactSupport": "Kontaktiraj podršku",
+    "reportBug": "Prijavi grešku",
+    "suggestFeature": "Predloži poboljšanje",
     "help": "Centar za pomoć",
     "terms": "Uvjeti korištenja",
     "privacy": "Politika privatnosti",
+    "cookies": "Politika kolačića",
     "rights": "Sva prava pridržana.",
     "copyright": "© {year} Clean. Sva prava pridržana.",
-    "beta": "Javna beta",
+    "beta": "Privatna beta",
     "faq": "Česta pitanja",
     "phaseNotice": "Demo okruženje - poslovni podaci nisu stvarni."
   },
@@ -534,10 +539,12 @@
     "metaTitle": "Cijene", "metaDescription": "Clean nudi sedmodnevno probno razdoblje, zatim vlasnički plan od 19 EUR i plan za osobe za čišćenje od 39 EUR mjesečno."
   },
   "contact": {
-    "eyebrow": "Kontakt", "title": "Kako vam možemo pomoći?", "description": "Pošaljite demo upit. Obrazac ne šalje poruku stvarnoj službi podrške.",
+    "eyebrow": "Kontakt", "title": "Kako vam možemo pomoći?", "description": "Pošaljite beta upit, prijavite grešku ili predložite poboljšanje. Dok se ne poveže sustav podrške, obrazac samo potvrđuje unos.",
     "fields": { "name": "Ime i prezime", "email": "Adresa e-pošte", "userType": "Vrsta korisnika", "subject": "Predmet", "message": "Poruka", "consent": "Prihvaćam obradu podataka iz ovog demo obrasca." },
     "userTypes": { "owner": "Vlasnik apartmana", "cleaner": "Osoba za čišćenje", "other": "Ostalo" },
+    "topics": { "support": "Zahtjev za podršku", "bug": "Prijava greške", "feature": "Prijedlog poboljšanja" },
     "submit": "Pošalji poruku", "successTitle": "Poruka je zabilježena", "successDescription": "Hvala. Ovo je demo potvrda i poruka nije poslana stvarnoj službi podrške.",
+    "errorTitle": "Poruka nije zabilježena", "errorDescription": "Pokušajte ponovno. Ako se problem nastavi, vratite se kasnije.",
     "metaTitle": "Kontakt", "metaDescription": "Pošaljite demo upit timu platforme Clean."
   },
   "legal": {
@@ -563,9 +570,19 @@
         "5": { "title": "Ocjene", "text": "Ocjene trebaju opisivati stvarno završenu suradnju. U beta prikazu sve postojeće ocjene označene su kao demo." },
         "6": { "title": "Pravni pregled", "text": "Konačni uvjeti, odgovornosti i postupci moraju biti potvrđeni stručnim pravnim pregledom." }
       }
+    },
+    "cookies": {
+      "eyebrow": "Pravno", "title": "Politika kolačića", "description": "Informativni predložak o kolačićima i lokalnoj pohrani tijekom privatne beta faze.", "metaTitle": "Politika kolačića", "metaDescription": "Beta politika kolačića i lokalne pohrane platforme Clean.",
+      "sections": {
+        "1": { "title": "Nužna pohrana", "text": "Platforma koristi nužnu pohranu za održavanje prijave, jezika i osnovnog rada aplikacije." },
+        "2": { "title": "Lokalni beta podaci", "text": "Trenutačna demo arhitektura sprema dio podataka računa i marketplacea u lokalnu pohranu preglednika." },
+        "3": { "title": "Stripe", "text": "Stripe može postaviti vlastite nužne kolačiće kada korisnik otvori Checkout ili Billing Portal." },
+        "4": { "title": "Analitika", "text": "Analitički provider nije povezan. Prije uključivanja neobavezne analitike bit će uveden odgovarajući pristanak." },
+        "5": { "title": "Upravljanje podacima", "text": "Korisnik može obrisati lokalne podatke kroz postavke preglednika. Konačni postupak bit će potvrđen prije javnog lansiranja." }
+      }
     }
   },
-  "errorPage": { "title": "Ova stranica nije pronađena", "description": "Provjerite adresu ili se vratite na početnu stranicu.", "action": "Povratak na početnu" },
+  "errorPage": { "title": "Ova stranica nije pronađena", "description": "Provjerite adresu ili se vratite na početnu stranicu.", "action": "Povratak na početnu", "runtimeTitle": "Sadržaj se nije mogao učitati", "runtimeDescription": "Dogodila se neočekivana pogreška. Pokušajte ponovno ili se vratite na početnu stranicu.", "retry": "Pokušaj ponovno" },
   "notifications": {
     "navigation": "Obavijesti",
     "title": "Obavijesti",
@@ -1059,6 +1076,7 @@
     "trialEnds": "Probno razdoblje završava: {date}",
     "checkout": "Aktiviraj pretplatu",
     "startTrial": "Započni besplatno probno razdoblje",
+    "completeTrialSetup": "Dodaj način plaćanja",
     "portal": "Otvori portal za naplatu",
     "cancel": "Otkaži na kraju razdoblja",
     "resume": "Nastavi pretplatu",

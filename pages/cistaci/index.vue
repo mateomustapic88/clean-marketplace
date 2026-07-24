@@ -59,6 +59,7 @@ defineI18nRoute({ paths: { hr: '/cistaci', en: '/cleaners' } })
 const { t, locale } = useI18n()
 const route = useRoute()
 const router = useRouter()
+const config = useRuntimeConfig()
 const userStore = useUserStore()
 await userStore.loadDirectory()
 const fromQuery = () => ({
@@ -117,14 +118,17 @@ usePublicSeo({
 useHead({
   script: [{
     type: 'application/ld+json',
-    innerHTML: computed(() => JSON.stringify({
+    textContent: computed(() => JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'ItemList',
       'itemListElement': pagedCleaners.value.map((cleaner, index) => ({
         '@type': 'ListItem',
         'position': index + 1,
         'name': `${cleaner.firstName} ${cleaner.lastName}`,
-        'url': `https://clean.hr${getCleanerRoute(cleaner.id, locale.value)}`,
+        'url': new URL(
+          getCleanerRoute(cleaner.id, locale.value),
+          String(config.public.siteUrl),
+        ).href,
       })),
     })),
   }],

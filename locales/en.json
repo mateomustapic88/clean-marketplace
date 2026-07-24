@@ -16,7 +16,8 @@
     "openDropdown": "Open menu",
     "noResultsTitle": "No results",
     "noResultsDescription": "Try adjusting your search criteria.",
-    "notAvailable": "Not available"
+    "notAvailable": "Not available",
+    "actionError": "The action failed. Check the information and try again."
   },
   "navigation": {
     "primaryLabel": "Main navigation",
@@ -56,12 +57,16 @@
     "jobs": "Cleaning jobs",
     "cleaners": "Cleaning professionals",
     "contact": "Contact",
+    "contactSupport": "Contact support",
+    "reportBug": "Report a bug",
+    "suggestFeature": "Suggest an improvement",
     "help": "Help centre",
     "terms": "Terms of service",
     "privacy": "Privacy policy",
+    "cookies": "Cookie policy",
     "rights": "All rights reserved.",
     "copyright": "© {year} Clean. All rights reserved.",
-    "beta": "Public beta",
+    "beta": "Private beta",
     "faq": "Frequently asked questions",
     "phaseNotice": "Demo environment - business data is not real."
   },
@@ -531,10 +536,12 @@
     "metaTitle": "Pricing", "metaDescription": "Clean offers a seven-day trial, followed by a EUR 19 owner plan or EUR 39 cleaner plan per month."
   },
   "contact": {
-    "eyebrow": "Contact", "title": "How can we help?", "description": "Send a demo enquiry. The form does not contact a real support service.",
+    "eyebrow": "Contact", "title": "How can we help?", "description": "Send a beta enquiry, report a bug, or suggest an improvement. Until support delivery is connected, the form only confirms the entry.",
     "fields": { "name": "Full name", "email": "Email address", "userType": "User type", "subject": "Subject", "message": "Message", "consent": "I accept processing of the data in this demo form." },
     "userTypes": { "owner": "Apartment owner", "cleaner": "Cleaning professional", "other": "Other" },
+    "topics": { "support": "Support request", "bug": "Bug report", "feature": "Improvement suggestion" },
     "submit": "Send message", "successTitle": "Message recorded", "successDescription": "Thank you. This is a demo confirmation and no message was sent to a real support service.",
+    "errorTitle": "Message not recorded", "errorDescription": "Please try again. If the problem persists, return later.",
     "metaTitle": "Contact", "metaDescription": "Send a demo enquiry to the Clean platform team."
   },
   "legal": {
@@ -560,9 +567,19 @@
         "5": { "title": "Ratings", "text": "Ratings should describe completed collaboration. Every current beta rating is marked as demo." },
         "6": { "title": "Legal review", "text": "Final terms, responsibilities, and procedures must be confirmed by professional legal review." }
       }
+    },
+    "cookies": {
+      "eyebrow": "Legal", "title": "Cookie policy", "description": "An informational template covering cookies and local storage during the private beta.", "metaTitle": "Cookie policy", "metaDescription": "Beta cookie and local-storage policy for Clean.",
+      "sections": {
+        "1": { "title": "Essential storage", "text": "The platform uses essential storage to maintain sign-in, language selection, and core application behaviour." },
+        "2": { "title": "Local beta data", "text": "The current demo architecture stores some account and marketplace data in the browser's local storage." },
+        "3": { "title": "Stripe", "text": "Stripe may set its own essential cookies when a user opens Checkout or the Billing Portal." },
+        "4": { "title": "Analytics", "text": "No analytics provider is connected. Appropriate consent will be introduced before optional analytics is enabled." },
+        "5": { "title": "Managing data", "text": "Users can clear local data through browser settings. A final process will be confirmed before public launch." }
+      }
     }
   },
-  "errorPage": { "title": "This page could not be found", "description": "Check the address or return to the home page.", "action": "Return home" },
+  "errorPage": { "title": "This page could not be found", "description": "Check the address or return to the home page.", "action": "Return home", "runtimeTitle": "The content could not be loaded", "runtimeDescription": "An unexpected error occurred. Try again or return to the home page.", "retry": "Try again" },
   "notifications": {
     "navigation": "Notifications",
     "title": "Notifications",
@@ -1056,6 +1073,7 @@
     "trialEnds": "Trial ends: {date}",
     "checkout": "Activate subscription",
     "startTrial": "Start free trial",
+    "completeTrialSetup": "Add payment method",
     "portal": "Open billing portal",
     "cancel": "Cancel at period end",
     "resume": "Resume subscription",

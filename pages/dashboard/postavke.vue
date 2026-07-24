@@ -2,6 +2,7 @@
   <div class="owner-settings">
     <header><h1>{{ t('owner.settings.title') }}</h1><p>{{ t('owner.settings.description') }}</p></header>
     <BaseAlert v-if="saved" variant="success">{{ t('owner.settings.saved') }}</BaseAlert>
+    <BaseAlert v-if="actionError" variant="error">{{ t('common.actionError') }}</BaseAlert>
     <BaseCard v-if="profile">
       <form @submit.prevent="save">
         <fieldset>
@@ -15,7 +16,7 @@
         <BaseSelect v-model="contact" :label="t('owner.profile.contactMethod')" :options="contactOptions" />
         <BaseSelect v-model="language" :label="t('owner.profile.language')" :options="languageOptions" />
         <BaseSelect v-model="timeZone" :label="t('owner.profile.timeZone')" :options="timeZoneOptions" />
-        <BaseButton type="submit">{{ t('owner.settings.save') }}</BaseButton>
+        <BaseButton type="submit" :loading="saving">{{ t('owner.settings.save') }}</BaseButton>
       </form>
     </BaseCard>
   </div>
@@ -32,6 +33,8 @@ const { t } = useI18n(), authStore = useAuthStore(), userStore = useUserStore()
 const profile = computed(() => userStore.profile as OwnerProfile | null)
 const preferences = reactive<NotificationPreferences>({ ...(profile.value?.notificationPreferences ?? { email: true, inApp: true, jobUpdates: true, offers: true, marketing: false }) })
 const contact = ref(profile.value?.preferredContactMethod ?? 'email'), language = ref(profile.value?.preferredLanguage ?? 'hr'), timeZone = ref(profile.value?.timeZone ?? 'Europe/Zagreb'), saved = ref(false)
+const saving = ref(false)
+const actionError = ref(false)
 const loadOwnerSettings = async (userId?: string) => {
   if (!userId) return
   await userStore.loadCurrentProfile(userId)
@@ -46,20 +49,31 @@ const contactOptions = computed(() => ['email', 'phone', 'sms'].map((value) => (
 const languageOptions = computed(() => ['hr', 'en'].map((value) => ({ value, label: t(`languages.${value}`) })))
 const timeZoneOptions = ['Europe/Zagreb', 'Europe/London', 'Europe/Berlin'].map((value) => ({ value, label: value }))
 const save = async () => {
-  if (!profile.value) return
-  await userStore.updateOwner({
-    ...profile.value,
-    notificationPreferences: { ...preferences },
-    preferredContactMethod: contact.value as OwnerProfile['preferredContactMethod'],
-    preferredLanguage: language.value as 'hr' | 'en',
-    timeZone: timeZone.value,
-    avatarUrl: profile.value.avatarUrl ?? null,
-    onboardingCompleted: profile.value.onboardingCompleted ?? true,
-    apartmentName: profile.value.apartmentName ?? null,
-    apartmentCityCode: profile.value.apartmentCityCode ?? null,
-    apartmentAddress: profile.value.apartmentAddress ?? null,
-  })
-  saved.value = true
+  if (!profile.value || saving.value) return
+  saving.value = true
+  actionError.value = false
+  saved.value = false
+  try {
+    await userStore.updateOwner({
+      ...profile.value,
+      notificationPreferences: { ...preferences },
+      preferredContactMethod: contact.value as OwnerProfile['preferredContactMethod'],
+      preferredLanguage: language.value as 'hr' | 'en',
+      timeZone: timeZone.value,
+      avatarUrl: profile.value.avatarUrl ?? null,
+      onboardingCompleted: profile.value.onboardingCompleted ?? true,
+      apartmentName: profile.value.apartmentName ?? null,
+      apartmentCityCode: profile.value.apartmentCityCode ?? null,
+      apartmentAddress: profile.value.apartmentAddress ?? null,
+    })
+    saved.value = true
+  }
+  catch {
+    actionError.value = true
+  }
+  finally {
+    saving.value = false
+  }
 }
 useSeoMeta({ title: () => t('owner.settings.metaTitle'), robots: 'noindex, nofollow' })
 </script>

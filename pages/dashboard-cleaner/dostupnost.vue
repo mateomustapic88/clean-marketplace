@@ -1,5 +1,5 @@
 <template>
-  <div class="availability-page"><header><h1>{{ t('cleaner.availability.title') }}</h1><p>{{ t('cleaner.availability.description') }}</p></header><BaseAlert v-if="saved" variant="success">{{ t('cleaner.availability.saved') }}</BaseAlert><BaseCard v-if="profile"><CleanerAvailability v-model="availability" v-model:vacation="vacationMode" /><BaseButton @click="save">{{ t('cleaner.availability.save') }}</BaseButton></BaseCard></div>
+  <div class="availability-page"><header><h1>{{ t('cleaner.availability.title') }}</h1><p>{{ t('cleaner.availability.description') }}</p></header><BaseAlert v-if="saved" variant="success">{{ t('cleaner.availability.saved') }}</BaseAlert><BaseAlert v-if="actionError" variant="error">{{ t('common.actionError') }}</BaseAlert><BaseCard v-if="profile"><CleanerAvailability v-model="availability" v-model:vacation="vacationMode" /><BaseButton :loading="saving" @click="save">{{ t('cleaner.availability.save') }}</BaseButton></BaseCard></div>
 </template>
 
 <script setup lang="ts">
@@ -13,6 +13,7 @@ defineI18nRoute({ paths: { hr: '/dashboard-cleaner/dostupnost', en: '/dashboard-
 const { t } = useI18n(), authStore = useAuthStore(), userStore = useUserStore()
 const profile = computed(() => userStore.profile && 'completedJobs' in userStore.profile ? userStore.profile as CleanerProfile : null)
 const availability = ref(defaultAvailability()), vacationMode = ref(false), saved = ref(false)
+const saving = ref(false), actionError = ref(false)
 const load = async (id?: string) => {
   if (!id) return
   await userStore.loadCurrentProfile(id)
@@ -23,13 +24,24 @@ const load = async (id?: string) => {
 }
 watch(() => authStore.user?.id, load, { immediate: true })
 const save = async () => {
-  if (!profile.value) return
+  if (!profile.value || saving.value) return
+  saving.value = true
+  actionError.value = false
+  saved.value = false
   const copiedAvailability = availability.value.map((day) => ({
     ...day,
     ranges: day.ranges.map((range) => ({ ...range })),
   }))
-  await userStore.updateCleaner({ ...normalizeCleanerProfile(profile.value), availability: copiedAvailability, vacationMode: vacationMode.value })
-  saved.value = true
+  try {
+    await userStore.updateCleaner({ ...normalizeCleanerProfile(profile.value), availability: copiedAvailability, vacationMode: vacationMode.value })
+    saved.value = true
+  }
+  catch {
+    actionError.value = true
+  }
+  finally {
+    saving.value = false
+  }
 }
 useSeoMeta({ title: () => t('cleaner.availability.metaTitle'), robots: 'noindex, nofollow' })
 </script>

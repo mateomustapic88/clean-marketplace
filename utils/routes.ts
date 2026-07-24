@@ -47,6 +47,10 @@ const routePaths = {
     hr: '/uvjeti-koristenja',
     en: '/en/terms',
   },
+  cookies: {
+    hr: '/politika-kolacica',
+    en: '/en/cookie-policy',
+  },
   forbidden: {
     hr: '/zabranjeno',
     en: '/en/forbidden',

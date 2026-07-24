@@ -66,11 +66,11 @@
         </div>
       </fieldset>
       <div class="job-wizard__actions">
-        <BaseButton type="button" variant="ghost" @click="$emit('save')">{{ saveLabel || t('owner.job.saveDraft') }}</BaseButton>
+        <BaseButton type="button" variant="ghost" :disabled="loading" @click="$emit('save')">{{ saveLabel || t('owner.job.saveDraft') }}</BaseButton>
         <span class="job-wizard__spacer" />
-        <BaseButton v-if="current > 0" type="button" variant="secondary" @click="current--">{{ t('common.previous') }}</BaseButton>
-        <BaseButton v-if="current < steps.length - 1" type="button" @click="current++">{{ t('common.next') }}</BaseButton>
-        <BaseButton v-else type="submit">{{ publishLabel || t('owner.job.publish') }}</BaseButton>
+        <BaseButton v-if="current > 0" type="button" variant="secondary" :disabled="loading" @click="current--">{{ t('common.previous') }}</BaseButton>
+        <BaseButton v-if="current < steps.length - 1" type="button" :disabled="loading" @click="current++">{{ t('common.next') }}</BaseButton>
+        <BaseButton v-else type="submit" :loading="loading">{{ publishLabel || t('owner.job.publish') }}</BaseButton>
       </div>
     </form>
   </BaseCard>
@@ -86,10 +86,12 @@ const props = withDefaults(defineProps<{
   invalidSteps?: number[]
   saveLabel?: string
   publishLabel?: string
+  loading?: boolean
 }>(), {
   invalidSteps: () => [],
   saveLabel: '',
   publishLabel: '',
+  loading: false,
 })
 const emit = defineEmits<{ save: [], publish: [] }>()
 const model = defineModel<JobFormData & { photoUrls: string[] }>({ required: true })
@@ -99,7 +101,9 @@ const steps = computed(() => ['basic', 'apartment', 'requirements', 'budget', 's
 const serviceKeys: Array<keyof CleaningJobServices> = ['cleaningSuppliesProvided', 'linenReplacement', 'towelReplacement', 'laundry', 'balconyCleaning', 'kitchenCleaning', 'fridgeCleaning', 'ovenCleaning', 'windowCleaning', 'sameDayTurnover']
 const budgetOptions = computed(() => ['fixed', 'hourly'].map((value) => ({ value, label: t(`jobs.budgetType.${value}`) })))
 const cityLabel = computed(() => props.cities.find((city) => city.value === model.value.cityCode)?.label ?? '')
-const publish = () => emit('publish')
+const publish = () => {
+  if (!props.loading) emit('publish')
+}
 </script>
 
 <style scoped lang="scss">

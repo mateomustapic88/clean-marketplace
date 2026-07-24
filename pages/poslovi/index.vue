@@ -60,6 +60,7 @@ defineI18nRoute({ paths: { hr: '/poslovi', en: '/jobs' } })
 const { t, locale } = useI18n()
 const route = useRoute()
 const router = useRouter()
+const config = useRuntimeConfig()
 const jobsStore = useJobsStore()
 const userStore = useUserStore()
 await Promise.all([jobsStore.loadJobs(), userStore.loadDirectory()])
@@ -129,14 +130,17 @@ usePublicSeo({
 useHead({
   script: [{
     type: 'application/ld+json',
-    innerHTML: computed(() => JSON.stringify({
+    textContent: computed(() => JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'ItemList',
       'itemListElement': pagedJobs.value.map((job, index) => ({
         '@type': 'ListItem',
         'position': index + 1,
         'name': job.title,
-        'url': `https://clean.hr${getJobRoute(job.id, locale.value)}`,
+        'url': new URL(
+          getJobRoute(job.id, locale.value),
+          String(config.public.siteUrl),
+        ).href,
       })),
     })),
   }],

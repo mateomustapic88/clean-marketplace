@@ -42,7 +42,11 @@ export default defineNuxtConfig({
     stripeOwnerPriceId: process.env.STRIPE_OWNER_PRICE_ID || '',
     stripeCleanerPriceId: process.env.STRIPE_CLEANER_PRICE_ID || '',
     public: {
-      siteUrl: process.env.APP_BASE_URL || 'http://localhost:3000',
+      siteUrl: process.env.APP_BASE_URL || (
+        process.env.NODE_ENV === 'production'
+          ? 'https://clean-marketplace-ten.vercel.app'
+          : 'http://localhost:3000'
+      ),
       billingMode,
       billingEnvironment: {
         webhookConfigured: Boolean(process.env.STRIPE_WEBHOOK_SECRET),

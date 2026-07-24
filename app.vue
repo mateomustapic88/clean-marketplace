@@ -1,6 +1,16 @@
 <template>
+  <NuxtLoadingIndicator
+    color="#24767d"
+    :height="3"
+    :throttle="120"
+  />
   <NuxtLayout>
-    <NuxtPage />
+    <NuxtErrorBoundary>
+      <NuxtPage />
+      <template #error="{ clearError }">
+        <PageErrorState @retry="clearError" />
+      </template>
+    </NuxtErrorBoundary>
   </NuxtLayout>
 </template>
 

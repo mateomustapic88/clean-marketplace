@@ -190,13 +190,13 @@ usePublicSeo({
 useHead({
   script: [{
     type: 'application/ld+json',
-    innerHTML: computed(() => JSON.stringify({
+    textContent: computed(() => JSON.stringify({
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'WebSite',
           'name': 'Clean',
-          'url': 'https://clean.hr',
+          'url': String(config.public.siteUrl),
           'inLanguage': locale.value === 'en' ? 'en-GB' : 'hr-HR',
         },
         {

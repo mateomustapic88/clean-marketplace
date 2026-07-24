@@ -3,7 +3,7 @@
     <label :for="id">{{ t('owner.job.fields.photos') }}</label>
     <input :id="id" type="file" accept=".jpg,.jpeg,.png,.webp" multiple @change="selectFiles">
     <p>{{ t('owner.job.fields.photoHint') }}</p>
-    <div class="photo-uploader__previews"><img v-for="photo in previews" :key="photo.id" :src="photo.previewUrl" :alt="photo.name"></div>
+    <div class="photo-uploader__previews"><img v-for="photo in previews" :key="photo.id" :src="photo.previewUrl" :alt="photo.name" decoding="async" loading="lazy"></div>
     <BaseAlert v-if="error" variant="error">{{ error }}</BaseAlert>
   </div>
 </template>

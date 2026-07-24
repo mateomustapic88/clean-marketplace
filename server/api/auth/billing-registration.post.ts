@@ -5,6 +5,7 @@ import { setBillingSession } from '~/server/utils/billingSession'
 import { useBillingDatabase } from '~/server/utils/billingDatabase'
 import { parseBody } from '~/server/utils/billingValidation'
 import { MockSubscriptionRepository } from '~/repositories/mock/MockSubscriptionRepository'
+import { assertTrustedOrigin, enforceRateLimit } from '~/server/utils/requestSecurity'
 
 const schema = z.object({
   userId: z.string().min(1).max(100),
@@ -16,6 +17,8 @@ const schema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
+  assertTrustedOrigin(event)
+  enforceRateLimit(event, 'auth-register', 5, 60 * 60_000)
   const body = await parseBody(event, schema)
   const database = useBillingDatabase()
   database.transaction((snapshot) => {

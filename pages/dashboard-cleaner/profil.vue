@@ -2,6 +2,7 @@
   <div class="cleaner-profile-page">
     <header><h1>{{ t('cleaner.profile.title') }}</h1><p>{{ t('cleaner.profile.description') }}</p></header>
     <BaseAlert v-if="saved" variant="success">{{ t('cleaner.profile.saved') }}</BaseAlert>
+    <BaseAlert v-if="actionError" variant="error">{{ t('common.actionError') }}</BaseAlert>
     <BaseCard v-if="profile">
       <form novalidate @submit.prevent="save">
         <div class="cleaner-profile-page__avatar"><BaseAvatar :name="`${form.firstName} ${form.lastName}`" size="lg" /><label>{{ t('cleaner.profile.avatar') }}<input type="file" accept=".jpg,.jpeg,.png,.webp" @change="uploadAvatar"></label></div>
@@ -20,7 +21,7 @@
         <fieldset><legend>{{ t('cleaner.profile.availableCities') }}</legend><label v-for="city in userStore.cities" :key="city.code"><input type="checkbox" :checked="serviceCities.includes(city.code)" @change="toggleCity(city.code)">{{ city.name }}</label></fieldset>
         <fieldset><legend>{{ t('cleaner.profile.languages') }}</legend><label v-for="language in ['hr', 'en', 'de', 'it']" :key="language"><input type="checkbox" :checked="form.languages.includes(language)" @change="toggleLanguage(language)">{{ t(`languages.${language}`) }}</label></fieldset>
         <div class="cleaner-profile-page__checks"><BaseCheckbox v-model="form.ownTransportation" :label="t('cleaner.profile.transport')" /><BaseCheckbox v-model="form.bringsSupplies" :label="t('cleaner.profile.supplies')" /><BaseCheckbox v-model="form.weekendAvailable" :label="t('cleaner.profile.weekend')" /><BaseCheckbox v-model="form.sameDayAvailable" :label="t('cleaner.profile.sameDay')" /></div>
-        <BaseButton type="submit">{{ t('cleaner.profile.save') }}</BaseButton>
+        <BaseButton type="submit" :loading="saving">{{ t('cleaner.profile.save') }}</BaseButton>
       </form>
     </BaseCard>
   </div>
@@ -41,6 +42,8 @@ defineI18nRoute({ paths: { hr: '/dashboard-cleaner/profil', en: '/dashboard-clea
 const { t } = useI18n(), authStore = useAuthStore(), userStore = useUserStore()
 const profile = computed(() => userStore.profile && 'completedJobs' in userStore.profile ? userStore.profile as CleanerProfile : null)
 const form = reactive({} as CleanerProfile), email = ref(''), serviceCities = ref<string[]>([]), errors = ref<Record<string, string>>({}), saved = ref(false)
+const saving = ref(false)
+const actionError = ref(false)
 const load = async (id?: string) => {
   if (!id) return
   await Promise.all([userStore.loadCurrentProfile(id), userStore.loadDirectory()])
@@ -55,20 +58,38 @@ const toggleCity = (code: string) => serviceCities.value = serviceCities.value.i
 const toggleLanguage = (language: string) => form.languages = form.languages.includes(language) ? form.languages.filter((item) => item !== language) : [...form.languages, language]
 const uploadAvatar = async (event: Event) => {
   const file = (event.target as HTMLInputElement).files?.[0]
-  if (file) form.avatarUrl = (await mockUploadService.createPreview(file)).previewUrl
+  if (!file) return
+  try {
+    form.avatarUrl = (await mockUploadService.createPreview(file)).previewUrl
+  }
+  catch {
+    actionError.value = true
+  }
 }
 const save = async () => {
+  if (saving.value) return
+  actionError.value = false
+  saved.value = false
   const result = createCleanerProfileSchema(t).safeParse(form)
   const validEmail = z.string().email().safeParse(email.value)
   if (!result.success || !validEmail.success) {
     errors.value = result.success ? { email: t('validation.email') } : getFieldErrors(result.error)
     return
   }
-  form.serviceAreas = serviceCities.value.map((cityCode) => ({ cityCode, radiusKm: form.serviceRadiusKm }))
-  await userStore.updateCleaner({ ...form })
-  await authStore.updateAccount({ email: email.value, displayName: `${form.firstName} ${form.lastName}`, avatarSeed: authStore.user?.avatarSeed ?? form.id })
-  errors.value = {}
-  saved.value = true
+  saving.value = true
+  try {
+    form.serviceAreas = serviceCities.value.map((cityCode) => ({ cityCode, radiusKm: form.serviceRadiusKm }))
+    await userStore.updateCleaner({ ...form })
+    await authStore.updateAccount({ email: email.value, displayName: `${form.firstName} ${form.lastName}`, avatarSeed: authStore.user?.avatarSeed ?? form.id })
+    errors.value = {}
+    saved.value = true
+  }
+  catch {
+    actionError.value = true
+  }
+  finally {
+    saving.value = false
+  }
 }
 useSeoMeta({ title: () => t('cleaner.profile.metaTitle'), robots: 'noindex, nofollow' })
 </script>

@@ -15,10 +15,16 @@ export const usePublicSeo = (options: PublicSeoOptions) => {
   useSeoMeta({
     title: () => toValue(options.title),
     description: () => toValue(options.description),
+    robots: 'index, follow',
     ogTitle: () => toValue(options.title),
     ogDescription: () => toValue(options.description),
     ogType: options.type ?? 'website',
     ogLocale: () => locale.value === 'en' ? 'en_GB' : 'hr_HR',
+    ogSiteName: () => 'Clean',
+    ogUrl: () => canonical.value,
+    twitterCard: 'summary',
+    twitterTitle: () => toValue(options.title),
+    twitterDescription: () => toValue(options.description),
   })
 
   useHead({

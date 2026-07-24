@@ -9,6 +9,7 @@ import { MockOfferRepository } from '~/repositories/mock/MockOfferRepository'
 import { MockStripeEventRepository } from '~/repositories/mock/MockStripeEventRepository'
 import {
   createBillingPresentation,
+  getBillingCheckoutAction,
   type PublicBillingPlan,
 } from '~/services/billing/billingPresentation'
 import {
@@ -119,6 +120,20 @@ describe('Phase 7 Stripe architecture', () => {
       status: 'active',
       hasProviderSubscription: true,
     })
+  })
+
+  it('selects a checkout label that matches the current subscription state', () => {
+    expect(getBillingCheckoutAction(null)).toBe('startTrial')
+    expect(getBillingCheckoutAction({
+      status: 'trial',
+    } as Subscription)).toBe('completeTrialSetup')
+    expect(getBillingCheckoutAction({
+      status: 'expired',
+    } as Subscription)).toBe('checkout')
+    expect(getBillingCheckoutAction({
+      status: 'trial',
+      stripeSubscriptionId: 'provider-subscription',
+    } as Subscription)).toBeNull()
   })
 
   it('maps Stripe lifecycle data without trusting client subscription state', () => {

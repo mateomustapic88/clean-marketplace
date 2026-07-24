@@ -69,12 +69,17 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   const logout = async () => {
-    await repositories().auth.logout()
-    session.value = null
-    user.value = null
-    status.value = 'anonymous'
-    errorCode.value = null
-    isRestored.value = true
+    status.value = 'loading'
+    try {
+      await repositories().auth.logout()
+    }
+    finally {
+      session.value = null
+      user.value = null
+      status.value = 'anonymous'
+      errorCode.value = null
+      isRestored.value = true
+    }
   }
 
   const restoreSession = async () => {
@@ -83,16 +88,26 @@ export const useAuthStore = defineStore('auth', () => {
     }
 
     status.value = 'loading'
-    const result = await repositories().auth.restoreSession()
-    if (result) {
-      applyAuthResult(result)
+    try {
+      const result = await repositories().auth.restoreSession()
+      if (result) {
+        applyAuthResult(result)
+      }
+      else {
+        session.value = null
+        user.value = null
+        status.value = 'anonymous'
+      }
     }
-    else {
+    catch {
       session.value = null
       user.value = null
       status.value = 'anonymous'
+      errorCode.value = 'session_expired'
     }
-    isRestored.value = true
+    finally {
+      isRestored.value = true
+    }
   }
 
   const requestPasswordReset = async (email: string) => {

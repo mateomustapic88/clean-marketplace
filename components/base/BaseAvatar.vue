@@ -10,6 +10,8 @@
       class="base-avatar__image"
       :src="src"
       :alt="name"
+      decoding="async"
+      loading="lazy"
     >
     <span v-else aria-hidden="true">{{ initials }}</span>
   </span>

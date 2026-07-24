@@ -15,7 +15,7 @@
     <section class="billing-page__management" aria-labelledby="billing-management-title">
       <h2 id="billing-management-title">{{ t('billing.manage') }}</h2>
       <div class="billing-page__actions">
-        <BaseButton v-if="!hasProviderSubscription" :loading="isActionLoading" :disabled="isLoading" @click="$emit('checkout')">{{ t('billing.startTrial') }}</BaseButton>
+        <BaseButton v-if="checkoutAction" :loading="isActionLoading" :disabled="isLoading" @click="$emit('checkout')">{{ t(`billing.${checkoutAction}`) }}</BaseButton>
         <BaseButton v-if="subscription?.stripeCustomerId" variant="secondary" :loading="isActionLoading" @click="$emit('portal')">{{ t('billing.portal') }}</BaseButton>
         <BaseButton v-if="hasProviderSubscription && (subscription?.cancelAtPeriodEnd || subscription?.status === 'cancelled')" variant="secondary" :disabled="isActionLoading" @click="$emit('resume')">{{ t('billing.resume') }}</BaseButton>
         <BaseButton v-else-if="hasProviderSubscription" variant="danger" :disabled="isActionLoading" @click="$emit('cancel')">{{ t('billing.cancel') }}</BaseButton>
@@ -28,6 +28,7 @@
 <script setup lang="ts">
 import type { BillingInvoice, PaymentMethod, Subscription } from '~/domains/subscriptions/types'
 import type { BillingRole } from '~/services/billing/billingPresentation'
+import { getBillingCheckoutAction } from '~/services/billing/billingPresentation'
 
 const props = defineProps<{
   role: BillingRole
@@ -53,6 +54,7 @@ const showWebhookWarning = computed(() =>
   && !config.public.billingEnvironment.webhookConfigured,
 )
 const hasProviderSubscription = computed(() => Boolean(props.subscription?.stripeSubscriptionId))
+const checkoutAction = computed(() => getBillingCheckoutAction(props.subscription))
 </script>
 
 <style scoped lang="scss">

@@ -2,6 +2,7 @@
   <div class="job-editor-page">
     <header><div><h1>{{ t('owner.job.editTitle') }}</h1><p>{{ t('owner.job.editDescription') }}</p></div><StatusBadge v-if="job" :status="job.status" /></header>
     <BaseAlert v-if="job && isPublishedJobReadOnly(job.status)" variant="warning">{{ t('owner.job.readOnly') }}</BaseAlert>
+    <BaseAlert v-else-if="actionError" variant="error">{{ t('common.actionError') }}</BaseAlert>
     <JobWizard
       v-else-if="job"
       v-model="form"
@@ -10,6 +11,7 @@
       :invalid-steps="invalidSteps"
       :save-label="job.status === 'draft' ? t('owner.job.saveDraft') : t('owner.job.saveChanges')"
       :publish-label="job.status === 'draft' ? t('owner.job.publish') : t('owner.jobs.republish')"
+      :loading="publishing"
       @save="saveDraft"
       @publish="publish"
     />
@@ -39,6 +41,8 @@ const job = computed(() => jobsStore.selectedJob?.ownerId === authStore.user?.id
 const form = ref(job.value ? jobToForm(job.value) : emptyJobForm())
 const saveStatus = ref<'saved' | 'saving' | 'unsaved'>('saved')
 const invalidSteps = ref<number[]>([])
+const publishing = ref(false)
+const actionError = ref(false)
 const cityOptions = computed(() => userStore.cities.map((city) => ({ value: city.code, label: city.name })))
 watch(job, (value) => {
   if (value) form.value = jobToForm(value)
@@ -55,12 +59,23 @@ watch(form, () => {
 }, { deep: true })
 const saveDraft = () => autosave.saveNow()
 const publish = async () => {
+  if (publishing.value) return
+  actionError.value = false
   const result = createJobSchema(t).safeParse(form.value)
   invalidSteps.value = invalidJobSteps(form.value)
   if (!result.success || invalidSteps.value.length || !job.value) return
-  await saveDraft()
-  await jobsStore.transitionJob(job.value.id, 'published')
-  await navigateTo(getOwnerJobRoute(job.value.id, locale.value))
+  publishing.value = true
+  try {
+    await saveDraft()
+    await jobsStore.transitionJob(job.value.id, 'published')
+    await navigateTo(getOwnerJobRoute(job.value.id, locale.value))
+  }
+  catch {
+    actionError.value = true
+  }
+  finally {
+    publishing.value = false
+  }
 }
 onMounted(() => {
   ready = true

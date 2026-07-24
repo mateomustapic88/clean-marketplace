@@ -1,8 +1,8 @@
 <template>
   <article class="activity-card">
     <span aria-hidden="true"><component :is="icon" :size="17" /></span>
-    <div><strong>{{ t(`owner.activity.${activity.type}`, activity.metadata ?? {}) }}</strong><time :datetime="activity.occurredAt">{{ formatPublicDate(activity.occurredAt.slice(0, 10), locale) }}</time></div>
-    <DemoBadge type="listing" />
+    <div class="activity-card__content"><strong>{{ t(`owner.activity.${activity.type}`, activity.metadata ?? {}) }}</strong><time :datetime="activity.occurredAt">{{ formatPublicDate(activity.occurredAt.slice(0, 10), locale) }}</time></div>
+    <DemoBadge class="activity-card__badge" type="listing" />
   </article>
 </template>
 
@@ -34,8 +34,43 @@ const icon = computed(() => icons[props.activity.type] ?? Clock)
 </script>
 
 <style scoped lang="scss">
-.activity-card { display: grid; grid-template-columns: auto 1fr auto; gap: $space-3; align-items: start; padding-block: $space-4; border-bottom: 1px solid $color-border;
-  > span { display: grid; width: 2rem; height: 2rem; color: $color-primary; place-items: center; background: $color-primary-light; border-radius: 50%; }
-  div { display: grid; gap: $space-1; } time { font-size: $font-size-xs; color: $color-text-secondary; }
+.activity-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: $space-2 $space-3;
+  align-items: start;
+  padding-block: $space-4;
+  border-bottom: 1px solid $color-border;
+
+  > span {
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    color: $color-primary;
+    place-items: center;
+    background: $color-primary-light;
+    border-radius: $radius-full;
+  }
+
+  &__content {
+    display: grid;
+    min-width: 0;
+    gap: $space-1;
+
+    strong {
+      overflow-wrap: anywhere;
+    }
+  }
+
+  &__badge {
+    grid-column: 2;
+    justify-self: start;
+    white-space: nowrap;
+  }
+
+  time {
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+  }
 }
 </style>

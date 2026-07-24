@@ -7,6 +7,13 @@
           {{ t('contact.successDescription') }}
         </BaseAlert>
         <form v-else novalidate @submit.prevent="submit">
+          <BaseAlert
+            v-if="submitError"
+            variant="error"
+            :title="t('contact.errorTitle')"
+          >
+            {{ t('contact.errorDescription') }}
+          </BaseAlert>
           <BaseInput v-model="form.name" name="name" autocomplete="name" required :label="t('contact.fields.name')" :error="errors.name ?? ''" />
           <BaseInput v-model="form.email" name="email" type="email" autocomplete="email" required :label="t('contact.fields.email')" :error="errors.email ?? ''" />
           <BaseSelect v-model="form.userType" name="userType" required :label="t('contact.fields.userType')" :options="userTypes" :error="errors.userType ?? ''" />
@@ -28,12 +35,28 @@ import { getFieldErrors } from '~/utils/validation'
 
 defineI18nRoute({ paths: { hr: '/kontakt', en: '/contact' } })
 const { t, locale } = useI18n()
+const route = useRoute()
 const form = reactive({ name: '', email: '', userType: 'owner' as 'owner' | 'cleaner' | 'other', subject: '', message: '', consent: false })
 const errors = ref<Record<string, string>>({})
 const loading = ref(false)
 const submitted = ref(false)
+const submitError = ref(false)
 const userTypes = computed(() => ['owner', 'cleaner', 'other'].map((value) => ({ value, label: t(`contact.userTypes.${value}`) })))
+
+const topic = computed(() => {
+  const value = Array.isArray(route.query.topic) ? route.query.topic[0] : route.query.topic
+  return value === 'bug' || value === 'feature' || value === 'support' ? value : null
+})
+
+watchEffect(() => {
+  if (topic.value && !form.subject) {
+    form.subject = t(`contact.topics.${topic.value}`)
+  }
+})
+
 const submit = async () => {
+  if (loading.value) return
+  submitError.value = false
   const result = createContactSchema(t).safeParse(form)
   if (!result.success) {
     errors.value = getFieldErrors(result.error)
@@ -41,9 +64,20 @@ const submit = async () => {
   }
   errors.value = {}
   loading.value = true
-  await new Promise((resolve) => setTimeout(resolve, 400))
-  loading.value = false
-  submitted.value = true
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 400))
+    submitted.value = true
+    useAnalytics().track({
+      name: 'feedback_submitted',
+      properties: { topic: topic.value ?? 'contact' },
+    })
+  }
+  catch {
+    submitError.value = true
+  }
+  finally {
+    loading.value = false
+  }
 }
 usePublicSeo({
   title: computed(() => t('contact.metaTitle')),

@@ -8,7 +8,7 @@
           <fieldset v-show="current === 2"><legend>{{ steps[2] }}</legend><div class="cleaner-onboarding__checks"><label v-for="city in userStore.cities" :key="city.code"><input type="checkbox" :checked="serviceCities.includes(city.code)" @change="toggleCity(city.code)">{{ city.name }}</label></div></fieldset>
           <fieldset v-show="current === 3"><legend>{{ steps[3] }}</legend><CleanerAvailability v-model="draft.availability" v-model:vacation="draft.vacationMode" /></fieldset>
           <fieldset v-show="current === 4"><legend>{{ steps[4] }}</legend><h2>{{ draft.firstName }} {{ draft.lastName }}</h2><p>{{ draft.biography }}</p></fieldset>
-          <BaseAlert v-if="error" variant="error">{{ error }}</BaseAlert><div class="cleaner-onboarding__actions"><BaseButton v-if="current" type="button" variant="secondary" @click="current--">{{ t('common.previous') }}</BaseButton><span /><BaseButton type="submit">{{ current === 4 ? t('cleaner.onboarding.finish') : t('common.next') }}</BaseButton></div>
+          <BaseAlert v-if="error" variant="error">{{ error }}</BaseAlert><div class="cleaner-onboarding__actions"><BaseButton v-if="current" type="button" variant="secondary" :disabled="submitting" @click="current--">{{ t('common.previous') }}</BaseButton><span /><BaseButton type="submit" :loading="submitting">{{ current === 4 ? t('cleaner.onboarding.finish') : t('common.next') }}</BaseButton></div>
         </form>
       </BaseCard>
     </div>
@@ -30,6 +30,7 @@ const authStore = useAuthStore(), userStore = useUserStore()
 const profile = computed(() => userStore.profile && 'completedJobs' in userStore.profile ? userStore.profile as CleanerProfile : null)
 const draft = reactive({} as CleanerProfile)
 const serviceCities = ref<string[]>([]), current = ref(0), error = ref('')
+const submitting = ref(false)
 const steps = computed(() => ['personal', 'professional', 'areas', 'availability', 'finish'].map((key) => t(`cleaner.onboarding.steps.${key}`)))
 const load = async (id?: string) => {
   if (!id) return
@@ -43,6 +44,7 @@ watch(() => authStore.user?.id, load, { immediate: true })
 const cityOptions = computed(() => userStore.cities.map((city) => ({ value: city.code, label: city.name })))
 const toggleCity = (code: string) => serviceCities.value = serviceCities.value.includes(code) ? serviceCities.value.filter((item) => item !== code) : [...serviceCities.value, code]
 const next = async () => {
+  if (submitting.value) return
   if (current.value < 4) {
     current.value++
     return
@@ -52,10 +54,19 @@ const next = async () => {
     error.value = t('cleaner.onboarding.validation')
     return
   }
-  draft.serviceAreas = serviceCities.value.map((cityCode) => ({ cityCode, radiusKm: draft.serviceRadiusKm }))
-  draft.onboardingCompleted = true
-  await userStore.updateCleaner({ ...draft })
-  await navigateTo(getAppRoute('cleanerDashboard', locale.value))
+  submitting.value = true
+  try {
+    draft.serviceAreas = serviceCities.value.map((cityCode) => ({ cityCode, radiusKm: draft.serviceRadiusKm }))
+    draft.onboardingCompleted = true
+    await userStore.updateCleaner({ ...draft })
+    await navigateTo(getAppRoute('cleanerDashboard', locale.value))
+  }
+  catch {
+    error.value = t('common.actionError')
+  }
+  finally {
+    submitting.value = false
+  }
 }
 </script>
 
