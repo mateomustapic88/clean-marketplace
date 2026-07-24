@@ -49,7 +49,7 @@
             <p v-if="!receivedRatings.length">{{ t('catalog.noRatings') }}</p>
             <ReviewSummary v-if="ratingsStore.summary" :summary="ratingsStore.summary" />
             <article v-for="rating in receivedRatings.slice(0, 4)" :key="rating.id" class="profile-page__review">
-              <DemoBadge type="rating" />
+              <DemoBadge v-if="rating.isDemo" type="rating" />
               <ReviewCard :review="rating" />
             </article>
           </BaseCard>

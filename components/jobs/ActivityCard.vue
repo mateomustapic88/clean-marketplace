@@ -2,7 +2,7 @@
   <article class="activity-card">
     <span aria-hidden="true"><component :is="icon" :size="17" /></span>
     <div class="activity-card__content"><strong>{{ t(`owner.activity.${activity.type}`, activity.metadata ?? {}) }}</strong><time :datetime="activity.occurredAt">{{ formatPublicDate(activity.occurredAt.slice(0, 10), locale) }}</time></div>
-    <DemoBadge class="activity-card__badge" type="listing" />
+    <DemoBadge v-if="activity.isDemo" class="activity-card__badge" type="listing" />
   </article>
 </template>
 

@@ -14,6 +14,7 @@ export const useAuthStore = defineStore('auth', () => {
   const status = ref<'idle' | 'loading' | 'authenticated' | 'anonymous'>('idle')
   const errorCode = ref<AuthErrorCode | null>(null)
   const isRestored = ref(false)
+  const registrationPending = ref(false)
 
   const isAuthenticated = computed(
     () => status.value === 'authenticated' && user.value !== null,
@@ -55,7 +56,17 @@ export const useAuthStore = defineStore('auth', () => {
     status.value = 'loading'
     errorCode.value = null
     try {
-      applyAuthResult(await repositories().auth.register(input))
+      const result = await repositories().auth.register(input)
+      registrationPending.value = result.confirmationRequired
+      if (result.auth) {
+        applyAuthResult(result.auth)
+      }
+      else {
+        session.value = null
+        user.value = null
+        status.value = 'anonymous'
+        errorCode.value = 'email_confirmation_required'
+      }
       isRestored.value = true
       return true
     }
@@ -82,8 +93,8 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  const restoreSession = async () => {
-    if (isRestored.value || status.value === 'loading') {
+  const restoreSession = async (force = false) => {
+    if ((!force && isRestored.value) || status.value === 'loading') {
       return
     }
 
@@ -114,6 +125,10 @@ export const useAuthStore = defineStore('auth', () => {
     await repositories().auth.requestPasswordReset(email)
   }
 
+  const updatePassword = async (password: string) => {
+    await repositories().auth.updatePassword(password)
+  }
+
   const clearError = () => {
     errorCode.value = null
   }
@@ -134,12 +149,14 @@ export const useAuthStore = defineStore('auth', () => {
     status,
     errorCode,
     isRestored,
+    registrationPending,
     isAuthenticated,
     login,
     register,
     logout,
     restoreSession,
     requestPasswordReset,
+    updatePassword,
     clearError,
     updateAccount,
   }

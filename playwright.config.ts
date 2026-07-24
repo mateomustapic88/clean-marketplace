@@ -17,7 +17,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'BILLING_MODE=mock pnpm dev --host 127.0.0.1 --port 3000',
+    command: 'INFRASTRUCTURE_MODE=mock BILLING_MODE=mock pnpm dev --host 127.0.0.1 --port 3000',
     url: 'http://127.0.0.1:3000',
     reuseExistingServer: !process.env.CI,
   },

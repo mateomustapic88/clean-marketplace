@@ -9,7 +9,7 @@ import {
 import { enforceRateLimit } from '~/server/utils/requestSecurity'
 
 export default defineEventHandler(async (event) => {
-  enforceRateLimit(event, 'stripe-webhook', 120)
+  await enforceRateLimit(event, 'stripe-webhook', 120)
   const config = useRuntimeConfig()
   let webhookSecret: string
   try {

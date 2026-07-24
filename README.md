@@ -1,12 +1,17 @@
 # Clean Marketplace
 
-## Phase 7 billing
+## Production infrastructure
 
-Phase 7 adds server-side Stripe Checkout, Customer Portal sessions, signed and idempotent webhook processing, role-specific subscription access, invoice and payment-method display, and explicit mock billing for automated development.
+Production uses Supabase Auth with SSR cookies, PostgreSQL repositories protected by
+RLS, private Storage buckets, durable Stripe subscription projections, and durable
+webhook idempotency. Development and automated tests can explicitly select mock
+repositories; production fails closed if required infrastructure is missing.
 
 Copy `.env.example` to `.env` and use only non-production Stripe test configuration during local integration work. The standard test suite runs with `BILLING_MODE=mock` and never creates Stripe charges.
 
-See [Phase 7 Stripe deployment guide](docs/phase-7-stripe-deployment.md) for configuration, optional Stripe CLI forwarding, webhook behavior before deployment, and the post-deployment checklist.
+See the [production infrastructure guide](docs/production-infrastructure.md),
+[RLS overview](docs/rls-policy-overview.md), and
+[Stripe deployment guide](docs/phase-7-stripe-deployment.md) before deployment.
 
 A bilingual marketplace for connecting Croatian apartment owners with cleaning professionals.
 
@@ -43,15 +48,11 @@ pnpm build
 - Cleaner confirmation, work start, completion, and marketplace activity timeline
 - Complete Croatian and English marketplace routes and interface copy
 
-Supabase persistence, administration, production email delivery, analytics,
-and push notifications remain outside the current phase.
+The administration interface, custom production email delivery, analytics provider,
+and push notifications remain outside the current scope.
 
-## Demo accounts
+## Development mock accounts
 
-| Role | Email | Password |
-| --- | --- | --- |
-| Owner | `owner01@demo.clean.hr` | `Demo1234` |
-| Cleaner | `cleaner01@demo.clean.hr` | `Demo1234` |
-| Admin | `admin@demo.clean.hr` | `Demo1234` |
-
-All bundled records and accounts are visibly identified as demo data.
+Development-only mock credentials are isolated in `data/mock/credentials.json`
+and load only when `INFRASTRUCTURE_MODE=mock` is explicitly enabled outside
+production. All mock records and accounts are visibly identified as demo data.

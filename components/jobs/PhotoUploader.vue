@@ -9,18 +9,21 @@
 </template>
 
 <script setup lang="ts">
-import { mockUploadService, type MockUpload } from '~/services/uploads/mockUploadService'
+import type { PreparedUpload } from '~/services/uploads/UploadService'
+import { useAuthStore } from '~/stores/auth'
 
 const emit = defineEmits<{ update: [urls: string[]] }>()
 const { t } = useI18n()
 const id = `photos-${useId()}`
-const previews = ref<MockUpload[]>([])
+const previews = ref<PreparedUpload[]>([])
+const auth = useAuthStore()
 const error = ref('')
 const selectFiles = async (event: Event) => {
   const files = [...((event.target as HTMLInputElement).files ?? [])]
   try {
-    previews.value = await Promise.all(files.map((file) => mockUploadService.createPreview(file)))
-    emit('update', previews.value.map((item) => item.previewUrl))
+    if (!auth.user) throw new Error('authentication_required')
+    previews.value = await Promise.all(files.map((file) => useNuxtApp().$uploads.createJobDraft(file, auth.user!.id)))
+    emit('update', previews.value.map((item) => item.storagePath))
     error.value = ''
   }
   catch { error.value = t('owner.job.fields.photoError') }

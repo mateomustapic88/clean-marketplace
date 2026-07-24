@@ -30,7 +30,6 @@ import { z } from 'zod'
 import type { OwnerProfile } from '~/domains/users/types'
 import { createOwnerProfileSchema } from '~/schemas/validation'
 import { getProfileCompletion } from '~/services/jobs/jobLifecycle'
-import { mockUploadService } from '~/services/uploads/mockUploadService'
 import { useAuthStore } from '~/stores/auth'
 import { useUserStore } from '~/stores/user'
 import { getFieldErrors } from '~/utils/validation'
@@ -89,7 +88,8 @@ const uploadAvatar = async (event: Event) => {
   const file = (event.target as HTMLInputElement).files?.[0]
   if (!file) return
   try {
-    form.avatarUrl = (await mockUploadService.createPreview(file)).previewUrl
+    if (!authStore.user) throw new Error('authentication_required')
+    form.avatarUrl = (await useNuxtApp().$uploads.uploadAvatar(file, authStore.user.id)).storagePath
   }
   catch {
     actionError.value = true

@@ -5,6 +5,7 @@ import type {
   AuthSession,
   LoginCredentials,
   RegisterInput,
+  RegistrationResult,
 } from '~/domains/auth/types'
 import type {
   CleanerProfile,
@@ -44,20 +45,13 @@ export class MockAuthRepository implements AuthRepository {
 
     const session = this.createSession(user.id, user.isDemo)
     this.database.writeSession(session)
-    if (import.meta.client) {
-      await $fetch('/api/auth/billing-session', {
-        method: 'POST',
-        body: credentials,
-      })
-    }
-
     return {
       session,
       user: structuredClone(user),
     }
   }
 
-  async register(input: RegisterInput): Promise<AuthResult> {
+  async register(input: RegisterInput): Promise<RegistrationResult> {
     const normalizedEmail = input.email.trim().toLowerCase()
     const timestamp = nowIso()
 
@@ -202,26 +196,10 @@ export class MockAuthRepository implements AuthRepository {
     })
 
     this.database.writeSession(result.session)
-    if (import.meta.client) {
-      await $fetch('/api/auth/billing-registration', {
-        method: 'POST',
-        body: {
-          userId: result.user.id,
-          firstName: input.firstName,
-          lastName: input.lastName,
-          email: input.email,
-          password: input.password,
-          role: input.role,
-        },
-      })
-    }
-    return result
+    return { auth: result, confirmationRequired: false }
   }
 
   async logout(): Promise<void> {
-    if (import.meta.client) {
-      await $fetch('/api/auth/billing-session', { method: 'DELETE' })
-    }
     this.database.writeSession(null)
   }
 
@@ -251,6 +229,10 @@ export class MockAuthRepository implements AuthRepository {
   }
 
   async requestPasswordReset(_email: string): Promise<void> {
+    await Promise.resolve()
+  }
+
+  async updatePassword(_password: string): Promise<void> {
     await Promise.resolve()
   }
 

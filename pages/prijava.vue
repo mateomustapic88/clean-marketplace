@@ -4,19 +4,20 @@
     :title="t('auth.login.title')"
     :description="t('auth.login.description')"
   >
-    <template #aside>
+    <template v-if="isMockMode" #aside>
       <BaseAlert variant="info" :title="t('auth.demo.title')">
         <p>{{ t('auth.demo.description') }}</p>
-        <ul class="login-page__demo-list">
-          <li>{{ t('auth.demo.owner') }}</li>
-          <li>{{ t('auth.demo.cleaner') }}</li>
-          <li>{{ t('auth.demo.admin') }}</li>
-        </ul>
-        <p>{{ t('auth.demo.password') }}</p>
       </BaseAlert>
     </template>
 
     <form class="login-page__form" novalidate @submit.prevent="submit">
+      <BaseAlert
+        v-if="route.query.registration === 'check-email'"
+        variant="success"
+        :title="t('auth.confirmation.title')"
+      >
+        {{ t('auth.confirmation.description') }}
+      </BaseAlert>
       <BaseAlert
         v-if="submitError"
         variant="error"
@@ -93,6 +94,8 @@ defineI18nRoute({
 
 const { t, locale } = useI18n()
 const authStore = useAuthStore()
+const route = useRoute()
+const isMockMode = useRuntimeConfig().public.infrastructureMode === 'mock'
 const form = reactive({
   email: '',
   password: '',
@@ -150,11 +153,6 @@ usePublicSeo({
       font-weight: $font-weight-semibold;
       color: $color-primary;
     }
-  }
-
-  &__demo-list {
-    margin-block: $space-2;
-    padding-left: $space-5;
   }
 }
 </style>

@@ -31,7 +31,6 @@
 import { z } from 'zod'
 import type { CleanerProfile } from '~/domains/users/types'
 import { createCleanerProfileSchema } from '~/schemas/validation'
-import { mockUploadService } from '~/services/uploads/mockUploadService'
 import { useAuthStore } from '~/stores/auth'
 import { useUserStore } from '~/stores/user'
 import { normalizeCleanerProfile } from '~/utils/cleaner'
@@ -60,7 +59,8 @@ const uploadAvatar = async (event: Event) => {
   const file = (event.target as HTMLInputElement).files?.[0]
   if (!file) return
   try {
-    form.avatarUrl = (await mockUploadService.createPreview(file)).previewUrl
+    if (!authStore.user) throw new Error('authentication_required')
+    form.avatarUrl = (await useNuxtApp().$uploads.uploadAvatar(file, authStore.user.id)).storagePath
   }
   catch {
     actionError.value = true

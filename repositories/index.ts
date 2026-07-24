@@ -1,4 +1,5 @@
 import type { AuthRepository } from '~/repositories/auth/AuthRepository'
+import type { FeedbackRepository } from '~/repositories/feedback/FeedbackRepository'
 import type { JobRepository } from '~/repositories/jobs/JobRepository'
 import type { NotificationRepository } from '~/repositories/notifications/NotificationRepository'
 import type { OfferRepository } from '~/repositories/offers/OfferRepository'
@@ -8,6 +9,7 @@ import type { UserRepository } from '~/repositories/users/UserRepository'
 
 export interface RepositoryRegistry {
   auth: AuthRepository
+  feedback: FeedbackRepository
   users: UserRepository
   jobs: JobRepository
   offers: OfferRepository
@@ -17,6 +19,7 @@ export interface RepositoryRegistry {
 }
 
 export type { AuthRepository } from '~/repositories/auth/AuthRepository'
+export type { FeedbackRepository } from '~/repositories/feedback/FeedbackRepository'
 export type { JobRepository } from '~/repositories/jobs/JobRepository'
 export type { NotificationRepository } from '~/repositories/notifications/NotificationRepository'
 export type { OfferRepository } from '~/repositories/offers/OfferRepository'

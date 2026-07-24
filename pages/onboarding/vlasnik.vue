@@ -1,7 +1,7 @@
 <template>
   <div class="owner-onboarding">
     <div class="owner-onboarding__container container">
-      <header><DemoBadge type="profile" /><h1>{{ t('owner.onboarding.title') }}</h1><p>{{ t('owner.onboarding.description') }}</p></header>
+      <header><DemoBadge v-if="isMockMode" type="profile" /><h1>{{ t('owner.onboarding.title') }}</h1><p>{{ t('owner.onboarding.description') }}</p></header>
       <WizardStepper :steps="steps" :current="current" :label="t('owner.onboarding.progress')" @select="goTo" />
       <AutosaveIndicator :status="saveStatus" />
       <BaseCard>
@@ -28,6 +28,7 @@ import { getAppRoute } from '~/utils/routes'
 definePageMeta({ middleware: ['auth', 'role'], roles: ['owner'] })
 defineI18nRoute({ paths: { hr: '/onboarding/vlasnik', en: '/onboarding/owner' } })
 const { t, locale } = useI18n(), authStore = useAuthStore(), userStore = useUserStore()
+const isMockMode = useRuntimeConfig().public.infrastructureMode === 'mock'
 const profile = computed(() => userStore.profile as OwnerProfile | null)
 const draft = reactive({ firstName: profile.value?.firstName ?? '', lastName: profile.value?.lastName ?? '', phone: profile.value?.phone ?? '', cityCode: profile.value?.cityCode ?? '', preferredContactMethod: profile.value?.preferredContactMethod ?? 'email', companyName: profile.value?.companyName ?? '', agencyName: profile.value?.agencyName ?? '', preferredLanguage: profile.value?.preferredLanguage ?? 'hr', timeZone: profile.value?.timeZone ?? 'Europe/Zagreb', apartmentName: profile.value?.apartmentName ?? '', apartmentCityCode: profile.value?.apartmentCityCode ?? '', apartmentAddress: profile.value?.apartmentAddress ?? '' })
 const current = ref(0), saveStatus = ref<'saved' | 'saving' | 'unsaved'>('saved'), error = ref('')
@@ -35,7 +36,21 @@ const submitting = ref(false)
 const steps = computed(() => ['personal', 'contact', 'apartment', 'preferences', 'finish'].map((key) => t(`owner.onboarding.steps.${key}`)))
 const cityOptions = computed(() => userStore.cities.map((city) => ({ value: city.code, label: city.name }))), contactOptions = computed(() => ['email', 'phone', 'sms'].map((value) => ({ value, label: t(`owner.profile.contact.${value}`) }))), languageOptions = computed(() => ['hr', 'en'].map((value) => ({ value, label: t(`languages.${value}`) }))), timeZoneOptions = ['Europe/Zagreb', 'Europe/London', 'Europe/Berlin'].map((value) => ({ value, label: value }))
 const cityName = (code: string) => userStore.cities.find((city) => city.code === code)?.name ?? code
-const storageKey = computed(() => `clean_owner_onboarding_${authStore.user?.id ?? 'anonymous'}`)
+const ownerFromDraft = (onboardingCompleted: boolean): OwnerProfile | null => profile.value
+  ? {
+      ...profile.value,
+      ...draft,
+      companyName: draft.companyName || null,
+      agencyName: draft.agencyName || null,
+      preferredContactMethod: draft.preferredContactMethod as OwnerProfile['preferredContactMethod'],
+      preferredLanguage: draft.preferredLanguage as 'hr' | 'en',
+      avatarUrl: profile.value.avatarUrl ?? null,
+      onboardingCompleted,
+      apartmentName: draft.apartmentName,
+      apartmentCityCode: draft.apartmentCityCode,
+      apartmentAddress: draft.apartmentAddress,
+    }
+  : null
 const loadOwnerOnboarding = async (userId?: string) => {
   if (!userId) return
   await Promise.all([
@@ -62,17 +77,22 @@ watch(() => authStore.user?.id, loadOwnerOnboarding, { immediate: true })
 watch(draft, () => {
   saveStatus.value = 'unsaved'
 }, { deep: true })
-const persist = () => {
+const persist = async () => {
   if (!import.meta.client || saveStatus.value !== 'unsaved') return
   saveStatus.value = 'saving'
-  localStorage.setItem(storageKey.value, JSON.stringify(draft))
-  saveStatus.value = 'saved'
+  try {
+    const owner = ownerFromDraft(false)
+    if (!owner) return
+    await userStore.updateOwner(owner)
+    saveStatus.value = 'saved'
+  }
+  catch {
+    saveStatus.value = 'unsaved'
+  }
 }
 let timer: ReturnType<typeof setInterval> | undefined
 onMounted(() => {
-  const stored = localStorage.getItem(storageKey.value)
-  if (stored) Object.assign(draft, JSON.parse(stored))
-  timer = setInterval(persist, 2000)
+  timer = setInterval(() => void persist(), 2000)
 })
 onBeforeUnmount(() => clearInterval(timer))
 const goTo = async (step: number) => {
@@ -95,20 +115,9 @@ const next = async () => {
   if (!profile.value) return
   submitting.value = true
   try {
-    await userStore.updateOwner({
-      ...profile.value,
-      ...draft,
-      companyName: draft.companyName || null,
-      agencyName: draft.agencyName || null,
-      preferredContactMethod: draft.preferredContactMethod as OwnerProfile['preferredContactMethod'],
-      preferredLanguage: draft.preferredLanguage as 'hr' | 'en',
-      avatarUrl: profile.value.avatarUrl ?? null,
-      onboardingCompleted: true,
-      apartmentName: draft.apartmentName,
-      apartmentCityCode: draft.apartmentCityCode,
-      apartmentAddress: draft.apartmentAddress,
-    })
-    localStorage.removeItem(storageKey.value)
+    const owner = ownerFromDraft(true)
+    if (!owner) return
+    await userStore.updateOwner(owner)
     await navigateTo(getAppRoute('ownerDashboard', locale.value))
   }
   catch {

@@ -10,8 +10,10 @@ export const processVerifiedStripeEvent = async (
   billing: StripeBillingService,
   stripe: Stripe,
 ): Promise<WebhookProcessingResult> => {
-  if (await billing.events.isProcessed(event.id)) return { duplicate: true }
-  if (!await billing.events.tryClaim(event.id)) return { duplicate: true }
+  const events = billing.events(event)
+  if (await events.isProcessed(event.id)) return { duplicate: true }
+  if (!await events.tryClaim(event.id)) return { duplicate: true }
+  const eventCreatedAt = new Date((event.created ?? Math.floor(Date.now() / 1000)) * 1000).toISOString()
 
   try {
     if (
@@ -19,7 +21,7 @@ export const processVerifiedStripeEvent = async (
       || event.type === 'customer.subscription.updated'
       || event.type === 'customer.subscription.deleted'
     ) {
-      billing.syncSubscription(event.data.object)
+      await billing.syncSubscription(event.data.object, undefined, eventCreatedAt)
     }
     else if (event.type === 'checkout.session.completed') {
       const session = event.data.object
@@ -28,23 +30,25 @@ export const processVerifiedStripeEvent = async (
         : session.subscription?.id
       if (subscriptionId) {
         const subscription = await stripe.subscriptions.retrieve(subscriptionId)
-        billing.syncSubscription(subscription, session.client_reference_id ?? undefined)
+        const userId = session.client_reference_id ?? session.metadata?.userId ?? undefined
+        await billing.syncSubscription(subscription, userId, eventCreatedAt)
+        if (userId) await billing.syncPaymentMethod(userId)
       }
     }
     else if (event.type === 'invoice.paid') {
-      billing.markInvoice(event.data.object, 'paid')
+      await billing.markInvoice(event.data.object, 'paid', eventCreatedAt)
     }
     else if (
       event.type === 'invoice.payment_failed'
       || event.type === 'invoice.payment_action_required'
     ) {
-      billing.markInvoice(event.data.object as Stripe.Invoice, 'payment_failed')
+      await billing.markInvoice(event.data.object as Stripe.Invoice, 'payment_failed', eventCreatedAt)
     }
-    await billing.events.complete(event.id)
+    await events.complete(event.id)
     return { duplicate: false }
   }
   catch (error) {
-    await billing.events.release(event.id)
+    await events.release(event.id)
     throw error
   }
 }

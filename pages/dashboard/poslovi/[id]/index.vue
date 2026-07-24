@@ -1,7 +1,7 @@
 <template>
   <div v-if="job" class="owner-job-detail">
     <Breadcrumbs :items="breadcrumbs" />
-    <header><div><DemoBadge type="listing" /><h1>{{ job.title }}</h1><p>{{ job.apartmentName }} · {{ cityName(job.cityCode) }}</p></div><StatusBadge :status="job.status" /></header>
+    <header><div><DemoBadge v-if="job.isDemo" type="listing" /><h1>{{ job.title }}</h1><p>{{ job.apartmentName }} · {{ cityName(job.cityCode) }}</p></div><StatusBadge :status="job.status" /></header>
     <div class="owner-job-detail__actions">
       <BaseButton v-if="job.offerCount" :to="getOwnerJobOffersRoute(job.id, locale)">{{ t('owner.offers.view', { count: job.offerCount }) }}</BaseButton>
       <BaseButton v-if="!isPublishedJobReadOnly(job.status)" :to="getOwnerJobEditRoute(job.id, locale)">{{ t('owner.jobs.edit') }}</BaseButton>

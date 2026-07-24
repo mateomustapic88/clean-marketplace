@@ -19,6 +19,10 @@ const routePaths = {
     hr: '/zaboravljena-lozinka',
     en: '/en/forgot-password',
   },
+  resetPassword: {
+    hr: '/nova-lozinka',
+    en: '/en/reset-password',
+  },
   jobs: {
     hr: '/poslovi',
     en: '/en/jobs',

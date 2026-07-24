@@ -1,11 +1,14 @@
 export default defineEventHandler((event) => {
   const isProduction = process.env.NODE_ENV === 'production'
+  const supabaseOrigin = useRuntimeConfig().public.supabaseUrl
+    ? new URL(useRuntimeConfig().public.supabaseUrl).origin
+    : ''
 
   setResponseHeaders(event, {
     'Content-Security-Policy': [
       "default-src 'self'",
       "base-uri 'self'",
-      "connect-src 'self' https://api.stripe.com",
+      `connect-src 'self' https://api.stripe.com${supabaseOrigin ? ` ${supabaseOrigin}` : ''}`,
       "font-src 'self' data:",
       "form-action 'self' https://checkout.stripe.com",
       "frame-ancestors 'none'",

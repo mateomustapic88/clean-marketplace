@@ -1,6 +1,6 @@
 <template>
   <BaseCard class="offer-card">
-    <header><DemoBadge type="listing" /><OfferStatusBadge :status="offer.status" /></header>
+    <header><DemoBadge v-if="offer.isDemo" type="listing" /><OfferStatusBadge :status="offer.status" /></header>
     <h3>{{ job?.title ?? t('cleaner.offer.unknownJob') }}</h3>
     <dl>
       <div><dt>{{ t('cleaner.offer.fields.price') }}</dt><dd>{{ formatPrice(offer.proposedPrice, locale) }}</dd></div>

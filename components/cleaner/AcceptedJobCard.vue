@@ -1,5 +1,5 @@
 <template>
-  <BaseCard class="accepted-job-card"><header><DemoBadge type="listing" /><StatusBadge :status="job.status" /></header><h3>{{ job.title }}</h3><p>{{ city }} · {{ formatPublicDate(job.preferredDate, locale) }} {{ job.preferredStartTime }}</p><slot /><BaseButton size="sm" :to="to">{{ t('cleaner.jobs.open') }}</BaseButton></BaseCard>
+  <BaseCard class="accepted-job-card"><header><DemoBadge v-if="job.isDemo" type="listing" /><StatusBadge :status="job.status" /></header><h3>{{ job.title }}</h3><p>{{ city }} · {{ formatPublicDate(job.preferredDate, locale) }} {{ job.preferredStartTime }}</p><slot /><BaseButton size="sm" :to="to">{{ t('cleaner.jobs.open') }}</BaseButton></BaseCard>
 </template>
 
 <script setup lang="ts">

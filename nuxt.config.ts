@@ -1,7 +1,17 @@
 import { saasConfig } from './config/saas'
 import { parseBillingMode } from './services/billing/billingConfiguration'
+import {
+  resolveAppBaseUrl,
+  resolveInfrastructureMode,
+} from './config/infrastructure'
 
 const billingMode = parseBillingMode(process.env.BILLING_MODE)
+const isProduction = process.env.NODE_ENV === 'production'
+const hasSupabaseConfiguration = Boolean(
+  process.env.NUXT_PUBLIC_SUPABASE_URL
+  && process.env.NUXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+  && process.env.NUXT_SUPABASE_SERVICE_ROLE_KEY,
+)
 
 export default defineNuxtConfig({
   modules: [
@@ -36,17 +46,20 @@ export default defineNuxtConfig({
     '~/assets/scss/main.scss',
   ],
   runtimeConfig: {
-    authSessionSecret: process.env.AUTH_SESSION_SECRET || '',
+    supabaseServiceRoleKey: process.env.NUXT_SUPABASE_SERVICE_ROLE_KEY || '',
     stripeSecretKey: process.env.STRIPE_SECRET_KEY || '',
     stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET || '',
     stripeOwnerPriceId: process.env.STRIPE_OWNER_PRICE_ID || '',
     stripeCleanerPriceId: process.env.STRIPE_CLEANER_PRICE_ID || '',
     public: {
-      siteUrl: process.env.APP_BASE_URL || (
-        process.env.NODE_ENV === 'production'
-          ? 'https://clean-marketplace-ten.vercel.app'
-          : 'http://localhost:3000'
+      siteUrl: resolveAppBaseUrl(process.env.APP_BASE_URL, isProduction),
+      infrastructureMode: resolveInfrastructureMode(
+        process.env.INFRASTRUCTURE_MODE,
+        isProduction,
+        hasSupabaseConfiguration,
       ),
+      supabaseUrl: process.env.NUXT_PUBLIC_SUPABASE_URL || '',
+      supabasePublishableKey: process.env.NUXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || '',
       billingMode,
       billingEnvironment: {
         webhookConfigured: Boolean(process.env.STRIPE_WEBHOOK_SECRET),

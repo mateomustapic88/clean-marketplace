@@ -1,7 +1,7 @@
 <template>
   <div class="owner-dashboard">
     <header class="owner-dashboard__welcome">
-      <div><DemoBadge type="profile" /><h1>{{ t('owner.dashboard.welcome', { name: profile?.firstName ?? authStore.user?.displayName ?? '' }) }}</h1><p>{{ t('owner.dashboard.description') }}</p></div>
+      <div><DemoBadge v-if="profile?.isDemo" type="profile" /><h1>{{ t('owner.dashboard.welcome', { name: profile?.firstName ?? authStore.user?.displayName ?? '' }) }}</h1><p>{{ t('owner.dashboard.description') }}</p></div>
       <BaseButton :to="getAppRoute('ownerNewJob', locale)"><Plus :size="18" />{{ t('owner.dashboard.publish') }}</BaseButton>
     </header>
     <ProgressCard :title="t('owner.dashboard.profileTitle')" :description="t('owner.dashboard.profileDescription')" :value="completion" :to="getAppRoute('ownerProfile', locale)" :action="t('owner.dashboard.editProfile')" />

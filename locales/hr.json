@@ -151,7 +151,7 @@
     "login": {
       "eyebrow": "Dobro došli",
       "title": "Prijavite se u svoj račun",
-      "description": "Upravljajte poslovima, ponudama i profilom u sigurnom demo okruženju.",
+      "description": "Upravljajte poslovima, ponudama i profilom u sigurnom okruženju.",
       "submit": "Prijavi se",
       "forgotPassword": "Zaboravili ste lozinku?",
       "noAccount": "Nemate račun?",
@@ -162,7 +162,7 @@
     "register": {
       "eyebrow": "Izradite račun",
       "title": "Odaberite kako želite koristiti platformu",
-      "description": "Vlasnici apartmana i osobe za čišćenje dobivaju sedam dana probnog razdoblja prije mjesečne pretplate.",
+      "description": "Vlasnicima apartmana i osobama za čišćenje dostupno je sedam dana probnog razdoblja kroz sigurnu naplatu.",
       "roleLegend": "Vrsta računa",
       "ownerRole": "Vlasnik apartmana",
       "ownerRoleDescription": "Objavljujem poslove i prihvaćam ponude.",
@@ -173,26 +173,38 @@
       "hasAccount": "Već imate račun?",
       "login": "Prijavite se",
       "metaTitle": "Registracija",
-      "metaDescription": "Izradite demo Clean račun za vlasnika ili osobu za čišćenje."
+      "metaDescription": "Izradite Clean račun za vlasnika ili osobu za čišćenje."
     },
     "forgot": {
       "eyebrow": "Obnova pristupa",
       "title": "Postavite novu lozinku",
-      "description": "Unesite adresu e-pošte. U demo načinu ne šaljemo stvarnu poruku.",
+      "description": "Unesite adresu e-pošte na koju ćemo poslati sigurnu poveznicu.",
       "submit": "Pošalji upute",
       "backToLogin": "Povratak na prijavu",
       "successTitle": "Zahtjev je zaprimljen",
-      "successDescription": "Ako račun postoji, demo zahtjev za obnovu lozinke je zabilježen.",
+      "successDescription": "Ako račun postoji, poslana je poruka s uputama za obnovu lozinke.",
       "metaTitle": "Zaboravljena lozinka",
-      "metaDescription": "Pokrenite demo obnovu pristupa Clean računu."
+      "metaDescription": "Pokrenite sigurnu obnovu pristupa Clean računu."
+    },
+    "confirmation": {
+      "title": "Provjerite svoju e-poštu",
+      "description": "Poslali smo poveznicu za potvrdu računa. Nakon potvrde možete dovršiti profil."
+    },
+    "reset": {
+      "eyebrow": "Sigurna obnova pristupa",
+      "title": "Odaberite novu lozinku",
+      "description": "Nova lozinka mora sadržavati najmanje osam znakova.",
+      "confirmPassword": "Ponovite novu lozinku",
+      "passwordMismatch": "Lozinke se ne podudaraju.",
+      "submit": "Spremi novu lozinku",
+      "successTitle": "Lozinka je promijenjena",
+      "successDescription": "Sada se možete prijaviti novom lozinkom.",
+      "metaTitle": "Nova lozinka",
+      "metaDescription": "Sigurno postavite novu lozinku za Clean račun."
     },
     "demo": {
       "title": "Demo pristup",
-      "description": "Za pregled uloga koristite jednu od označenih demo adresa:",
-      "owner": "Vlasnik: owner01{'@'}demo.clean.hr",
-      "cleaner": "Osoba za čišćenje: cleaner01{'@'}demo.clean.hr",
-      "admin": "Administrator: admin{'@'}demo.clean.hr",
-      "password": "Lozinka za sve demo račune: Demo1234"
+      "description": "Razvojno okruženje i automatizirani testovi koriste izolirane mock račune koji se nikada ne uključuju u produkciju."
     },
     "errors": {
       "title": "Prijava nije uspjela",
@@ -200,6 +212,9 @@
       "email_exists": "Račun s ovom adresom e-pošte već postoji.",
       "session_expired": "Sesija je istekla. Prijavite se ponovno.",
       "user_suspended": "Ovaj račun je privremeno obustavljen.",
+      "email_confirmation_required": "Provjerite e-poštu i potvrdite račun prije prijave.",
+      "weak_password": "Odaberite snažniju lozinku.",
+      "invalid_reset_link": "Poveznica za obnovu nije valjana ili je istekla.",
       "unknown": "Dogodila se neočekivana pogreška. Pokušajte ponovno."
     },
     "forbidden": {
@@ -539,13 +554,13 @@
     "metaTitle": "Cijene", "metaDescription": "Clean nudi sedmodnevno probno razdoblje, zatim vlasnički plan od 19 EUR i plan za osobe za čišćenje od 39 EUR mjesečno."
   },
   "contact": {
-    "eyebrow": "Kontakt", "title": "Kako vam možemo pomoći?", "description": "Pošaljite beta upit, prijavite grešku ili predložite poboljšanje. Dok se ne poveže sustav podrške, obrazac samo potvrđuje unos.",
-    "fields": { "name": "Ime i prezime", "email": "Adresa e-pošte", "userType": "Vrsta korisnika", "subject": "Predmet", "message": "Poruka", "consent": "Prihvaćam obradu podataka iz ovog demo obrasca." },
+    "eyebrow": "Kontakt", "title": "Kako vam možemo pomoći?", "description": "Pošaljite beta upit, prijavite grešku ili predložite poboljšanje. Vaša poruka sigurno se bilježi za tim podrške.",
+    "fields": { "name": "Ime i prezime", "email": "Adresa e-pošte", "userType": "Vrsta korisnika", "subject": "Predmet", "message": "Poruka", "consent": "Prihvaćam obradu podataka iz ovog obrasca za podršku." },
     "userTypes": { "owner": "Vlasnik apartmana", "cleaner": "Osoba za čišćenje", "other": "Ostalo" },
     "topics": { "support": "Zahtjev za podršku", "bug": "Prijava greške", "feature": "Prijedlog poboljšanja" },
-    "submit": "Pošalji poruku", "successTitle": "Poruka je zabilježena", "successDescription": "Hvala. Ovo je demo potvrda i poruka nije poslana stvarnoj službi podrške.",
+    "submit": "Pošalji poruku", "successTitle": "Poruka je zabilježena", "successDescription": "Hvala. Vaša poruka sigurno je zabilježena za Clean tim podrške.",
     "errorTitle": "Poruka nije zabilježena", "errorDescription": "Pokušajte ponovno. Ako se problem nastavi, vratite se kasnije.",
-    "metaTitle": "Kontakt", "metaDescription": "Pošaljite demo upit timu platforme Clean."
+    "metaTitle": "Kontakt", "metaDescription": "Pošaljite upit za podršku timu platforme Clean."
   },
   "legal": {
     "contents": "Sadržaj", "reviewTitle": "Beta pravni predložak", "reviewDescription": "Ovaj tekst zahtijeva stručni pravni pregled prije produkcijskog objavljivanja.",
@@ -555,7 +570,7 @@
         "1": { "title": "Svrha dokumenta", "text": "Ovaj predložak opisuje planirani pristup privatnosti tijekom javne beta faze." },
         "2": { "title": "Podaci računa", "text": "Platforma može obrađivati podatke koje korisnik unese pri registraciji i uređivanju profila." },
         "3": { "title": "Podaci o poslovima", "text": "Javni prikaz koristi približnu lokaciju. Puna adresa ne prikazuje se javno." },
-        "4": { "title": "Lokalna demo pohrana", "text": "Trenutačna demo verzija pohranjuje podatke autentifikacije i izmjene u pregledniku korisnika." },
+        "4": { "title": "Sigurna pohrana", "text": "Produkcijski podaci računa i marketplacea pohranjuju se u Supabaseu. Autentifikacija koristi sigurne sesijske kolačiće kompatibilne s poslužiteljem." },
         "5": { "title": "Prava korisnika", "text": "Produkcijska verzija mora definirati način ostvarivanja prava pristupa, ispravka i brisanja podataka." },
         "6": { "title": "Izmjene dokumenta", "text": "Sadržaj će se ažurirati nakon pravnog pregleda i prije produkcijskog pokretanja." }
       }
@@ -572,13 +587,13 @@
       }
     },
     "cookies": {
-      "eyebrow": "Pravno", "title": "Politika kolačića", "description": "Informativni predložak o kolačićima i lokalnoj pohrani tijekom privatne beta faze.", "metaTitle": "Politika kolačića", "metaDescription": "Beta politika kolačića i lokalne pohrane platforme Clean.",
+      "eyebrow": "Pravno", "title": "Politika kolačića", "description": "Informativni predložak o nužnim kolačićima tijekom privatne beta faze.", "metaTitle": "Politika kolačića", "metaDescription": "Beta politika kolačića platforme Clean.",
       "sections": {
         "1": { "title": "Nužna pohrana", "text": "Platforma koristi nužnu pohranu za održavanje prijave, jezika i osnovnog rada aplikacije." },
-        "2": { "title": "Lokalni beta podaci", "text": "Trenutačna demo arhitektura sprema dio podataka računa i marketplacea u lokalnu pohranu preglednika." },
+        "2": { "title": "Podaci aplikacije", "text": "Produkcijsko stanje računa i marketplacea pohranjuje se na poslužitelju i ne sprema se u lokalnu pohranu preglednika." },
         "3": { "title": "Stripe", "text": "Stripe može postaviti vlastite nužne kolačiće kada korisnik otvori Checkout ili Billing Portal." },
         "4": { "title": "Analitika", "text": "Analitički provider nije povezan. Prije uključivanja neobavezne analitike bit će uveden odgovarajući pristanak." },
-        "5": { "title": "Upravljanje podacima", "text": "Korisnik može obrisati lokalne podatke kroz postavke preglednika. Konačni postupak bit će potvrđen prije javnog lansiranja." }
+        "5": { "title": "Upravljanje podacima", "text": "Korisnik se može odjaviti kako bi završio sesiju. Konačni postupak pristupa, ispravka i brisanja bit će potvrđen prije javnog lansiranja." }
       }
     }
   },
@@ -726,7 +741,7 @@
       "republish": "Ponovno objavi",
       "delete": "Izbriši skicu",
       "deleteTitle": "Izbrisati skicu?",
-      "deleteDescription": "Skica će biti trajno uklonjena iz demo pohrane.",
+      "deleteDescription": "Skica će biti trajno uklonjena.",
       "sort": {
         "newest": "Najnovije",
         "oldest": "Najstarije",
@@ -739,7 +754,7 @@
       "newDescription": "Dodajte sve podatke potrebne za jasan dogovor.",
       "newMetaTitle": "Novi posao čišćenja",
       "editTitle": "Uredi skicu posla",
-      "editDescription": "Promjene se automatski spremaju u demo pohranu.",
+      "editDescription": "Promjene se automatski spremaju.",
       "editMetaTitle": "Uređivanje posla",
       "readOnly": "Objavljeni poslovi su samo za čitanje. Možete promijeniti njihov status ili duplicirati posao.",
       "stepperLabel": "Koraci izrade posla",
@@ -890,7 +905,7 @@
       "profileHint": "Potpun profil pomaže vlasnicima pri odabiru.",
       "completeProfile": "Dovrši profil",
       "subscription": "Pretplata",
-      "subscriptionPlaceholder": "Pretplate će biti dostupne u budućoj fazi. U demo verziji sve značajke su otvorene.",
+      "subscriptionPlaceholder": "Trenutačnim planom, probnim razdobljem, načinom plaćanja i računima upravljajte na stranici naplate.",
       "statistics": "Moja aktivnost",
       "activeOffers": "Aktivne ponude",
       "acceptedJobs": "Prihvaćeni poslovi",

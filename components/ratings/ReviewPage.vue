@@ -2,7 +2,7 @@
   <section class="review-page">
     <Breadcrumbs :items="breadcrumbs" />
     <BaseCard v-if="ready && job && subjectId">
-      <DemoBadge type="listing" />
+      <DemoBadge v-if="job.isDemo" type="listing" />
       <h1>{{ t('reviews.title') }}</h1>
       <p>{{ t('reviews.description', { title: job.title }) }}</p>
       <BaseAlert v-if="saved" variant="success">{{ t('reviews.saved') }}</BaseAlert>

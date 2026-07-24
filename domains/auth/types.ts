@@ -28,9 +28,17 @@ export interface AuthResult {
   user: User
 }
 
+export interface RegistrationResult {
+  auth: AuthResult | null
+  confirmationRequired: boolean
+}
+
 export type AuthErrorCode
   = | 'invalid_credentials'
     | 'email_exists'
     | 'session_expired'
     | 'user_suspended'
+    | 'email_confirmation_required'
+    | 'weak_password'
+    | 'invalid_reset_link'
     | 'unknown'

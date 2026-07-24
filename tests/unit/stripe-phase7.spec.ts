@@ -199,7 +199,7 @@ describe('Phase 7 Stripe architecture', () => {
     expect(hasActiveProviderSubscription({
       ...active,
       stripeSubscriptionId: 'sub_demo_local',
-    })).toBe(false)
+    })).toBe(true)
   })
 
   it('validates explicit billing modes and fails Stripe mode safely when incomplete', () => {
@@ -286,9 +286,10 @@ describe('Phase 7 Stripe architecture', () => {
       release: vi.fn(async () => undefined),
     }
     const billing = {
-      events,
+      events: vi.fn(() => events),
       syncSubscription: vi.fn(),
       markInvoice: vi.fn(),
+      syncPaymentMethod: vi.fn(),
     } as unknown as StripeBillingService
     const retrieve = vi.fn().mockResolvedValue({ id: 'sub_checkout' })
     const stripe = {
@@ -309,6 +310,8 @@ describe('Phase 7 Stripe architecture', () => {
     } as unknown as Stripe.Event, billing, stripe)
     expect(billing.syncSubscription).toHaveBeenCalledWith(
       expect.objectContaining({ id: 'sub_deleted' }),
+      undefined,
+      expect.any(String),
     )
 
     await processVerifiedStripeEvent({
@@ -331,6 +334,7 @@ describe('Phase 7 Stripe architecture', () => {
     expect(billing.markInvoice).toHaveBeenCalledWith(
       expect.objectContaining({ id: 'in_paid' }),
       'paid',
+      expect.any(String),
     )
 
     await processVerifiedStripeEvent({
@@ -341,6 +345,7 @@ describe('Phase 7 Stripe architecture', () => {
     expect(billing.markInvoice).toHaveBeenCalledWith(
       expect.objectContaining({ id: 'in_failed' }),
       'payment_failed',
+      expect.any(String),
     )
 
     const duplicate = await processVerifiedStripeEvent({

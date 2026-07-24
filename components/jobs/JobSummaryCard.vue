@@ -1,6 +1,6 @@
 <template>
   <BaseCard class="job-summary-card">
-    <header><div><DemoBadge type="listing" /><h3><NuxtLink :to="to">{{ job.title }}</NuxtLink></h3></div><StatusBadge :status="job.status" /></header>
+    <header><div><DemoBadge v-if="job.isDemo" type="listing" /><h3><NuxtLink :to="to">{{ job.title }}</NuxtLink></h3></div><StatusBadge :status="job.status" /></header>
     <dl>
       <div><dt>{{ t('catalog.city') }}</dt><dd>{{ city }}</dd></div>
       <div><dt>{{ t('jobDetail.date') }}</dt><dd>{{ formatPublicDate(job.preferredDate, locale) }}</dd></div>

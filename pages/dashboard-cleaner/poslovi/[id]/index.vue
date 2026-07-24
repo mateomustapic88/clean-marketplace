@@ -1,7 +1,7 @@
 <template>
   <div v-if="job" class="cleaner-job-detail">
     <Breadcrumbs :items="breadcrumbs" />
-    <header><div><DemoBadge type="listing" /><h1>{{ job.title }}</h1><p>{{ cityName(job.cityCode) }} · {{ job.approximateArea }}</p></div><StatusBadge :status="job.status" /></header>
+    <header><div><DemoBadge v-if="job.isDemo" type="listing" /><h1>{{ job.title }}</h1><p>{{ cityName(job.cityCode) }} · {{ job.approximateArea }}</p></div><StatusBadge :status="job.status" /></header>
     <div class="cleaner-job-detail__actions">
       <FavouriteButton :active="favourites.includes(job.id)" @toggle="toggleFavourite(job.id)" />
       <BaseButton v-if="!existingOffer && canApply" :to="getCleanerOfferRoute(job.id, locale)">{{ t('cleaner.offer.submit') }}</BaseButton>

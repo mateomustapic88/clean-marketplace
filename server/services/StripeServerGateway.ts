@@ -19,9 +19,9 @@ export class StripeServerGateway implements StripeGateway {
       client_reference_id: request.userId,
       ...(request.customerId ? { customer: request.customerId } : {}),
       line_items: [{ price, quantity: 1 }],
-      metadata: { userId: request.userId, plan: request.plan },
+      metadata: { userId: request.userId, role: request.plan, plan: request.plan },
       subscription_data: {
-        metadata: { userId: request.userId, plan: request.plan },
+        metadata: { userId: request.userId, role: request.plan, plan: request.plan },
         ...(request.trialDays > 0
           ? { trial_period_days: request.trialDays }
           : {}),

@@ -164,7 +164,9 @@ const submit = async () => {
   errors.value = {}
   const success = await authStore.register(result.data)
   if (success) {
-    await navigateTo(getRoleOnboardingRoute(result.data.role, locale.value))
+    await navigateTo(authStore.registrationPending
+      ? `${getAppRoute('login', locale.value)}?registration=check-email`
+      : getRoleOnboardingRoute(result.data.role, locale.value))
   }
 }
 

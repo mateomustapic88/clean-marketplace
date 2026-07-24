@@ -54,7 +54,7 @@ test('opens pricing and registration', async ({ page }) => {
   await openHydratedPage(page, '/registracija')
   await expect(page.getByRole('radio', { name: /Vlasnik apartmana/ })).toBeVisible()
   await expect(page.getByText(
-    'Vlasnici apartmana i osobe za čišćenje dobivaju sedam dana probnog razdoblja prije mjesečne pretplate.',
+    'Vlasnicima apartmana i osobama za čišćenje dostupno je sedam dana probnog razdoblja kroz sigurnu naplatu.',
   )).toBeVisible()
 })
 

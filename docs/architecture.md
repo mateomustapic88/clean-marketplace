@@ -94,9 +94,10 @@ utils/
 ```
 
 Repository injection is provided by `plugins/repositories.ts`. Stores depend on
-repository contracts through this injection and do not access JSON or browser
-storage directly. `MockDatabase` owns local persistence and provides a
-server-memory fallback for safe rendering.
+repository contracts and never access Supabase directly. Production uses
+Supabase Auth, PostgreSQL, RLS and private Storage. `MockDatabase` is available
+only when `INFRASTRUCTURE_MODE=mock` is explicitly selected in development or
+tests; production rejects that mode.
 
 ## Localized routes
 
@@ -138,10 +139,13 @@ Croatian routes use no locale prefix. English routes use `/en`.
 - `@playwright/test`: end-to-end testing
 - `@nuxt/eslint`, `eslint`, `typescript`, `vue-tsc`: static quality checks
 
-## Remaining public-beta boundary
+## Production infrastructure
 
-The application still uses local demo repositories and browser persistence.
-Supabase, subscription billing, Stripe, notifications, administration,
-production uploads, payment processing, production email delivery, analytics,
-moderation, and real review submission remain separate future work unless a
-later phase explicitly includes them.
+- Supabase SSR cookies are the authentication source of truth.
+- PostgreSQL and RLS enforce ownership, roles, participation and entitlements.
+- Stripe is the billing source of truth; PostgreSQL stores a durable projection.
+- Private Storage buckets hold avatars and job images.
+- Vue components consume stores and services, not Supabase clients.
+- Anonymous feedback is accepted only by the rate-limited Nuxt endpoint.
+
+See `docs/production-infrastructure.md` and `docs/rls-policy-overview.md`.

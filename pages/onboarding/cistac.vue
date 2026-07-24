@@ -1,7 +1,7 @@
 <template>
   <div class="cleaner-onboarding">
     <div class="cleaner-onboarding__container container">
-      <header><DemoBadge type="profile" /><h1>{{ t('cleaner.onboarding.title') }}</h1><p>{{ t('cleaner.onboarding.description') }}</p></header><WizardStepper :steps="steps" :current="current" :label="t('cleaner.onboarding.progress')" @select="current = $event" /><BaseCard v-if="profile">
+      <header><DemoBadge v-if="isMockMode" type="profile" /><h1>{{ t('cleaner.onboarding.title') }}</h1><p>{{ t('cleaner.onboarding.description') }}</p></header><WizardStepper :steps="steps" :current="current" :label="t('cleaner.onboarding.progress')" @select="current = $event" /><BaseCard v-if="profile">
         <form @submit.prevent="next">
           <fieldset v-show="current === 0"><legend>{{ steps[0] }}</legend><div class="cleaner-onboarding__grid"><BaseInput v-model="draft.firstName" required :label="t('auth.fields.firstName')" /><BaseInput v-model="draft.lastName" required :label="t('auth.fields.lastName')" /><BaseInput v-model="draft.phone" required type="tel" :label="t('auth.fields.phone')" /><BaseSelect v-model="draft.cityCode" required :label="t('auth.fields.city')" :options="cityOptions" /></div></fieldset>
           <fieldset v-show="current === 1"><legend>{{ steps[1] }}</legend><BaseTextarea v-model="draft.biography" required :label="t('cleaner.profile.biography')" /><div class="cleaner-onboarding__grid"><BaseInput v-model.number="draft.yearsOfExperience" type="number" :label="t('cleaner.profile.experience')" /><BaseInput v-model.number="draft.hourlyRate" type="number" :label="t('cleaner.profile.hourlyRate')" /><BaseInput v-model.number="draft.minimumJobPrice" type="number" :label="t('cleaner.profile.minimumPrice')" /><BaseInput v-model.number="draft.serviceRadiusKm" type="number" :label="t('cleaner.profile.radius')" /></div></fieldset>
@@ -26,6 +26,7 @@ import { getAppRoute } from '~/utils/routes'
 definePageMeta({ middleware: ['auth', 'role'], roles: ['cleaner'] })
 defineI18nRoute({ paths: { hr: '/onboarding/cistac', en: '/onboarding/cleaner' } })
 const { t, locale } = useI18n()
+const isMockMode = useRuntimeConfig().public.infrastructureMode === 'mock'
 const authStore = useAuthStore(), userStore = useUserStore()
 const profile = computed(() => userStore.profile && 'completedJobs' in userStore.profile ? userStore.profile as CleanerProfile : null)
 const draft = reactive({} as CleanerProfile)

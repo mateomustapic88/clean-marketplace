@@ -3,17 +3,14 @@ import { useAuthStore } from '~/stores/auth'
 import { getAppRoute } from '~/utils/routes'
 
 export default defineNuxtRouteMiddleware(async (to) => {
-  if (import.meta.server) {
-    return
-  }
-
+  if (import.meta.server && useRuntimeConfig().public.infrastructureMode === 'mock') return
   const nuxtApp = useNuxtApp()
-  if (nuxtApp.isHydrating && nuxtApp.payload.serverRendered) {
+  if (import.meta.client && nuxtApp.isHydrating && nuxtApp.payload.serverRendered) {
     return
   }
 
   const authStore = useAuthStore()
-  await authStore.restoreSession()
+  await authStore.restoreSession(import.meta.client)
   if (!authStore.user) {
     return
   }

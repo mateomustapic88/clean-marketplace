@@ -1,84 +1,36 @@
-# Phase 7 Stripe deployment guide
+# Stripe production configuration
 
-## Billing modes
+Stripe remains the billing source of truth. Supabase PostgreSQL stores the
+subscription, invoice and payment-method projection used by the UI and
+server-authoritative entitlement checks.
 
-`BILLING_MODE` accepts only `mock` or `stripe`.
-
-- Use `BILLING_MODE=mock` for local automated development and the test suite.
-- Use Stripe test mode before any production launch.
-- Use `BILLING_MODE=stripe` only when the server secret and both matching Price IDs are configured.
-- Stripe mode fails safely when required server configuration is incomplete. It never falls back to mock mode.
-
-Stripe test keys must be paired with test Price IDs. Stripe live keys must be paired with live Price IDs. Live keys belong only in the hosting provider's encrypted production environment variables.
-
-Never commit `.env`. Never expose `STRIPE_SECRET_KEY`. The publishable key may be exposed to a browser only if a future Stripe.js flow requires it.
-
-## Environment variables
-
-Required for Stripe Checkout and Billing Portal:
+## Required server variables
 
 ```dotenv
 BILLING_MODE=stripe
-APP_BASE_URL=https://YOUR-DOMAIN
-STRIPE_PUBLISHABLE_KEY=
+APP_BASE_URL=https://clean-marketplace.com
 STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
 STRIPE_OWNER_PRICE_ID=
 STRIPE_CLEANER_PRICE_ID=
 ```
 
-Recommended for a dedicated signed billing session key:
+The browser cannot select a Price ID. Checkout uses the authenticated Supabase
+user ID and authoritative profile role.
 
-```dotenv
-AUTH_SESSION_SECRET=
-```
+## Dashboard setup
 
-If `AUTH_SESSION_SECRET` is absent, the server derives a domain-separated signing value from the server-only Stripe secret. No signing material is exposed to the client.
+1. Create recurring EUR 19/month and EUR 39/month Prices.
+2. Assign their IDs to the owner and cleaner variables.
+3. Enable and configure Stripe Customer Portal.
+4. Add `https://clean-marketplace.com/api/stripe/webhook`.
+5. Subscribe it to `checkout.session.completed`,
+   `customer.subscription.created`, `customer.subscription.updated`,
+   `customer.subscription.deleted`, `invoice.paid`,
+   `invoice.payment_failed`, and `invoice.payment_action_required`.
+6. Store the webhook signing secret in Vercel and redeploy.
+7. Keep test keys paired only with test Prices and live keys only with live Prices.
 
-For production hosting, configure `AUTH_SESSION_SECRET` explicitly and make sure `STRIPE_SECRET_KEY` is available to the same production environment. After changing either value, redeploy and sign in again so the browser receives a newly signed HTTP-only billing session. An HTTP 503 response from `/api/auth/billing-session` means neither signing source is available to the deployed server; Checkout cannot authenticate until the hosting variables are corrected.
-
-Required after registering a webhook endpoint:
-
-```dotenv
-STRIPE_WEBHOOK_SECRET=
-```
-
-`STRIPE_WEBHOOK_SECRET` is intentionally optional before deployment. Without it, `POST /api/stripe/webhook` returns HTTP 503 and processes nothing. Checkout and Billing Portal remain available.
-
-## Optional local webhook testing
-
-Stripe CLI is not required by the normal development or test workflow. If it is already installed and authenticated, forward verified test events to the local Nuxt server:
-
-```sh
-stripe listen --forward-to localhost:3000/api/stripe/webhook
-```
-
-Stripe CLI prints a temporary local `whsec` value. Place that value in `STRIPE_WEBHOOK_SECRET` only for the local terminal session, restart Nuxt, and remove it when finished. Do not commit it.
-
-## Deployment checklist
-
-1. Deploy the application to a Node-compatible hosting provider.
-2. Configure production environment variables in the hosting provider.
-3. Set `BILLING_MODE=stripe`.
-4. Set `APP_BASE_URL` to the production domain.
-5. Pair the production Stripe key with production Price IDs.
-6. Confirm Stripe Customer Portal is activated and configured in Stripe Dashboard.
-7. Register `https://YOUR-DOMAIN/api/stripe/webhook` in Stripe Dashboard.
-8. Select `checkout.session.completed`.
-9. Select `customer.subscription.created`.
-10. Select `customer.subscription.updated`.
-11. Select `customer.subscription.deleted`.
-12. Select `invoice.paid`.
-13. Select `invoice.payment_failed`.
-14. Select `invoice.payment_action_required`.
-15. Copy the generated signing secret to `STRIPE_WEBHOOK_SECRET`.
-16. Redeploy so the new server-only value is available.
-17. Send a Stripe test webhook.
-18. Verify subscription and invoice synchronization.
-19. Verify Checkout success and cancellation redirects.
-20. Verify Billing Portal return flow.
-21. Verify invoice payment failure behavior.
-22. Verify owner and cleaner access restrictions.
-
-## Persistence note
-
-The processed-event repository and subscription repository are isolated behind interfaces for a future durable database adapter. The current Phase 7 adapter follows the existing mock repository architecture and keeps state in the running Node process. A production launch still requires durable repository persistence, planned with the future Supabase migration. Do not rely on process memory for production webhook idempotency.
+The webhook verifies the raw request signature. `stripe_events` is the durable
+idempotency ledger and event timestamps prevent an older delivery replacing a
+newer subscription projection.

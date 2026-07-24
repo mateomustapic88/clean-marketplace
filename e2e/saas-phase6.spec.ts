@@ -24,12 +24,12 @@ test('billing server endpoints require an authenticated HTTP-only session', asyn
   expect(portal.status()).toBe(401)
 })
 
-test('billing portal rejects an authenticated user without a Stripe customer', async ({ page }) => {
+test('billing API does not trust the browser-only mock session', async ({ page }) => {
   await login(page, 'cleaner01@demo.clean.hr', /\/dashboard-cleaner$/)
   const response = await page.request.post('/api/billing/portal', {
     data: { returnPath: '/dashboard-cleaner/billing' },
   })
-  expect(response.status()).toBe(409)
+  expect(response.status()).toBe(401)
 })
 
 test('subscription middleware redirects an inactive cleaner to billing', async ({ page }) => {

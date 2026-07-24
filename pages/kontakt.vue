@@ -65,7 +65,16 @@ const submit = async () => {
   errors.value = {}
   loading.value = true
   try {
-    await new Promise((resolve) => setTimeout(resolve, 400))
+    await $fetch('/api/feedback', {
+      method: 'POST',
+      body: {
+        type: topic.value === 'feature' ? 'improvement' : topic.value ?? 'support',
+        name: result.data.name,
+        email: result.data.email,
+        subject: result.data.subject,
+        message: result.data.message,
+      },
+    })
     submitted.value = true
     useAnalytics().track({
       name: 'feedback_submitted',

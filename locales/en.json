@@ -151,7 +151,7 @@
     "login": {
       "eyebrow": "Welcome back",
       "title": "Log in to your account",
-      "description": "Manage jobs, offers, and your profile in a secure demo environment.",
+      "description": "Manage jobs, offers, and your profile in a secure environment.",
       "submit": "Log in",
       "forgotPassword": "Forgot your password?",
       "noAccount": "Do not have an account?",
@@ -162,7 +162,7 @@
     "register": {
       "eyebrow": "Create an account",
       "title": "Choose how you want to use the platform",
-      "description": "Apartment owners and cleaning professionals receive a seven-day trial before their monthly subscription.",
+      "description": "Apartment owners and cleaning professionals can start a seven-day trial through secure billing.",
       "roleLegend": "Account type",
       "ownerRole": "Apartment owner",
       "ownerRoleDescription": "I post jobs and accept offers.",
@@ -173,26 +173,38 @@
       "hasAccount": "Already have an account?",
       "login": "Log in",
       "metaTitle": "Register",
-      "metaDescription": "Create a demo Clean account as an owner or cleaning professional."
+      "metaDescription": "Create a Clean account as an owner or cleaning professional."
     },
     "forgot": {
       "eyebrow": "Restore access",
       "title": "Set a new password",
-      "description": "Enter your email address. No real message is sent in demo mode.",
+      "description": "Enter the email address where we should send a secure recovery link.",
       "submit": "Send instructions",
       "backToLogin": "Back to login",
       "successTitle": "Request received",
-      "successDescription": "If the account exists, the demo password reset request has been recorded.",
+      "successDescription": "If the account exists, a password recovery message has been sent.",
       "metaTitle": "Forgot password",
-      "metaDescription": "Start a demo Clean account recovery."
+      "metaDescription": "Start a secure Clean account recovery."
+    },
+    "confirmation": {
+      "title": "Check your email",
+      "description": "We sent an account confirmation link. After confirmation, you can complete your profile."
+    },
+    "reset": {
+      "eyebrow": "Secure account recovery",
+      "title": "Choose a new password",
+      "description": "Your new password must contain at least eight characters.",
+      "confirmPassword": "Repeat the new password",
+      "passwordMismatch": "The passwords do not match.",
+      "submit": "Save new password",
+      "successTitle": "Password changed",
+      "successDescription": "You can now log in with your new password.",
+      "metaTitle": "New password",
+      "metaDescription": "Securely set a new password for your Clean account."
     },
     "demo": {
       "title": "Demo access",
-      "description": "Use one of these clearly marked demo addresses to explore each role:",
-      "owner": "Owner: owner01{'@'}demo.clean.hr",
-      "cleaner": "Cleaning professional: cleaner01{'@'}demo.clean.hr",
-      "admin": "Administrator: admin{'@'}demo.clean.hr",
-      "password": "Password for every demo account: Demo1234"
+      "description": "Development and automated tests use isolated mock account fixtures that are never included in production."
     },
     "errors": {
       "title": "Login failed",
@@ -200,6 +212,9 @@
       "email_exists": "An account with this email address already exists.",
       "session_expired": "Your session has expired. Please log in again.",
       "user_suspended": "This account is temporarily suspended.",
+      "email_confirmation_required": "Check your email and confirm the account before logging in.",
+      "weak_password": "Choose a stronger password.",
+      "invalid_reset_link": "The recovery link is invalid or has expired.",
       "unknown": "An unexpected error occurred. Please try again."
     },
     "forbidden": {
@@ -536,13 +551,13 @@
     "metaTitle": "Pricing", "metaDescription": "Clean offers a seven-day trial, followed by a EUR 19 owner plan or EUR 39 cleaner plan per month."
   },
   "contact": {
-    "eyebrow": "Contact", "title": "How can we help?", "description": "Send a beta enquiry, report a bug, or suggest an improvement. Until support delivery is connected, the form only confirms the entry.",
-    "fields": { "name": "Full name", "email": "Email address", "userType": "User type", "subject": "Subject", "message": "Message", "consent": "I accept processing of the data in this demo form." },
+    "eyebrow": "Contact", "title": "How can we help?", "description": "Send a beta enquiry, report a bug, or suggest an improvement. Your message is securely recorded for the support team.",
+    "fields": { "name": "Full name", "email": "Email address", "userType": "User type", "subject": "Subject", "message": "Message", "consent": "I accept processing of the data in this support form." },
     "userTypes": { "owner": "Apartment owner", "cleaner": "Cleaning professional", "other": "Other" },
     "topics": { "support": "Support request", "bug": "Bug report", "feature": "Improvement suggestion" },
-    "submit": "Send message", "successTitle": "Message recorded", "successDescription": "Thank you. This is a demo confirmation and no message was sent to a real support service.",
+    "submit": "Send message", "successTitle": "Message recorded", "successDescription": "Thank you. Your message was securely recorded for the Clean support team.",
     "errorTitle": "Message not recorded", "errorDescription": "Please try again. If the problem persists, return later.",
-    "metaTitle": "Contact", "metaDescription": "Send a demo enquiry to the Clean platform team."
+    "metaTitle": "Contact", "metaDescription": "Send a support enquiry to the Clean platform team."
   },
   "legal": {
     "contents": "Contents", "reviewTitle": "Beta legal template", "reviewDescription": "This text requires professional legal review before a production launch.",
@@ -552,7 +567,7 @@
         "1": { "title": "Purpose of this document", "text": "This template describes the intended privacy approach during the public beta." },
         "2": { "title": "Account data", "text": "The platform may process information entered during registration and profile editing." },
         "3": { "title": "Job data", "text": "Public views use an approximate location. A full address is not displayed publicly." },
-        "4": { "title": "Local demo storage", "text": "The current demo stores authentication data and changes in the user's browser." },
+        "4": { "title": "Secure persistence", "text": "Production account and marketplace data is stored in Supabase. Authentication uses secure server-compatible session cookies." },
         "5": { "title": "User rights", "text": "The production version must define how access, correction, and deletion rights can be exercised." },
         "6": { "title": "Document changes", "text": "The content will be updated after legal review and before production launch." }
       }
@@ -569,13 +584,13 @@
       }
     },
     "cookies": {
-      "eyebrow": "Legal", "title": "Cookie policy", "description": "An informational template covering cookies and local storage during the private beta.", "metaTitle": "Cookie policy", "metaDescription": "Beta cookie and local-storage policy for Clean.",
+      "eyebrow": "Legal", "title": "Cookie policy", "description": "An informational template covering essential cookies during the private beta.", "metaTitle": "Cookie policy", "metaDescription": "Beta cookie policy for Clean.",
       "sections": {
         "1": { "title": "Essential storage", "text": "The platform uses essential storage to maintain sign-in, language selection, and core application behaviour." },
-        "2": { "title": "Local beta data", "text": "The current demo architecture stores some account and marketplace data in the browser's local storage." },
+        "2": { "title": "Application data", "text": "Production account and marketplace state is stored on the server and is not persisted in browser local storage." },
         "3": { "title": "Stripe", "text": "Stripe may set its own essential cookies when a user opens Checkout or the Billing Portal." },
         "4": { "title": "Analytics", "text": "No analytics provider is connected. Appropriate consent will be introduced before optional analytics is enabled." },
-        "5": { "title": "Managing data", "text": "Users can clear local data through browser settings. A final process will be confirmed before public launch." }
+        "5": { "title": "Managing data", "text": "Users can sign out to end their session. The final access, correction, and deletion process will be confirmed before public launch." }
       }
     }
   },
@@ -723,7 +738,7 @@
       "republish": "Republish",
       "delete": "Delete draft",
       "deleteTitle": "Delete this draft?",
-      "deleteDescription": "The draft will be permanently removed from demo storage.",
+      "deleteDescription": "The draft will be permanently removed.",
       "sort": {
         "newest": "Newest",
         "oldest": "Oldest",
@@ -736,7 +751,7 @@
       "newDescription": "Add all information needed for a clear arrangement.",
       "newMetaTitle": "New cleaning job",
       "editTitle": "Edit job draft",
-      "editDescription": "Changes are saved automatically to demo storage.",
+      "editDescription": "Changes are saved automatically.",
       "editMetaTitle": "Edit job",
       "readOnly": "Published jobs are read-only. You can change their status or duplicate the job.",
       "stepperLabel": "Job creation steps",
@@ -887,7 +902,7 @@
       "profileHint": "A complete profile helps owners choose confidently.",
       "completeProfile": "Complete profile",
       "subscription": "Subscription",
-      "subscriptionPlaceholder": "Subscriptions will be available in a future phase. All demo features are currently open.",
+      "subscriptionPlaceholder": "Manage your current plan, trial, payment method, and invoices from the billing page.",
       "statistics": "My activity",
       "activeOffers": "Active offers",
       "acceptedJobs": "Accepted jobs",

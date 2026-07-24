@@ -1,6 +1,6 @@
 <template>
   <div class="job-editor-page">
-    <header><div><h1>{{ t('owner.job.newTitle') }}</h1><p>{{ t('owner.job.newDescription') }}</p></div><DemoBadge type="listing" /></header>
+    <header><div><h1>{{ t('owner.job.newTitle') }}</h1><p>{{ t('owner.job.newDescription') }}</p></div><DemoBadge v-if="isMockMode" type="listing" /></header>
     <BaseAlert v-if="actionError" variant="error">{{ t('common.actionError') }}</BaseAlert>
     <JobWizard v-model="form" :cities="cityOptions" :save-status="saveStatus" :invalid-steps="invalidSteps" :loading="publishing" @save="saveDraft" @publish="publish" />
   </div>
@@ -18,6 +18,7 @@ import { getOwnerJobRoute } from '~/utils/routes'
 definePageMeta({ layout: 'dashboard', middleware: ['auth', 'role', 'subscription'], roles: ['owner'], subscriptionCapability: 'publish_jobs' })
 defineI18nRoute({ paths: { hr: '/dashboard/poslovi/novi', en: '/dashboard/jobs/new' } })
 const { t, locale } = useI18n()
+const isMockMode = useRuntimeConfig().public.infrastructureMode === 'mock'
 const authStore = useAuthStore()
 const jobsStore = useJobsStore()
 const userStore = useUserStore()
