@@ -9,7 +9,7 @@ import { useSubscriptionStore } from '~/stores/subscription'
 import { getAppRoute } from '~/utils/routes'
 
 definePageMeta({ layout: 'dashboard', middleware: ['auth', 'role'], roles: ['owner'] })
-defineI18nRoute({ paths: { hr: '/dashboard/billing', en: '/dashboard/billing' } })
+defineI18nRoute({ paths: { hr: '/dashboard/billing', en: '/dashboard/billing', sl: '/nadzorna-plosca/obracun' } })
 const auth = useAuthStore()
 const store = useSubscriptionStore()
 const { t, locale } = useI18n()

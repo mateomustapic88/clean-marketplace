@@ -30,7 +30,7 @@ import { normalizeCleanerProfile } from '~/utils/cleaner'
 import { getCleanerJobRoute } from '~/utils/routes'
 
 definePageMeta({ layout: 'dashboard-cleaner', middleware: ['auth', 'role'], roles: ['cleaner'] })
-defineI18nRoute({ paths: { hr: '/dashboard-cleaner/poslovi', en: '/dashboard-cleaner/jobs' } })
+defineI18nRoute({ paths: { hr: '/dashboard-cleaner/poslovi', en: '/dashboard-cleaner/jobs', sl: '/nadzorna-plosca-cistilec/dela' } })
 const { t, locale } = useI18n(), authStore = useAuthStore(), jobsStore = useJobsStore(), offersStore = useOffersStore(), userStore = useUserStore()
 const distance = ref('all'), minimumBudget = ref(0), date = ref(''), service = ref(''), maximumSize = ref(0), sameDay = ref(false), weekend = ref(false), notApplied = ref(false)
 const load = async (id?: string) => {

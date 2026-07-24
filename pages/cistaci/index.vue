@@ -55,7 +55,7 @@ import {
 } from '~/utils/publicCatalog'
 import { getAppRoute, getCleanerRoute } from '~/utils/routes'
 
-defineI18nRoute({ paths: { hr: '/cistaci', en: '/cleaners' } })
+defineI18nRoute({ paths: { hr: '/cistaci', en: '/cleaners', sl: '/cistilci' } })
 const { t, locale } = useI18n()
 const route = useRoute()
 const router = useRouter()

@@ -1,5 +1,6 @@
 import en from './locales/en.json'
 import hr from './locales/hr.json'
+import sl from './locales/sl.json'
 
 export default defineI18nConfig(() => ({
   legacy: false,
@@ -8,5 +9,6 @@ export default defineI18nConfig(() => ({
   messages: {
     en,
     hr,
+    sl,
   },
 }))

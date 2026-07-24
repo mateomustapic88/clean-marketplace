@@ -30,7 +30,7 @@ import { emptyJobForm, invalidJobSteps, jobToForm } from '~/utils/jobForm'
 import { getOwnerJobRoute } from '~/utils/routes'
 
 definePageMeta({ layout: 'dashboard', middleware: ['auth', 'role'], roles: ['owner'] })
-defineI18nRoute({ paths: { hr: '/dashboard/poslovi/[id]/uredi', en: '/dashboard/jobs/[id]/edit' } })
+defineI18nRoute({ paths: { hr: '/dashboard/poslovi/[id]/uredi', en: '/dashboard/jobs/[id]/edit', sl: '/nadzorna-plosca/dela/[id]/uredi' } })
 const route = useRoute()
 const { t, locale } = useI18n()
 const authStore = useAuthStore()

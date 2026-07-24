@@ -26,7 +26,7 @@ import { useUserStore } from '~/stores/user'
 import { getAppRoute } from '~/utils/routes'
 
 definePageMeta({ middleware: ['auth', 'role'], roles: ['owner'] })
-defineI18nRoute({ paths: { hr: '/onboarding/vlasnik', en: '/onboarding/owner' } })
+defineI18nRoute({ paths: { hr: '/onboarding/vlasnik', en: '/onboarding/owner', sl: '/uvajanje/lastnik' } })
 const { t, locale } = useI18n(), authStore = useAuthStore(), userStore = useUserStore()
 const isMockMode = useRuntimeConfig().public.infrastructureMode === 'mock'
 const profile = computed(() => userStore.profile as OwnerProfile | null)
@@ -34,7 +34,7 @@ const draft = reactive({ firstName: profile.value?.firstName ?? '', lastName: pr
 const current = ref(0), saveStatus = ref<'saved' | 'saving' | 'unsaved'>('saved'), error = ref('')
 const submitting = ref(false)
 const steps = computed(() => ['personal', 'contact', 'apartment', 'preferences', 'finish'].map((key) => t(`owner.onboarding.steps.${key}`)))
-const cityOptions = computed(() => userStore.cities.map((city) => ({ value: city.code, label: city.name }))), contactOptions = computed(() => ['email', 'phone', 'sms'].map((value) => ({ value, label: t(`owner.profile.contact.${value}`) }))), languageOptions = computed(() => ['hr', 'en'].map((value) => ({ value, label: t(`languages.${value}`) }))), timeZoneOptions = ['Europe/Zagreb', 'Europe/London', 'Europe/Berlin'].map((value) => ({ value, label: value }))
+const cityOptions = computed(() => userStore.cities.map((city) => ({ value: city.code, label: city.name }))), contactOptions = computed(() => ['email', 'phone', 'sms'].map((value) => ({ value, label: t(`owner.profile.contact.${value}`) }))), languageOptions = computed(() => ['hr', 'en', 'sl'].map((value) => ({ value, label: t(`languages.${value}`) }))), timeZoneOptions = ['Europe/Zagreb', 'Europe/Ljubljana', 'Europe/London', 'Europe/Berlin'].map((value) => ({ value, label: value }))
 const cityName = (code: string) => userStore.cities.find((city) => city.code === code)?.name ?? code
 const ownerFromDraft = (onboardingCompleted: boolean): OwnerProfile | null => profile.value
   ? {
@@ -43,7 +43,7 @@ const ownerFromDraft = (onboardingCompleted: boolean): OwnerProfile | null => pr
       companyName: draft.companyName || null,
       agencyName: draft.agencyName || null,
       preferredContactMethod: draft.preferredContactMethod as OwnerProfile['preferredContactMethod'],
-      preferredLanguage: draft.preferredLanguage as 'hr' | 'en',
+      preferredLanguage: draft.preferredLanguage as 'hr' | 'en' | 'sl',
       avatarUrl: profile.value.avatarUrl ?? null,
       onboardingCompleted,
       apartmentName: draft.apartmentName,

@@ -33,7 +33,7 @@ import { createContactSchema } from '~/schemas/validation'
 import { getAppRoute } from '~/utils/routes'
 import { getFieldErrors } from '~/utils/validation'
 
-defineI18nRoute({ paths: { hr: '/kontakt', en: '/contact' } })
+defineI18nRoute({ paths: { hr: '/kontakt', en: '/contact', sl: '/kontakt' } })
 const { t, locale } = useI18n()
 const route = useRoute()
 const form = reactive({ name: '', email: '', userType: 'owner' as 'owner' | 'cleaner' | 'other', subject: '', message: '', consent: false })

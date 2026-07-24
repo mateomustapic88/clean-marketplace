@@ -9,7 +9,7 @@ import { useSubscriptionStore } from '~/stores/subscription'
 import { getAppRoute } from '~/utils/routes'
 
 definePageMeta({ layout: 'dashboard-cleaner', middleware: ['auth', 'role'], roles: ['cleaner'] })
-defineI18nRoute({ paths: { hr: '/dashboard-cleaner/billing', en: '/dashboard-cleaner/billing' } })
+defineI18nRoute({ paths: { hr: '/dashboard-cleaner/billing', en: '/dashboard-cleaner/billing', sl: '/nadzorna-plosca-cistilec/obracun' } })
 const auth = useAuthStore()
 const store = useSubscriptionStore()
 const { t, locale } = useI18n()

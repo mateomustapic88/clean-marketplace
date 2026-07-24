@@ -16,7 +16,9 @@ export default defineNuxtPlugin(() => {
     const isGuestOnly = middleware.includes('guest')
     const locale = route.path === '/en' || route.path.startsWith('/en/')
       ? 'en'
-      : 'hr'
+      : route.path === '/sl' || route.path.startsWith('/sl/')
+        ? 'sl'
+        : 'hr'
 
     if (requiresAuthentication && !authStore.isAuthenticated) {
       await navigateTo(getAppRoute('login', locale), { replace: true })

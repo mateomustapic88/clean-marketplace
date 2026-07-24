@@ -28,7 +28,7 @@ import { useAuthStore } from '~/stores/auth'
 import { useUserStore } from '~/stores/user'
 
 definePageMeta({ layout: 'dashboard', middleware: ['auth', 'role'], roles: ['owner'] })
-defineI18nRoute({ paths: { hr: '/dashboard/postavke', en: '/dashboard/settings' } })
+defineI18nRoute({ paths: { hr: '/dashboard/postavke', en: '/dashboard/settings', sl: '/nadzorna-plosca/nastavitve' } })
 const { t } = useI18n(), authStore = useAuthStore(), userStore = useUserStore()
 const profile = computed(() => userStore.profile as OwnerProfile | null)
 const preferences = reactive<NotificationPreferences>({ ...(profile.value?.notificationPreferences ?? { email: true, inApp: true, jobUpdates: true, offers: true, marketing: false }) })
@@ -46,7 +46,7 @@ const loadOwnerSettings = async (userId?: string) => {
 }
 watch(() => authStore.user?.id, loadOwnerSettings, { immediate: true })
 const contactOptions = computed(() => ['email', 'phone', 'sms'].map((value) => ({ value, label: t(`owner.profile.contact.${value}`) })))
-const languageOptions = computed(() => ['hr', 'en'].map((value) => ({ value, label: t(`languages.${value}`) })))
+const languageOptions = computed(() => ['hr', 'en', 'sl'].map((value) => ({ value, label: t(`languages.${value}`) })))
 const timeZoneOptions = ['Europe/Zagreb', 'Europe/London', 'Europe/Berlin'].map((value) => ({ value, label: value }))
 const save = async () => {
   if (!profile.value || saving.value) return
@@ -58,7 +58,7 @@ const save = async () => {
       ...profile.value,
       notificationPreferences: { ...preferences },
       preferredContactMethod: contact.value as OwnerProfile['preferredContactMethod'],
-      preferredLanguage: language.value as 'hr' | 'en',
+      preferredLanguage: language.value as 'hr' | 'en' | 'sl',
       timeZone: timeZone.value,
       avatarUrl: profile.value.avatarUrl ?? null,
       onboardingCompleted: profile.value.onboardingCompleted ?? true,

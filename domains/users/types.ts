@@ -34,7 +34,7 @@ export interface OwnerProfile extends DemoEntity {
   companyName: string | null
   agencyName: string | null
   notificationPreferences: NotificationPreferences
-  preferredLanguage: 'hr' | 'en'
+  preferredLanguage: 'hr' | 'en' | 'sl'
   timeZone: string
   avatarUrl: string | null
   onboardingCompleted: boolean

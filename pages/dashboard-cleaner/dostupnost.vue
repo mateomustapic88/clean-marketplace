@@ -9,7 +9,7 @@ import { useUserStore } from '~/stores/user'
 import { defaultAvailability, normalizeCleanerProfile } from '~/utils/cleaner'
 
 definePageMeta({ layout: 'dashboard-cleaner', middleware: ['auth', 'role'], roles: ['cleaner'] })
-defineI18nRoute({ paths: { hr: '/dashboard-cleaner/dostupnost', en: '/dashboard-cleaner/availability' } })
+defineI18nRoute({ paths: { hr: '/dashboard-cleaner/dostupnost', en: '/dashboard-cleaner/availability', sl: '/nadzorna-plosca-cistilec/razpolozljivost' } })
 const { t } = useI18n(), authStore = useAuthStore(), userStore = useUserStore()
 const profile = computed(() => userStore.profile && 'completedJobs' in userStore.profile ? userStore.profile as CleanerProfile : null)
 const availability = ref(defaultAvailability()), vacationMode = ref(false), saved = ref(false)

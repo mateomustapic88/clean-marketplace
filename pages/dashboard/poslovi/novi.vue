@@ -16,7 +16,7 @@ import { emptyJobForm, formToJobInput, invalidJobSteps } from '~/utils/jobForm'
 import { getOwnerJobRoute } from '~/utils/routes'
 
 definePageMeta({ layout: 'dashboard', middleware: ['auth', 'role', 'subscription'], roles: ['owner'], subscriptionCapability: 'publish_jobs' })
-defineI18nRoute({ paths: { hr: '/dashboard/poslovi/novi', en: '/dashboard/jobs/new' } })
+defineI18nRoute({ paths: { hr: '/dashboard/poslovi/novi', en: '/dashboard/jobs/new', sl: '/nadzorna-plosca/dela/novo' } })
 const { t, locale } = useI18n()
 const isMockMode = useRuntimeConfig().public.infrastructureMode === 'mock'
 const authStore = useAuthStore()

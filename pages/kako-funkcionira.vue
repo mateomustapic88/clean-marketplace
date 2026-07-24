@@ -40,7 +40,7 @@
 import { BadgeCheck, ClipboardPlus, MessageSquareText, Search, Star } from '@lucide/vue'
 import { getAppRoute } from '~/utils/routes'
 
-defineI18nRoute({ paths: { hr: '/kako-funkcionira', en: '/how-it-works' } })
+defineI18nRoute({ paths: { hr: '/kako-funkcionira', en: '/how-it-works', sl: '/kako-deluje' } })
 const { t, locale } = useI18n()
 const icons = [ClipboardPlus, MessageSquareText, Search, BadgeCheck, Star]
 usePublicSeo({

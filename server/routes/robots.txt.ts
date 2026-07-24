@@ -14,6 +14,10 @@ export default defineEventHandler((event) => {
     'Disallow: /en/dashboard',
     'Disallow: /en/dashboard-cleaner',
     'Disallow: /en/onboarding',
+    'Disallow: /sl/admin',
+    'Disallow: /sl/nadzorna-plosca',
+    'Disallow: /sl/nadzorna-plosca-cistilec',
+    'Disallow: /sl/uvajanje',
     `Sitemap: ${siteUrl}/sitemap.xml`,
     '',
   ].join('\n')

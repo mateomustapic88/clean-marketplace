@@ -75,6 +75,7 @@ describe('public catalogue utilities', () => {
   it('formats prices and ratings consistently', () => {
     expect(formatPrice(39, 'en')).toContain('39')
     expect(formatPrice(39, 'hr')).toContain('39')
+    expect(formatPrice(39, 'sl')).toContain('39')
     expect(formatRating(4.86)).toBe('4.9')
     expect(formatRating(null)).toBeNull()
   })
@@ -82,7 +83,9 @@ describe('public catalogue utilities', () => {
   it('generates localized public routes', () => {
     expect(getAppRoute('jobs', 'hr')).toBe('/poslovi')
     expect(getAppRoute('jobs', 'en')).toBe('/en/jobs')
+    expect(getAppRoute('jobs', 'sl')).toBe('/sl/dela')
     expect(getJobRoute('job-01', 'en')).toBe('/en/jobs/job-01')
+    expect(getJobRoute('job-01', 'sl')).toBe('/sl/dela/job-01')
     expect(getCleanerRoute('cleaner-01', 'hr')).toBe('/cistaci/cleaner-01')
   })
 

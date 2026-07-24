@@ -35,7 +35,7 @@ import { useUserStore } from '~/stores/user'
 import { getFieldErrors } from '~/utils/validation'
 
 definePageMeta({ layout: 'dashboard', middleware: ['auth', 'role'], roles: ['owner'] })
-defineI18nRoute({ paths: { hr: '/dashboard/profil', en: '/dashboard/profile' } })
+defineI18nRoute({ paths: { hr: '/dashboard/profil', en: '/dashboard/profile', sl: '/nadzorna-plosca/profil' } })
 const { t } = useI18n(), authStore = useAuthStore(), userStore = useUserStore()
 const profile = computed(() => userStore.profile as OwnerProfile | null)
 const normalized = (value: OwnerProfile) => ({ ...value, preferredLanguage: value.preferredLanguage ?? 'hr' as const, timeZone: value.timeZone ?? 'Europe/Zagreb', avatarUrl: value.avatarUrl ?? null, onboardingCompleted: value.onboardingCompleted ?? true, apartmentName: value.apartmentName ?? null, apartmentCityCode: value.apartmentCityCode ?? null, apartmentAddress: value.apartmentAddress ?? null })
@@ -56,7 +56,7 @@ watch(() => authStore.user?.id, loadOwnerProfile, { immediate: true })
 const completion = computed(() => profile.value ? getProfileCompletion(normalized(profile.value)) : 0)
 const cityOptions = computed(() => userStore.cities.map((city) => ({ value: city.code, label: city.name })))
 const contactOptions = computed(() => ['email', 'phone', 'sms'].map((value) => ({ value, label: t(`owner.profile.contact.${value}`) })))
-const languageOptions = computed(() => ['hr', 'en'].map((value) => ({ value, label: t(`languages.${value}`) })))
+const languageOptions = computed(() => ['hr', 'en', 'sl'].map((value) => ({ value, label: t(`languages.${value}`) })))
 const timeZoneOptions = ['Europe/Zagreb', 'Europe/London', 'Europe/Berlin'].map((value) => ({ value, label: value }))
 const save = async () => {
   if (saving.value) return

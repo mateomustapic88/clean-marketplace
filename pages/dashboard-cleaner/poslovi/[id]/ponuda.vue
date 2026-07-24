@@ -20,7 +20,7 @@ import { demoDisplayText } from '~/utils/demoPresentation'
 import { getAppRoute, getCleanerJobRoute } from '~/utils/routes'
 
 definePageMeta({ layout: 'dashboard-cleaner', middleware: ['auth', 'role', 'subscription'], roles: ['cleaner'], subscriptionCapability: 'submit_offers' })
-defineI18nRoute({ paths: { hr: '/dashboard-cleaner/poslovi/[id]/ponuda', en: '/dashboard-cleaner/jobs/[id]/offer' } })
+defineI18nRoute({ paths: { hr: '/dashboard-cleaner/poslovi/[id]/ponuda', en: '/dashboard-cleaner/jobs/[id]/offer', sl: '/nadzorna-plosca-cistilec/dela/[id]/ponudba' } })
 const route = useRoute(), { t, locale } = useI18n()
 const authStore = useAuthStore(), jobsStore = useJobsStore(), offersStore = useOffersStore()
 const jobId = String(route.params.id), form = ref<OfferFormData>(emptyOfferForm()), errorMessage = ref('')

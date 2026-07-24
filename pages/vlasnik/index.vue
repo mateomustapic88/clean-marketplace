@@ -10,6 +10,7 @@ defineI18nRoute({
   paths: {
     hr: '/vlasnik',
     en: '/owner',
+    sl: '/lastnik',
   },
 })
 

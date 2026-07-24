@@ -12,7 +12,7 @@ export type EmailTemplate
 export interface EmailMessage {
   to: string
   template: EmailTemplate
-  locale: 'hr' | 'en'
+  locale: 'hr' | 'en' | 'sl'
   variables: Record<string, string | number>
 }
 

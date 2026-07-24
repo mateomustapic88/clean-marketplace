@@ -89,6 +89,7 @@ defineI18nRoute({
   paths: {
     hr: '/prijava',
     en: '/login',
+    sl: '/prijava',
   },
 })
 

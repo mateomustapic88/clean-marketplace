@@ -51,7 +51,7 @@ import { calculateAnnualSavings } from '~/services/billing/billingPresentation'
 import { getAppRoute } from '~/utils/routes'
 import { formatPrice } from '~/utils/formatters'
 
-defineI18nRoute({ paths: { hr: '/cijene', en: '/pricing' } })
+defineI18nRoute({ paths: { hr: '/cijene', en: '/pricing', sl: '/cene' } })
 const { t, locale } = useI18n()
 const config = useRuntimeConfig()
 const billingPeriod = ref<BillingPeriod>('monthly')

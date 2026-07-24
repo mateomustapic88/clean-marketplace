@@ -21,7 +21,7 @@ import { useUserStore } from '~/stores/user'
 import { getAppRoute, getOwnerJobRoute } from '~/utils/routes'
 
 definePageMeta({ layout: 'dashboard', middleware: ['auth', 'role'], roles: ['owner'] })
-defineI18nRoute({ paths: { hr: '/dashboard/poslovi/[id]/ponude', en: '/dashboard/jobs/[id]/offers' } })
+defineI18nRoute({ paths: { hr: '/dashboard/poslovi/[id]/ponude', en: '/dashboard/jobs/[id]/offers', sl: '/nadzorna-plosca/dela/[id]/ponudbe' } })
 const route = useRoute(), { t, locale } = useI18n()
 const authStore = useAuthStore(), jobsStore = useJobsStore(), offersStore = useOffersStore(), userStore = useUserStore()
 const jobId = String(route.params.id)

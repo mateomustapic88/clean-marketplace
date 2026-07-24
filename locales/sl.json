@@ -1,0 +1,1489 @@
+{
+  "meta": {
+    "siteName": "Clean",
+    "homeTitle": "Zanesljivo čiščenje apartmajev",
+    "homeDescription": "Platforma, ki povezuje lastnike apartmajev s čistilnimi strokovnjaki."
+  },
+  "common": {
+    "close": "Zapri",
+    "menu": "meni",
+    "loading": "Nalaganje",
+    "previous": "Prejšnja",
+    "next": "Naprej",
+    "page": "Stran {page}",
+    "dismiss": "Opusti obvestilo",
+    "selectOption": "Izberite možnost",
+    "openDropdown": "Odpri meni",
+    "noResultsTitle": "Brez rezultatov",
+    "noResultsDescription": "Poskusite prilagoditi kriterije iskanja.",
+    "notAvailable": "Ni na voljo",
+    "actionError": "Akcija ni uspela. Preverite informacije in poskusite znova."
+  },
+  "navigation": {
+    "primaryLabel": "Glavna navigacija",
+    "mobileLabel": "Mobilna navigacija",
+    "home": "Domov",
+    "foundation": "Fundacija",
+    "components": "Komponente",
+    "nextSteps": "Naslednji koraki",
+    "jobs": "Čistilna dela",
+    "cleaners": "Strokovnjaki za čiščenje",
+    "howItWorks": "Kako deluje",
+    "pricing": "Cene",
+    "skipToContent": "Preskoči na vsebino"
+  },
+  "language": {
+    "label": "Jezik",
+    "hr": "HR",
+    "en": "EN",
+    "sl": "SL",
+    "switchTo": "Preklopite jezik na {language}"
+  },
+  "header": {
+    "brandLabel": "Clean - domača stran",
+    "ownerAction": "Objavite delo",
+    "cleanerAction": "Poiščite dela",
+    "login": "Prijavite se",
+    "register": "Registrirajte se",
+    "dashboard": "Nadzorna plošča",
+    "logout": "Odjava"
+  },
+  "footer": {
+    "description": "Profesionalna platforma za dogovarjanje čiščenja apartmajev na Hrvaškem.",
+    "product": "Platforma",
+    "support": "Podpora",
+    "legal": "Pravno",
+    "howItWorks": "Kako deluje",
+    "pricing": "Cene",
+    "jobs": "Čistilna dela",
+    "cleaners": "Strokovnjaki za čiščenje",
+    "contact": "Kontakt",
+    "contactSupport": "Obrnite se na podporo",
+    "reportBug": "Prijavite napako",
+    "suggestFeature": "Predlagajte izboljšavo",
+    "help": "Center za pomoč",
+    "terms": "Pogoji storitve",
+    "privacy": "Politika zasebnosti",
+    "cookies": "Politika piškotkov",
+    "rights": "Vse pravice pridržane.",
+    "copyright": "© {year} Clean. Vse pravice pridržane.",
+    "beta": "Zasebna beta",
+    "faq": "Pogosta vprašanja",
+    "phaseNotice": "Demo okolje - poslovni podatki niso resnični."
+  },
+  "home": {
+    "eyebrow": "Osnova izdelka",
+    "title": "Zanesljiva podlaga za preprostejše čiščenje apartmajev",
+    "description": "Aplikacija zagotavlja dostopno in odzivno podlago v hrvaščini, angleščini in slovenščini, z demo podatki, varno prijavo in dostopom glede na vlogo.",
+    "primaryAction": "Raziščite osnovo",
+    "secondaryAction": "Raziščite komponente",
+    "visualLabel": "Ilustracija apartmaja in iskric",
+    "foundation": {
+      "eyebrow": "Sistem oblikovanja",
+      "title": "Dosledno na vsakem zaslonu",
+      "description": "Barve, tipografija, razmiki, sence in stanja so definirani kot skupni žetoni.",
+      "responsiveTitle": "Odziven od začetka",
+      "responsiveDescription": "Navigacija, vsebina in kontrolniki se prilagajajo mobilnim, tabličnim in namiznim napravam.",
+      "localizationTitle": "Hrvaščina, angleščina in slovenščina",
+      "localizationDescription": "Vsako vidno besedilo je prevedeno, hrvaščina pa ostaja privzeti jezik.",
+      "accessibleTitle": "Dostopne interakcije",
+      "accessibleDescription": "Jasen fokus, semantična struktura in podpora za tipkovnico so vgrajeni v temelj."
+    },
+    "components": {
+      "eyebrow": "Osnovne komponente",
+      "title": "Pripravljen na resnične poteke dela",
+      "description": "Kontrolniki za večkratno uporabo bodo prihodnje vmesnike ohranjali skladne.",
+      "formLabel": "Primer polja",
+      "formPlaceholder": "Vnesite ime apartmaja",
+      "cityLabel": "Mesto",
+      "cityPlaceholder": "Izberite mesto",
+      "cityZagreb": "Zagreb",
+      "citySplit": "Split",
+      "cityZadar": "Zadar",
+      "checkboxLabel": "Na voljo ob vikendih",
+      "primaryButton": "Primarno dejanje",
+      "secondaryButton": "Sekundarno dejanje",
+      "status": "pripravljena"
+    },
+    "next": {
+      "eyebrow": "2. faza končana",
+      "title": "Podatkovna in avtentikacijska arhitektura je pripravljena",
+      "description": "Domenski modeli, demo podatki, repozitoriji, shrambe stanja in dostop glede na vlogo zagotavljajo stabilno podlago za javne strani.",
+      "action": "Nazaj na vrh"
+    }
+  },
+  "validation": {
+    "required": "To polje je obvezno.",
+    "email": "Vnesite veljaven e-poštni naslov.",
+    "phone": "Vnesite veljavno telefonsko številko.",
+    "maxLength": "Uporabite največ {count} znakov.",
+    "minLength": "Vnesite vsaj {count} znakov.",
+    "passwordLength": "Geslo mora vsebovati vsaj {count} znakov.",
+    "positiveNumber": "Vrednost mora biti večja od nič.",
+    "nonNegativeNumber": "Vrednost ne more biti negativna.",
+    "wholeNumber": "Vnesite celo število.",
+    "minimumValue": "Najmanjša dovoljena vrednost je {value}.",
+    "maximumValue": "Največja dovoljena vrednost je {value}.",
+    "oib": "OIB mora vsebovati 11 števk.",
+    "url": "Vnesite veljaven spletni naslov.",
+    "languages": "Izberite vsaj en jezik.",
+    "consent": "Za pošiljanje sporočila morate sprejeti obdelavo podatkov."
+  },
+  "demo": {
+    "profileBadge": "Demo profil",
+    "listingBadge": "Demo oglas",
+    "dataBadge": "Demo podatki",
+    "ratingBadge": "Demo ocena"
+  },
+  "auth": {
+    "fields": {
+      "firstName": "Ime",
+      "lastName": "Priimek",
+      "email": "E-poštni naslov",
+      "emailPlaceholder": "ime{'@'}example.com",
+      "password": "Geslo",
+      "passwordPlaceholder": "Vnesite vaše geslo",
+      "showPassword": "Prikaži geslo",
+      "hidePassword": "Skrij geslo",
+      "phone": "Telefon",
+      "city": "Mesto",
+      "cityPlaceholder": "Izberite mesto"
+    },
+    "login": {
+      "eyebrow": "dobrodošli nazaj",
+      "title": "Prijavite se v svoj račun",
+      "description": "Upravljajte dela, ponudbe in svoj profil v varnem okolju.",
+      "submit": "Prijavite se",
+      "forgotPassword": "Ste pozabili geslo?",
+      "noAccount": "Nimate računa?",
+      "register": "Registrirajte se",
+      "metaTitle": "Prijavite se",
+      "metaDescription": "Prijavite se v svoj račun Clean."
+    },
+    "register": {
+      "eyebrow": "Ustvari račun",
+      "title": "Izberite, kako želite uporabljati platformo",
+      "description": "Lastniki apartmajev in čistilni strokovnjaki lahko začnejo sedemdnevno poskusno obdobje prek varnega obračunavanja.",
+      "roleLegend": "Vrsta računa",
+      "ownerRole": "Lastnik apartmaja",
+      "ownerRoleDescription": "Objavljam dela in prejemam ponudbe.",
+      "cleanerRole": "Opravljam storitve čiščenja",
+      "cleanerRoleDescription": "Poiščem zaposlitev in oddam ponudbe.",
+      "passwordHint": "Vsaj 8 znakov.",
+      "submit": "Ustvari račun",
+      "hasAccount": "Že imate račun?",
+      "login": "Prijavite se",
+      "metaTitle": "Registrirajte se",
+      "metaDescription": "Ustvarite račun Clean kot lastnik ali strokovnjak za čiščenje."
+    },
+    "forgot": {
+      "eyebrow": "Obnovi dostop",
+      "title": "Nastavite novo geslo",
+      "description": "Vnesite e-poštni naslov, na katerega naj pošljemo varno povezavo za obnovitev.",
+      "submit": "Pošlji navodila",
+      "backToLogin": "Nazaj na prijavo",
+      "successTitle": "Zahteva prejeta",
+      "successDescription": "Če račun obstaja, je bilo poslano sporočilo za obnovitev gesla.",
+      "metaTitle": "Pozabljeno geslo",
+      "metaDescription": "Začnite varno obnovitev računa Clean."
+    },
+    "confirmation": {
+      "title": "Preverite svojo e-pošto",
+      "description": "Poslali smo povezavo za potrditev računa. Po potrditvi lahko izpolnite svoj profil."
+    },
+    "reset": {
+      "eyebrow": "Varna obnovitev računa",
+      "title": "Izberite novo geslo",
+      "description": "Vaše novo geslo mora vsebovati najmanj osem znakov.",
+      "confirmPassword": "Ponovite novo geslo",
+      "passwordMismatch": "Gesli se ne ujemata.",
+      "submit": "Shrani novo geslo",
+      "successTitle": "Geslo spremenjeno",
+      "successDescription": "Zdaj se lahko prijavite z novim geslom.",
+      "metaTitle": "Novo geslo",
+      "metaDescription": "Varno nastavite novo geslo za svoj račun Clean."
+    },
+    "demo": {
+      "title": "Demo dostop",
+      "description": "Razvojni in avtomatizirani testi uporabljajo izolirane lažne nastavitve računa, ki niso nikoli vključeni v proizvodnjo."
+    },
+    "errors": {
+      "title": "Prijava ni uspela",
+      "invalid_credentials": "E-poštni naslov ali geslo ni pravilno.",
+      "email_exists": "Račun s tem e-poštnim naslovom že obstaja.",
+      "session_expired": "Vaša seja je potekla. Prosimo, prijavite se znova.",
+      "user_suspended": "Ta račun je začasno onemogočen.",
+      "email_confirmation_required": "Preverite svojo e-pošto in potrdite račun, preden se prijavite.",
+      "weak_password": "Izberite močnejše geslo.",
+      "invalid_reset_link": "Povezava za obnovitev je neveljavna ali je potekla.",
+      "unknown": "Prišlo je do nepričakovane napake. prosim poskusite ponovno"
+    },
+    "forbidden": {
+      "title": "Ne morete dostopati do te strani",
+      "description": "Vaša uporabniška vloga nima dovoljenja za ogled zahtevane vsebine.",
+      "action": "Vrnite se na varno območje",
+      "metaTitle": "Dostop prepovedan"
+    }
+  },
+  "dashboard": {
+    "phase2Title": "Arhitektura vašega računa je aktivna",
+    "phase2Description": "Seja, uporabniška vloga in predstavitvena podatkovna plast so se uspešno naložili.",
+    "phase3Notice": "Delovna mesta, profili in javni imeniki bodo zgrajeni v 3. fazi.",
+    "owner": {
+      "title": "Pozdravljeni, {name}",
+      "description": "To je zaščiteno območje za lastnike apartmajev.",
+      "metaTitle": "Nadzorna plošča lastnika"
+    },
+    "cleaner": {
+      "title": "Pozdravljeni, {name}",
+      "description": "To je zaščiteno strokovno čistilno območje.",
+      "metaTitle": "Nadzorna plošča čistilnega strokovnjaka"
+    },
+    "admin": {
+      "title": "Pozdravljeni, {name}",
+      "description": "To je zaščiteno administrativno območje.",
+      "metaTitle": "Administrativna nadzorna plošča",
+      "mockNotice": "Skrbniški podatki in dovoljenja v tej fazi uporabljajo samo demo repozitorije."
+    }
+  },
+  "onboarding": {
+    "foundationTitle": "Vaš račun je bil uspešno ustvarjen",
+    "foundationDescription": "Nastavite podatke o apartmaju in lastniku.",
+    "continue": "Nadaljujte na nadzorno ploščo",
+    "owner": {
+      "title": "Dobrodošli kot lastnik apartmaja",
+      "description": "Vaš demo profil lastnika je pripravljen."
+    },
+    "cleaner": {
+      "title": "Dobrodošli kot strokovnjak za čiščenje",
+      "description": "Vaš demo profil in poskusna naročnina sta pripravljena.",
+      "trialNotice": "Vaša sedemdnevna demo preizkusna različica je aktivna. Podrobni koraki profila bodo dodani v 5. fazi."
+    }
+  },
+  "catalog": {
+    "search": "Iskanje",
+    "city": "Mesto",
+    "allCities": "Vsa mesta",
+    "allOptions": "Vse možnosti",
+    "priceMin": "Minimalna cena",
+    "priceMax": "Najvišja cena",
+    "sort": "Razvrsti",
+    "filters": "Filtri",
+    "activeFilters": "Aktivni filtri",
+    "clearAll": "Počisti vse",
+    "resetFilters": "Ponastavi filtre",
+    "resultCount": "Prikazani rezultati: {count}",
+    "emptyTitle": "Noben rezultat se ne ujema s temi filtri",
+    "emptyDescription": "Za več rezultatov spremenite ali ponastavite filtre.",
+    "noRatings": "Še ni ocen",
+    "ratingLabel": "Ocena {rating} na podlagi ocen {count}",
+    "breadcrumbs": "Drobtine"
+  },
+  "languages": {
+    "hr": "Hrvaščina",
+    "en": "Angleščina",
+    "sl": "Slovenščina",
+    "de": "Nemščina",
+    "it": "Italijanski"
+  },
+  "jobs": {
+    "eyebrow": "Javni demo oglasi",
+    "title": "Poiščite delo čiščenja",
+    "description": "Prebrskajte jasno strukturirane demo oglase in poiščite delo, ki ustreza vaši razpoložljivosti.",
+    "metaTitle": "Dela čiščenja apartmajev",
+    "metaDescription": "Prebrskajte demo dela čiščenja apartmajev po mestu, datumu in proračunu.",
+    "pagination": "Strani za delo",
+    "card": {
+      "urgent": "Nujno",
+      "size": "{value} m²",
+      "rooms": "{bedrooms} spalnice, {bathrooms} kopalnice",
+      "duration": "O {value} h",
+      "offers": "{count} ponudbe"
+    },
+    "budgetType": {
+      "fixed": "skupaj",
+      "hourly": "na uro"
+    },
+    "filters": {
+      "title": "Filtriraj dela",
+      "date": "Datum čiščenja",
+      "priceType": "Vrsta cene",
+      "minimumSize": "Najmanjša velikost",
+      "sameDay": "Enodnevni promet gostov",
+      "supplies": "Zaloge so zagotovljene",
+      "weekend": "Delo ob koncu tedna",
+      "urgent": "Samo nujna dela"
+    },
+    "sort": {
+      "newest": "Najnovejša",
+      "date": "Najhitrejši datum",
+      "budget-high": "Najvišji proračun",
+      "budget-low": "Najnižji proračun"
+    },
+    "filterLabels": {
+      "search": "Iskanje: {value}",
+      "city": "Mesto: {value}",
+      "priceType": "Tip cene: {value}",
+      "minimumPrice": "Od EUR {value}",
+      "maximumPrice": "Do EUR {value}",
+      "minimumSize": "Od {value} m²",
+      "sameDay": "Promet v istem dnevu",
+      "supplies": "Zaloge zagotovljene",
+      "weekend": "Vikend",
+      "urgent": "Nujno",
+      "date": "Datum: {value}"
+    }
+  },
+  "cleaners": {
+    "eyebrow": "Javni demo profili",
+    "title": "Poiščite strokovnjaka za čiščenje",
+    "description": "Primerjajte cene, razpoložljivost, področja storitev in jasno označene demo ocene.",
+    "metaTitle": "Strokovnjaki za čiščenje apartmajev",
+    "metaDescription": "Prebrskajte demo profile strokovnjakov za čiščenje apartmajev na Hrvaškem.",
+    "pagination": "Strani profila",
+    "card": {
+      "perHour": "na uro",
+      "minimum": "Minimalni obisk: {price}",
+      "supplies": "Prinaša zaloge",
+      "transport": "Lasten prevoz",
+      "completed": "Opravljena opravila: {count}",
+      "viewProfile": "Prikaži profil"
+    },
+    "filters": {
+      "title": "Profili filtrov",
+      "maximumRate": "Najvišja urna postavka",
+      "maximumMinimum": "Najvišja minimalna cena",
+      "rating": "Minimalna ocena",
+      "ratingValue": "Vsaj {value}",
+      "language": "Jezik",
+      "weekend": "Na voljo ob vikendih",
+      "sameDay": "Vseljivo še isti dan",
+      "supplies": "Prinaša zaloge",
+      "transport": "Ima lasten prevoz"
+    },
+    "sort": {
+      "rating": "Najvišja ocena",
+      "rate": "Najnižja urna postavka",
+      "completed": "Večina opravljenih del",
+      "newest": "Najnovejši profil"
+    },
+    "filterLabels": {
+      "search": "Iskanje: {value}",
+      "city": "Mesto: {value}",
+      "maximumRate": "Do {value} EUR na uro",
+      "maximumMinimumPrice": "Minimalni obisk do EUR {value}",
+      "minimumRating": "Ocena {value}",
+      "weekend": "Vikend",
+      "sameDay": "Isti dan",
+      "supplies": "Prinaša zaloge",
+      "transportation": "Lasten prevoz",
+      "language": "Jezik: {value}"
+    }
+  },
+  "jobDetail": {
+    "keyFacts": "Ključne podrobnosti o delu",
+    "date": "Datum",
+    "time": "Čas",
+    "budget": "Proračun",
+    "duration": "Trajanje",
+    "apartment": "Podrobnosti apartmaja",
+    "size": "Velikost",
+    "bedrooms": "Spalnice",
+    "bathrooms": "Kopalnice",
+    "beds": "Postelje",
+    "services": "Zahtevane storitve",
+    "instructions": "Dodatna navodila",
+    "owner": "Lastnik apartmaja",
+    "offerCount": "Trenutne ponudbe: {count}",
+    "loginAction": "Za nadaljevanje se prijavite",
+    "cleanerOnly": "Prebrskajte po drugih delovnih mestih",
+    "futureOffer": "Ponudbe prispejo v 4. fazi",
+    "upgradeAction": "Pregled dostopa",
+    "actionHint": "Oddaja ponudb ni del te faze.",
+    "related": "Podobna dela v bližini",
+    "notFound": "Zaposlitev ni najdena",
+    "notFoundDescription": "Zahtevani demo seznam ne obstaja ali ni več na voljo.",
+    "back": "Nazaj na dela",
+    "metaDescription": "Demo delo čiščenja v mestu {city} za apartma velikosti {size} m².",
+    "serviceNames": {
+      "cleaningSuppliesProvided": "Na voljo so čistila",
+      "linenReplacement": "Zamenjava perila",
+      "towelReplacement": "Zamenjava brisač",
+      "laundry": "Pralnica",
+      "balconyCleaning": "Čiščenje balkona",
+      "fridgeCleaning": "Čiščenje hladilnika",
+      "ovenCleaning": "Čiščenje pečice",
+      "sameDayTurnover": "Enodnevni promet gostov"
+    }
+  },
+  "cleanerProfile": {
+    "about": "O tem profilu",
+    "serviceDetails": "Storitev in izkušnje",
+    "experience": "Izkušnje",
+    "years": "{count} let",
+    "radius": "Radij potovanja",
+    "completed": "Dokončane predstavitvene naloge",
+    "languages": "Jeziki",
+    "weekend": "Vikend",
+    "sameDay": "Isti dan",
+    "supplies": "Zaloge",
+    "transport": "Transport",
+    "areas": "Storitvena območja",
+    "reviews": "Nedavne demo ocene",
+    "categoryRatingLabel": "{category}: {rating} od 5",
+    "contactTitle": "Bi se radi dogovorili za čiščenje?",
+    "contactDescription": "Prijavite se, da boste lahko poslali povpraševanje v prihodnjem poteku dela.",
+    "contactAction": "Prijavite se za vzpostavitev stika",
+    "privateNote": "Zasebni kontaktni podatki niso javno prikazani.",
+    "related": "Podobni demo profili",
+    "notFound": "Profil ni bil najden",
+    "notFoundDescription": "Zahtevani demo profil ne obstaja.",
+    "back": "Nazaj na profile",
+    "metaDescription": "{name} nudi storitve čiščenja apartmajev na območju {city}."
+  },
+  "ratingCategories": {
+    "cleaning_quality": "Kakovost čiščenja",
+    "reliability": "Zanesljivost",
+    "communication": "Komunikacija",
+    "punctuality": "Točnost",
+    "description_accuracy": "Natančnost opisa",
+    "organization": "Organizacija",
+    "fairness": "Pravičnost"
+  },
+  "publicHome": {
+    "metaTitle": "Clean - zanesljivo čiščenje apartmajev",
+    "metaDescription": "Objavite delo čiščenja apartmaja ali poiščite jasno strukturirane demo priložnosti po vsej Hrvaški.",
+    "hero": {
+      "eyebrow": "Enostavnejša ureditev čiščenja",
+      "title": "Poiščite zanesljivega strokovnjaka za čiščenje apartmajev",
+      "description": "Objavite delovno mesto, prejemajte ponudbe in primerjajte cene, razpoložljivost in ocene, preden izberete osebo, ki vam najbolj ustreza.",
+      "ownerAction": "Objavite delo",
+      "cleanerAction": "Poiščite dela",
+      "visualLabel": "Ilustracija apartmaja z demo oglasom in profilom",
+      "cardLabel": "Demo oglas",
+      "cardTitle": "Promet gostov",
+      "cardCity": "Dubrovnik",
+      "profileName": "Marija Knežević",
+      "profileShortName": "Marija K."
+    },
+    "problem": {
+      "eyebrow": "Zakaj Clean",
+      "title": "Urejanje čiščenja ne bi smelo biti odvisno od desetin sporočil",
+      "description": "Skupine na Facebooku, priporočila in sporočila igrajo pomembno vlogo, vendar se lahko podrobnosti zlahka razpršijo. Clean jih združi na eno strukturirano mesto.",
+      "items": {
+        "pricing": {
+          "title": "Jasnejše cene",
+          "description": "Tip proračuna in cene sta vidna pred dogovorom."
+        },
+        "comparison": {
+          "title": "Lažja primerjava",
+          "description": "Ponudbe, profile in razpoložljivost lahko primerjate na enem mestu."
+        },
+        "communication": {
+          "title": "Organizirani aranžmaji",
+          "description": "Podrobnosti o zaposlitvi se med različnimi pogovori ne izgubijo."
+        },
+        "reliability": {
+          "title": "Zgodovina sodelovanja",
+          "description": "Strukturirane medsebojne ocene ustvarjajo jasnejšo sliko sodelovanja."
+        }
+      }
+    },
+    "steps": {
+      "eyebrow": "Preprost postopek",
+      "title": "Od uvrstitve do dogovora v jasnih korakih",
+      "action": "Oglejte si, kako deluje"
+    },
+    "owners": {
+      "eyebrow": "Za lastnike apartmajev",
+      "title": "Več nadzora nad vsakim prometom gostov",
+      "description": "Objavite vse pomembne podrobnosti in primerjajte ponudbe, preden se odločite.",
+      "items": {
+        "1": "Eno mesto za podrobnosti o delu",
+        "2": "Primerjajte cene in razpoložljivost",
+        "3": "Preglejte profile in demo ocene",
+        "4": "Jasna zgodovina ureditve"
+      },
+      "action": "Registrirajte se kot lastnik",
+      "cardTitle": "Seznam z vsemi ključnimi podrobnostmi",
+      "cardDescription": "Datum, ura, velikost apartmaja, zahtevane storitve in proračun ostanejo jasno zapisani."
+    },
+    "cleanerBenefits": {
+      "eyebrow": "Za strokovnjake za čiščenje",
+      "title": "Poiščite zaposlitev, ki vam ustreza",
+      "description": "Nastavite svoje cene, razpoložljivost in območja storitev.",
+      "items": {
+        "1": "Javni strokovni profil",
+        "2": "Filtrirajte dela po mestu",
+        "3": "Vaše cene in pogoji",
+        "4": "Medsebojne ocene po opravljenem delu"
+      },
+      "action": "Prebrskaj po delovnih mestih",
+      "cardTitle": "Vaša storitev, vaši pogoji",
+      "cardDescription": "Vaš profil jasno prikazuje vašo urno postavko, najmanjši obisk in razpoložljivost."
+    },
+    "featuredJobs": {
+      "eyebrow": "Demo vsebina",
+      "title": "Primeri aktivnih delovnih mest",
+      "description": "Seznami v tej različici beta prikazujejo predvideno prihodnjo izkušnjo.",
+      "action": "Prebrskaj vsa dela"
+    },
+    "featuredCleaners": {
+      "eyebrow": "Demo vsebina",
+      "title": "Primeri profilov",
+      "description": "Vsak prikazan profil in ocena sta jasno označena kot demo podatki.",
+      "action": "Prebrskaj vse profile"
+    },
+    "transparency": {
+      "eyebrow": "Transparenten dogovor",
+      "title": "Cena in pričakovanja so znana pred prevzemom",
+      "description": "Lastniki primerjajo ponudbe, čistilci pa sami določajo cene in vsebino storitev.",
+      "items": {
+        "offers": {
+          "title": "Primerljive ponudbe",
+          "description": "Vsaka ponudba jasno prikazuje svojo ceno in vključene artikle."
+        },
+        "agreement": {
+          "title": "Dogovor pred delom",
+          "description": "Obe strani poznata dogovorjeno ceno pred prevzemom."
+        },
+        "ratings": {
+          "title": "Medsebojne ocene",
+          "description": "Obe strani lahko ocenita sodelovanje po opravljenem delu."
+        }
+      },
+      "mutualTitle": "Ocene delujejo v obe smeri",
+      "mutualDescription": "Lastniki ocenjujejo kakovost, zanesljivost, komunikativnost in točnost. Strokovnjaki za čiščenje ocenjujejo opis dela, komunikacijo, organizacijo in poštenost."
+    },
+    "pricing": {
+      "eyebrow": "Enostavno določanje cen",
+      "title": "Jasne mesečne naročnine za obe vlogi",
+      "description": "Lastniki plačajo 19 EUR, čistilni strokovnjaki pa 39 EUR na mesec, brez provizije pri plačilu čiščenja.",
+      "action": "Ogled cen"
+    },
+    "faq": {
+      "eyebrow": "Pogosta vprašanja",
+      "title": "Kaj morate vedeti pred začetkom",
+      "items": {
+        "1": {
+          "question": "Koliko stane Clean za lastnike apartmajev?",
+          "answer": "Lastniški načrt po sedemdnevnem preizkusu stane 19 EUR na mesec."
+        },
+        "2": {
+          "question": "Ali platforma zaračuna provizijo?",
+          "answer": "Ne. Uporabniki neposredno uredijo plačilo čiščenja."
+        },
+        "3": {
+          "question": "Ali so prikazani profili resnični?",
+          "answer": "Ne. Vsi trenutni profili, dela in ocene so jasno označeni kot demo podatki."
+        },
+        "4": {
+          "question": "Ali so uporabniki preverjeni?",
+          "answer": "Preverjanje ni aktivno in ne trdimo, da so bili uporabniki preverjeni."
+        },
+        "5": {
+          "question": "Ali lahko zdaj oddam ponudbo?",
+          "answer": "Ne v tej javni fazi. Potek dela ponudbe spada v naslednjo fazo."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ste pripravljeni na bolj organiziran dogovor o čiščenju?",
+      "description": "Ustvarite predstavitveni račun ali raziščite javno delovno izkušnjo.",
+      "primary": "Ustvari račun",
+      "secondary": "Prebrskaj po delovnih mestih"
+    }
+  },
+  "how": {
+    "eyebrow": "Kako platforma deluje",
+    "title": "Jasna pot za obe strani",
+    "description": "Od prvega vpisa do končne ocene ima vsak korak svoje mesto.",
+    "ownerEyebrow": "Lastniki apartmajev",
+    "ownerTitle": "Od napotitve do opravljene storitve",
+    "cleanerEyebrow": "Strokovnjaki za čiščenje",
+    "cleanerTitle": "Od profila do uveljavljenega ugleda",
+    "steps": {
+      "owner": {
+        "1": "Objavite delo",
+        "2": "Prejemanje ponudb",
+        "3": "Primerjajte cene in profile",
+        "4": "Izberite osebo",
+        "5": "Ocenite storitev"
+      },
+      "cleaner": {
+        "1": "Ustvari profil",
+        "2": "Nastavite cene in razpoložljivost",
+        "3": "Poiščite delo",
+        "4": "Oddajte ponudbo",
+        "5": "Zgradite svoj ugled"
+      }
+    },
+    "details": {
+      "owner": {
+        "1": "Vnesite datum, velikost, storitve in proračun.",
+        "2": "Ponudbe prispejo v strukturirani obliki.",
+        "3": "Preverite, kaj posamezna ponudba vsebuje.",
+        "4": "Izberite možnost, ki vam ustreza.",
+        "5": "Delite strukturirano oceno po opravljenem delu."
+      },
+      "cleaner": {
+        "1": "Predstavite svoje izkušnje in področje storitve.",
+        "2": "Določite pogoje lastne storitve.",
+        "3": "Filtrirajte sezname glede na razpoložljivost.",
+        "4": "Jasno navedite ceno in vsebino.",
+        "5": "Dokončana dela gradijo zgodovino sodelovanja."
+      }
+    },
+    "ctaTitle": "Preizkusite javno beta izkušnjo",
+    "ctaDescription": "Registracija je demo in ne zahteva kartice.",
+    "metaTitle": "Kako deluje Clean",
+    "metaDescription": "Preberite, kako lastniki apartmajev in čistilni strokovnjaki uredijo delo prek platforme Clean."
+  },
+  "pricing": {
+    "eyebrow": "Transparentne cene",
+    "title": "Dva jasna načrta brez provizije",
+    "description": "Izberite mesečno obračunavanje ali letno naročnino s popustom. Oba načrta vključujeta sedemdnevno preizkusno obdobje.",
+    "owner": {
+      "badge": "7-dnevni preizkus",
+      "title": "Clean za lastnike apartmajev",
+      "description": "Objavljajte dela, primerjajte ponudbe in upravljajte rezervacije.",
+      "trial": "Sedemdnevno preskusno obdobje je vključeno v katero koli možnost zaračunavanja.",
+      "action": "Začni poskus",
+      "billingNote": "Podatki za obračun se varno zbirajo prek Stripe Checkout.",
+      "features": {
+        "1": "Objavite in upravljajte dela",
+        "2": "Prejmite in primerjajte ponudbe",
+        "3": "Upravljanje rezervacij",
+        "4": "Zaščiteni kontaktni podatki",
+        "5": "Obvestila in zgodovina sodelovanja"
+      }
+    },
+    "plan": {
+      "badge": "7-dnevni preizkus",
+      "title": "Clean za strokovnjake za čiščenje",
+      "trial": "Sedemdnevno preskusno obdobje je vključeno v katero koli možnost zaračunavanja.",
+      "month": "na mesec",
+      "action": "Začni poskus",
+      "billingNote": "Podatki za obračun se varno zbirajo prek Stripe Checkout.",
+      "features": {
+        "1": "Javni profil",
+        "2": "Prebrskaj po delovnih mestih",
+        "3": "Oddajte ponudbe",
+        "4": "Zgodovina ponudbe",
+        "5": "Zgodovina zaposlitve",
+        "6": "Medsebojne ocene",
+        "7": "Obvestila"
+      }
+    },
+    "notes": {
+      "commissionTitle": "Brez provizije za čiščenje",
+      "commission": "Plačila čiščenja se dogovarjajo neposredno med uporabniki.",
+      "demoTitle": "Varno obračunavanje naročnine",
+      "demo": "Naročnine in načine plačila upravljate prek portala Stripe Checkout in Billing Portal."
+    },
+    "faqTitle": "Naročniška vprašanja",
+    "annualNote": "Enakovredno {monthly} na mesec. Prihranite {savings} na leto ({percent}%).",
+    "faq": {
+      "1": {
+        "question": "Ali lahko prekličem naročnino?",
+        "answer": "Da. Prihodnjo aktivno naročnino lahko prekličete pred naslednjim obračunskim obdobjem."
+      },
+      "2": {
+        "question": "Ali je za preizkus potrebno plačilno sredstvo?",
+        "answer": "Da. Stripe Checkout varno zbira podatke za obračun izbrane mesečne ali letne naročnine."
+      },
+      "3": {
+        "question": "Ali plačam provizijo na delo?",
+        "answer": "Ne. Clean ne zaračuna provizije od dogovorjene cene čiščenja."
+      },
+      "4": {
+        "question": "Ali je obračunavanje aktivno?",
+        "answer": "Da. Naročnine se začnejo prek Stripe Checkout in se upravljajo prek portala za obračunavanje."
+      }
+    },
+    "metaTitle": "Cene",
+    "metaDescription": "Clean ponuja sedemdnevno preskusno obdobje, ki mu sledijo mesečni ali znižani letni načrti za lastnike in strokovnjake za čiščenje."
+  },
+  "contact": {
+    "eyebrow": "Kontakt",
+    "title": "Kako lahko pomagamo?",
+    "description": "Pošljite povpraševanje o različici beta, prijavite napako ali predlagajte izboljšavo. Vaše sporočilo je varno zabeleženo za skupino za podporo.",
+    "fields": {
+      "name": "Polno ime",
+      "email": "E-poštni naslov",
+      "userType": "Vrsta uporabnika",
+      "subject": "Predmet",
+      "message": "Sporočilo",
+      "consent": "Sprejemam obdelavo podatkov v tem obrazcu za podporo."
+    },
+    "userTypes": {
+      "owner": "Lastnik apartmaja",
+      "cleaner": "Čistilni strokovnjak",
+      "other": "drugo"
+    },
+    "topics": {
+      "support": "Zahteva za podporo",
+      "bug": "Poročilo o napaki",
+      "feature": "Predlog za izboljšavo"
+    },
+    "submit": "Pošlji sporočilo",
+    "successTitle": "Sporočilo posneto",
+    "successDescription": "Hvala. Vaše sporočilo je bilo varno zabeleženo za skupino za podporo Clean.",
+    "errorTitle": "Sporočilo ni zabeleženo",
+    "errorDescription": "prosim poskusite ponovno Če težave ne odpravite, se vrnite pozneje.",
+    "metaTitle": "Kontakt",
+    "metaDescription": "Pošljite povpraševanje za podporo skupini Clean platform."
+  },
+  "legal": {
+    "contents": "Vsebina",
+    "reviewTitle": "Beta pravna predloga",
+    "reviewDescription": "To besedilo zahteva strokovni pravni pregled pred začetkom proizvodnje.",
+    "privacy": {
+      "eyebrow": "Pravno",
+      "title": "Politika zasebnosti",
+      "description": "Informativna beta predloga o obdelavi podatkov brez izmišljenih podatkov o pravni osebi.",
+      "metaTitle": "Politika zasebnosti",
+      "metaDescription": "Beta predloga pravilnika o zasebnosti za Clean.",
+      "sections": {
+        "1": {
+          "title": "Namen tega dokumenta",
+          "text": "Ta predloga opisuje nameravani pristop k zasebnosti med javno različico beta."
+        },
+        "2": {
+          "title": "Podatki o računu",
+          "text": "Platforma lahko obdeluje podatke, vnesene med registracijo in urejanjem profila."
+        },
+        "3": {
+          "title": "Podatki o zaposlitvi",
+          "text": "Javni pogledi uporabljajo približno lokacijo. Celoten naslov ni javno prikazan."
+        },
+        "4": {
+          "title": "Varna obstojnost",
+          "text": "Podatki produkcijskih računov in tržnice so shranjeni v Supabase. Prijava uporablja varne sejne piškotke, združljive s strežnikom."
+        },
+        "5": {
+          "title": "Uporabniške pravice",
+          "text": "Produkcijska različica mora opredeliti, kako se lahko uveljavljajo pravice dostopa, popravkov in izbrisa."
+        },
+        "6": {
+          "title": "Spremembe dokumentov",
+          "text": "Vsebina bo posodobljena po pravnem pregledu in pred začetkom proizvodnje."
+        }
+      }
+    },
+    "terms": {
+      "eyebrow": "Pravno",
+      "title": "Pogoji storitve",
+      "description": "Informativna beta predloga brez izmišljenih podrobnosti o registraciji podjetja.",
+      "metaTitle": "Pogoji storitve",
+      "metaDescription": "Beta predloga pogojev storitve za Clean.",
+      "sections": {
+        "1": {
+          "title": "Stanje beta",
+          "text": "Platforma je v demo in beta fazi. Funkcije, podatki in razpoložljivost se lahko spremenijo."
+        },
+        "2": {
+          "title": "Vloga platforme",
+          "text": "Clean ponuja strukturirano mesto za povezovanje uporabnikov in ni ponudnik storitev čiščenja."
+        },
+        "3": {
+          "title": "Uporabniška pogodba",
+          "text": "Uporabniki se neposredno dogovorijo za ceno, obseg storitve in plačilo."
+        },
+        "4": {
+          "title": "Odgovorna uporaba",
+          "text": "Uporabniki naj vnašajo točne podatke in komunicirajo profesionalno."
+        },
+        "5": {
+          "title": "Ocene",
+          "text": "Ocene naj opisujejo zaključeno sodelovanje. Vsaka trenutna ocena beta je označena kot demo."
+        },
+        "6": {
+          "title": "Pravni pregled",
+          "text": "Končne pogoje, odgovornosti in postopke mora potrditi strokovni pravni pregled."
+        }
+      }
+    },
+    "cookies": {
+      "eyebrow": "Pravno",
+      "title": "Politika piškotkov",
+      "description": "Informativna predloga, ki zajema bistvene piškotke med zasebno različico beta.",
+      "metaTitle": "Politika piškotkov",
+      "metaDescription": "Beta pravilnik o piškotkih za Clean.",
+      "sections": {
+        "1": {
+          "title": "Nujno shranjevanje",
+          "text": "Platforma uporablja bistven prostor za shranjevanje za vzdrževanje prijave, izbire jezika in osnovnega delovanja aplikacije."
+        },
+        "2": {
+          "title": "Podatki aplikacije",
+          "text": "Stanje produkcijskega računa in tržnice je shranjeno na strežniku, ne v lokalni shrambi brskalnika."
+        },
+        "3": {
+          "title": "Stripe",
+          "text": "Stripe lahko nastavi lastne bistvene piškotke, ko uporabnik odpre Checkout ali Billing Portal."
+        },
+        "4": {
+          "title": "analitika",
+          "text": "Noben ponudnik analitike ni povezan. Preden bo omogočena neobvezna analitika, bo uvedena ustrezna privolitev."
+        },
+        "5": {
+          "title": "Upravljanje podatkov",
+          "text": "Uporabniki se lahko odjavijo, da končajo sejo. Končni postopek dostopa, popravkov in izbrisa bo potrjen pred javno objavo."
+        }
+      }
+    }
+  },
+  "errorPage": {
+    "title": "Te strani ni bilo mogoče najti",
+    "description": "Preverite naslov ali se vrnite na domačo stran.",
+    "action": "Vrni se domov",
+    "runtimeTitle": "Vsebine ni bilo mogoče naložiti",
+    "runtimeDescription": "Prišlo je do nepričakovane napake. Poskusite znova ali se vrnite na domačo stran.",
+    "retry": "poskusi ponovno"
+  },
+  "notifications": {
+    "navigation": "Obvestila",
+    "title": "Obvestila",
+    "markRead": "Označi kot prebrano",
+    "markAllRead": "Označi vse kot prebrano",
+    "archive": "Arhiv",
+    "empty": "Ni novih obvestil",
+    "emptyDescription": "Tukaj bodo prikazane nove posodobitve delovnih mest, ponudb in naročnin.",
+    "types": {
+      "jobPublished": {
+        "title": "Delovno mesto je objavljeno",
+        "message": "Vaš demo seznam je zdaj viden čistilcem."
+      },
+      "newOffer": {
+        "title": "Prispela je nova ponudba",
+        "message": "Za vaš primer vnosa je bila poslana predstavitvena ponudba."
+      },
+      "offerAccepted": {
+        "title": "Ponudba sprejeta",
+        "message": "Lastnik je sprejel vašo demo ponudbo."
+      },
+      "offerRejected": {
+        "title": "Ponudba ni izbrana",
+        "message": "Lastnik je izbral drugo demo ponudbo."
+      },
+      "offerWithdrawn": {
+        "title": "Ponudba umaknjena",
+        "message": "Demo ponudba za to delovno mesto je bila umaknjena."
+      },
+      "jobUpdated": {
+        "title": "Posodobljeno",
+        "message": "Podrobnosti primera seznama so spremenjene."
+      },
+      "jobCancelled": {
+        "title": "Delo preklicano",
+        "message": "Primer vnosa je bil preklican."
+      },
+      "jobCompleted": {
+        "title": "Delo končano",
+        "message": "Demo delo je bilo označeno kot dokončano."
+      },
+      "newReview": {
+        "title": "Prejeta demo ocena",
+        "message": "Nova ocena je bila predložena po demo delu."
+      },
+      "trialEnding": {
+        "title": "Preizkus se bo kmalu končal",
+        "message": "Vaš demo preizkus bo kmalu potekel."
+      },
+      "trialExpired": {
+        "title": "Poskusno obdobje se je končalo",
+        "message": "Za pošiljanje novih ponudb je potrebna aktivna naročnina."
+      },
+      "subscriptionActivated": {
+        "title": "Naročnina aktivna",
+        "message": "Stanje demo naročnine se je spremenilo v aktivno."
+      },
+      "subscriptionPaymentIssue": {
+        "title": "Težava z naročnino",
+        "message": "Demo naročnina zahteva vašo pozornost."
+      },
+      "subscriptionRenewal": {
+        "title": "Naročnina obnovljena",
+        "message": "Demo naročnina je bila uspešno podaljšana."
+      },
+      "upcomingCleaning": {
+        "title": "Prihajajoče čiščenje",
+        "message": "Kmalu se začne dogovorjeno demo čiščenje."
+      }
+    }
+  },
+  "owner": {
+    "navigation": {
+      "label": "Lastniška navigacija",
+      "open": "Odpri navigacijo lastnika",
+      "owner": "Lastniški račun",
+      "dashboard": "Nadzorna plošča",
+      "jobs": "Moja dela",
+      "newJob": "Novo delo",
+      "profile": "Profil",
+      "settings": "nastavitve"
+    },
+    "dashboard": {
+      "welcome": "Dobrodošli, {name}",
+      "description": "Upravljajte svoj profil, apartmaje in čistilna dela na enem mestu.",
+      "publish": "Objavite novo delovno mesto",
+      "profileTitle": "Dokončanje profila",
+      "profileDescription": "Zaradi popolnega profila so dogovori s strokovnjaki za čiščenje jasnejši.",
+      "editProfile": "Uredi profil",
+      "statistics": "Statistika",
+      "quickActions": "Hitra dejanja",
+      "continueDraft": "Nadaljujte z osnutkom",
+      "duplicate": "Podvoji prejšnje delo",
+      "activeJobs": "Aktivna dela",
+      "noActive": "Ni aktivnih delovnih mest",
+      "upcoming": "Prihajajoči datumi čiščenja",
+      "recent": "Nedavno ogledana dela",
+      "metaTitle": "Nadzorna plošča lastnika"
+    },
+    "stats": {
+      "active": "Aktivna dela",
+      "drafts": "Osnutki",
+      "completed": "Opravljena dela",
+      "offers": "Skupne demo ponudbe",
+      "rating": "Povprečna ocena",
+      "completion": "Povprečno trajanje"
+    },
+    "status": {
+      "draft": "Osnutek",
+      "published": "Objavljeno",
+      "receiving_offers": "Prejemanje ponudb",
+      "assigned": "Dodeljeno",
+      "cleaner_confirmed": "Potrdil čistilni strokovnjak",
+      "in_progress": "V teku",
+      "completed": "Dokončano",
+      "archived": "Arhivirano",
+      "cancelled": "Preklicano"
+    },
+    "autosave": {
+      "saved": "Shranjeno",
+      "saving": "Shranjevanje ...",
+      "unsaved": "Neshranjene spremembe"
+    },
+    "jobs": {
+      "title": "Moja čistilna dela",
+      "description": "Iščite, filtrirajte in upravljajte svoja čistilna opravila.",
+      "metaTitle": "Moja dela",
+      "new": "Novo delo",
+      "details": "Podrobnosti",
+      "statusFilter": "Stanje",
+      "dateFilter": "Datum čiščenja",
+      "cards": "kartice",
+      "table": "Tabela",
+      "actions": "Dejanja",
+      "empty": "Ni najdenih del",
+      "emptyDescription": "Spremenite filtre ali ustvarite novo delovno mesto.",
+      "edit": "Uredi",
+      "duplicate": "Dvojnik",
+      "archive": "Arhiv",
+      "cancel": "Prekliči delo",
+      "republish": "Ponovno objavi",
+      "delete": "Izbriši osnutek",
+      "deleteTitle": "Želite izbrisati ta osnutek?",
+      "deleteDescription": "Osnutek bo trajno odstranjen.",
+      "sort": {
+        "newest": "Najnovejša",
+        "oldest": "Najstarejši",
+        "date": "Najbližji datum čiščenja",
+        "offers": "Večina ponudb"
+      }
+    },
+    "job": {
+      "newTitle": "Objavite delo čiščenja",
+      "newDescription": "Dodajte vse potrebne podatke za jasno ureditev.",
+      "newMetaTitle": "Novo delo čiščenja",
+      "editTitle": "Uredite osnutek dela",
+      "editDescription": "Spremembe se samodejno shranijo.",
+      "editMetaTitle": "Uredi delo",
+      "readOnly": "Objavljena opravila so samo za branje. Lahko spremenite njihov status ali podvojite opravilo.",
+      "stepperLabel": "Koraki za ustvarjanje delovnih mest",
+      "steps": {
+        "basic": "Osnovne informacije",
+        "apartment": "Apartma",
+        "requirements": "Zahteve",
+        "budget": "Proračun",
+        "schedule": "Urnik",
+        "review": "Preglejte in objavite"
+      },
+      "fields": {
+        "title": "Naziv delovnega mesta",
+        "apartmentName": "Ime apartmaja",
+        "approximateArea": "Približna lokacija",
+        "address": "Točen naslov",
+        "hideAddress": "Skrij točen naslov iz javnega seznama",
+        "size": "Velikost apartmaja",
+        "bedrooms": "Spalnice",
+        "bathrooms": "Kopalnice",
+        "beds": "Postelje",
+        "guests": "Kapaciteta gostov",
+        "duration": "Predvideno trajanje v urah",
+        "budget": "Proračun",
+        "budgetType": "Vrsta proračuna",
+        "urgent": "Nujno delo",
+        "date": "Želeni datum",
+        "time": "Začetni čas",
+        "deadline": "Rok za oddajo ponudbe",
+        "flexible": "Čas prihoda je prilagodljiv",
+        "notes": "Dodatne opombe",
+        "photos": "Fotografije apartmaja",
+        "photoHint": "Demo predogled za datoteke JPG, PNG in WEBP. Datoteke se ne naložijo na strežnik.",
+        "photoError": "Izberite datoteko JPG, PNG ali WEBP."
+      },
+      "services": {
+        "cleaningSuppliesProvided": "Na voljo so čistila",
+        "linenReplacement": "Zamenjava perila",
+        "towelReplacement": "Zamenjava brisač",
+        "laundry": "Pralnica",
+        "balconyCleaning": "Čiščenje balkona",
+        "kitchenCleaning": "Čiščenje kuhinje",
+        "fridgeCleaning": "Čiščenje hladilnika",
+        "ovenCleaning": "Čiščenje pečice",
+        "windowCleaning": "Čiščenje oken",
+        "sameDayTurnover": "Enodnevni promet gostov"
+      },
+      "untitled": "Delo brez naslova",
+      "saveDraft": "Shrani osnutek",
+      "saveChanges": "Shranite spremembe",
+      "publish": "Objavi delo",
+      "validationError": "Nekateri zahtevani podatki manjkajo. Preverite označene korake.",
+      "overview": "Pregled delovnega mesta",
+      "activity": "dejavnost",
+      "noNotes": "Brez dodatnih opomb."
+    },
+    "activity": {
+      "created": "Delovno mesto ustvarjeno",
+      "draft_saved": "Osnutek shranjen",
+      "published": "Delovno mesto je objavljeno",
+      "viewed": "Strokovnjak za čiščenje si je ogledal delo",
+      "offer_received": "Prejete demo ponudbe: {count}",
+      "offer_submitted": "Oddana je bila nova ponudba",
+      "offer_edited": "Ponudba je bila urejena",
+      "offer_withdrawn": "Ponudba je bila umaknjena",
+      "offer_accepted": "Ponudba je bila sprejeta",
+      "offer_rejected": "Ponudba je bila zavrnjena",
+      "cleaner_confirmed": "Čistilka je potrdila delo",
+      "started": "Čiščenje se je začelo",
+      "status_changed": "Stanje spremenjeno",
+      "completed": "Delo končano"
+    },
+    "profile": {
+      "title": "Profil lastnika",
+      "description": "Upravljajte svoje osebne in poslovne podatke.",
+      "metaTitle": "Profil lastnika",
+      "saved": "Profil shranjen.",
+      "avatar": "Profilna fotografija",
+      "company": "Podjetje, neobvezno",
+      "agency": "Agencija, neobvezno",
+      "contactMethod": "Prednostni kontaktni način",
+      "language": "Prednostni jezik",
+      "timeZone": "Časovni pas",
+      "save": "Shrani profil",
+      "contact": {
+        "email": "E-pošta",
+        "phone": "Telefon",
+        "sms": "SMS"
+      }
+    },
+    "settings": {
+      "title": "Nastavitve računa",
+      "description": "Izberite komunikacijo in regionalne nastavitve.",
+      "metaTitle": "Nastavitve lastnika",
+      "notifications": "Nastavitve obvestil",
+      "email": "E-poštna obvestila",
+      "inApp": "Obvestila v aplikaciji",
+      "jobUpdates": "Posodobitve delovnih mest",
+      "offers": "Nove demo ponudbe",
+      "marketing": "Novice in nasveti",
+      "save": "Shrani nastavitve",
+      "saved": "Nastavitve shranjene."
+    },
+    "onboarding": {
+      "title": "Nastavite svoj lastniški račun",
+      "description": "Pet kratkih korakov bo pripravilo vaš profil in podatke o apartmaju.",
+      "metaTitle": "Vkrcanje lastnika",
+      "progress": "Napredek vkrcanja",
+      "steps": {
+        "personal": "Osebni podatki",
+        "contact": "Kontaktni podatki",
+        "apartment": "Podatki o apartmaju",
+        "preferences": "Nastavitve",
+        "finish": "Končaj"
+      },
+      "finishDescription": "Preglejte informacije. Vse lahko kasneje spremenite v svojem profilu.",
+      "finish": "Dokončajte nastavitev"
+    },
+    "offers": {
+      "title": "Ponudbe za delo",
+      "metaTitle": "Primerjaj ponudbe",
+      "accept": "Sprejmi ponudbo",
+      "reject": "Zavrni ponudbo",
+      "selected": "Izbran je čistilni strokovnjak. Druge ponudbe so bile samodejno zavrnjene.",
+      "empty": "Ni ponudb še",
+      "emptyDescription": "Tukaj se bodo pojavile ponudbe strokovnjakov za čiščenje."
+    }
+  },
+  "cleaner": {
+    "navigation": {
+      "label": "Navigacija čistilnega strokovnjaka",
+      "open": "Odpri navigacijo",
+      "account": "Račun čistilnega strokovnjaka",
+      "dashboard": "Pregled",
+      "jobs": "Poiščite dela",
+      "favourites": "Priljubljene",
+      "offers": "Moje ponudbe",
+      "accepted": "Sprejeta dela",
+      "availability": "Razpoložljivost",
+      "profile": "Profil"
+    },
+    "dashboard": {
+      "welcome": "Dobrodošli, {name}",
+      "description": "Upravljajte svoj profil, ponudbe in sprejeta dela.",
+      "metaTitle": "Pregled čistila",
+      "browse": "Prebrskaj po delovnih mestih",
+      "profileCompletion": "Dokončanje profila",
+      "profileHint": "Popoln profil lastnikom pomaga pri samozavestni izbiri.",
+      "completeProfile": "Celoten profil",
+      "subscription": "Naročnina",
+      "subscriptionPlaceholder": "Upravljajte svoj trenutni paket, preskusno obdobje, način plačila in račune na strani za obračun.",
+      "statistics": "Moja dejavnost",
+      "activeOffers": "Aktivne ponudbe",
+      "acceptedJobs": "Sprejeta dela",
+      "earnings": "Zaslužek kmalu",
+      "rating": "Ocena",
+      "quickActions": "Hitra dejanja",
+      "myOffers": "Odpri moje ponudbe",
+      "recommended": "Priporočena dela",
+      "upcoming": "Prihajajoča dela"
+    },
+    "profile": {
+      "title": "Moj profil",
+      "description": "Uredite svoje poklicne podatke in področja storitev.",
+      "metaTitle": "Profil čistilnega strokovnjaka",
+      "saved": "Profil shranjen.",
+      "save": "Shrani profil",
+      "avatar": "Profilna fotografija",
+      "biography": "O meni in izkušnjah",
+      "experience": "Dolgoletne izkušnje",
+      "hourlyRate": "Urna postavka",
+      "minimumPrice": "Minimalna cena dela",
+      "radius": "Servisni radij v kilometrih",
+      "availableCities": "Mesta, ki jim služim",
+      "languages": "Jeziki",
+      "transport": "Imam svoj prevoz",
+      "supplies": "Prinesem čistila",
+      "weekend": "Na voljo sem ob vikendih",
+      "sameDay": "Na voljo sem za delo za isti dan",
+      "completedJobs": "Opravljena dela"
+    },
+    "availability": {
+      "title": "Tedenska razpoložljivost",
+      "description": "Za vsak dan izberite obdobje razpoložljivosti.",
+      "metaTitle": "Razpoložljivost",
+      "period": "Pika",
+      "vacation": "Sem na dopustu in trenutno nedosegljiva",
+      "save": "Shrani razpoložljivost",
+      "saved": "Razpoložljivost shranjena.",
+      "periods": {
+        "morning": "jutro",
+        "afternoon": "popoldan",
+        "evening": "Večer",
+        "unavailable": "Ni na voljo"
+      },
+      "days": {
+        "0": "ponedeljek",
+        "1": "torek",
+        "2": "sreda",
+        "3": "četrtek",
+        "4": "Petek",
+        "5": "sobota",
+        "6": "nedelja"
+      }
+    },
+    "jobs": {
+      "title": "Razpoložljiva dela",
+      "description": "Filtrirajte objavljena dela in poiščite pravo priložnost.",
+      "metaTitle": "Možna čistilna dela",
+      "open": "Odprto delovno mesto",
+      "empty": "Ni ustreznih delovnih mest",
+      "emptyDescription": "Spremenite filtre ali poskusite znova pozneje.",
+      "filters": {
+        "distance": "Razdalja",
+        "kilometres": "Znotraj {value} km",
+        "budget": "Minimalni proračun",
+        "date": "Datum",
+        "service": "Storitev",
+        "size": "Največja velikost",
+        "sameDay": "Promet v istem dnevu",
+        "weekend": "Samo vikend",
+        "notApplied": "Samo dela, za katera še nisem poslal ponudbe"
+      }
+    },
+    "favourites": {
+      "title": "Priljubljene",
+      "description": "Shranjena dela za poznejši pregled.",
+      "metaTitle": "Priljubljene",
+      "save": "Shrani",
+      "remove": "Odstrani",
+      "empty": "Ni shranjenih delovnih mest",
+      "emptyDescription": "Shranite zanimivo delo s seznama razpoložljivih opravil."
+    },
+    "offer": {
+      "title": "Ponudba",
+      "newTitle": "Oddajte ponudbo",
+      "editTitle": "Uredi ponudbo",
+      "metaTitle": "Ponudba za delo",
+      "submit": "Oddaj ponudbo",
+      "save": "Shranite spremembe",
+      "edit": "Uredi ponudbo",
+      "withdraw": "Umakni ponudbo",
+      "details": "Podrobnosti ponudbe",
+      "unknownJob": "Neznano delo",
+      "demoUnavailable": "To je predstavitveni seznam in ponudb ni mogoče oddati.",
+      "fields": {
+        "price": "Predlagana cena",
+        "priceType": "Vrsta cene",
+        "duration": "Predvideno trajanje v urah",
+        "arrival": "Čas prihoda",
+        "message": "Sporočilo lastniku",
+        "supplies": "Čistilna sredstva so vključena v ceno",
+        "validUntil": "Ponudba velja do"
+      },
+      "status": {
+        "pending": "V teku",
+        "accepted": "Sprejeto",
+        "rejected": "Zavrnjeno",
+        "withdrawn": "umaknjen",
+        "expired": "potekel"
+      },
+      "errors": {
+        "duplicate": "Za to delo ste že oddali ponudbo.",
+        "active_offer_exists": "Za to delo ste že oddali ponudbo.",
+        "job_unavailable": "To delo ne sprejema več ponudb.",
+        "job_not_accepting_offers": "To delo ne sprejema več ponudb.",
+        "own_job": "Ne morete oddati ponudbe za svoje delo.",
+        "cannot_offer_own_job": "Ne morete oddati ponudbe za svoje delo.",
+        "forbidden": "Nimate dovoljenja za to dejanje.",
+        "offer_not_found": "Ponudba ni bila najdena.",
+        "offer_not_editable": "Urejati je mogoče le ponudbo v teku.",
+        "offer_not_withdrawable": "Umakne se lahko le ponudba v teku.",
+        "invalid": "Preverite vnesene podatke.",
+        "unknown": "Ponudbe trenutno ni mogoče shraniti."
+      }
+    },
+    "offers": {
+      "title": "Moje ponudbe",
+      "description": "Sledite oddanim, sprejetim in zavrnjenim ponudbam.",
+      "metaTitle": "Moje ponudbe",
+      "empty": "Ni ponudb",
+      "emptyDescription": "Oddajte ponudbo za razpoložljivo delovno mesto."
+    },
+    "accepted": {
+      "title": "Sprejeta dela",
+      "description": "Pregled dogovorjenih in izvedenih čiščenj.",
+      "metaTitle": "Sprejeta dela",
+      "empty": "Ni sprejetih delovnih mest",
+      "emptyDescription": "Tukaj bodo prikazane sprejete ponudbe."
+    },
+    "progress": {
+      "confirm": "Potrdite prihod",
+      "start": "Začnite s čiščenjem",
+      "complete": "Označi kot dokončano"
+    },
+    "onboarding": {
+      "title": "Nastavite profil čistilnega strokovnjaka",
+      "description": "Dodajte podrobnosti, potrebne za prejemanje delovnih mest.",
+      "progress": "Napredek vkrcanja",
+      "validation": "Izpolnite zahtevana polja in izberite vsaj eno mesto.",
+      "finish": "Dokončajte nastavitev",
+      "steps": {
+        "personal": "Osebni podatki",
+        "professional": "Profesionalne podrobnosti",
+        "areas": "Storitvena območja",
+        "availability": "Razpoložljivost",
+        "finish": "Končaj"
+      }
+    }
+  },
+  "marketplace": {
+    "contact": {
+      "title": "Kontaktni podatki",
+      "owner": "Kontakt lastnika"
+    }
+  },
+  "billing": {
+    "navigation": "Obračunavanje",
+    "title": "Naročnina in obračun",
+    "description": "Upravljajte svoj načrt, način plačila in račune.",
+    "metaTitle": "Naročnina in obračun",
+    "currentPlan": "Trenutni načrt",
+    "subscriptionStatus": "Stanje naročnine",
+    "plan": {
+      "owner": "Lastniški načrt",
+      "cleaner": "Paket za čistilne strokovnjake"
+    },
+    "planName": {
+      "owner": "Lastnik apartmaja",
+      "cleaner": "Čistilni strokovnjak"
+    },
+    "month": "na mesec",
+    "choosePeriod": "Izberite obračunsko obdobje",
+    "billingPeriod": "Obračunsko obdobje",
+    "stripeInterval": "Interval črt",
+    "period": {
+      "monthly": "Mesečno",
+      "annual": "Letna"
+    },
+    "periodSuffix": {
+      "monthly": "na mesec",
+      "annual": "na leto"
+    },
+    "interval": {
+      "month": "mesec",
+      "year": "leto"
+    },
+    "save": "Prihranite {percent}%",
+    "renewal": "Naslednja obnova",
+    "trialRemaining": "Preostanek preizkusa",
+    "trialEnds": "Preizkus se konča: {date}",
+    "checkout": "Aktiviraj naročnino",
+    "startTrial": "Začni brezplačni preizkus",
+    "completeTrialSetup": "Dodajte način plačila",
+    "portal": "Odprite portal za obračunavanje",
+    "cancel": "Prekliči ob koncu obdobja",
+    "resume": "Nadaljuj naročnino",
+    "manage": "Upravljanje naročnine",
+    "loadErrorTitle": "Stanje naročnine ni na voljo",
+    "loadErrorDescription": "Vaš načrt je še vedno na voljo spodaj. Znova se prijavite, če Checkout ali portal za obračun nista na voljo.",
+    "actionErrorTitle": "Dejanje obračunavanja ni na voljo",
+    "actionErrorDescription": "Nismo mogli odpreti obračunavanja Stripe. Preverite sejo in poskusite znova.",
+    "contactRestricted": "Kontaktni podatki zahtevajo aktivno naročnino.",
+    "mockModeTitle": "Lažno obračunavanje",
+    "mockModeDescription": "To lokalno razvojno okolje uporablja deterministični simulirani tok zaračunavanja.",
+    "webhookWarningTitle": "Webhook še ni na voljo",
+    "webhookWarningDescription": "Checkout in portal delujeta, vendar se stanje naročnine ne bo samodejno sinhroniziralo, dokler webhook ni registriran po uvedbi.",
+    "cancellationState": "Podaljšanje naročnine",
+    "cancelsAtPeriodEnd": "Prekliče ob koncu obdobja",
+    "renewsAutomatically": "Samodejno se obnovi",
+    "lastFailedPayment": "Zadnje neuspešno plačilo",
+    "downgradePlaceholder": "Prehod na nižjo različico bo na voljo, ko bodo uvedeni dodatni načrti.",
+    "invoices": "Računi",
+    "invoiceNumber": "Številka računa",
+    "date": "Datum",
+    "amount": "Znesek",
+    "invoiceStatus": "Stanje",
+    "noInvoices": "Računov še ni",
+    "noInvoicesDescription": "Računi se prikažejo po prvem plačilu.",
+    "paymentMethod": "Način plačila",
+    "expires": "Poteče {month}/{year}",
+    "noPaymentMethod": "Dodano ni bilo nobeno plačilno sredstvo.",
+    "trial": {
+      "title": "Brezplačna preizkusna različica",
+      "remaining": "{days} preostalih poskusnih dni.",
+      "included": "{days}-dnevni brezplačni preizkus"
+    },
+    "benefits": {
+      "title": "Prednosti",
+      "owner": {
+        "first": "Objavite in upravljajte čistilna opravila",
+        "second": "Prejmite in primerjajte ponudbe čistil",
+        "third": "Upravljajte rezervacije in zaščitene kontaktne podatke"
+      },
+      "cleaner": {
+        "first": "Prebrskajte razpoložljiva čistilna dela",
+        "second": "Predložite in upravljajte ponudbe",
+        "third": "Po dodelitvi dostopajte do zaščitenih kontaktnih podatkov"
+      }
+    },
+    "status": {
+      "not_subscribed": "Ni naročen",
+      "trial": "Poskusno obdobje",
+      "active": "Aktiven",
+      "past_due": "zapadlost",
+      "cancelled": "Preklicano",
+      "expired": "potekel",
+      "suspended": "Prekinjeno",
+      "unpaid": "Neplačano",
+      "incomplete": "Nepopolna",
+      "incomplete_expired": "Nepopoln in potekel",
+      "paused": "Zaustavljeno"
+    },
+    "invoiceStatuses": {
+      "draft": "Osnutek",
+      "open": "Odpri",
+      "paid": "Plačano",
+      "void": "Praznina",
+      "uncollectible": "Neizterljivo"
+    }
+  },
+  "reviews": {
+    "action": "Pregled sodelovanja",
+    "title": "Pregled zaključenega sodelovanja",
+    "description": "Oglejte si sodelovanje za \"{title}\".",
+    "metaTitle": "Pregled sodelovanja",
+    "back": "Nazaj na delo",
+    "overall": "Skupna ocena",
+    "comment": "Komentar (izbirno)",
+    "submit": "Oddaj oceno",
+    "update": "Shranite spremembe",
+    "saved": "Vaša ocena je shranjena.",
+    "saveError": "Recenzije ni bilo mogoče shraniti. Preverite okno za urejanje in poskusite znova.",
+    "notAllowed": "Pregled ni na voljo",
+    "notAllowedDescription": "Samo udeleženci lahko pustijo oceno po opravljenem delu.",
+    "editUntil": "To oceno lahko urejate do {date}.",
+    "verified": "Preverjeno opravljeno delo",
+    "count": "{count} ocene",
+    "ratingOption": "{value} od 5",
+    "categories": {
+      "cleaning_quality": "Kakovost čiščenja",
+      "reliability": "Zanesljivost",
+      "communication": "Komunikacija",
+      "punctuality": "Točnost",
+      "accuracy": "Natančnost opisa",
+      "fairness": "Pravičnost",
+      "payment_experience": "Izkušnje s plačilom"
+    }
+  },
+  "email": {
+    "welcome": {
+      "subject": "Dobrodošli v Clean",
+      "body": "Vaš račun Clean je pripravljen."
+    },
+    "trialEnding": {
+      "subject": "Vaše preizkusno obdobje se kmalu konča",
+      "body": "Upravljajte svojo naročnino, da ohranite dostop."
+    },
+    "paymentSuccess": {
+      "subject": "Plačilo uspešno",
+      "body": "Vaša naročnina je bila obnovljena."
+    },
+    "paymentFailed": {
+      "subject": "Plačilo ni uspelo",
+      "body": "Posodobite način plačila na portalu za obračunavanje."
+    },
+    "offerReceived": {
+      "subject": "Prejeli ste novo ponudbo",
+      "body": "Na vaši nadzorni plošči je na voljo nova ponudba."
+    },
+    "offerAccepted": {
+      "subject": "Ponudba sprejeta",
+      "body": "Lastnik je sprejel vašo ponudbo."
+    },
+    "offerRejected": {
+      "subject": "Ponudba ni izbrana",
+      "body": "Lastnik je izbral drugo ponudbo."
+    },
+    "jobAssigned": {
+      "subject": "Delo dodeljeno",
+      "body": "Dogovorjeno delo je na voljo na vaši nadzorni plošči."
+    },
+    "reviewReminder": {
+      "subject": "Pregled zaključenega sodelovanja",
+      "body": "Delite preverjeno oceno o opravljenem delu."
+    }
+  }
+}

@@ -20,7 +20,7 @@ import { getCleanerProfileCompletion, normalizeCleanerProfile } from '~/utils/cl
 import { getAppRoute, getCleanerJobRoute } from '~/utils/routes'
 
 definePageMeta({ layout: 'dashboard-cleaner', middleware: ['auth', 'role'], roles: ['cleaner'] })
-defineI18nRoute({ paths: { hr: '/dashboard-cleaner', en: '/dashboard-cleaner' } })
+defineI18nRoute({ paths: { hr: '/dashboard-cleaner', en: '/dashboard-cleaner', sl: '/nadzorna-plosca-cistilec' } })
 const { t, locale } = useI18n()
 const authStore = useAuthStore(), jobsStore = useJobsStore(), offersStore = useOffersStore(), userStore = useUserStore()
 const load = async (id?: string) => {

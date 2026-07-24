@@ -119,6 +119,11 @@ export default defineNuxtConfig({
         language: 'en-GB',
         name: 'English',
       },
+      {
+        code: 'sl',
+        language: 'sl-SI',
+        name: 'Slovenščina',
+      },
     ],
     vueI18n: 'i18n.config.ts',
   },

@@ -37,7 +37,7 @@ import { normalizeCleanerProfile } from '~/utils/cleaner'
 import { getFieldErrors } from '~/utils/validation'
 
 definePageMeta({ layout: 'dashboard-cleaner', middleware: ['auth', 'role'], roles: ['cleaner'] })
-defineI18nRoute({ paths: { hr: '/dashboard-cleaner/profil', en: '/dashboard-cleaner/profile' } })
+defineI18nRoute({ paths: { hr: '/dashboard-cleaner/profil', en: '/dashboard-cleaner/profile', sl: '/nadzorna-plosca-cistilec/profil' } })
 const { t } = useI18n(), authStore = useAuthStore(), userStore = useUserStore()
 const profile = computed(() => userStore.profile && 'completedJobs' in userStore.profile ? userStore.profile as CleanerProfile : null)
 const form = reactive({} as CleanerProfile), email = ref(''), serviceCities = ref<string[]>([]), errors = ref<Record<string, string>>({}), saved = ref(false)

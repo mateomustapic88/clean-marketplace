@@ -88,7 +88,7 @@ import { formatPrice } from '~/utils/formatters'
 import { demoDisplayName } from '~/utils/demoPresentation'
 import { getAppRoute, getCleanerRoute } from '~/utils/routes'
 
-defineI18nRoute({ paths: { hr: '/cistaci/[id]', en: '/cleaners/[id]' } })
+defineI18nRoute({ paths: { hr: '/cistaci/[id]', en: '/cleaners/[id]', sl: '/cistilci/[id]' } })
 const route = useRoute()
 const { t, locale } = useI18n()
 const userStore = useUserStore()

@@ -21,6 +21,16 @@ const publicPaths = [
   '/en/privacy',
   '/en/register',
   '/en/terms',
+  '/sl',
+  '/sl/cene',
+  '/sl/cistilci',
+  '/sl/dela',
+  '/sl/kako-deluje',
+  '/sl/kontakt',
+  '/sl/pogoji-uporabe',
+  '/sl/politika-piskotkov',
+  '/sl/politika-zasebnosti',
+  '/sl/registracija',
 ] as const
 
 const escapeXml = (value: string): string => value

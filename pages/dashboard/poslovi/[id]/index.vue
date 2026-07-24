@@ -43,7 +43,7 @@ import { formatPrice, formatPublicDate } from '~/utils/formatters'
 import { getAppRoute, getJobReviewRoute, getOwnerJobEditRoute, getOwnerJobOffersRoute } from '~/utils/routes'
 
 definePageMeta({ layout: 'dashboard', middleware: ['auth', 'role'], roles: ['owner'] })
-defineI18nRoute({ paths: { hr: '/dashboard/poslovi/[id]', en: '/dashboard/jobs/[id]' } })
+defineI18nRoute({ paths: { hr: '/dashboard/poslovi/[id]', en: '/dashboard/jobs/[id]', sl: '/nadzorna-plosca/dela/[id]' } })
 const route = useRoute()
 const { t, locale } = useI18n()
 const authStore = useAuthStore()

@@ -24,5 +24,10 @@ const { t } = useI18n()
   &__identity { display: flex; flex: 1; gap: $space-3; align-items: center; div { display: grid; } small { color: $color-text-secondary; } }
   &__notifications { position: relative; display: grid; width: 2.75rem; height: 2.75rem; color: $color-text-primary; place-items: center; border: 1px solid $color-border; border-radius: $radius-md; span { position: absolute; top: -.35rem; right: -.35rem; min-width: 1.25rem; padding: .1rem .25rem; font-size: $font-size-xs; color: $color-surface; text-align: center; background: $color-error; border-radius: $radius-full; } }
   @media (min-width: $breakpoint-lg) { &__menu { display: none; } }
+  @media (max-width: 30rem) {
+    gap: $space-2;
+    padding-inline: $space-2;
+    &__identity { display: none; }
+  }
 }
 </style>

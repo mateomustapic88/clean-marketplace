@@ -47,5 +47,13 @@ const switchLocalePath = useSwitchLocalePath()
       background: $color-primary-dark;
     }
   }
+
+  @media (max-width: 30rem) {
+    &__option {
+      min-width: 2rem;
+      min-height: 2rem;
+      padding-inline: $space-1;
+    }
+  }
 }
 </style>

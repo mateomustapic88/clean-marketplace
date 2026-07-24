@@ -44,7 +44,7 @@ import { normalizeCleanerProfile } from '~/utils/cleaner'
 import { getAppRoute, getCleanerOfferRoute, getJobReviewRoute } from '~/utils/routes'
 
 definePageMeta({ layout: 'dashboard-cleaner', middleware: ['auth', 'role'], roles: ['cleaner'] })
-defineI18nRoute({ paths: { hr: '/dashboard-cleaner/poslovi/[id]', en: '/dashboard-cleaner/jobs/[id]' } })
+defineI18nRoute({ paths: { hr: '/dashboard-cleaner/poslovi/[id]', en: '/dashboard-cleaner/jobs/[id]', sl: '/nadzorna-plosca-cistilec/dela/[id]' } })
 const route = useRoute(), { t, locale } = useI18n()
 const authStore = useAuthStore(), jobsStore = useJobsStore(), offersStore = useOffersStore(), userStore = useUserStore()
 const subscriptionStore = useSubscriptionStore()

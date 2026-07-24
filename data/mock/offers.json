@@ -157,7 +157,7 @@
     "message": "Demo ponuda. Dostupna sam u navedenom terminu i mogu donijeti sredstva za čišćenje.",
     "suppliesIncluded": true,
     "expiresAt": "2026-07-04T18:00:00.000Z",
-    "status": "accepted"
+    "status": "pending"
   },
   {
     "id": "offer-04-02",
@@ -173,7 +173,7 @@
     "message": "Primjer ponude. Imam iskustvo sa smjenama gostiju i mogu potvrditi dolazak unaprijed.",
     "suppliesIncluded": false,
     "expiresAt": "2026-07-04T18:00:00.000Z",
-    "status": "rejected"
+    "status": "pending"
   },
   {
     "id": "offer-04-03",
@@ -189,7 +189,7 @@
     "message": "Demo sadržaj. Predložena cijena uključuje dogovorene zadatke i zamjenu posteljine.",
     "suppliesIncluded": true,
     "expiresAt": "2026-07-04T18:00:00.000Z",
-    "status": "rejected"
+    "status": "pending"
   },
   {
     "id": "offer-05-01",

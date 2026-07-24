@@ -57,6 +57,7 @@ defineI18nRoute({
   paths: {
     hr: '/zaboravljena-lozinka',
     en: '/forgot-password',
+    sl: '/pozabljeno-geslo',
   },
 })
 

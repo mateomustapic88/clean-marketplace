@@ -56,7 +56,7 @@ import {
 } from '~/utils/publicCatalog'
 import { getAppRoute, getJobRoute } from '~/utils/routes'
 
-defineI18nRoute({ paths: { hr: '/poslovi', en: '/jobs' } })
+defineI18nRoute({ paths: { hr: '/poslovi', en: '/jobs', sl: '/dela' } })
 const { t, locale } = useI18n()
 const route = useRoute()
 const router = useRouter()

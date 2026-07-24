@@ -40,6 +40,7 @@ describe('production infrastructure', () => {
       '0013_safe_marketplace_views.sql',
       '0014_rls_verification.sql',
       '0015_subscription_billing_period.sql',
+      '0016_add_slovenian_locale.sql',
     ])
   })
 

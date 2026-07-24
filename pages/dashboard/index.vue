@@ -54,7 +54,7 @@ import { getProfileCompletion, getOwnerJobStatistics } from '~/services/jobs/job
 import { getAppRoute, getOwnerJobEditRoute, getOwnerJobRoute } from '~/utils/routes'
 
 definePageMeta({ layout: 'dashboard', middleware: ['auth', 'role'], roles: ['owner'] })
-defineI18nRoute({ paths: { hr: '/dashboard', en: '/dashboard' } })
+defineI18nRoute({ paths: { hr: '/dashboard', en: '/dashboard', sl: '/nadzorna-plosca' } })
 const { t, locale } = useI18n()
 const authStore = useAuthStore()
 const jobsStore = useJobsStore()

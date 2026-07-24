@@ -226,7 +226,7 @@ const jobTitles = [
 
 const jobs = Array.from({ length: 40 }, (_, index) => {
   const number = String(index + 1).padStart(2, '0')
-  const status = jobStatuses[index % jobStatuses.length]
+  const status = index === 3 ? 'published' : jobStatuses[index % jobStatuses.length]
   const accepted = ['assigned', 'in_progress', 'completed'].includes(status)
   const scheduledCity = cities[index % cities.length]
   const isDubrovnikSlot = scheduledCity.code === 'dubrovnik'

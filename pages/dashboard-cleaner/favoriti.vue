@@ -10,7 +10,7 @@ import { useUserStore } from '~/stores/user'
 import { normalizeCleanerProfile } from '~/utils/cleaner'
 
 definePageMeta({ layout: 'dashboard-cleaner', middleware: ['auth', 'role'], roles: ['cleaner'] })
-defineI18nRoute({ paths: { hr: '/dashboard-cleaner/favoriti', en: '/dashboard-cleaner/favourites' } })
+defineI18nRoute({ paths: { hr: '/dashboard-cleaner/favoriti', en: '/dashboard-cleaner/favourites', sl: '/nadzorna-plosca-cistilec/priljubljeni' } })
 const { t } = useI18n()
 const authStore = useAuthStore(), jobsStore = useJobsStore(), userStore = useUserStore()
 const load = async (id?: string) => {

@@ -185,7 +185,7 @@ export class SupabaseUserRepository implements UserRepository {
       phone: text(contact?.phone), cityCode: text(profile.city_code), preferredContactMethod: (contact?.preferred_contact_method ?? 'email') as OwnerProfile['preferredContactMethod'],
       companyName: text(row.company_name) || null, agencyName: text(row.agency_name) || null,
       notificationPreferences: this.preferences(preferences as DbRow | null),
-      preferredLanguage: (contact?.preferred_language ?? 'hr') as 'hr' | 'en', timeZone: text(contact?.time_zone, 'Europe/Zagreb'),
+      preferredLanguage: (contact?.preferred_language ?? 'hr') as 'hr' | 'en' | 'sl', timeZone: text(contact?.time_zone, 'Europe/Zagreb'),
       avatarUrl: await this.signedAvatar(text(profile.avatar_path)), onboardingCompleted: bool(profile.onboarding_completed),
       apartmentName: text(row.apartment_name) || null, apartmentCityCode: text(row.apartment_city_code) || null,
       apartmentAddress: text(privateData?.apartment_address) || null, averageRating: null, ratingCount: 0,

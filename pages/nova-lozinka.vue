@@ -43,7 +43,7 @@ import AuthShell from '~/components/auth/AuthShell.vue'
 import { useAuthStore } from '~/stores/auth'
 import { getAppRoute } from '~/utils/routes'
 
-defineI18nRoute({ paths: { hr: '/nova-lozinka', en: '/reset-password' } })
+defineI18nRoute({ paths: { hr: '/nova-lozinka', en: '/reset-password', sl: '/novo-geslo' } })
 const { t, locale } = useI18n()
 const auth = useAuthStore()
 const password = ref('')

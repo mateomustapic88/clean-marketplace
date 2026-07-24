@@ -36,6 +36,7 @@
     "label": "Jezik",
     "hr": "HR",
     "en": "EN",
+    "sl": "SL",
     "switchTo": "Promijeni jezik na {language}"
   },
   "header": {
@@ -125,14 +126,14 @@
     "maximumValue": "Najveća dopuštena vrijednost je {value}.",
     "oib": "OIB mora sadržavati 11 znamenki.",
     "url": "Unesite ispravnu internetsku adresu.",
-    "languages": "Odaberite najmanje jedan jezik."
-    ,"consent": "Za slanje poruke potrebno je prihvatiti obradu podataka."
+    "languages": "Odaberite najmanje jedan jezik.",
+    "consent": "Za slanje poruke potrebno je prihvatiti obradu podataka."
   },
   "demo": {
     "profileBadge": "Demo profil",
     "listingBadge": "Primjer oglasa",
-    "dataBadge": "Demo podaci"
-    ,"ratingBadge": "Demo ocjena"
+    "dataBadge": "Demo podaci",
+    "ratingBadge": "Demo ocjena"
   },
   "auth": {
     "fields": {
@@ -281,6 +282,7 @@
   "languages": {
     "hr": "Hrvatski",
     "en": "Engleski",
+    "sl": "Slovenski",
     "de": "Njemački",
     "it": "Talijanski"
   },
@@ -469,65 +471,178 @@
       "title": "Dogovaranje čišćenja ne bi trebalo ovisiti o desecima poruka",
       "description": "Facebook grupe, preporuke i poruke imaju važnu ulogu, ali podaci o jednom poslu lako se rasprše. Clean ih okuplja na jednom strukturiranom mjestu.",
       "items": {
-        "pricing": { "title": "Jasnije cijene", "description": "Budžet i vrsta cijene vidljivi su prije dogovora." },
-        "comparison": { "title": "Lakša usporedba", "description": "Ponude, profili i dostupnost mogu se usporediti na jednom mjestu." },
-        "communication": { "title": "Uredniji dogovor", "description": "Detalji posla ne gube se između različitih razgovora." },
-        "reliability": { "title": "Povijest suradnje", "description": "Strukturirane međusobne ocjene grade jasniju sliku suradnje." }
+        "pricing": {
+          "title": "Jasnije cijene",
+          "description": "Budžet i vrsta cijene vidljivi su prije dogovora."
+        },
+        "comparison": {
+          "title": "Lakša usporedba",
+          "description": "Ponude, profili i dostupnost mogu se usporediti na jednom mjestu."
+        },
+        "communication": {
+          "title": "Uredniji dogovor",
+          "description": "Detalji posla ne gube se između različitih razgovora."
+        },
+        "reliability": {
+          "title": "Povijest suradnje",
+          "description": "Strukturirane međusobne ocjene grade jasniju sliku suradnje."
+        }
       }
     },
-    "steps": { "eyebrow": "Jednostavan proces", "title": "Od oglasa do dogovora u jasnim koracima", "action": "Pogledaj kako funkcionira" },
+    "steps": {
+      "eyebrow": "Jednostavan proces",
+      "title": "Od oglasa do dogovora u jasnim koracima",
+      "action": "Pogledaj kako funkcionira"
+    },
     "owners": {
-      "eyebrow": "Za vlasnike apartmana", "title": "Više kontrole nad svakom smjenom gostiju", "description": "Objavite sve važne detalje i usporedite ponude prije odluke.",
-      "items": { "1": "Jedno mjesto za detalje posla", "2": "Usporedba cijena i dostupnosti", "3": "Pregled profila i demo ocjena", "4": "Jasna povijest dogovora" },
-      "action": "Registriraj se kao vlasnik", "cardTitle": "Oglas koji govori sve bitno", "cardDescription": "Datum, vrijeme, veličina apartmana, potrebne usluge i budžet ostaju jasno zapisani."
+      "eyebrow": "Za vlasnike apartmana",
+      "title": "Više kontrole nad svakom smjenom gostiju",
+      "description": "Objavite sve važne detalje i usporedite ponude prije odluke.",
+      "items": {
+        "1": "Jedno mjesto za detalje posla",
+        "2": "Usporedba cijena i dostupnosti",
+        "3": "Pregled profila i demo ocjena",
+        "4": "Jasna povijest dogovora"
+      },
+      "action": "Registriraj se kao vlasnik",
+      "cardTitle": "Oglas koji govori sve bitno",
+      "cardDescription": "Datum, vrijeme, veličina apartmana, potrebne usluge i budžet ostaju jasno zapisani."
     },
     "cleanerBenefits": {
-      "eyebrow": "Za osobe za čišćenje", "title": "Pronađite poslove koji odgovaraju vašem načinu rada", "description": "Sami postavljate cijene, dostupnost i područja na kojima radite.",
-      "items": { "1": "Javni profesionalni profil", "2": "Filtriranje poslova prema gradu", "3": "Vlastite cijene i uvjeti", "4": "Međusobne ocjene nakon posla" },
-      "action": "Pregledaj poslove", "cardTitle": "Vaša usluga, vaši uvjeti", "cardDescription": "Profil jasno prikazuje cijenu po satu, minimalni dolazak i dostupnost."
-    },
-    "featuredJobs": { "eyebrow": "Demo sadržaj", "title": "Primjeri aktivnih poslova", "description": "Oglasi u ovoj beta verziji služe za prikaz budućeg iskustva.", "action": "Pregledaj sve poslove" },
-    "featuredCleaners": { "eyebrow": "Demo sadržaj", "title": "Primjeri profila", "description": "Svi prikazani profili i ocjene jasno su označeni kao demo podaci.", "action": "Pregledaj sve profile" },
-    "transparency": {
-      "eyebrow": "Transparentan dogovor", "title": "Cijena i očekivanja poznati su prije prihvaćanja", "description": "Vlasnici uspoređuju ponude, a osobe za čišćenje same određuju cijene i sadržaj usluge.",
+      "eyebrow": "Za osobe za čišćenje",
+      "title": "Pronađite poslove koji odgovaraju vašem načinu rada",
+      "description": "Sami postavljate cijene, dostupnost i područja na kojima radite.",
       "items": {
-        "offers": { "title": "Usporedive ponude", "description": "Svaka ponuda jasno prikazuje cijenu i uključene stavke." },
-        "agreement": { "title": "Dogovor prije posla", "description": "Obje strane znaju dogovorenu cijenu prije prihvaćanja." },
-        "ratings": { "title": "Međusobne ocjene", "description": "Nakon završenog posla obje strane mogu ocijeniti suradnju." }
+        "1": "Javni profesionalni profil",
+        "2": "Filtriranje poslova prema gradu",
+        "3": "Vlastite cijene i uvjeti",
+        "4": "Međusobne ocjene nakon posla"
+      },
+      "action": "Pregledaj poslove",
+      "cardTitle": "Vaša usluga, vaši uvjeti",
+      "cardDescription": "Profil jasno prikazuje cijenu po satu, minimalni dolazak i dostupnost."
+    },
+    "featuredJobs": {
+      "eyebrow": "Demo sadržaj",
+      "title": "Primjeri aktivnih poslova",
+      "description": "Oglasi u ovoj beta verziji služe za prikaz budućeg iskustva.",
+      "action": "Pregledaj sve poslove"
+    },
+    "featuredCleaners": {
+      "eyebrow": "Demo sadržaj",
+      "title": "Primjeri profila",
+      "description": "Svi prikazani profili i ocjene jasno su označeni kao demo podaci.",
+      "action": "Pregledaj sve profile"
+    },
+    "transparency": {
+      "eyebrow": "Transparentan dogovor",
+      "title": "Cijena i očekivanja poznati su prije prihvaćanja",
+      "description": "Vlasnici uspoređuju ponude, a osobe za čišćenje same određuju cijene i sadržaj usluge.",
+      "items": {
+        "offers": {
+          "title": "Usporedive ponude",
+          "description": "Svaka ponuda jasno prikazuje cijenu i uključene stavke."
+        },
+        "agreement": {
+          "title": "Dogovor prije posla",
+          "description": "Obje strane znaju dogovorenu cijenu prije prihvaćanja."
+        },
+        "ratings": {
+          "title": "Međusobne ocjene",
+          "description": "Nakon završenog posla obje strane mogu ocijeniti suradnju."
+        }
       },
       "mutualTitle": "Ocjene idu u oba smjera",
       "mutualDescription": "Vlasnici ocjenjuju kvalitetu, pouzdanost, komunikaciju i točnost dolaska. Osobe za čišćenje ocjenjuju opis posla, komunikaciju, organizaciju i korektnost."
     },
-    "pricing": { "eyebrow": "Jednostavne cijene", "title": "Jasna mjesečna pretplata za obje uloge", "description": "Vlasnici plaćaju 19 EUR, osobe za čišćenje 39 EUR mjesečno, bez provizije na plaćanje čišćenja.", "action": "Pogledaj cijene" },
+    "pricing": {
+      "eyebrow": "Jednostavne cijene",
+      "title": "Jasna mjesečna pretplata za obje uloge",
+      "description": "Vlasnici plaćaju 19 EUR, osobe za čišćenje 39 EUR mjesečno, bez provizije na plaćanje čišćenja.",
+      "action": "Pogledaj cijene"
+    },
     "faq": {
-      "eyebrow": "Česta pitanja", "title": "Sve važno prije početka",
+      "eyebrow": "Česta pitanja",
+      "title": "Sve važno prije početka",
       "items": {
-        "1": { "question": "Koliko Clean košta vlasnike apartmana?", "answer": "Plan za vlasnike košta 19 EUR mjesečno nakon sedmodnevnog probnog razdoblja." },
-        "2": { "question": "Uzima li platforma proviziju?", "answer": "Ne. Plaćanje čišćenja korisnici dogovaraju izravno." },
-        "3": { "question": "Jesu li prikazani profili stvarni?", "answer": "Ne. Trenutačno su svi profili, poslovi i ocjene jasno označeni demo podaci." },
-        "4": { "question": "Jesu li korisnici verificirani?", "answer": "Verifikacija još nije aktivna i ne prikazujemo tvrdnje da su korisnici provjereni." },
-        "5": { "question": "Mogu li odmah poslati ponudu?", "answer": "Ne u ovoj javnoj fazi. Tijek ponuda bit će implementiran u sljedećoj fazi." }
+        "1": {
+          "question": "Koliko Clean košta vlasnike apartmana?",
+          "answer": "Plan za vlasnike košta 19 EUR mjesečno nakon sedmodnevnog probnog razdoblja."
+        },
+        "2": {
+          "question": "Uzima li platforma proviziju?",
+          "answer": "Ne. Plaćanje čišćenja korisnici dogovaraju izravno."
+        },
+        "3": {
+          "question": "Jesu li prikazani profili stvarni?",
+          "answer": "Ne. Trenutačno su svi profili, poslovi i ocjene jasno označeni demo podaci."
+        },
+        "4": {
+          "question": "Jesu li korisnici verificirani?",
+          "answer": "Verifikacija još nije aktivna i ne prikazujemo tvrdnje da su korisnici provjereni."
+        },
+        "5": {
+          "question": "Mogu li odmah poslati ponudu?",
+          "answer": "Ne u ovoj javnoj fazi. Tijek ponuda bit će implementiran u sljedećoj fazi."
+        }
       }
     },
-    "cta": { "title": "Spremni za uredniji dogovor čišćenja?", "description": "Izradite demo račun ili pregledajte kako će izgledati javni poslovi.", "primary": "Izradi račun", "secondary": "Pregledaj poslove" }
+    "cta": {
+      "title": "Spremni za uredniji dogovor čišćenja?",
+      "description": "Izradite demo račun ili pregledajte kako će izgledati javni poslovi.",
+      "primary": "Izradi račun",
+      "secondary": "Pregledaj poslove"
+    }
   },
   "how": {
-    "eyebrow": "Kako platforma radi", "title": "Jasan put za obje strane", "description": "Od prvog oglasa do završne ocjene svaki korak ima svoje mjesto.",
-    "ownerEyebrow": "Vlasnici apartmana", "ownerTitle": "Od objave do završene usluge",
-    "cleanerEyebrow": "Osobe za čišćenje", "cleanerTitle": "Od profila do izgrađene reputacije",
+    "eyebrow": "Kako platforma radi",
+    "title": "Jasan put za obje strane",
+    "description": "Od prvog oglasa do završne ocjene svaki korak ima svoje mjesto.",
+    "ownerEyebrow": "Vlasnici apartmana",
+    "ownerTitle": "Od objave do završene usluge",
+    "cleanerEyebrow": "Osobe za čišćenje",
+    "cleanerTitle": "Od profila do izgrađene reputacije",
     "steps": {
-      "owner": { "1": "Objavite posao", "2": "Primite ponude", "3": "Usporedite cijene i profile", "4": "Odaberite osobu", "5": "Ocijenite uslugu" },
-      "cleaner": { "1": "Izradite profil", "2": "Postavite cijene i dostupnost", "3": "Pronađite posao", "4": "Pošaljite ponudu", "5": "Izgradite reputaciju" }
+      "owner": {
+        "1": "Objavite posao",
+        "2": "Primite ponude",
+        "3": "Usporedite cijene i profile",
+        "4": "Odaberite osobu",
+        "5": "Ocijenite uslugu"
+      },
+      "cleaner": {
+        "1": "Izradite profil",
+        "2": "Postavite cijene i dostupnost",
+        "3": "Pronađite posao",
+        "4": "Pošaljite ponudu",
+        "5": "Izgradite reputaciju"
+      }
     },
     "details": {
-      "owner": { "1": "Unesite datum, veličinu, usluge i budžet.", "2": "Ponude stižu u strukturiranom obliku.", "3": "Provjerite što svaka ponuda uključuje.", "4": "Odaberite opciju koja vam odgovara.", "5": "Nakon posla podijelite strukturiranu ocjenu." },
-      "cleaner": { "1": "Predstavite iskustvo i područje rada.", "2": "Sami određujete uvjete svoje usluge.", "3": "Filtrirajte oglase prema dostupnosti.", "4": "Jasno navedite cijenu i sadržaj.", "5": "Završeni poslovi grade povijest suradnje." }
+      "owner": {
+        "1": "Unesite datum, veličinu, usluge i budžet.",
+        "2": "Ponude stižu u strukturiranom obliku.",
+        "3": "Provjerite što svaka ponuda uključuje.",
+        "4": "Odaberite opciju koja vam odgovara.",
+        "5": "Nakon posla podijelite strukturiranu ocjenu."
+      },
+      "cleaner": {
+        "1": "Predstavite iskustvo i područje rada.",
+        "2": "Sami određujete uvjete svoje usluge.",
+        "3": "Filtrirajte oglase prema dostupnosti.",
+        "4": "Jasno navedite cijenu i sadržaj.",
+        "5": "Završeni poslovi grade povijest suradnje."
+      }
     },
-    "ctaTitle": "Isprobajte javno beta iskustvo", "ctaDescription": "Registracija je demo i ne zahtijeva karticu.",
-    "metaTitle": "Kako funkcionira Clean", "metaDescription": "Saznajte kako vlasnici apartmana i osobe za čišćenje dogovaraju posao kroz Clean."
+    "ctaTitle": "Isprobajte javno beta iskustvo",
+    "ctaDescription": "Registracija je demo i ne zahtijeva karticu.",
+    "metaTitle": "Kako funkcionira Clean",
+    "metaDescription": "Saznajte kako vlasnici apartmana i osobe za čišćenje dogovaraju posao kroz Clean."
   },
   "pricing": {
-    "eyebrow": "Transparentne cijene", "title": "Dva jasna plana bez provizije", "description": "Odaberite mjesečnu ili povoljniju godišnju pretplatu. Oba plana uključuju sedmodnevno probno razdoblje.",
+    "eyebrow": "Transparentne cijene",
+    "title": "Dva jasna plana bez provizije",
+    "description": "Odaberite mjesečnu ili povoljniju godišnju pretplatu. Oba plana uključuju sedmodnevno probno razdoblje.",
     "owner": {
       "badge": "7 dana probno",
       "title": "Clean za vlasnike apartmana",
@@ -535,70 +650,198 @@
       "trial": "Sedam dana probnog razdoblja uključeno je u obje opcije naplate.",
       "action": "Započni probno razdoblje",
       "billingNote": "Podaci za naplatu sigurno se unose kroz Stripe Checkout.",
-      "features": { "1": "Objava i upravljanje poslovima", "2": "Primanje i usporedba ponuda", "3": "Upravljanje rezervacijama", "4": "Zaštićeni kontaktni podaci", "5": "Obavijesti i povijest suradnje" }
+      "features": {
+        "1": "Objava i upravljanje poslovima",
+        "2": "Primanje i usporedba ponuda",
+        "3": "Upravljanje rezervacijama",
+        "4": "Zaštićeni kontaktni podaci",
+        "5": "Obavijesti i povijest suradnje"
+      }
     },
     "plan": {
-      "badge": "7 dana probno", "title": "Clean za osobe za čišćenje", "trial": "Sedam dana probnog razdoblja uključeno je u obje opcije naplate.", "month": "mjesečno", "action": "Započni probno razdoblje", "billingNote": "Podaci za naplatu sigurno se unose kroz Stripe Checkout.",
-      "features": { "1": "Javni profil", "2": "Pregled poslova", "3": "Slanje ponuda", "4": "Povijest ponuda", "5": "Povijest poslova", "6": "Međusobne ocjene", "7": "Obavijesti" }
+      "badge": "7 dana probno",
+      "title": "Clean za osobe za čišćenje",
+      "trial": "Sedam dana probnog razdoblja uključeno je u obje opcije naplate.",
+      "month": "mjesečno",
+      "action": "Započni probno razdoblje",
+      "billingNote": "Podaci za naplatu sigurno se unose kroz Stripe Checkout.",
+      "features": {
+        "1": "Javni profil",
+        "2": "Pregled poslova",
+        "3": "Slanje ponuda",
+        "4": "Povijest ponuda",
+        "5": "Povijest poslova",
+        "6": "Međusobne ocjene",
+        "7": "Obavijesti"
+      }
     },
     "notes": {
-      "commissionTitle": "Bez provizije na čišćenje", "commission": "Plaćanje čišćenja dogovara se izravno između korisnika.", "demoTitle": "Sigurna pretplata", "demo": "Pretplatom i načinom plaćanja upravlja se kroz Stripe Checkout i Billing Portal."
+      "commissionTitle": "Bez provizije na čišćenje",
+      "commission": "Plaćanje čišćenja dogovara se izravno između korisnika.",
+      "demoTitle": "Sigurna pretplata",
+      "demo": "Pretplatom i načinom plaćanja upravlja se kroz Stripe Checkout i Billing Portal."
     },
     "faqTitle": "Pitanja o pretplati",
     "annualNote": "Ekvivalent {monthly} mjesečno. Ušteda {savings} godišnje ({percent}%).",
     "faq": {
-      "1": { "question": "Mogu li otkazati pretplatu?", "answer": "Da. Buduća aktivna pretplata moći će se otkazati prije sljedećeg obračuna." },
-      "2": { "question": "Treba li način plaćanja za probno razdoblje?", "answer": "Da. Stripe Checkout sigurno prikuplja podatke za odabranu mjesečnu ili godišnju pretplatu." },
-      "3": { "question": "Plaćam li proviziju po poslu?", "answer": "Ne. Clean ne uzima proviziju na dogovorenu cijenu čišćenja." },
-      "4": { "question": "Je li naplata aktivna?", "answer": "Da. Pretplate se pokreću kroz Stripe Checkout, a njima se upravlja kroz Billing Portal." }
+      "1": {
+        "question": "Mogu li otkazati pretplatu?",
+        "answer": "Da. Buduća aktivna pretplata moći će se otkazati prije sljedećeg obračuna."
+      },
+      "2": {
+        "question": "Treba li način plaćanja za probno razdoblje?",
+        "answer": "Da. Stripe Checkout sigurno prikuplja podatke za odabranu mjesečnu ili godišnju pretplatu."
+      },
+      "3": {
+        "question": "Plaćam li proviziju po poslu?",
+        "answer": "Ne. Clean ne uzima proviziju na dogovorenu cijenu čišćenja."
+      },
+      "4": {
+        "question": "Je li naplata aktivna?",
+        "answer": "Da. Pretplate se pokreću kroz Stripe Checkout, a njima se upravlja kroz Billing Portal."
+      }
     },
-    "metaTitle": "Cijene", "metaDescription": "Clean nudi sedmodnevno probno razdoblje te mjesečne i povoljnije godišnje planove za vlasnike i osobe za čišćenje."
+    "metaTitle": "Cijene",
+    "metaDescription": "Clean nudi sedmodnevno probno razdoblje te mjesečne i povoljnije godišnje planove za vlasnike i osobe za čišćenje."
   },
   "contact": {
-    "eyebrow": "Kontakt", "title": "Kako vam možemo pomoći?", "description": "Pošaljite beta upit, prijavite grešku ili predložite poboljšanje. Vaša poruka sigurno se bilježi za tim podrške.",
-    "fields": { "name": "Ime i prezime", "email": "Adresa e-pošte", "userType": "Vrsta korisnika", "subject": "Predmet", "message": "Poruka", "consent": "Prihvaćam obradu podataka iz ovog obrasca za podršku." },
-    "userTypes": { "owner": "Vlasnik apartmana", "cleaner": "Osoba za čišćenje", "other": "Ostalo" },
-    "topics": { "support": "Zahtjev za podršku", "bug": "Prijava greške", "feature": "Prijedlog poboljšanja" },
-    "submit": "Pošalji poruku", "successTitle": "Poruka je zabilježena", "successDescription": "Hvala. Vaša poruka sigurno je zabilježena za Clean tim podrške.",
-    "errorTitle": "Poruka nije zabilježena", "errorDescription": "Pokušajte ponovno. Ako se problem nastavi, vratite se kasnije.",
-    "metaTitle": "Kontakt", "metaDescription": "Pošaljite upit za podršku timu platforme Clean."
+    "eyebrow": "Kontakt",
+    "title": "Kako vam možemo pomoći?",
+    "description": "Pošaljite beta upit, prijavite grešku ili predložite poboljšanje. Vaša poruka sigurno se bilježi za tim podrške.",
+    "fields": {
+      "name": "Ime i prezime",
+      "email": "Adresa e-pošte",
+      "userType": "Vrsta korisnika",
+      "subject": "Predmet",
+      "message": "Poruka",
+      "consent": "Prihvaćam obradu podataka iz ovog obrasca za podršku."
+    },
+    "userTypes": {
+      "owner": "Vlasnik apartmana",
+      "cleaner": "Osoba za čišćenje",
+      "other": "Ostalo"
+    },
+    "topics": {
+      "support": "Zahtjev za podršku",
+      "bug": "Prijava greške",
+      "feature": "Prijedlog poboljšanja"
+    },
+    "submit": "Pošalji poruku",
+    "successTitle": "Poruka je zabilježena",
+    "successDescription": "Hvala. Vaša poruka sigurno je zabilježena za Clean tim podrške.",
+    "errorTitle": "Poruka nije zabilježena",
+    "errorDescription": "Pokušajte ponovno. Ako se problem nastavi, vratite se kasnije.",
+    "metaTitle": "Kontakt",
+    "metaDescription": "Pošaljite upit za podršku timu platforme Clean."
   },
   "legal": {
-    "contents": "Sadržaj", "reviewTitle": "Beta pravni predložak", "reviewDescription": "Ovaj tekst zahtijeva stručni pravni pregled prije produkcijskog objavljivanja.",
+    "contents": "Sadržaj",
+    "reviewTitle": "Beta pravni predložak",
+    "reviewDescription": "Ovaj tekst zahtijeva stručni pravni pregled prije produkcijskog objavljivanja.",
     "privacy": {
-      "eyebrow": "Pravno", "title": "Politika privatnosti", "description": "Informativni beta predložak o obradi podataka bez izmišljenih podataka o pravnoj osobi.", "metaTitle": "Politika privatnosti", "metaDescription": "Beta predložak politike privatnosti platforme Clean.",
+      "eyebrow": "Pravno",
+      "title": "Politika privatnosti",
+      "description": "Informativni beta predložak o obradi podataka bez izmišljenih podataka o pravnoj osobi.",
+      "metaTitle": "Politika privatnosti",
+      "metaDescription": "Beta predložak politike privatnosti platforme Clean.",
       "sections": {
-        "1": { "title": "Svrha dokumenta", "text": "Ovaj predložak opisuje planirani pristup privatnosti tijekom javne beta faze." },
-        "2": { "title": "Podaci računa", "text": "Platforma može obrađivati podatke koje korisnik unese pri registraciji i uređivanju profila." },
-        "3": { "title": "Podaci o poslovima", "text": "Javni prikaz koristi približnu lokaciju. Puna adresa ne prikazuje se javno." },
-        "4": { "title": "Sigurna pohrana", "text": "Produkcijski podaci računa i marketplacea pohranjuju se u Supabaseu. Autentifikacija koristi sigurne sesijske kolačiće kompatibilne s poslužiteljem." },
-        "5": { "title": "Prava korisnika", "text": "Produkcijska verzija mora definirati način ostvarivanja prava pristupa, ispravka i brisanja podataka." },
-        "6": { "title": "Izmjene dokumenta", "text": "Sadržaj će se ažurirati nakon pravnog pregleda i prije produkcijskog pokretanja." }
+        "1": {
+          "title": "Svrha dokumenta",
+          "text": "Ovaj predložak opisuje planirani pristup privatnosti tijekom javne beta faze."
+        },
+        "2": {
+          "title": "Podaci računa",
+          "text": "Platforma može obrađivati podatke koje korisnik unese pri registraciji i uređivanju profila."
+        },
+        "3": {
+          "title": "Podaci o poslovima",
+          "text": "Javni prikaz koristi približnu lokaciju. Puna adresa ne prikazuje se javno."
+        },
+        "4": {
+          "title": "Sigurna pohrana",
+          "text": "Produkcijski podaci računa i marketplacea pohranjuju se u Supabaseu. Autentifikacija koristi sigurne sesijske kolačiće kompatibilne s poslužiteljem."
+        },
+        "5": {
+          "title": "Prava korisnika",
+          "text": "Produkcijska verzija mora definirati način ostvarivanja prava pristupa, ispravka i brisanja podataka."
+        },
+        "6": {
+          "title": "Izmjene dokumenta",
+          "text": "Sadržaj će se ažurirati nakon pravnog pregleda i prije produkcijskog pokretanja."
+        }
       }
     },
     "terms": {
-      "eyebrow": "Pravno", "title": "Uvjeti korištenja", "description": "Informativni beta predložak pravila korištenja bez izmišljenih registracijskih podataka.", "metaTitle": "Uvjeti korištenja", "metaDescription": "Beta predložak uvjeta korištenja platforme Clean.",
+      "eyebrow": "Pravno",
+      "title": "Uvjeti korištenja",
+      "description": "Informativni beta predložak pravila korištenja bez izmišljenih registracijskih podataka.",
+      "metaTitle": "Uvjeti korištenja",
+      "metaDescription": "Beta predložak uvjeta korištenja platforme Clean.",
       "sections": {
-        "1": { "title": "Beta status", "text": "Platforma je u demo i beta fazi. Funkcionalnosti, podaci i dostupnost mogu se mijenjati." },
-        "2": { "title": "Uloge platforme", "text": "Clean pruža strukturirano mjesto za povezivanje korisnika i nije pružatelj usluge čišćenja." },
-        "3": { "title": "Dogovor korisnika", "text": "Cijenu, opseg usluge i plaćanje dogovaraju korisnici izravno." },
-        "4": { "title": "Odgovorno korištenje", "text": "Korisnici trebaju unositi točne podatke i komunicirati profesionalno." },
-        "5": { "title": "Ocjene", "text": "Ocjene trebaju opisivati stvarno završenu suradnju. U beta prikazu sve postojeće ocjene označene su kao demo." },
-        "6": { "title": "Pravni pregled", "text": "Konačni uvjeti, odgovornosti i postupci moraju biti potvrđeni stručnim pravnim pregledom." }
+        "1": {
+          "title": "Beta status",
+          "text": "Platforma je u demo i beta fazi. Funkcionalnosti, podaci i dostupnost mogu se mijenjati."
+        },
+        "2": {
+          "title": "Uloge platforme",
+          "text": "Clean pruža strukturirano mjesto za povezivanje korisnika i nije pružatelj usluge čišćenja."
+        },
+        "3": {
+          "title": "Dogovor korisnika",
+          "text": "Cijenu, opseg usluge i plaćanje dogovaraju korisnici izravno."
+        },
+        "4": {
+          "title": "Odgovorno korištenje",
+          "text": "Korisnici trebaju unositi točne podatke i komunicirati profesionalno."
+        },
+        "5": {
+          "title": "Ocjene",
+          "text": "Ocjene trebaju opisivati stvarno završenu suradnju. U beta prikazu sve postojeće ocjene označene su kao demo."
+        },
+        "6": {
+          "title": "Pravni pregled",
+          "text": "Konačni uvjeti, odgovornosti i postupci moraju biti potvrđeni stručnim pravnim pregledom."
+        }
       }
     },
     "cookies": {
-      "eyebrow": "Pravno", "title": "Politika kolačića", "description": "Informativni predložak o nužnim kolačićima tijekom privatne beta faze.", "metaTitle": "Politika kolačića", "metaDescription": "Beta politika kolačića platforme Clean.",
+      "eyebrow": "Pravno",
+      "title": "Politika kolačića",
+      "description": "Informativni predložak o nužnim kolačićima tijekom privatne beta faze.",
+      "metaTitle": "Politika kolačića",
+      "metaDescription": "Beta politika kolačića platforme Clean.",
       "sections": {
-        "1": { "title": "Nužna pohrana", "text": "Platforma koristi nužnu pohranu za održavanje prijave, jezika i osnovnog rada aplikacije." },
-        "2": { "title": "Podaci aplikacije", "text": "Produkcijsko stanje računa i marketplacea pohranjuje se na poslužitelju i ne sprema se u lokalnu pohranu preglednika." },
-        "3": { "title": "Stripe", "text": "Stripe može postaviti vlastite nužne kolačiće kada korisnik otvori Checkout ili Billing Portal." },
-        "4": { "title": "Analitika", "text": "Analitički provider nije povezan. Prije uključivanja neobavezne analitike bit će uveden odgovarajući pristanak." },
-        "5": { "title": "Upravljanje podacima", "text": "Korisnik se može odjaviti kako bi završio sesiju. Konačni postupak pristupa, ispravka i brisanja bit će potvrđen prije javnog lansiranja." }
+        "1": {
+          "title": "Nužna pohrana",
+          "text": "Platforma koristi nužnu pohranu za održavanje prijave, jezika i osnovnog rada aplikacije."
+        },
+        "2": {
+          "title": "Podaci aplikacije",
+          "text": "Produkcijsko stanje računa i marketplacea pohranjuje se na poslužitelju i ne sprema se u lokalnu pohranu preglednika."
+        },
+        "3": {
+          "title": "Stripe",
+          "text": "Stripe može postaviti vlastite nužne kolačiće kada korisnik otvori Checkout ili Billing Portal."
+        },
+        "4": {
+          "title": "Analitika",
+          "text": "Analitički provider nije povezan. Prije uključivanja neobavezne analitike bit će uveden odgovarajući pristanak."
+        },
+        "5": {
+          "title": "Upravljanje podacima",
+          "text": "Korisnik se može odjaviti kako bi završio sesiju. Konačni postupak pristupa, ispravka i brisanja bit će potvrđen prije javnog lansiranja."
+        }
       }
     }
   },
-  "errorPage": { "title": "Ova stranica nije pronađena", "description": "Provjerite adresu ili se vratite na početnu stranicu.", "action": "Povratak na početnu", "runtimeTitle": "Sadržaj se nije mogao učitati", "runtimeDescription": "Dogodila se neočekivana pogreška. Pokušajte ponovno ili se vratite na početnu stranicu.", "retry": "Pokušaj ponovno" },
+  "errorPage": {
+    "title": "Ova stranica nije pronađena",
+    "description": "Provjerite adresu ili se vratite na početnu stranicu.",
+    "action": "Povratak na početnu",
+    "runtimeTitle": "Sadržaj se nije mogao učitati",
+    "runtimeDescription": "Dogodila se neočekivana pogreška. Pokušajte ponovno ili se vratite na početnu stranicu.",
+    "retry": "Pokušaj ponovno"
+  },
   "notifications": {
     "navigation": "Obavijesti",
     "title": "Obavijesti",
@@ -804,8 +1047,8 @@
         "sameDayTurnover": "Smjena gostiju isti dan"
       },
       "untitled": "Posao bez naslova",
-        "saveDraft": "Spremi skicu",
-        "saveChanges": "Spremi promjene",
+      "saveDraft": "Spremi skicu",
+      "saveChanges": "Spremi promjene",
       "publish": "Objavi posao",
       "validationError": "Neki obavezni podaci nedostaju. Provjerite označene korake.",
       "overview": "Pregled posla",
@@ -1091,9 +1334,18 @@
     "choosePeriod": "Odaberite razdoblje naplate",
     "billingPeriod": "Razdoblje naplate",
     "stripeInterval": "Stripe interval",
-    "period": { "monthly": "Mjesečno", "annual": "Godišnje" },
-    "periodSuffix": { "monthly": "mjesečno", "annual": "godišnje" },
-    "interval": { "month": "Mjesec", "year": "Godina" },
+    "period": {
+      "monthly": "Mjesečno",
+      "annual": "Godišnje"
+    },
+    "periodSuffix": {
+      "monthly": "mjesečno",
+      "annual": "godišnje"
+    },
+    "interval": {
+      "month": "Mjesec",
+      "year": "Godina"
+    },
     "save": "Uštedi {percent}%",
     "renewal": "Sljedeća obnova",
     "trialRemaining": "Preostalo probno razdoblje",
@@ -1197,14 +1449,41 @@
     }
   },
   "email": {
-    "welcome": { "subject": "Dobro došli u Clean", "body": "Vaš Clean račun je spreman." },
-    "trialEnding": { "subject": "Probno razdoblje uskoro završava", "body": "Upravljajte pretplatom kako biste zadržali pristup." },
-    "paymentSuccess": { "subject": "Plaćanje je uspješno", "body": "Vaša pretplata je obnovljena." },
-    "paymentFailed": { "subject": "Plaćanje nije uspjelo", "body": "Ažurirajte način plaćanja u portalu za naplatu." },
-    "offerReceived": { "subject": "Primili ste novu ponudu", "body": "Nova ponuda dostupna je u vašoj nadzornoj ploči." },
-    "offerAccepted": { "subject": "Ponuda je prihvaćena", "body": "Vlasnik je prihvatio vašu ponudu." },
-    "offerRejected": { "subject": "Ponuda nije odabrana", "body": "Vlasnik je odabrao drugu ponudu." },
-    "jobAssigned": { "subject": "Posao je dodijeljen", "body": "Dogovoreni posao dostupan je u nadzornoj ploči." },
-    "reviewReminder": { "subject": "Ocijenite završenu suradnju", "body": "Podijelite provjerenu ocjenu završenog posla." }
+    "welcome": {
+      "subject": "Dobro došli u Clean",
+      "body": "Vaš Clean račun je spreman."
+    },
+    "trialEnding": {
+      "subject": "Probno razdoblje uskoro završava",
+      "body": "Upravljajte pretplatom kako biste zadržali pristup."
+    },
+    "paymentSuccess": {
+      "subject": "Plaćanje je uspješno",
+      "body": "Vaša pretplata je obnovljena."
+    },
+    "paymentFailed": {
+      "subject": "Plaćanje nije uspjelo",
+      "body": "Ažurirajte način plaćanja u portalu za naplatu."
+    },
+    "offerReceived": {
+      "subject": "Primili ste novu ponudu",
+      "body": "Nova ponuda dostupna je u vašoj nadzornoj ploči."
+    },
+    "offerAccepted": {
+      "subject": "Ponuda je prihvaćena",
+      "body": "Vlasnik je prihvatio vašu ponudu."
+    },
+    "offerRejected": {
+      "subject": "Ponuda nije odabrana",
+      "body": "Vlasnik je odabrao drugu ponudu."
+    },
+    "jobAssigned": {
+      "subject": "Posao je dodijeljen",
+      "body": "Dogovoreni posao dostupan je u nadzornoj ploči."
+    },
+    "reviewReminder": {
+      "subject": "Ocijenite završenu suradnju",
+      "body": "Podijelite provjerenu ocjenu završenog posla."
+    }
   }
 }

@@ -19,7 +19,7 @@ export const usePublicSeo = (options: PublicSeoOptions) => {
     ogTitle: () => toValue(options.title),
     ogDescription: () => toValue(options.description),
     ogType: options.type ?? 'website',
-    ogLocale: () => locale.value === 'en' ? 'en_GB' : 'hr_HR',
+    ogLocale: () => locale.value === 'en' ? 'en_GB' : locale.value === 'sl' ? 'sl_SI' : 'hr_HR',
     ogSiteName: () => 'Clean',
     ogUrl: () => canonical.value,
     twitterCard: 'summary',
@@ -39,6 +39,11 @@ export const usePublicSeo = (options: PublicSeoOptions) => {
         rel: 'alternate',
         hreflang: 'en-GB',
         href: new URL(switchLocalePath('en'), baseUrl.value).href,
+      },
+      {
+        rel: 'alternate',
+        hreflang: 'sl-SI',
+        href: new URL(switchLocalePath('sl'), baseUrl.value).href,
       },
       {
         rel: 'alternate',

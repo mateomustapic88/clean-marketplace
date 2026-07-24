@@ -86,5 +86,14 @@ const { t } = useI18n()
   @media (min-width: $breakpoint-lg) {
     &__menu { display: none; }
   }
+
+  @media (max-width: 30rem) {
+    gap: $space-2;
+    padding-inline: $space-2;
+
+    &__identity {
+      display: none;
+    }
+  }
 }
 </style>

@@ -7,7 +7,7 @@ import { useAuthStore } from '~/stores/auth'
 import { useNotificationsStore } from '~/stores/notifications'
 
 definePageMeta({ layout: 'dashboard-cleaner', middleware: ['auth', 'role'], roles: ['cleaner'] })
-defineI18nRoute({ paths: { hr: '/dashboard-cleaner/obavijesti', en: '/dashboard-cleaner/notifications' } })
+defineI18nRoute({ paths: { hr: '/dashboard-cleaner/obavijesti', en: '/dashboard-cleaner/notifications', sl: '/nadzorna-plosca-cistilec/obvestila' } })
 const auth = useAuthStore()
 const store = useNotificationsStore()
 const load = async () => {

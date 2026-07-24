@@ -24,7 +24,7 @@ import { normalizeCleanerProfile } from '~/utils/cleaner'
 import { getAppRoute } from '~/utils/routes'
 
 definePageMeta({ middleware: ['auth', 'role'], roles: ['cleaner'] })
-defineI18nRoute({ paths: { hr: '/onboarding/cistac', en: '/onboarding/cleaner' } })
+defineI18nRoute({ paths: { hr: '/onboarding/cistac', en: '/onboarding/cleaner', sl: '/uvajanje/cistilec' } })
 const { t, locale } = useI18n()
 const isMockMode = useRuntimeConfig().public.infrastructureMode === 'mock'
 const authStore = useAuthStore(), userStore = useUserStore()

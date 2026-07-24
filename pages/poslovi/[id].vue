@@ -82,7 +82,7 @@ import { formatPublicDate } from '~/utils/formatters'
 import { demoDisplayName, demoDisplayText } from '~/utils/demoPresentation'
 import { getAppRoute, getCleanerJobRoute, getJobRoute } from '~/utils/routes'
 
-defineI18nRoute({ paths: { hr: '/poslovi/[id]', en: '/jobs/[id]' } })
+defineI18nRoute({ paths: { hr: '/poslovi/[id]', en: '/jobs/[id]', sl: '/dela/[id]' } })
 const route = useRoute()
 const { t, locale } = useI18n()
 const jobsStore = useJobsStore()

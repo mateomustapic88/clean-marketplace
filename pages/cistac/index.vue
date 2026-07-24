@@ -10,6 +10,7 @@ defineI18nRoute({
   paths: {
     hr: '/cistac',
     en: '/cleaner',
+    sl: '/cistilec',
   },
 })
 

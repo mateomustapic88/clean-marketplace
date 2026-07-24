@@ -143,7 +143,7 @@ import { useJobsStore } from '~/stores/jobs'
 import { useUserStore } from '~/stores/user'
 import { getAppRoute } from '~/utils/routes'
 
-defineI18nRoute({ paths: { hr: '/', en: '/' } })
+defineI18nRoute({ paths: { hr: '/', en: '/', sl: '/' } })
 const { t, locale } = useI18n()
 const jobsStore = useJobsStore()
 const userStore = useUserStore()
@@ -197,7 +197,7 @@ useHead({
           '@type': 'WebSite',
           'name': 'Clean',
           'url': String(config.public.siteUrl),
-          'inLanguage': locale.value === 'en' ? 'en-GB' : 'hr-HR',
+          'inLanguage': locale.value === 'en' ? 'en-GB' : locale.value === 'sl' ? 'sl-SI' : 'hr-HR',
         },
         {
           '@type': 'FAQPage',

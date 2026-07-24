@@ -36,6 +36,7 @@
     "label": "Language",
     "hr": "HR",
     "en": "EN",
+    "sl": "SL",
     "switchTo": "Switch language to {language}"
   },
   "header": {
@@ -125,14 +126,14 @@
     "maximumValue": "The maximum allowed value is {value}.",
     "oib": "The OIB must contain 11 digits.",
     "url": "Enter a valid web address.",
-    "languages": "Select at least one language."
-    ,"consent": "You must accept data processing to send the message."
+    "languages": "Select at least one language.",
+    "consent": "You must accept data processing to send the message."
   },
   "demo": {
     "profileBadge": "Demo profile",
     "listingBadge": "Example listing",
-    "dataBadge": "Demo data"
-    ,"ratingBadge": "Demo rating"
+    "dataBadge": "Demo data",
+    "ratingBadge": "Demo rating"
   },
   "auth": {
     "fields": {
@@ -281,6 +282,7 @@
   "languages": {
     "hr": "Croatian",
     "en": "English",
+    "sl": "Slovenian",
     "de": "German",
     "it": "Italian"
   },
@@ -298,7 +300,10 @@
       "duration": "About {value} h",
       "offers": "{count} offers"
     },
-    "budgetType": { "fixed": "total", "hourly": "per hour" },
+    "budgetType": {
+      "fixed": "total",
+      "hourly": "per hour"
+    },
     "filters": {
       "title": "Filter jobs",
       "date": "Cleaning date",
@@ -466,65 +471,178 @@
       "title": "Arranging cleaning should not depend on dozens of messages",
       "description": "Facebook groups, recommendations, and messages play an important role, but details can easily become scattered. Clean brings them into one structured place.",
       "items": {
-        "pricing": { "title": "Clearer pricing", "description": "The budget and price type are visible before an agreement." },
-        "comparison": { "title": "Easier comparison", "description": "Offers, profiles, and availability can be compared in one place." },
-        "communication": { "title": "Organised arrangements", "description": "Job details do not get lost across different conversations." },
-        "reliability": { "title": "Collaboration history", "description": "Structured mutual ratings create a clearer picture of collaboration." }
+        "pricing": {
+          "title": "Clearer pricing",
+          "description": "The budget and price type are visible before an agreement."
+        },
+        "comparison": {
+          "title": "Easier comparison",
+          "description": "Offers, profiles, and availability can be compared in one place."
+        },
+        "communication": {
+          "title": "Organised arrangements",
+          "description": "Job details do not get lost across different conversations."
+        },
+        "reliability": {
+          "title": "Collaboration history",
+          "description": "Structured mutual ratings create a clearer picture of collaboration."
+        }
       }
     },
-    "steps": { "eyebrow": "A simple process", "title": "From listing to agreement in clear steps", "action": "See how it works" },
+    "steps": {
+      "eyebrow": "A simple process",
+      "title": "From listing to agreement in clear steps",
+      "action": "See how it works"
+    },
     "owners": {
-      "eyebrow": "For apartment owners", "title": "More control over every guest turnover", "description": "Post all important details and compare offers before deciding.",
-      "items": { "1": "One place for job details", "2": "Compare prices and availability", "3": "Review profiles and demo ratings", "4": "A clear arrangement history" },
-      "action": "Register as an owner", "cardTitle": "A listing with every key detail", "cardDescription": "Date, time, apartment size, required services, and budget remain clearly recorded."
+      "eyebrow": "For apartment owners",
+      "title": "More control over every guest turnover",
+      "description": "Post all important details and compare offers before deciding.",
+      "items": {
+        "1": "One place for job details",
+        "2": "Compare prices and availability",
+        "3": "Review profiles and demo ratings",
+        "4": "A clear arrangement history"
+      },
+      "action": "Register as an owner",
+      "cardTitle": "A listing with every key detail",
+      "cardDescription": "Date, time, apartment size, required services, and budget remain clearly recorded."
     },
     "cleanerBenefits": {
-      "eyebrow": "For cleaning professionals", "title": "Find jobs that suit how you work", "description": "Set your own rates, availability, and service areas.",
-      "items": { "1": "A public professional profile", "2": "Filter jobs by city", "3": "Your own rates and terms", "4": "Mutual ratings after a job" },
-      "action": "Browse jobs", "cardTitle": "Your service, your terms", "cardDescription": "Your profile clearly shows your hourly rate, minimum visit, and availability."
-    },
-    "featuredJobs": { "eyebrow": "Demo content", "title": "Examples of active jobs", "description": "Listings in this beta show the intended future experience.", "action": "Browse all jobs" },
-    "featuredCleaners": { "eyebrow": "Demo content", "title": "Example profiles", "description": "Every displayed profile and rating is clearly marked as demo data.", "action": "Browse all profiles" },
-    "transparency": {
-      "eyebrow": "A transparent agreement", "title": "Price and expectations are known before acceptance", "description": "Owners compare offers while cleaning professionals set their own rates and service contents.",
+      "eyebrow": "For cleaning professionals",
+      "title": "Find jobs that suit how you work",
+      "description": "Set your own rates, availability, and service areas.",
       "items": {
-        "offers": { "title": "Comparable offers", "description": "Every offer clearly shows its price and included items." },
-        "agreement": { "title": "Agreement before work", "description": "Both parties know the agreed price before acceptance." },
-        "ratings": { "title": "Mutual ratings", "description": "Both parties can rate the collaboration after a completed job." }
+        "1": "A public professional profile",
+        "2": "Filter jobs by city",
+        "3": "Your own rates and terms",
+        "4": "Mutual ratings after a job"
+      },
+      "action": "Browse jobs",
+      "cardTitle": "Your service, your terms",
+      "cardDescription": "Your profile clearly shows your hourly rate, minimum visit, and availability."
+    },
+    "featuredJobs": {
+      "eyebrow": "Demo content",
+      "title": "Examples of active jobs",
+      "description": "Listings in this beta show the intended future experience.",
+      "action": "Browse all jobs"
+    },
+    "featuredCleaners": {
+      "eyebrow": "Demo content",
+      "title": "Example profiles",
+      "description": "Every displayed profile and rating is clearly marked as demo data.",
+      "action": "Browse all profiles"
+    },
+    "transparency": {
+      "eyebrow": "A transparent agreement",
+      "title": "Price and expectations are known before acceptance",
+      "description": "Owners compare offers while cleaning professionals set their own rates and service contents.",
+      "items": {
+        "offers": {
+          "title": "Comparable offers",
+          "description": "Every offer clearly shows its price and included items."
+        },
+        "agreement": {
+          "title": "Agreement before work",
+          "description": "Both parties know the agreed price before acceptance."
+        },
+        "ratings": {
+          "title": "Mutual ratings",
+          "description": "Both parties can rate the collaboration after a completed job."
+        }
       },
       "mutualTitle": "Ratings work both ways",
       "mutualDescription": "Owners rate quality, reliability, communication, and punctuality. Cleaning professionals rate job description, communication, organisation, and fairness."
     },
-    "pricing": { "eyebrow": "Simple pricing", "title": "Clear monthly subscriptions for both roles", "description": "Owners pay EUR 19 and cleaners EUR 39 per month, with no commission on cleaning payments.", "action": "View pricing" },
+    "pricing": {
+      "eyebrow": "Simple pricing",
+      "title": "Clear monthly subscriptions for both roles",
+      "description": "Owners pay EUR 19 and cleaners EUR 39 per month, with no commission on cleaning payments.",
+      "action": "View pricing"
+    },
     "faq": {
-      "eyebrow": "Frequently asked questions", "title": "What to know before starting",
+      "eyebrow": "Frequently asked questions",
+      "title": "What to know before starting",
       "items": {
-        "1": { "question": "How much does Clean cost apartment owners?", "answer": "The owner plan costs EUR 19 per month after a seven-day trial." },
-        "2": { "question": "Does the platform charge commission?", "answer": "No. Users arrange cleaning payment directly." },
-        "3": { "question": "Are the displayed profiles real?", "answer": "No. All current profiles, jobs, and ratings are clearly marked demo data." },
-        "4": { "question": "Are users verified?", "answer": "Verification is not active and we do not claim users have been verified." },
-        "5": { "question": "Can I submit an offer now?", "answer": "Not in this public phase. The offer workflow belongs to the next phase." }
+        "1": {
+          "question": "How much does Clean cost apartment owners?",
+          "answer": "The owner plan costs EUR 19 per month after a seven-day trial."
+        },
+        "2": {
+          "question": "Does the platform charge commission?",
+          "answer": "No. Users arrange cleaning payment directly."
+        },
+        "3": {
+          "question": "Are the displayed profiles real?",
+          "answer": "No. All current profiles, jobs, and ratings are clearly marked demo data."
+        },
+        "4": {
+          "question": "Are users verified?",
+          "answer": "Verification is not active and we do not claim users have been verified."
+        },
+        "5": {
+          "question": "Can I submit an offer now?",
+          "answer": "Not in this public phase. The offer workflow belongs to the next phase."
+        }
       }
     },
-    "cta": { "title": "Ready for a more organised cleaning agreement?", "description": "Create a demo account or explore the public job experience.", "primary": "Create account", "secondary": "Browse jobs" }
+    "cta": {
+      "title": "Ready for a more organised cleaning agreement?",
+      "description": "Create a demo account or explore the public job experience.",
+      "primary": "Create account",
+      "secondary": "Browse jobs"
+    }
   },
   "how": {
-    "eyebrow": "How the platform works", "title": "A clear path for both sides", "description": "From the first listing to the final rating, every step has its place.",
-    "ownerEyebrow": "Apartment owners", "ownerTitle": "From posting to completed service",
-    "cleanerEyebrow": "Cleaning professionals", "cleanerTitle": "From profile to established reputation",
+    "eyebrow": "How the platform works",
+    "title": "A clear path for both sides",
+    "description": "From the first listing to the final rating, every step has its place.",
+    "ownerEyebrow": "Apartment owners",
+    "ownerTitle": "From posting to completed service",
+    "cleanerEyebrow": "Cleaning professionals",
+    "cleanerTitle": "From profile to established reputation",
     "steps": {
-      "owner": { "1": "Post a job", "2": "Receive offers", "3": "Compare prices and profiles", "4": "Choose a person", "5": "Rate the service" },
-      "cleaner": { "1": "Create a profile", "2": "Set rates and availability", "3": "Find a job", "4": "Submit an offer", "5": "Build your reputation" }
+      "owner": {
+        "1": "Post a job",
+        "2": "Receive offers",
+        "3": "Compare prices and profiles",
+        "4": "Choose a person",
+        "5": "Rate the service"
+      },
+      "cleaner": {
+        "1": "Create a profile",
+        "2": "Set rates and availability",
+        "3": "Find a job",
+        "4": "Submit an offer",
+        "5": "Build your reputation"
+      }
     },
     "details": {
-      "owner": { "1": "Enter the date, size, services, and budget.", "2": "Offers arrive in a structured format.", "3": "Check what each offer includes.", "4": "Choose the option that suits you.", "5": "Share a structured rating after the job." },
-      "cleaner": { "1": "Present your experience and service area.", "2": "Set the terms of your own service.", "3": "Filter listings by availability.", "4": "Clearly state the price and contents.", "5": "Completed jobs build collaboration history." }
+      "owner": {
+        "1": "Enter the date, size, services, and budget.",
+        "2": "Offers arrive in a structured format.",
+        "3": "Check what each offer includes.",
+        "4": "Choose the option that suits you.",
+        "5": "Share a structured rating after the job."
+      },
+      "cleaner": {
+        "1": "Present your experience and service area.",
+        "2": "Set the terms of your own service.",
+        "3": "Filter listings by availability.",
+        "4": "Clearly state the price and contents.",
+        "5": "Completed jobs build collaboration history."
+      }
     },
-    "ctaTitle": "Try the public beta experience", "ctaDescription": "Registration is a demo and does not require a card.",
-    "metaTitle": "How Clean works", "metaDescription": "Learn how apartment owners and cleaning professionals arrange work through Clean."
+    "ctaTitle": "Try the public beta experience",
+    "ctaDescription": "Registration is a demo and does not require a card.",
+    "metaTitle": "How Clean works",
+    "metaDescription": "Learn how apartment owners and cleaning professionals arrange work through Clean."
   },
   "pricing": {
-    "eyebrow": "Transparent pricing", "title": "Two clear plans with no commission", "description": "Choose monthly billing or a discounted annual subscription. Both plans include a seven-day trial.",
+    "eyebrow": "Transparent pricing",
+    "title": "Two clear plans with no commission",
+    "description": "Choose monthly billing or a discounted annual subscription. Both plans include a seven-day trial.",
     "owner": {
       "badge": "7-day trial",
       "title": "Clean for apartment owners",
@@ -532,70 +650,198 @@
       "trial": "A seven-day trial is included with either billing option.",
       "action": "Start trial",
       "billingNote": "Billing details are collected securely through Stripe Checkout.",
-      "features": { "1": "Post and manage jobs", "2": "Receive and compare offers", "3": "Manage bookings", "4": "Protected contact details", "5": "Notifications and collaboration history" }
+      "features": {
+        "1": "Post and manage jobs",
+        "2": "Receive and compare offers",
+        "3": "Manage bookings",
+        "4": "Protected contact details",
+        "5": "Notifications and collaboration history"
+      }
     },
     "plan": {
-      "badge": "7-day trial", "title": "Clean for cleaning professionals", "trial": "A seven-day trial is included with either billing option.", "month": "per month", "action": "Start trial", "billingNote": "Billing details are collected securely through Stripe Checkout.",
-      "features": { "1": "Public profile", "2": "Browse jobs", "3": "Submit offers", "4": "Offer history", "5": "Job history", "6": "Mutual ratings", "7": "Notifications" }
+      "badge": "7-day trial",
+      "title": "Clean for cleaning professionals",
+      "trial": "A seven-day trial is included with either billing option.",
+      "month": "per month",
+      "action": "Start trial",
+      "billingNote": "Billing details are collected securely through Stripe Checkout.",
+      "features": {
+        "1": "Public profile",
+        "2": "Browse jobs",
+        "3": "Submit offers",
+        "4": "Offer history",
+        "5": "Job history",
+        "6": "Mutual ratings",
+        "7": "Notifications"
+      }
     },
     "notes": {
-      "commissionTitle": "No cleaning commission", "commission": "Cleaning payments are arranged directly between users.", "demoTitle": "Secure subscription billing", "demo": "Subscriptions and payment methods are managed through Stripe Checkout and Billing Portal."
+      "commissionTitle": "No cleaning commission",
+      "commission": "Cleaning payments are arranged directly between users.",
+      "demoTitle": "Secure subscription billing",
+      "demo": "Subscriptions and payment methods are managed through Stripe Checkout and Billing Portal."
     },
     "faqTitle": "Subscription questions",
     "annualNote": "Equivalent to {monthly} per month. Save {savings} per year ({percent}%).",
     "faq": {
-      "1": { "question": "Can I cancel the subscription?", "answer": "Yes. A future active subscription can be cancelled before the next billing period." },
-      "2": { "question": "Is a payment method required for the trial?", "answer": "Yes. Stripe Checkout securely collects billing details for your selected monthly or annual subscription." },
-      "3": { "question": "Do I pay commission per job?", "answer": "No. Clean does not take commission from the agreed cleaning price." },
-      "4": { "question": "Is billing active?", "answer": "Yes. Subscriptions start through Stripe Checkout and are managed through Billing Portal." }
+      "1": {
+        "question": "Can I cancel the subscription?",
+        "answer": "Yes. A future active subscription can be cancelled before the next billing period."
+      },
+      "2": {
+        "question": "Is a payment method required for the trial?",
+        "answer": "Yes. Stripe Checkout securely collects billing details for your selected monthly or annual subscription."
+      },
+      "3": {
+        "question": "Do I pay commission per job?",
+        "answer": "No. Clean does not take commission from the agreed cleaning price."
+      },
+      "4": {
+        "question": "Is billing active?",
+        "answer": "Yes. Subscriptions start through Stripe Checkout and are managed through Billing Portal."
+      }
     },
-    "metaTitle": "Pricing", "metaDescription": "Clean offers a seven-day trial followed by monthly or discounted annual plans for owners and cleaning professionals."
+    "metaTitle": "Pricing",
+    "metaDescription": "Clean offers a seven-day trial followed by monthly or discounted annual plans for owners and cleaning professionals."
   },
   "contact": {
-    "eyebrow": "Contact", "title": "How can we help?", "description": "Send a beta enquiry, report a bug, or suggest an improvement. Your message is securely recorded for the support team.",
-    "fields": { "name": "Full name", "email": "Email address", "userType": "User type", "subject": "Subject", "message": "Message", "consent": "I accept processing of the data in this support form." },
-    "userTypes": { "owner": "Apartment owner", "cleaner": "Cleaning professional", "other": "Other" },
-    "topics": { "support": "Support request", "bug": "Bug report", "feature": "Improvement suggestion" },
-    "submit": "Send message", "successTitle": "Message recorded", "successDescription": "Thank you. Your message was securely recorded for the Clean support team.",
-    "errorTitle": "Message not recorded", "errorDescription": "Please try again. If the problem persists, return later.",
-    "metaTitle": "Contact", "metaDescription": "Send a support enquiry to the Clean platform team."
+    "eyebrow": "Contact",
+    "title": "How can we help?",
+    "description": "Send a beta enquiry, report a bug, or suggest an improvement. Your message is securely recorded for the support team.",
+    "fields": {
+      "name": "Full name",
+      "email": "Email address",
+      "userType": "User type",
+      "subject": "Subject",
+      "message": "Message",
+      "consent": "I accept processing of the data in this support form."
+    },
+    "userTypes": {
+      "owner": "Apartment owner",
+      "cleaner": "Cleaning professional",
+      "other": "Other"
+    },
+    "topics": {
+      "support": "Support request",
+      "bug": "Bug report",
+      "feature": "Improvement suggestion"
+    },
+    "submit": "Send message",
+    "successTitle": "Message recorded",
+    "successDescription": "Thank you. Your message was securely recorded for the Clean support team.",
+    "errorTitle": "Message not recorded",
+    "errorDescription": "Please try again. If the problem persists, return later.",
+    "metaTitle": "Contact",
+    "metaDescription": "Send a support enquiry to the Clean platform team."
   },
   "legal": {
-    "contents": "Contents", "reviewTitle": "Beta legal template", "reviewDescription": "This text requires professional legal review before a production launch.",
+    "contents": "Contents",
+    "reviewTitle": "Beta legal template",
+    "reviewDescription": "This text requires professional legal review before a production launch.",
     "privacy": {
-      "eyebrow": "Legal", "title": "Privacy policy", "description": "An informational beta template about data processing without invented legal entity details.", "metaTitle": "Privacy policy", "metaDescription": "Beta privacy policy template for Clean.",
+      "eyebrow": "Legal",
+      "title": "Privacy policy",
+      "description": "An informational beta template about data processing without invented legal entity details.",
+      "metaTitle": "Privacy policy",
+      "metaDescription": "Beta privacy policy template for Clean.",
       "sections": {
-        "1": { "title": "Purpose of this document", "text": "This template describes the intended privacy approach during the public beta." },
-        "2": { "title": "Account data", "text": "The platform may process information entered during registration and profile editing." },
-        "3": { "title": "Job data", "text": "Public views use an approximate location. A full address is not displayed publicly." },
-        "4": { "title": "Secure persistence", "text": "Production account and marketplace data is stored in Supabase. Authentication uses secure server-compatible session cookies." },
-        "5": { "title": "User rights", "text": "The production version must define how access, correction, and deletion rights can be exercised." },
-        "6": { "title": "Document changes", "text": "The content will be updated after legal review and before production launch." }
+        "1": {
+          "title": "Purpose of this document",
+          "text": "This template describes the intended privacy approach during the public beta."
+        },
+        "2": {
+          "title": "Account data",
+          "text": "The platform may process information entered during registration and profile editing."
+        },
+        "3": {
+          "title": "Job data",
+          "text": "Public views use an approximate location. A full address is not displayed publicly."
+        },
+        "4": {
+          "title": "Secure persistence",
+          "text": "Production account and marketplace data is stored in Supabase. Authentication uses secure server-compatible session cookies."
+        },
+        "5": {
+          "title": "User rights",
+          "text": "The production version must define how access, correction, and deletion rights can be exercised."
+        },
+        "6": {
+          "title": "Document changes",
+          "text": "The content will be updated after legal review and before production launch."
+        }
       }
     },
     "terms": {
-      "eyebrow": "Legal", "title": "Terms of service", "description": "An informational beta template without invented company registration details.", "metaTitle": "Terms of service", "metaDescription": "Beta terms of service template for Clean.",
+      "eyebrow": "Legal",
+      "title": "Terms of service",
+      "description": "An informational beta template without invented company registration details.",
+      "metaTitle": "Terms of service",
+      "metaDescription": "Beta terms of service template for Clean.",
       "sections": {
-        "1": { "title": "Beta status", "text": "The platform is in a demo and beta phase. Features, data, and availability may change." },
-        "2": { "title": "Platform role", "text": "Clean provides a structured place for users to connect and is not a cleaning service provider." },
-        "3": { "title": "User agreement", "text": "Users arrange the price, scope of service, and payment directly." },
-        "4": { "title": "Responsible use", "text": "Users should enter accurate information and communicate professionally." },
-        "5": { "title": "Ratings", "text": "Ratings should describe completed collaboration. Every current beta rating is marked as demo." },
-        "6": { "title": "Legal review", "text": "Final terms, responsibilities, and procedures must be confirmed by professional legal review." }
+        "1": {
+          "title": "Beta status",
+          "text": "The platform is in a demo and beta phase. Features, data, and availability may change."
+        },
+        "2": {
+          "title": "Platform role",
+          "text": "Clean provides a structured place for users to connect and is not a cleaning service provider."
+        },
+        "3": {
+          "title": "User agreement",
+          "text": "Users arrange the price, scope of service, and payment directly."
+        },
+        "4": {
+          "title": "Responsible use",
+          "text": "Users should enter accurate information and communicate professionally."
+        },
+        "5": {
+          "title": "Ratings",
+          "text": "Ratings should describe completed collaboration. Every current beta rating is marked as demo."
+        },
+        "6": {
+          "title": "Legal review",
+          "text": "Final terms, responsibilities, and procedures must be confirmed by professional legal review."
+        }
       }
     },
     "cookies": {
-      "eyebrow": "Legal", "title": "Cookie policy", "description": "An informational template covering essential cookies during the private beta.", "metaTitle": "Cookie policy", "metaDescription": "Beta cookie policy for Clean.",
+      "eyebrow": "Legal",
+      "title": "Cookie policy",
+      "description": "An informational template covering essential cookies during the private beta.",
+      "metaTitle": "Cookie policy",
+      "metaDescription": "Beta cookie policy for Clean.",
       "sections": {
-        "1": { "title": "Essential storage", "text": "The platform uses essential storage to maintain sign-in, language selection, and core application behaviour." },
-        "2": { "title": "Application data", "text": "Production account and marketplace state is stored on the server and is not persisted in browser local storage." },
-        "3": { "title": "Stripe", "text": "Stripe may set its own essential cookies when a user opens Checkout or the Billing Portal." },
-        "4": { "title": "Analytics", "text": "No analytics provider is connected. Appropriate consent will be introduced before optional analytics is enabled." },
-        "5": { "title": "Managing data", "text": "Users can sign out to end their session. The final access, correction, and deletion process will be confirmed before public launch." }
+        "1": {
+          "title": "Essential storage",
+          "text": "The platform uses essential storage to maintain sign-in, language selection, and core application behaviour."
+        },
+        "2": {
+          "title": "Application data",
+          "text": "Production account and marketplace state is stored on the server and is not persisted in browser local storage."
+        },
+        "3": {
+          "title": "Stripe",
+          "text": "Stripe may set its own essential cookies when a user opens Checkout or the Billing Portal."
+        },
+        "4": {
+          "title": "Analytics",
+          "text": "No analytics provider is connected. Appropriate consent will be introduced before optional analytics is enabled."
+        },
+        "5": {
+          "title": "Managing data",
+          "text": "Users can sign out to end their session. The final access, correction, and deletion process will be confirmed before public launch."
+        }
       }
     }
   },
-  "errorPage": { "title": "This page could not be found", "description": "Check the address or return to the home page.", "action": "Return home", "runtimeTitle": "The content could not be loaded", "runtimeDescription": "An unexpected error occurred. Try again or return to the home page.", "retry": "Try again" },
+  "errorPage": {
+    "title": "This page could not be found",
+    "description": "Check the address or return to the home page.",
+    "action": "Return home",
+    "runtimeTitle": "The content could not be loaded",
+    "runtimeDescription": "An unexpected error occurred. Try again or return to the home page.",
+    "retry": "Try again"
+  },
   "notifications": {
     "navigation": "Notifications",
     "title": "Notifications",
@@ -801,8 +1047,8 @@
         "sameDayTurnover": "Same-day guest turnover"
       },
       "untitled": "Untitled job",
-        "saveDraft": "Save draft",
-        "saveChanges": "Save changes",
+      "saveDraft": "Save draft",
+      "saveChanges": "Save changes",
       "publish": "Publish job",
       "validationError": "Some required information is missing. Check the marked steps.",
       "overview": "Job overview",
@@ -1088,9 +1334,18 @@
     "choosePeriod": "Choose billing period",
     "billingPeriod": "Billing period",
     "stripeInterval": "Stripe interval",
-    "period": { "monthly": "Monthly", "annual": "Annual" },
-    "periodSuffix": { "monthly": "per month", "annual": "per year" },
-    "interval": { "month": "Month", "year": "Year" },
+    "period": {
+      "monthly": "Monthly",
+      "annual": "Annual"
+    },
+    "periodSuffix": {
+      "monthly": "per month",
+      "annual": "per year"
+    },
+    "interval": {
+      "month": "Month",
+      "year": "Year"
+    },
     "save": "Save {percent}%",
     "renewal": "Next renewal",
     "trialRemaining": "Trial remaining",
@@ -1194,14 +1449,41 @@
     }
   },
   "email": {
-    "welcome": { "subject": "Welcome to Clean", "body": "Your Clean account is ready." },
-    "trialEnding": { "subject": "Your trial ends soon", "body": "Manage your subscription to keep access." },
-    "paymentSuccess": { "subject": "Payment successful", "body": "Your subscription has been renewed." },
-    "paymentFailed": { "subject": "Payment failed", "body": "Update your payment method in the billing portal." },
-    "offerReceived": { "subject": "You received a new offer", "body": "A new offer is available in your dashboard." },
-    "offerAccepted": { "subject": "Offer accepted", "body": "The owner accepted your offer." },
-    "offerRejected": { "subject": "Offer not selected", "body": "The owner selected another offer." },
-    "jobAssigned": { "subject": "Job assigned", "body": "The arranged job is available in your dashboard." },
-    "reviewReminder": { "subject": "Review completed collaboration", "body": "Share a verified review of the completed job." }
+    "welcome": {
+      "subject": "Welcome to Clean",
+      "body": "Your Clean account is ready."
+    },
+    "trialEnding": {
+      "subject": "Your trial ends soon",
+      "body": "Manage your subscription to keep access."
+    },
+    "paymentSuccess": {
+      "subject": "Payment successful",
+      "body": "Your subscription has been renewed."
+    },
+    "paymentFailed": {
+      "subject": "Payment failed",
+      "body": "Update your payment method in the billing portal."
+    },
+    "offerReceived": {
+      "subject": "You received a new offer",
+      "body": "A new offer is available in your dashboard."
+    },
+    "offerAccepted": {
+      "subject": "Offer accepted",
+      "body": "The owner accepted your offer."
+    },
+    "offerRejected": {
+      "subject": "Offer not selected",
+      "body": "The owner selected another offer."
+    },
+    "jobAssigned": {
+      "subject": "Job assigned",
+      "body": "The arranged job is available in your dashboard."
+    },
+    "reviewReminder": {
+      "subject": "Review completed collaboration",
+      "body": "Share a verified review of the completed job."
+    }
   }
 }

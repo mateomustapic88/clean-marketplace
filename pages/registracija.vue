@@ -125,6 +125,7 @@ defineI18nRoute({
   paths: {
     hr: '/registracija',
     en: '/register',
+    sl: '/registracija',
   },
 })
 

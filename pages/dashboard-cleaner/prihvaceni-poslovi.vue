@@ -9,7 +9,7 @@ import { useUserStore } from '~/stores/user'
 import { getCleanerJobRoute } from '~/utils/routes'
 
 definePageMeta({ layout: 'dashboard-cleaner', middleware: ['auth', 'role'], roles: ['cleaner'] })
-defineI18nRoute({ paths: { hr: '/dashboard-cleaner/prihvaceni-poslovi', en: '/dashboard-cleaner/accepted-jobs' } })
+defineI18nRoute({ paths: { hr: '/dashboard-cleaner/prihvaceni-poslovi', en: '/dashboard-cleaner/accepted-jobs', sl: '/nadzorna-plosca-cistilec/sprejeta-dela' } })
 const { t, locale } = useI18n()
 const authStore = useAuthStore(), jobsStore = useJobsStore(), userStore = useUserStore()
 const load = async (id?: string) => {

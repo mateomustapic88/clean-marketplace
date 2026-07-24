@@ -12,7 +12,7 @@ import { useUserStore } from '~/stores/user'
 import { getCleanerOfferRoute } from '~/utils/routes'
 
 definePageMeta({ layout: 'dashboard-cleaner', middleware: ['auth', 'role'], roles: ['cleaner'] })
-defineI18nRoute({ paths: { hr: '/dashboard-cleaner/ponude', en: '/dashboard-cleaner/offers' } })
+defineI18nRoute({ paths: { hr: '/dashboard-cleaner/ponude', en: '/dashboard-cleaner/offers', sl: '/nadzorna-plosca-cistilec/ponudbe' } })
 const { t, locale } = useI18n()
 const authStore = useAuthStore(), jobsStore = useJobsStore(), offersStore = useOffersStore(), userStore = useUserStore()
 const subscriptionStore = useSubscriptionStore()

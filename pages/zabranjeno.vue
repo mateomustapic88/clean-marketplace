@@ -22,6 +22,7 @@ defineI18nRoute({
   paths: {
     hr: '/zabranjeno',
     en: '/forbidden',
+    sl: '/prepovedano',
   },
 })
 

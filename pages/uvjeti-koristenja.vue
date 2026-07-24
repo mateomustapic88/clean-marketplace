@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import { getAppRoute } from '~/utils/routes'
 
-defineI18nRoute({ paths: { hr: '/uvjeti-koristenja', en: '/terms' } })
+defineI18nRoute({ paths: { hr: '/uvjeti-koristenja', en: '/terms', sl: '/pogoji-uporabe' } })
 const { t, locale } = useI18n()
 const sections = computed(() => Array.from({ length: 6 }, (_, index) => ({
   id: `section-${index + 1}`,

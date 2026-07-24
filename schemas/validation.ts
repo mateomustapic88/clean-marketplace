@@ -40,7 +40,7 @@ export const createOwnerProfileSchema = (t: ValidationTranslator) => z.object({
   preferredContactMethod: z.enum(['email', 'phone', 'sms']),
   companyName: z.string().trim().max(120, t('validation.maxLength', { count: 120 })).nullable(),
   agencyName: z.string().trim().max(120, t('validation.maxLength', { count: 120 })).nullable(),
-  preferredLanguage: z.enum(['hr', 'en']).default('hr'),
+  preferredLanguage: z.enum(['hr', 'en', 'sl']).default('hr'),
   timeZone: requiredString(t).default('Europe/Zagreb'),
 })
 
