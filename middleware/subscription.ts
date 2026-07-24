@@ -17,9 +17,12 @@ export default defineNuxtRouteMiddleware(async (to) => {
         return subscriptions.capabilities[capability]
       })()
   if (!allowed) {
-    return navigateTo(getAppRoute(
+    const billingPath = getAppRoute(
       auth.user.role === 'owner' ? 'ownerBilling' : 'cleanerBilling',
       getLocaleFromPath(to.path),
-    ))
+    )
+    return navigateTo(capability === 'publish_jobs'
+      ? { path: billingPath, query: { reason: capability } }
+      : billingPath)
   }
 })

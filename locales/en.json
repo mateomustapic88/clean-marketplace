@@ -1359,6 +1359,8 @@
     "cancel": "Cancel at period end",
     "resume": "Resume subscription",
     "manage": "Manage subscription",
+    "publishRequiredTitle": "Start your free trial first",
+    "publishRequiredDescription": "To publish a new job, choose a plan and complete secure Stripe Checkout. Billing starts only after the seven-day free trial.",
     "loadErrorTitle": "Subscription state is unavailable",
     "loadErrorDescription": "Your plan remains available below. Sign in again if Checkout or the billing portal is unavailable.",
     "actionErrorTitle": "Billing action unavailable",

@@ -116,6 +116,8 @@ test('owner billing is role-specific, responsive, and protects publishing', asyn
     if (subscription) subscription.status = 'expired'
     localStorage.setItem(key, JSON.stringify(snapshot))
   })
-  await page.goto('/dashboard/poslovi/novi')
-  await expect(page).toHaveURL(/\/dashboard\/billing$/)
+  await page.goto('/dashboard')
+  await page.getByRole('button', { name: 'Objavi novi posao' }).first().click()
+  await expect(page).toHaveURL(/\/dashboard\/billing\?reason=publish_jobs$/)
+  await expect(page.getByText('Prvo pokrenite probno razdoblje')).toBeVisible()
 })

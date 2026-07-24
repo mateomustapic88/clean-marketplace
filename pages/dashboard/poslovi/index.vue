@@ -1,6 +1,6 @@
 <template>
   <div class="owner-jobs">
-    <header class="owner-jobs__header"><div><h1>{{ t('owner.jobs.title') }}</h1><p>{{ t('owner.jobs.description') }}</p></div><BaseButton :to="getAppRoute('ownerNewJob', locale)"><Plus :size="18" />{{ t('owner.jobs.new') }}</BaseButton></header>
+    <header class="owner-jobs__header"><div><h1>{{ t('owner.jobs.title') }}</h1><p>{{ t('owner.jobs.description') }}</p></div><BaseButton :loading="isCheckingAccess" @click="openNewJob"><Plus :size="18" />{{ t('owner.jobs.new') }}</BaseButton></header>
     <BaseCard class="owner-jobs__filters">
       <BaseInput v-model="search" type="search" :label="t('catalog.search')" />
       <BaseSelect v-model="status" :label="t('owner.jobs.statusFilter')" :placeholder="t('catalog.allOptions')" :options="statusOptions" />
@@ -34,7 +34,7 @@ import { useAuthStore } from '~/stores/auth'
 import { useJobsStore } from '~/stores/jobs'
 import { useUserStore } from '~/stores/user'
 import { formatPublicDate } from '~/utils/formatters'
-import { getAppRoute, getOwnerJobEditRoute, getOwnerJobRoute } from '~/utils/routes'
+import { getOwnerJobEditRoute, getOwnerJobRoute } from '~/utils/routes'
 
 definePageMeta({ layout: 'dashboard', middleware: ['auth', 'role'], roles: ['owner'] })
 defineI18nRoute({ paths: { hr: '/dashboard/poslovi', en: '/dashboard/jobs', sl: '/nadzorna-plosca/dela' } })
@@ -42,6 +42,7 @@ const { t, locale } = useI18n()
 const authStore = useAuthStore()
 const jobsStore = useJobsStore()
 const userStore = useUserStore()
+const { isCheckingAccess, openNewJob } = useOwnerJobAccess()
 const search = ref('')
 const status = ref('')
 const city = ref('')

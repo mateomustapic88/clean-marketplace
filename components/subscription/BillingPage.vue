@@ -3,6 +3,7 @@
     <header><h1>{{ t('billing.title') }}</h1><p>{{ t('billing.description') }}</p></header>
     <BaseAlert v-if="showMockWarning" variant="warning" :title="t('billing.mockModeTitle')">{{ t('billing.mockModeDescription') }}</BaseAlert>
     <BaseAlert v-else-if="showWebhookWarning" variant="warning" :title="t('billing.webhookWarningTitle')">{{ t('billing.webhookWarningDescription') }}</BaseAlert>
+    <BaseAlert v-if="showPublishRequirement" variant="info" :title="t('billing.publishRequiredTitle')">{{ t('billing.publishRequiredDescription') }}</BaseAlert>
     <BaseAlert v-if="loadError" variant="warning" :title="t('billing.loadErrorTitle')">{{ t('billing.loadErrorDescription') }}</BaseAlert>
     <BaseAlert v-if="actionError" variant="error" :title="t('billing.actionErrorTitle')">{{ t('billing.actionErrorDescription') }}</BaseAlert>
     <TrialBanner :subscription="subscription" :days="trialDays" />
@@ -44,6 +45,7 @@ const props = defineProps<{
 }>()
 defineEmits<{ checkout: [billingPeriod: BillingPeriod], portal: [], cancel: [], resume: [] }>()
 const { t } = useI18n()
+const route = useRoute()
 const config = useRuntimeConfig()
 const showMockWarning = computed(() =>
   config.public.billingMode === 'mock'
@@ -53,6 +55,9 @@ const showWebhookWarning = computed(() =>
   config.public.billingMode === 'stripe'
   && config.public.billingEnvironment.development
   && !config.public.billingEnvironment.webhookConfigured,
+)
+const showPublishRequirement = computed(() =>
+  props.role === 'owner' && route.query.reason === 'publish_jobs',
 )
 const hasProviderSubscription = computed(() => Boolean(props.subscription?.stripeSubscriptionId))
 const checkoutAction = computed(() => getBillingCheckoutAction(props.subscription))

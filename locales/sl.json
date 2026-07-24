@@ -1359,6 +1359,8 @@
     "cancel": "Prekliči ob koncu obdobja",
     "resume": "Nadaljuj naročnino",
     "manage": "Upravljanje naročnine",
+    "publishRequiredTitle": "Najprej začnite poskusno obdobje",
+    "publishRequiredDescription": "Za objavo novega dela izberite paket in dokončajte varen Stripe Checkout. Obračunavanje se začne šele po sedemdnevnem poskusnem obdobju.",
     "loadErrorTitle": "Stanje naročnine ni na voljo",
     "loadErrorDescription": "Vaš načrt je še vedno na voljo spodaj. Znova se prijavite, če Checkout ali portal za obračun nista na voljo.",
     "actionErrorTitle": "Dejanje obračunavanja ni na voljo",

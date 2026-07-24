@@ -2,7 +2,7 @@
   <div class="owner-dashboard">
     <header class="owner-dashboard__welcome">
       <div><DemoBadge v-if="profile?.isDemo" type="profile" /><h1>{{ t('owner.dashboard.welcome', { name: profile?.firstName ?? authStore.user?.displayName ?? '' }) }}</h1><p>{{ t('owner.dashboard.description') }}</p></div>
-      <BaseButton :to="getAppRoute('ownerNewJob', locale)"><Plus :size="18" />{{ t('owner.dashboard.publish') }}</BaseButton>
+      <BaseButton :loading="isCheckingAccess" @click="openNewJob"><Plus :size="18" />{{ t('owner.dashboard.publish') }}</BaseButton>
     </header>
     <ProgressCard :title="t('owner.dashboard.profileTitle')" :description="t('owner.dashboard.profileDescription')" :value="completion" :to="getAppRoute('ownerProfile', locale)" :action="t('owner.dashboard.editProfile')" />
     <section>
@@ -19,7 +19,7 @@
     <section>
       <h2>{{ t('owner.dashboard.quickActions') }}</h2>
       <div class="owner-dashboard__quick">
-        <BaseButton :to="getAppRoute('ownerNewJob', locale)">{{ t('owner.dashboard.publish') }}</BaseButton>
+        <BaseButton :loading="isCheckingAccess" @click="openNewJob">{{ t('owner.dashboard.publish') }}</BaseButton>
         <BaseButton v-if="draft" variant="secondary" :to="getOwnerJobEditRoute(draft.id, locale)">{{ t('owner.dashboard.continueDraft') }}</BaseButton>
         <BaseButton v-if="previous" variant="secondary" @click="duplicate(previous.id)">{{ t('owner.dashboard.duplicate') }}</BaseButton>
         <BaseButton variant="ghost" :to="getAppRoute('ownerProfile', locale)">{{ t('owner.dashboard.editProfile') }}</BaseButton>
@@ -59,6 +59,7 @@ const { t, locale } = useI18n()
 const authStore = useAuthStore()
 const jobsStore = useJobsStore()
 const userStore = useUserStore()
+const { isCheckingAccess, openNewJob } = useOwnerJobAccess()
 const loadOwnerDashboard = async (userId?: string) => {
   if (!userId) return
   await Promise.all([

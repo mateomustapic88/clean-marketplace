@@ -1359,6 +1359,8 @@
     "cancel": "Otkaži na kraju razdoblja",
     "resume": "Nastavi pretplatu",
     "manage": "Upravljaj pretplatom",
+    "publishRequiredTitle": "Prvo pokrenite probno razdoblje",
+    "publishRequiredDescription": "Za objavu novog posla odaberite plan i dovršite sigurni Stripe Checkout. Naplata počinje tek nakon sedmodnevnog probnog razdoblja.",
     "loadErrorTitle": "Stanje pretplate trenutačno nije dostupno",
     "loadErrorDescription": "Vaš plan ostaje dostupan u nastavku. Ponovno se prijavite ako Checkout ili portal za naplatu nisu dostupni.",
     "actionErrorTitle": "Radnja naplate nije dostupna",
