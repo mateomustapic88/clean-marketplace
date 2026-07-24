@@ -1,7 +1,11 @@
 import { useAuthStore } from '~/stores/auth'
 import { useSubscriptionStore } from '~/stores/subscription'
 import type { UserRole } from '~/domains/users/types'
-import { getAppRoute, getRoleDashboardRoute } from '~/utils/routes'
+import {
+  getAppRoute,
+  getLocaleFromPath,
+  getRoleDashboardRoute,
+} from '~/utils/routes'
 
 export default defineNuxtPlugin(() => {
   onNuxtReady(async () => {
@@ -14,11 +18,7 @@ export default defineNuxtPlugin(() => {
       : [route.meta.middleware]
     const requiresAuthentication = middleware.includes('auth')
     const isGuestOnly = middleware.includes('guest')
-    const locale = route.path === '/en' || route.path.startsWith('/en/')
-      ? 'en'
-      : route.path === '/sl' || route.path.startsWith('/sl/')
-        ? 'sl'
-        : 'hr'
+    const locale = getLocaleFromPath(route.path)
 
     if (requiresAuthentication && !authStore.isAuthenticated) {
       await navigateTo(getAppRoute('login', locale), { replace: true })

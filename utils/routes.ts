@@ -177,6 +177,13 @@ export const getAppRoute = (
   locale: string,
 ): string => routePaths[route][locale === 'en' ? 'en' : locale === 'sl' ? 'sl' : 'hr']
 
+export const getLocaleFromPath = (path: string): 'hr' | 'en' | 'sl' =>
+  path === '/en' || path.startsWith('/en/')
+    ? 'en'
+    : path === '/sl' || path.startsWith('/sl/')
+      ? 'sl'
+      : 'hr'
+
 export const getRegistrationRoute = (
   role: Exclude<UserRole, 'admin'>,
   locale: string,

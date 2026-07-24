@@ -14,7 +14,13 @@ import {
   sortCleaners,
   sortJobs,
 } from '~/utils/publicCatalog'
-import { getAppRoute, getCleanerRoute, getJobRoute, getRegistrationRoute } from '~/utils/routes'
+import {
+  getAppRoute,
+  getCleanerRoute,
+  getJobRoute,
+  getLocaleFromPath,
+  getRegistrationRoute,
+} from '~/utils/routes'
 
 const jobs = JSON.parse(readFileSync(resolve('data/mock/jobs.json'), 'utf8')) as CleaningJob[]
 const cleaners = JSON.parse(
@@ -86,6 +92,9 @@ describe('public catalogue utilities', () => {
     expect(getAppRoute('jobs', 'sl')).toBe('/sl/dela')
     expect(getRegistrationRoute('owner', 'hr')).toBe('/registracija?role=owner')
     expect(getRegistrationRoute('cleaner', 'sl')).toBe('/sl/registracija?role=cleaner')
+    expect(getLocaleFromPath('/en/jobs')).toBe('en')
+    expect(getLocaleFromPath('/sl/dela')).toBe('sl')
+    expect(getLocaleFromPath('/dashboard')).toBe('hr')
     expect(getJobRoute('job-01', 'en')).toBe('/en/jobs/job-01')
     expect(getJobRoute('job-01', 'sl')).toBe('/sl/dela/job-01')
     expect(getCleanerRoute('cleaner-01', 'hr')).toBe('/cistaci/cleaner-01')

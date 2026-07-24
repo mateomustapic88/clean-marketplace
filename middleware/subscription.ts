@@ -1,6 +1,6 @@
 import { useAuthStore } from '~/stores/auth'
 import { useSubscriptionStore } from '~/stores/subscription'
-import { getAppRoute } from '~/utils/routes'
+import { getAppRoute, getLocaleFromPath } from '~/utils/routes'
 
 export default defineNuxtRouteMiddleware(async (to) => {
   if (import.meta.server && useRuntimeConfig().public.infrastructureMode === 'mock') return
@@ -17,7 +17,9 @@ export default defineNuxtRouteMiddleware(async (to) => {
         return subscriptions.capabilities[capability]
       })()
   if (!allowed) {
-    const { locale } = useI18n()
-    return navigateTo(getAppRoute(auth.user.role === 'owner' ? 'ownerBilling' : 'cleanerBilling', locale.value))
+    return navigateTo(getAppRoute(
+      auth.user.role === 'owner' ? 'ownerBilling' : 'cleanerBilling',
+      getLocaleFromPath(to.path),
+    ))
   }
 })

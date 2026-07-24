@@ -1,7 +1,7 @@
 import { useAuthStore } from '~/stores/auth'
-import { getAppRoute } from '~/utils/routes'
+import { getAppRoute, getLocaleFromPath } from '~/utils/routes'
 
-export default defineNuxtRouteMiddleware(async () => {
+export default defineNuxtRouteMiddleware(async (to) => {
   if (import.meta.server && useRuntimeConfig().public.infrastructureMode === 'mock') return
   const nuxtApp = useNuxtApp()
   if (import.meta.client && nuxtApp.isHydrating && nuxtApp.payload.serverRendered) {
@@ -12,7 +12,6 @@ export default defineNuxtRouteMiddleware(async () => {
   await authStore.restoreSession(import.meta.client)
 
   if (!authStore.isAuthenticated) {
-    const { locale } = useI18n()
-    return navigateTo(getAppRoute('login', locale.value))
+    return navigateTo(getAppRoute('login', getLocaleFromPath(to.path)))
   }
 })
