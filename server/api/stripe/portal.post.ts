@@ -1,3 +1,4 @@
+import { defineEventHandler } from 'h3'
 import { StripeBillingService } from '~/server/services/StripeBillingService'
 import { portalRequestSchema } from '~/server/schemas/billing'
 import { parseBody } from '~/server/utils/billingValidation'

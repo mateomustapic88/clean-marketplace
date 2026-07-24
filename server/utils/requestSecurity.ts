@@ -1,4 +1,10 @@
-import type { H3Event } from 'h3'
+import {
+  createError,
+  getHeader,
+  getRequestURL,
+  setResponseHeader,
+  type H3Event,
+} from 'h3'
 import { createHash } from 'node:crypto'
 import { createAdminSupabaseClient } from '~/infrastructure/supabase/serverClient'
 

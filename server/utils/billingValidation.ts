@@ -1,3 +1,4 @@
+import { readValidatedBody, type H3Event } from 'h3'
 import { z } from 'zod'
 
 export const relativePathSchema = z.string()
@@ -6,6 +7,6 @@ export const relativePathSchema = z.string()
   .refine((path) => !path.startsWith('//'), 'Absolute URLs are not allowed')
 
 export const parseBody = async <TSchema extends z.ZodType>(
-  event: Parameters<typeof readValidatedBody>[0],
+  event: H3Event,
   schema: TSchema,
 ): Promise<z.output<TSchema>> => readValidatedBody(event, (body) => schema.parse(body))

@@ -1,4 +1,5 @@
 import Stripe from 'stripe'
+import { createError } from 'h3'
 import {
   parseBillingMode,
   validateStripeServerConfiguration,

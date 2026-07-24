@@ -1,4 +1,4 @@
-import type { H3Event } from 'h3'
+import { createError, type H3Event } from 'h3'
 import type { User } from '~/domains/users/types'
 import { createServerSupabaseClient } from '~/infrastructure/supabase/serverClient'
 

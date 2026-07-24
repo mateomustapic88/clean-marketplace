@@ -1,3 +1,5 @@
+import { defineEventHandler, setResponseHeader } from 'h3'
+
 const publicPaths = [
   '/',
   '/cijene',

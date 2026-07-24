@@ -1,3 +1,9 @@
+import {
+  createError,
+  defineEventHandler,
+  readBody,
+  setResponseStatus,
+} from 'h3'
 import { z } from 'zod'
 import { createAdminSupabaseClient, createServerSupabaseClient } from '~/infrastructure/supabase/serverClient'
 import { assertTrustedOrigin, enforceRateLimit } from '~/server/utils/requestSecurity'

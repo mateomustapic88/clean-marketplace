@@ -1,3 +1,10 @@
+import {
+  defineEventHandler,
+  getHeader,
+  getRequestURL,
+  sendRedirect,
+} from 'h3'
+
 export default defineEventHandler((event) => {
   if (process.env.NODE_ENV !== 'production') return
   const host = getHeader(event, 'host')?.split(':')[0]?.toLowerCase()

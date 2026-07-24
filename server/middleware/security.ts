@@ -1,3 +1,9 @@
+import {
+  defineEventHandler,
+  setResponseHeader,
+  setResponseHeaders,
+} from 'h3'
+
 export default defineEventHandler((event) => {
   const isProduction = process.env.NODE_ENV === 'production'
   const supabaseOrigin = useRuntimeConfig().public.supabaseUrl

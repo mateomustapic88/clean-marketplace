@@ -1,4 +1,5 @@
 import type Stripe from 'stripe'
+import { createError } from 'h3'
 import type { BillingPeriod } from '~/domains/subscriptions/types'
 import type {
   CheckoutRequest,

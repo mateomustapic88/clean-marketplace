@@ -1,3 +1,4 @@
+import { defineEventHandler } from 'h3'
 import { StripeBillingService } from '~/server/services/StripeBillingService'
 import { requireSupabaseUser } from '~/server/utils/supabaseAuth'
 import { enforceRateLimit } from '~/server/utils/requestSecurity'
