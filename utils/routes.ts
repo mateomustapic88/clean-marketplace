@@ -177,6 +177,11 @@ export const getAppRoute = (
   locale: string,
 ): string => routePaths[route][locale === 'en' ? 'en' : locale === 'sl' ? 'sl' : 'hr']
 
+export const getRegistrationRoute = (
+  role: Exclude<UserRole, 'admin'>,
+  locale: string,
+): string => `${getAppRoute('register', locale)}?role=${role}`
+
 export const getRoleDashboardRoute = (
   role: UserRole,
   locale: string,

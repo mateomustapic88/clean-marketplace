@@ -130,8 +130,10 @@ defineI18nRoute({
 })
 
 const { t, locale } = useI18n()
+const route = useRoute()
 const authStore = useAuthStore()
 const userStore = useUserStore()
+const initialRole = route.query.role === 'cleaner' ? 'cleaner' : 'owner'
 const form = reactive({
   firstName: '',
   lastName: '',
@@ -139,7 +141,7 @@ const form = reactive({
   password: '',
   phone: '',
   cityCode: '',
-  role: 'owner' as 'owner' | 'cleaner',
+  role: initialRole as 'owner' | 'cleaner',
 })
 const passwordVisible = ref(false)
 const errors = ref<Record<string, string>>({})

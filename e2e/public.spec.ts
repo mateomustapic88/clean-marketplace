@@ -75,6 +75,12 @@ test('opens pricing and registration', async ({ page }) => {
   await expect(page.getByText(/Ušteda 129\s*€ godišnje \(57%\)/).first()).toBeVisible()
   await expect(page.getByText(/Ušteda 269\s*€ godišnje \(57%\)/).first()).toBeVisible()
 
+  await page.getByRole('heading', {
+    name: 'Clean za osobe za čišćenje',
+  }).locator('..').getByRole('link', { name: 'Započni probno razdoblje' }).click()
+  await expect(page).toHaveURL(/\/registracija\?role=cleaner$/)
+  await expect(page.getByRole('radio', { name: /Pružam usluge čišćenja/ })).toBeChecked()
+
   await openHydratedPage(page, '/registracija')
   await expect(page.getByRole('radio', { name: /Vlasnik apartmana/ })).toBeVisible()
   await expect(page.getByText(

@@ -26,7 +26,7 @@
               {{ t(`pricing.${plan.translationKey}.features.${item}`) }}
             </li>
           </ul>
-          <BaseButton block size="lg" :to="getAppRoute('register', locale)">{{ t(`pricing.${plan.translationKey}.action`) }}</BaseButton>
+          <BaseButton block size="lg" :to="getRegistrationRoute(plan.role, locale)">{{ t(`pricing.${plan.translationKey}.action`) }}</BaseButton>
           <small>{{ t(`pricing.${plan.translationKey}.billingNote`) }}</small>
         </article>
       </div>
@@ -48,7 +48,7 @@
 import { Check } from '@lucide/vue'
 import type { BillingPeriod } from '~/domains/subscriptions/types'
 import { calculateAnnualSavings } from '~/services/billing/billingPresentation'
-import { getAppRoute } from '~/utils/routes'
+import { getAppRoute, getRegistrationRoute } from '~/utils/routes'
 import { formatPrice } from '~/utils/formatters'
 
 defineI18nRoute({ paths: { hr: '/cijene', en: '/pricing', sl: '/cene' } })
