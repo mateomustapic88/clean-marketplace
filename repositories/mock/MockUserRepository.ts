@@ -9,6 +9,8 @@ import type {
   User,
   UserProfile,
 } from '~/domains/users/types'
+import type { PublicCleanerSearch, SearchPage } from '~/domains/search/types'
+import { searchLocalCleaners } from '~/services/search/localSearch'
 
 export class MockUserRepository implements UserRepository {
   constructor(private readonly database: MockDatabase) {}
@@ -50,6 +52,12 @@ export class MockUserRepository implements UserRepository {
 
   async listCleaners(): Promise<CleanerProfile[]> {
     return clone(this.database.read().cleaners)
+  }
+
+  async searchCleaners(
+    criteria: PublicCleanerSearch,
+  ): Promise<SearchPage<CleanerProfile>> {
+    return clone(searchLocalCleaners(this.database.read().cleaners, criteria))
   }
 
   async getOwnerById(id: string): Promise<OwnerProfile | null> {

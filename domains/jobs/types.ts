@@ -83,6 +83,7 @@ export interface CleaningJob extends DemoEntity {
 }
 
 export interface JobFilters {
+  search?: string
   cityCode?: string
   ownerId?: string
   cleanerId?: string

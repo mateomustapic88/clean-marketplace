@@ -6,12 +6,15 @@ import type {
   UpdateCleaningJobInput,
   JobActivity,
 } from '~/domains/jobs/types'
+import type { PublicJobSearch } from '~/domains/search/types'
 
 export const useJobsStore = defineStore('jobs', () => {
   const jobs = ref<CleaningJob[]>([])
   const selectedJob = ref<CleaningJob | null>(null)
   const isLoading = ref(false)
+  const searchTotal = ref(0)
   const activities = ref<JobActivity[]>([])
+  let searchRequest = 0
 
   const repositories = () => useNuxtApp().$repositories
 
@@ -33,6 +36,20 @@ export const useJobsStore = defineStore('jobs', () => {
     }
     finally {
       isLoading.value = false
+    }
+  }
+
+  const searchPublicJobs = async (criteria: PublicJobSearch) => {
+    const request = ++searchRequest
+    isLoading.value = true
+    try {
+      const result = await repositories().jobs.searchPublic(criteria)
+      if (request !== searchRequest) return
+      jobs.value = result.items
+      searchTotal.value = result.total
+    }
+    finally {
+      if (request === searchRequest) isLoading.value = false
     }
   }
 
@@ -88,9 +105,11 @@ export const useJobsStore = defineStore('jobs', () => {
     jobs,
     selectedJob,
     isLoading,
+    searchTotal,
     activities,
     loadJobs,
     loadJob,
+    searchPublicJobs,
     createJob,
     updateJob,
     transitionJob,

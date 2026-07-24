@@ -6,6 +6,7 @@ import type {
   User,
   UserProfile,
 } from '~/domains/users/types'
+import type { PublicCleanerSearch } from '~/domains/search/types'
 
 export const useUserStore = defineStore('user', () => {
   const profile = ref<UserProfile | null>(null)
@@ -14,6 +15,8 @@ export const useUserStore = defineStore('user', () => {
   const cleaners = ref<CleanerProfile[]>([])
   const cities = ref<City[]>([])
   const isLoading = ref(false)
+  const cleanerSearchTotal = ref(0)
+  let cleanerSearchRequest = 0
 
   const repositories = () => useNuxtApp().$repositories
 
@@ -43,6 +46,25 @@ export const useUserStore = defineStore('user', () => {
     }
     finally {
       isLoading.value = false
+    }
+  }
+
+  const loadCities = async () => {
+    if (cities.value.length) return
+    cities.value = await repositories().users.listCities()
+  }
+
+  const searchCleaners = async (criteria: PublicCleanerSearch) => {
+    const request = ++cleanerSearchRequest
+    isLoading.value = true
+    try {
+      const result = await repositories().users.searchCleaners(criteria)
+      if (request !== cleanerSearchRequest) return
+      cleaners.value = result.items
+      cleanerSearchTotal.value = result.total
+    }
+    finally {
+      if (request === cleanerSearchRequest) isLoading.value = false
     }
   }
 
@@ -93,8 +115,11 @@ export const useUserStore = defineStore('user', () => {
     cleaners,
     cities,
     isLoading,
+    cleanerSearchTotal,
     loadCurrentProfile,
     loadDirectory,
+    loadCities,
+    searchCleaners,
     updateOwner,
     updateUser,
     updateCleaner,

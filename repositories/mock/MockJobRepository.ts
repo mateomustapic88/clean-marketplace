@@ -7,18 +7,35 @@ import type {
   UpdateCleaningJobInput,
 } from '~/domains/jobs/types'
 import type { JobRepository } from '~/repositories/jobs/JobRepository'
+import type { PublicJobSearch, SearchPage } from '~/domains/search/types'
 import type { MockDatabase } from '~/repositories/mock/MockDatabase'
 import { clone, createId, nowIso } from '~/repositories/mock/helpers'
 import { canTransitionJob, duplicateJobInput } from '~/services/jobs/jobLifecycle'
 import { createJobActivity } from '~/services/jobs/jobActivity'
 import { createNotification } from '~/services/notifications/notificationFactory'
 import { canUseSubscriptionCapability } from '~/services/subscriptions/subscriptionAccess'
+import {
+  normalizeSearchText,
+  searchLocalJobs,
+} from '~/services/search/localSearch'
 
 export class MockJobRepository implements JobRepository {
   constructor(private readonly database: MockDatabase) {}
 
   async list(filters: JobFilters = {}): Promise<CleaningJob[]> {
     const jobs = this.database.read().jobs.filter((job) => {
+      if (filters.search) {
+        const query = normalizeSearchText(filters.search)
+        const searchable = normalizeSearchText([
+          job.title,
+          job.apartmentName,
+          job.cityCode,
+          job.approximateArea,
+          job.address,
+          job.additionalInstructions,
+        ].join(' '))
+        if (!query.split(' ').every((term) => searchable.includes(term))) return false
+      }
       if (filters.cityCode && job.cityCode !== filters.cityCode) return false
       if (filters.ownerId && job.ownerId !== filters.ownerId) return false
       if (filters.cleanerId && job.assignedCleanerId !== filters.cleanerId) return false
@@ -39,6 +56,10 @@ export class MockJobRepository implements JobRepository {
     })
 
     return clone(jobs)
+  }
+
+  async searchPublic(criteria: PublicJobSearch): Promise<SearchPage<CleaningJob>> {
+    return clone(searchLocalJobs(this.database.read().jobs, criteria))
   }
 
   async getById(id: string): Promise<CleaningJob | null> {

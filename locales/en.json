@@ -315,6 +315,7 @@
       "urgent": "Urgent jobs only"
     },
     "sort": {
+      "relevance": "Most relevant",
       "newest": "Newest",
       "date": "Date soonest",
       "budget-high": "Highest budget",
@@ -362,6 +363,7 @@
       "transport": "Has own transport"
     },
     "sort": {
+      "relevance": "Most relevant",
       "rating": "Highest rating",
       "rate": "Lowest hourly rate",
       "completed": "Most completed jobs",

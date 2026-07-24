@@ -48,10 +48,7 @@ import { useJobsStore } from '~/stores/jobs'
 import { useUserStore } from '~/stores/user'
 import {
   emptyJobFilters,
-  filterJobs,
-  paginate,
   serializeQuery,
-  sortJobs,
   type JobSort,
 } from '~/utils/publicCatalog'
 import { getAppRoute, getJobRoute } from '~/utils/routes'
@@ -63,7 +60,6 @@ const router = useRouter()
 const config = useRuntimeConfig()
 const jobsStore = useJobsStore()
 const userStore = useUserStore()
-await Promise.all([jobsStore.loadJobs(), userStore.loadDirectory()])
 
 const fromQuery = () => ({
   ...emptyJobFilters(),
@@ -80,20 +76,48 @@ const fromQuery = () => ({
   date: String(route.query.date ?? ''),
 })
 const filters = ref(fromQuery())
-const sort = ref<JobSort>((route.query.sort as JobSort) || 'newest')
+const sort = ref<JobSort>((route.query.sort as JobSort)
+  || (filters.value.search ? 'relevance' : 'newest'))
 const page = ref(Number(route.query.page) || 1)
 const pageSize = 9
 const drawerOpen = ref(false)
 let queryTimer: ReturnType<typeof setTimeout> | undefined
 
-const publicJobs = computed(() => jobsStore.jobs.filter((job) =>
-  ['published', 'receiving_offers'].includes(job.status)))
-const filteredJobs = computed(() => sortJobs(filterJobs(publicJobs.value, filters.value), sort.value))
-const totalPages = computed(() => Math.max(1, Math.ceil(filteredJobs.value.length / pageSize)))
-const pagedJobs = computed(() => paginate(filteredJobs.value, page.value, pageSize))
+const searchCriteria = () => ({
+  search: filters.value.search,
+  page: page.value,
+  pageSize,
+  sort: sort.value,
+  ...(filters.value.city && { cityCode: filters.value.city }),
+  ...(filters.value.priceType && {
+    budgetType: filters.value.priceType as 'fixed' | 'hourly',
+  }),
+  ...(filters.value.minimumPrice !== null && {
+    minimumBudget: filters.value.minimumPrice,
+  }),
+  ...(filters.value.maximumPrice !== null && {
+    maximumBudget: filters.value.maximumPrice,
+  }),
+  ...(filters.value.minimumSize !== null && {
+    minimumSize: filters.value.minimumSize,
+  }),
+  ...(filters.value.sameDay && { sameDayTurnover: true }),
+  ...(filters.value.supplies && { suppliesProvided: true }),
+  ...(filters.value.weekend && { weekendOnly: true }),
+  ...(filters.value.urgent && { urgentOnly: true }),
+  ...(filters.value.date && { preferredDate: filters.value.date }),
+})
+await Promise.all([
+  jobsStore.searchPublicJobs(searchCriteria()),
+  userStore.loadCities(),
+])
+const filteredJobs = computed(() => jobsStore.jobs)
+const totalPages = computed(() =>
+  Math.max(1, Math.ceil(jobsStore.searchTotal / pageSize)))
+const pagedJobs = computed(() => filteredJobs.value)
 const cityOptions = computed(() => userStore.cities.map((city) => ({ label: city.name, value: city.code })))
 const cityName = (code: string) => userStore.cities.find((city) => city.code === code)?.name ?? code
-const sortOptions = computed(() => (['newest', 'date', 'budget-high', 'budget-low'] as JobSort[])
+const sortOptions = computed(() => (['relevance', 'newest', 'date', 'budget-high', 'budget-low'] as JobSort[])
   .map((value) => ({ value, label: t(`jobs.sort.${value}`) })))
 const activeChips = computed(() => Object.entries(filters.value)
   .filter(([, value]) => value !== '' && value !== null && value !== false)
@@ -104,13 +128,20 @@ const activeChips = computed(() => Object.entries(filters.value)
 
 watch([filters, sort, page], () => {
   clearTimeout(queryTimer)
-  queryTimer = setTimeout(() => {
-    router.replace({
-      query: serializeQuery({ ...filters.value, sort: sort.value, page: page.value > 1 ? page.value : null }),
-    })
+  queryTimer = setTimeout(async () => {
+    await Promise.all([
+      router.replace({
+        query: serializeQuery({ ...filters.value, sort: sort.value, page: page.value > 1 ? page.value : null }),
+      }),
+      jobsStore.searchPublicJobs(searchCriteria()),
+    ])
   }, 250)
 }, { deep: true })
 watch([filters, sort], () => page.value = 1, { deep: true })
+watch(() => filters.value.search, (search) => {
+  if (search && sort.value === 'newest') sort.value = 'relevance'
+  if (!search && sort.value === 'relevance') sort.value = 'newest'
+})
 watch(totalPages, (value) => page.value = Math.min(page.value, value))
 
 const resetFilters = () => {

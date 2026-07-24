@@ -2,6 +2,7 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import type {
   CleaningJob, CreateCleaningJobInput, JobActivity, JobFilters, UpdateCleaningJobInput,
 } from '~/domains/jobs/types'
+import type { PublicJobSearch, SearchPage } from '~/domains/search/types'
 import type { JobRepository } from '~/repositories/jobs/JobRepository'
 import { throwIfSupabaseError } from './helpers'
 import { mapActivity, mapJob } from './mappers'
@@ -45,6 +46,45 @@ export class SupabaseJobRepository implements JobRepository {
   constructor(private readonly client: SupabaseClient) {}
 
   async list(filters: JobFilters = {}): Promise<CleaningJob[]> {
+    if (filters.search?.trim()) {
+      const { data, error } = await this.client.rpc('search_marketplace_jobs', {
+        p_search: filters.search,
+        p_city_code: filters.cityCode ?? null,
+        p_budget_type: filters.budgetType ?? null,
+        p_minimum_budget_cents: filters.minimumBudget === undefined
+          ? null
+          : Math.round(filters.minimumBudget * 100),
+        p_maximum_budget_cents: filters.maximumBudget === undefined
+          ? null
+          : Math.round(filters.maximumBudget * 100),
+        p_minimum_size: filters.minimumSize ?? null,
+        p_same_day_turnover: filters.sameDayTurnover ?? false,
+        p_supplies_provided: false,
+        p_weekend_only: filters.weekendOnly ?? false,
+        p_urgent_only: false,
+        p_preferred_date: filters.preferredDate ?? null,
+        p_status: filters.status ?? null,
+        p_sort: 'relevance',
+        p_page_size: 100,
+        p_page_offset: 0,
+        p_owner_id: filters.ownerId ?? null,
+      })
+      throwIfSupabaseError(error)
+      const ids = (data as Array<{ entity_id: string }> ?? [])
+        .map((match) => match.entity_id)
+      if (!ids.length) return []
+      const { data: records, error: recordsError } = await this.client
+        .from('jobs')
+        .select(selection)
+        .in('id', ids)
+      throwIfSupabaseError(recordsError)
+      const mapped = await Promise.all(
+        (records as DbRow[]).map((record) => this.mapWithSignedImages(record)),
+      )
+      const byId = new Map(mapped.map((job) => [job.id, job]))
+      return ids.flatMap((id) => byId.get(id) ?? [])
+    }
+
     let query = this.client.from('jobs').select(selection).order('created_at', { ascending: false })
     if (filters.cityCode) query = query.eq('city_code', filters.cityCode)
     if (filters.ownerId) query = query.eq('owner_id', filters.ownerId)
@@ -59,6 +99,49 @@ export class SupabaseJobRepository implements JobRepository {
     const { data, error } = await query
     throwIfSupabaseError(error)
     return Promise.all((data as DbRow[]).map((record) => this.mapWithSignedImages(record)))
+  }
+
+  async searchPublic(criteria: PublicJobSearch): Promise<SearchPage<CleaningJob>> {
+    const { data, error } = await this.client.rpc('search_marketplace_jobs', {
+      p_search: criteria.search,
+      p_city_code: criteria.cityCode ?? null,
+      p_budget_type: criteria.budgetType ?? null,
+      p_minimum_budget_cents: criteria.minimumBudget === undefined
+        ? null
+        : Math.round(criteria.minimumBudget * 100),
+      p_maximum_budget_cents: criteria.maximumBudget === undefined
+        ? null
+        : Math.round(criteria.maximumBudget * 100),
+      p_minimum_size: criteria.minimumSize ?? null,
+      p_same_day_turnover: criteria.sameDayTurnover ?? false,
+      p_supplies_provided: criteria.suppliesProvided ?? false,
+      p_weekend_only: criteria.weekendOnly ?? false,
+      p_urgent_only: criteria.urgentOnly ?? false,
+      p_preferred_date: criteria.preferredDate ?? null,
+      p_status: null,
+      p_sort: criteria.sort,
+      p_page_size: criteria.pageSize,
+      p_page_offset: Math.max(criteria.page - 1, 0) * criteria.pageSize,
+      p_owner_id: null,
+    })
+    throwIfSupabaseError(error)
+    const matches = data as Array<{ entity_id: string, total_count: number | string }> ?? []
+    if (!matches.length) return { items: [], total: 0 }
+
+    const ids = matches.map((match) => match.entity_id)
+    const { data: records, error: recordsError } = await this.client
+      .from('jobs')
+      .select(selection)
+      .in('id', ids)
+    throwIfSupabaseError(recordsError)
+    const mapped = await Promise.all(
+      (records as DbRow[]).map((record) => this.mapWithSignedImages(record)),
+    )
+    const byId = new Map(mapped.map((job) => [job.id, job]))
+    return {
+      items: ids.flatMap((id) => byId.get(id) ?? []),
+      total: Number(matches[0]?.total_count ?? 0),
+    }
   }
 
   async getById(id: string): Promise<CleaningJob | null> {

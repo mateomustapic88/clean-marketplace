@@ -1,5 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import type { City } from '~/domains/shared/types'
+import type { PublicCleanerSearch, SearchPage } from '~/domains/search/types'
 import type { AdminProfile, CleanerProfile, OwnerProfile, User, UserProfile } from '~/domains/users/types'
 import type { UserRepository } from '~/repositories/users/UserRepository'
 import { throwIfSupabaseError } from './helpers'
@@ -96,6 +97,52 @@ export class SupabaseUserRepository implements UserRepository {
       item,
       stats.get(text(item.user_id)),
     )))
+  }
+
+  async searchCleaners(
+    criteria: PublicCleanerSearch,
+  ): Promise<SearchPage<CleanerProfile>> {
+    const { data, error } = await this.client.rpc('search_marketplace_cleaners', {
+      p_search: criteria.search,
+      p_city_code: criteria.cityCode ?? null,
+      p_maximum_hourly_rate_cents: criteria.maximumHourlyRate === undefined
+        ? null
+        : Math.round(criteria.maximumHourlyRate * 100),
+      p_maximum_minimum_price_cents: criteria.maximumMinimumPrice === undefined
+        ? null
+        : Math.round(criteria.maximumMinimumPrice * 100),
+      p_minimum_rating: criteria.minimumRating ?? null,
+      p_weekend_available: criteria.weekendAvailable ?? false,
+      p_same_day_available: criteria.sameDayAvailable ?? false,
+      p_brings_supplies: criteria.bringsSupplies ?? false,
+      p_own_transportation: criteria.ownTransportation ?? false,
+      p_language: criteria.language ?? null,
+      p_sort: criteria.sort,
+      p_page_size: criteria.pageSize,
+      p_page_offset: Math.max(criteria.page - 1, 0) * criteria.pageSize,
+    })
+    throwIfSupabaseError(error)
+    const matches = data as Array<{ entity_id: string, total_count: number | string }> ?? []
+    if (!matches.length) return { items: [], total: 0 }
+
+    const ids = matches.map((match) => match.entity_id)
+    const [{ data: cleaners, error: cleanersError }, { data: reviews, error: reviewsError }]
+      = await Promise.all([
+        this.client.from('cleaner_profiles').select('*, profiles(*)').in('user_id', ids),
+        this.client.from('reviews')
+          .select('reviewee_id, overall_score')
+          .in('reviewee_id', ids)
+          .eq('verified_completed_job', true),
+      ])
+    throwIfSupabaseError(cleanersError ?? reviewsError)
+    const stats = ratingStats(reviews as DbRow[] ?? [])
+    const mapped = await Promise.all((cleaners as DbRow[]).map((item) =>
+      this.mapCleaner(item, stats.get(text(item.user_id)))))
+    const byId = new Map(mapped.map((cleaner) => [cleaner.userId, cleaner]))
+    return {
+      items: ids.flatMap((id) => byId.get(id) ?? []),
+      total: Number(matches[0]?.total_count ?? 0),
+    }
   }
 
   async getOwnerById(id: string): Promise<OwnerProfile | null> {

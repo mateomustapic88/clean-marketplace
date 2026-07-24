@@ -6,7 +6,7 @@
   },
   "common": {
     "close": "Zapri",
-    "menu": "meni",
+    "menu": "Meni",
     "loading": "Nalaganje",
     "previous": "Prejšnja",
     "next": "Naprej",
@@ -216,7 +216,7 @@
       "email_confirmation_required": "Preverite svojo e-pošto in potrdite račun, preden se prijavite.",
       "weak_password": "Izberite močnejše geslo.",
       "invalid_reset_link": "Povezava za obnovitev je neveljavna ali je potekla.",
-      "unknown": "Prišlo je do nepričakovane napake. prosim poskusite ponovno"
+      "unknown": "Prišlo je do nepričakovane napake. Poskusite znova."
     },
     "forbidden": {
       "title": "Ne morete dostopati do te strani",
@@ -310,11 +310,12 @@
       "priceType": "Vrsta cene",
       "minimumSize": "Najmanjša velikost",
       "sameDay": "Enodnevni promet gostov",
-      "supplies": "Zaloge so zagotovljene",
+      "supplies": "Čistila so zagotovljena",
       "weekend": "Delo ob koncu tedna",
       "urgent": "Samo nujna dela"
     },
     "sort": {
+      "relevance": "Najustreznejše",
       "newest": "Najnovejša",
       "date": "Najhitrejši datum",
       "budget-high": "Najvišji proračun",
@@ -328,7 +329,7 @@
       "maximumPrice": "Do EUR {value}",
       "minimumSize": "Od {value} m²",
       "sameDay": "Promet v istem dnevu",
-      "supplies": "Zaloge zagotovljene",
+      "supplies": "Čistila zagotovljena",
       "weekend": "Vikend",
       "urgent": "Nujno",
       "date": "Datum: {value}"
@@ -344,7 +345,7 @@
     "card": {
       "perHour": "na uro",
       "minimum": "Minimalni obisk: {price}",
-      "supplies": "Prinaša zaloge",
+      "supplies": "Prinese čistila",
       "transport": "Lasten prevoz",
       "completed": "Opravljena opravila: {count}",
       "viewProfile": "Prikaži profil"
@@ -358,10 +359,11 @@
       "language": "Jezik",
       "weekend": "Na voljo ob vikendih",
       "sameDay": "Vseljivo še isti dan",
-      "supplies": "Prinaša zaloge",
+      "supplies": "Prinese čistila",
       "transport": "Ima lasten prevoz"
     },
     "sort": {
+      "relevance": "Najustreznejši",
       "rating": "Najvišja ocena",
       "rate": "Najnižja urna postavka",
       "completed": "Večina opravljenih del",

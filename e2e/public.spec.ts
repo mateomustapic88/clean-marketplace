@@ -16,6 +16,16 @@ test('opens the homepage and changes language', async ({ page }) => {
   await expect(page).toHaveURL(/\/en/)
 })
 
+test('opens the complete Slovenian locale', async ({ page }) => {
+  await openHydratedPage(page, '/')
+  await page.getByRole('link', { name: /Slovenščina/ }).first().click()
+  await expect(page).toHaveURL(/\/sl/)
+  await expect(page.getByRole('heading', {
+    level: 1,
+    name: 'Poiščite zanesljivega strokovnjaka za čiščenje apartmajev',
+  })).toBeVisible()
+})
+
 test('browses and filters jobs before opening a detail', async ({ page }) => {
   await openHydratedPage(page, '/poslovi')
   await page.getByLabel('Grad').first().selectOption('dubrovnik')
@@ -23,6 +33,14 @@ test('browses and filters jobs before opening a detail', async ({ page }) => {
   await page.locator('article.job-card').first().getByRole('link').click()
   await expect(page).toHaveURL(/\/poslovi\/job-/)
   await expect(page.getByText('Primjer oglasa').first()).toBeVisible()
+})
+
+test('finds jobs with case-insensitive partial search', async ({ page }) => {
+  await openHydratedPage(page, '/poslovi')
+  await page.getByLabel('Pretraživanje').first().fill('dUbR')
+  await expect(page).toHaveURL(/search=dUbR/)
+  await expect(page.locator('article.job-card')).not.toHaveCount(0)
+  await expect(page.locator('article.job-card').first()).toContainText('Dubrovnik')
 })
 
 test('browses cleaners and opens a public profile', async ({ page }) => {

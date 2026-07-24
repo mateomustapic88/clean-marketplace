@@ -1,8 +1,13 @@
 import type { CleaningJob } from '~/domains/jobs/types'
+import type {
+  CleanerSearchSort,
+  JobSearchSort,
+} from '~/domains/search/types'
 import type { CleanerProfile } from '~/domains/users/types'
+import { normalizeSearchText } from '~/services/search/localSearch'
 
-export type JobSort = 'newest' | 'date' | 'budget-high' | 'budget-low'
-export type CleanerSort = 'rating' | 'rate' | 'completed' | 'newest'
+export type JobSort = JobSearchSort
+export type CleanerSort = CleanerSearchSort
 
 export interface PublicJobFilters {
   search: string
@@ -58,16 +63,21 @@ export const emptyCleanerFilters = (): PublicCleanerFilters => ({
   language: '',
 })
 
-const normalized = (value: string) => value.trim().toLocaleLowerCase('hr')
-
 export const filterJobs = (
   jobs: CleaningJob[],
   filters: PublicJobFilters,
 ): CleaningJob[] => jobs.filter((job) => {
-  const query = normalized(filters.search)
-  const searchable = normalized(`${job.title} ${job.approximateArea}`)
+  const query = normalizeSearchText(filters.search)
+  const searchable = normalizeSearchText([
+    job.title,
+    job.apartmentName,
+    job.cityCode,
+    job.approximateArea,
+    job.address,
+    job.additionalInstructions,
+  ].join(' '))
   const weekend = [0, 6].includes(new Date(`${job.preferredDate}T12:00:00`).getDay())
-  return (!query || searchable.includes(query))
+  return (!query || query.split(' ').every((term) => searchable.includes(term)))
     && (!filters.city || job.cityCode === filters.city)
     && (!filters.priceType || job.budgetType === filters.priceType)
     && (filters.minimumPrice === null || job.proposedBudget >= filters.minimumPrice)
@@ -82,6 +92,7 @@ export const filterJobs = (
 
 export const sortJobs = (jobs: CleaningJob[], sort: JobSort): CleaningJob[] =>
   [...jobs].sort((left, right) => {
+    if (sort === 'relevance') return 0
     if (sort === 'date') return left.preferredDate.localeCompare(right.preferredDate)
     if (sort === 'budget-high') return right.proposedBudget - left.proposedBudget
     if (sort === 'budget-low') return left.proposedBudget - right.proposedBudget
@@ -92,11 +103,18 @@ export const filterCleaners = (
   cleaners: CleanerProfile[],
   filters: PublicCleanerFilters,
 ): CleanerProfile[] => cleaners.filter((cleaner) => {
-  const query = normalized(filters.search)
-  const searchable = normalized(
-    `${cleaner.firstName} ${cleaner.lastName} ${cleaner.biography}`,
-  )
-  return (!query || searchable.includes(query))
+  const query = normalizeSearchText(filters.search)
+  const searchable = normalizeSearchText([
+    cleaner.firstName,
+    cleaner.lastName,
+    cleaner.biography,
+    cleaner.companyName ?? '',
+    cleaner.cityCode,
+    cleaner.serviceAreas.map((area) => area.cityCode).join(' '),
+    cleaner.languages.join(' '),
+    cleaner.website ?? '',
+  ].join(' '))
+  return (!query || query.split(' ').every((term) => searchable.includes(term)))
     && (!filters.city || cleaner.cityCode === filters.city
       || cleaner.serviceAreas.some((area) => area.cityCode === filters.city))
     && (filters.maximumRate === null || cleaner.hourlyRate <= filters.maximumRate)
@@ -115,6 +133,7 @@ export const sortCleaners = (
   cleaners: CleanerProfile[],
   sort: CleanerSort,
 ): CleanerProfile[] => [...cleaners].sort((left, right) => {
+  if (sort === 'relevance') return 0
   if (sort === 'rate') return left.hourlyRate - right.hourlyRate
   if (sort === 'completed') return right.completedJobs - left.completedJobs
   if (sort === 'newest') return right.createdAt.localeCompare(left.createdAt)

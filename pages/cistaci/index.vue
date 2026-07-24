@@ -47,10 +47,7 @@ import { SlidersHorizontal } from '@lucide/vue'
 import { useUserStore } from '~/stores/user'
 import {
   emptyCleanerFilters,
-  filterCleaners,
-  paginate,
   serializeQuery,
-  sortCleaners,
   type CleanerSort,
 } from '~/utils/publicCatalog'
 import { getAppRoute, getCleanerRoute } from '~/utils/routes'
@@ -61,7 +58,6 @@ const route = useRoute()
 const router = useRouter()
 const config = useRuntimeConfig()
 const userStore = useUserStore()
-await userStore.loadDirectory()
 const fromQuery = () => ({
   ...emptyCleanerFilters(),
   search: String(route.query.search ?? ''),
@@ -76,17 +72,44 @@ const fromQuery = () => ({
   language: String(route.query.language ?? ''),
 })
 const filters = ref(fromQuery())
-const sort = ref<CleanerSort>((route.query.sort as CleanerSort) || 'rating')
+const sort = ref<CleanerSort>((route.query.sort as CleanerSort)
+  || (filters.value.search ? 'relevance' : 'rating'))
 const page = ref(Number(route.query.page) || 1)
 const pageSize = 9
 const drawerOpen = ref(false)
 let queryTimer: ReturnType<typeof setTimeout> | undefined
-const filteredCleaners = computed(() => sortCleaners(filterCleaners(userStore.cleaners, filters.value), sort.value))
-const totalPages = computed(() => Math.max(1, Math.ceil(filteredCleaners.value.length / pageSize)))
-const pagedCleaners = computed(() => paginate(filteredCleaners.value, page.value, pageSize))
+const searchCriteria = () => ({
+  search: filters.value.search,
+  page: page.value,
+  pageSize,
+  sort: sort.value,
+  ...(filters.value.city && { cityCode: filters.value.city }),
+  ...(filters.value.maximumRate !== null && {
+    maximumHourlyRate: filters.value.maximumRate,
+  }),
+  ...(filters.value.maximumMinimumPrice !== null && {
+    maximumMinimumPrice: filters.value.maximumMinimumPrice,
+  }),
+  ...(filters.value.minimumRating !== null && {
+    minimumRating: filters.value.minimumRating,
+  }),
+  ...(filters.value.weekend && { weekendAvailable: true }),
+  ...(filters.value.sameDay && { sameDayAvailable: true }),
+  ...(filters.value.supplies && { bringsSupplies: true }),
+  ...(filters.value.transportation && { ownTransportation: true }),
+  ...(filters.value.language && { language: filters.value.language }),
+})
+await Promise.all([
+  userStore.searchCleaners(searchCriteria()),
+  userStore.loadCities(),
+])
+const filteredCleaners = computed(() => userStore.cleaners)
+const totalPages = computed(() =>
+  Math.max(1, Math.ceil(userStore.cleanerSearchTotal / pageSize)))
+const pagedCleaners = computed(() => filteredCleaners.value)
 const cityOptions = computed(() => userStore.cities.map((city) => ({ label: city.name, value: city.code })))
 const cityName = (code: string) => userStore.cities.find((city) => city.code === code)?.name ?? code
-const sortOptions = computed(() => (['rating', 'rate', 'completed', 'newest'] as CleanerSort[])
+const sortOptions = computed(() => (['relevance', 'rating', 'rate', 'completed', 'newest'] as CleanerSort[])
   .map((value) => ({ value, label: t(`cleaners.sort.${value}`) })))
 const activeChips = computed(() => Object.entries(filters.value)
   .filter(([, value]) => value !== '' && value !== null && value !== false)
@@ -96,11 +119,20 @@ const activeChips = computed(() => Object.entries(filters.value)
   })))
 watch([filters, sort, page], () => {
   clearTimeout(queryTimer)
-  queryTimer = setTimeout(() => router.replace({
-    query: serializeQuery({ ...filters.value, sort: sort.value, page: page.value > 1 ? page.value : null }),
-  }), 250)
+  queryTimer = setTimeout(async () => {
+    await Promise.all([
+      router.replace({
+        query: serializeQuery({ ...filters.value, sort: sort.value, page: page.value > 1 ? page.value : null }),
+      }),
+      userStore.searchCleaners(searchCriteria()),
+    ])
+  }, 250)
 }, { deep: true })
 watch([filters, sort], () => page.value = 1, { deep: true })
+watch(() => filters.value.search, (search) => {
+  if (search && sort.value === 'rating') sort.value = 'relevance'
+  if (!search && sort.value === 'relevance') sort.value = 'rating'
+})
 watch(totalPages, (value) => page.value = Math.min(page.value, value))
 const resetFilters = () => {
   filters.value = emptyCleanerFilters()

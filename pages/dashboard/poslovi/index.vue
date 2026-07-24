@@ -52,10 +52,21 @@ const deleteOpen = ref(false)
 const deleteTarget = ref<CleaningJob | null>(null)
 const load = async (id?: string) => {
   if (!id) return
-  await Promise.all([jobsStore.loadJobs({ ownerId: id }), userStore.loadDirectory()])
+  await Promise.all([
+    jobsStore.loadJobs({
+      ownerId: id,
+      ...(search.value && { search: search.value }),
+    }),
+    userStore.loadDirectory(),
+  ])
 }
 watch(() => authStore.user?.id, load, { immediate: true })
-const filtered = computed(() => jobsStore.jobs.filter((job) => (!search.value || `${job.title} ${job.apartmentName}`.toLowerCase().includes(search.value.toLowerCase())) && (!status.value || job.status === status.value) && (!city.value || job.cityCode === city.value) && (!date.value || job.preferredDate === date.value)).sort((a, b) => sort.value === 'oldest' ? a.createdAt.localeCompare(b.createdAt) : sort.value === 'date' ? a.preferredDate.localeCompare(b.preferredDate) : sort.value === 'offers' ? b.offerCount - a.offerCount : b.createdAt.localeCompare(a.createdAt)))
+let searchTimer: ReturnType<typeof setTimeout> | undefined
+watch(search, () => {
+  clearTimeout(searchTimer)
+  searchTimer = setTimeout(() => load(authStore.user?.id), 250)
+})
+const filtered = computed(() => jobsStore.jobs.filter((job) => (!status.value || job.status === status.value) && (!city.value || job.cityCode === city.value) && (!date.value || job.preferredDate === date.value)).sort((a, b) => search.value ? 0 : sort.value === 'oldest' ? a.createdAt.localeCompare(b.createdAt) : sort.value === 'date' ? a.preferredDate.localeCompare(b.preferredDate) : sort.value === 'offers' ? b.offerCount - a.offerCount : b.createdAt.localeCompare(a.createdAt)))
 const statuses: CleaningJobStatus[] = ['draft', 'published', 'receiving_offers', 'assigned', 'in_progress', 'completed', 'archived', 'cancelled']
 const statusOptions = computed(() => statuses.map((value) => ({ value, label: t(`owner.status.${value}`) })))
 const cityOptions = computed(() => userStore.cities.map((item) => ({ value: item.code, label: item.name })))

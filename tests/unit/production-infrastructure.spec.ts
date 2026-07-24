@@ -41,6 +41,7 @@ describe('production infrastructure', () => {
       '0014_rls_verification.sql',
       '0015_subscription_billing_period.sql',
       '0016_add_slovenian_locale.sql',
+      '0017_ranked_marketplace_search.sql',
     ])
   })
 
@@ -68,5 +69,17 @@ describe('production infrastructure', () => {
     expect(migrationSql).toContain("create type public.billing_period as enum ('monthly', 'annual')")
     expect(migrationSql).toContain('billing_period public.billing_period not null')
     expect(migrationSql).toContain("stripe_interval in ('month', 'year')")
+  })
+
+  it('uses indexed, RLS-safe ranked marketplace search', () => {
+    expect(migrationSql).toContain('create extension if not exists pg_trgm')
+    expect(migrationSql).toContain('create extension if not exists unaccent')
+    expect(migrationSql).toContain('jobs_search_trgm_idx')
+    expect(migrationSql).toContain('jobs_search_fts_idx')
+    expect(migrationSql).toContain('profiles_search_trgm_idx')
+    expect(migrationSql).toContain('function public.search_marketplace_jobs')
+    expect(migrationSql).toContain('function public.search_marketplace_cleaners')
+    expect(migrationSql).toContain('security invoker')
+    expect(migrationSql).toContain('least(greatest(p_page_size, 1), 100)')
   })
 })

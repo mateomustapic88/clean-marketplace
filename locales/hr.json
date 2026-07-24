@@ -315,6 +315,7 @@
       "urgent": "Samo hitni poslovi"
     },
     "sort": {
+      "relevance": "Najrelevantnije",
       "newest": "Najnovije",
       "date": "Najskoriji datum",
       "budget-high": "Najviši budžet",
@@ -362,6 +363,7 @@
       "transport": "Ima vlastiti prijevoz"
     },
     "sort": {
+      "relevance": "Najrelevantnije",
       "rating": "Najviša ocjena",
       "rate": "Najniža cijena po satu",
       "completed": "Najviše završenih poslova",

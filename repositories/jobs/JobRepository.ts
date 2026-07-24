@@ -5,9 +5,11 @@ import type {
   UpdateCleaningJobInput,
   JobActivity,
 } from '~/domains/jobs/types'
+import type { PublicJobSearch, SearchPage } from '~/domains/search/types'
 
 export interface JobRepository {
   list(filters?: JobFilters): Promise<CleaningJob[]>
+  searchPublic(criteria: PublicJobSearch): Promise<SearchPage<CleaningJob>>
   getById(id: string): Promise<CleaningJob | null>
   create(input: CreateCleaningJobInput): Promise<CleaningJob>
   update(input: UpdateCleaningJobInput): Promise<CleaningJob>
