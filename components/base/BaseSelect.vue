@@ -73,6 +73,7 @@ const descriptionId = computed(() => props.error
 .base-select {
   display: grid;
   gap: $space-2;
+  min-width: 0;
 
   &__label {
     font-size: $font-size-sm;
@@ -81,10 +82,14 @@ const descriptionId = computed(() => props.error
 
   &__control {
     position: relative;
+    min-width: 0;
+    max-width: 100%;
   }
 
   &__field {
     @include field-base;
+    min-width: 0;
+    max-width: 100%;
     padding-inline-end: 2.75rem;
     appearance: none;
     cursor: pointer;

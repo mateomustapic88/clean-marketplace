@@ -35,6 +35,7 @@ const logout = async () => {
 <style scoped lang="scss">
 .dashboard-layout {
   min-height: 100vh;
+  overflow-x: clip;
   background: $color-background;
 
   &__sidebar { display: none; }
@@ -52,12 +53,16 @@ const logout = async () => {
     transform: translateY(-150%);
     &:focus { pointer-events: auto; opacity: 1; transform: translateY(0); }
   }
-  &__content { width: min(100% - 2rem, 76rem); margin-inline: auto; padding-block: $space-8 $space-16; }
+  &__body,
+  &__content { min-width: 0; }
+  &__content { width: min(calc(100% - 2rem), 76rem); margin-inline: auto; padding-block: $space-6 $space-12; }
+  &__content:focus { outline: none; }
 
   @media (min-width: $breakpoint-lg) {
     display: grid;
     grid-template-columns: 17rem minmax(0, 1fr);
     &__sidebar { position: sticky; top: 0; display: block; height: 100vh; }
+    &__content { padding-block: $space-8 $space-16; }
   }
 }
 </style>

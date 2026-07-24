@@ -86,15 +86,27 @@ test('keeps owner pages within the viewport at supported breakpoints', async ({ 
     '/dashboard/postavke',
   ]
 
-  for (const width of [375, 768, 1024, 1440]) {
+  for (const width of [375, 393, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 })
     for (const path of paths) {
       await page.goto(path, { waitUntil: 'domcontentloaded' })
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
+      if (path === '/dashboard/profil') {
+        await expect(page.locator('.owner-profile-page form')).toBeVisible()
+      }
       const hasHorizontalOverflow = await page.evaluate(
         () => document.documentElement.scrollWidth > window.innerWidth,
       )
       expect(hasHorizontalOverflow, `${path} at ${width}px`).toBe(false)
+      const hasClippedFormControl = await page.evaluate(() =>
+        [...document.querySelectorAll<HTMLElement>('.base-card input, .base-card select')]
+          .some((control) => {
+            const card = control.closest<HTMLElement>('.base-card')
+            if (!card) return false
+            return control.getBoundingClientRect().right > card.getBoundingClientRect().right + 1
+          }),
+      )
+      expect(hasClippedFormControl, `${path} has a clipped form control at ${width}px`).toBe(false)
     }
   }
 })

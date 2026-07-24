@@ -13,9 +13,10 @@ defineProps<{ title: string, description: string, value: number, to?: string, ac
 
 <style scoped lang="scss">
 .progress-card {
+  min-width: 0;
   display: grid;
   gap: $space-4;
-  div { display: flex; justify-content: space-between; }
+  div { display: flex; flex-wrap: wrap; gap: $space-2; justify-content: space-between; }
   progress { width: 100%; accent-color: $color-primary; }
   p { color: $color-text-secondary; }
 }

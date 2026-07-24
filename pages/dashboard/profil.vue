@@ -100,7 +100,9 @@ useSeoMeta({ title: () => t('owner.profile.metaTitle'), robots: 'noindex, nofoll
 
 <style scoped lang="scss">
 .owner-profile-page { display: grid; gap: $space-6; > header h1 { font-size: $font-size-3xl; } > header p { margin-top: $space-2; color: $color-text-secondary; }
-  form { display: grid; gap: $space-6; } &__avatar { display: flex; gap: $space-4; align-items: center; } &__avatar div { display: grid; gap: $space-2; }
-  &__grid { display: grid; gap: $space-4; } @media (min-width: $breakpoint-md) { &__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  form { display: grid; min-width: 0; gap: $space-6; } &__avatar { display: flex; min-width: 0; gap: $space-4; align-items: center; } &__avatar div { display: grid; min-width: 0; gap: $space-2; } &__avatar input { width: 100%; min-width: 0; max-width: 100%; }
+  &__grid, &__grid > * { min-width: 0; } &__grid { display: grid; gap: $space-4; }
+  @media (max-width: $breakpoint-sm) { > header h1 { font-size: 1.75rem; } &__avatar { align-items: flex-start; } }
+  @media (min-width: $breakpoint-md) { &__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 }
 </style>

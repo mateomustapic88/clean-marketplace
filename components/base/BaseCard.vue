@@ -25,6 +25,8 @@ withDefaults(defineProps<{
 
 <style scoped lang="scss">
 .base-card {
+  min-width: 0;
+  max-width: 100%;
   overflow: hidden;
   background: $color-surface;
   border: 1px solid $color-border;
@@ -32,7 +34,7 @@ withDefaults(defineProps<{
   box-shadow: $shadow-sm;
 
   &--padded {
-    padding: $space-6;
+    padding: $space-4;
   }
 
   &--interactive {
@@ -45,6 +47,12 @@ withDefaults(defineProps<{
       border-color: $color-border-strong;
       box-shadow: $shadow-md;
       transform: translateY(-2px);
+    }
+  }
+
+  @media (min-width: $breakpoint-md) {
+    &--padded {
+      padding: $space-6;
     }
   }
 }

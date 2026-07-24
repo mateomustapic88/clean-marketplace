@@ -36,7 +36,7 @@ const icon = computed(() => icons[props.activity.type] ?? Clock)
 <style scoped lang="scss">
 .activity-card {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: auto minmax(0, 1fr) max-content;
   gap: $space-2 $space-3;
   align-items: start;
   padding-block: $space-4;
@@ -63,14 +63,26 @@ const icon = computed(() => icons[props.activity.type] ?? Clock)
   }
 
   &__badge {
-    grid-column: 2;
-    justify-self: start;
+    grid-column: 3;
+    grid-row: 1;
+    align-self: center;
+    justify-self: end;
     white-space: nowrap;
   }
 
   time {
     font-size: $font-size-xs;
     color: $color-text-secondary;
+  }
+
+  @media (max-width: 24rem) {
+    grid-template-columns: auto minmax(0, 1fr);
+
+    &__badge {
+      grid-row: 2;
+      grid-column: 2;
+      justify-self: start;
+    }
   }
 }
 </style>

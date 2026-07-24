@@ -87,13 +87,14 @@ useSeoMeta({ title: () => t('owner.dashboard.metaTitle'), robots: 'noindex, nofo
 </script>
 
 <style scoped lang="scss">
-.owner-dashboard { display: grid; gap: $space-10;
-  &__welcome { display: flex; flex-wrap: wrap; gap: $space-5; align-items: center; justify-content: space-between; h1 { margin-block: $space-3; font-size: $font-size-3xl; } p { color: $color-text-secondary; } }
+.owner-dashboard { display: grid; gap: $space-8;
+  &__welcome { display: flex; flex-wrap: wrap; gap: $space-5; align-items: center; justify-content: space-between; h1 { margin-block: $space-3; font-size: 1.75rem; line-height: $line-height-tight; } p { color: $color-text-secondary; } }
   section { display: grid; gap: $space-5; } section > h2 { font-size: $font-size-xl; }
   &__stats, &__cards { display: grid; gap: $space-4; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); }
   &__quick { display: flex; flex-wrap: wrap; gap: $space-3; }
   &__columns { display: grid; gap: $space-5; } &__columns :deep(.base-card) { display: grid; gap: $space-4; }
   ul { display: grid; gap: $space-3; padding: 0; list-style: none; } li { display: grid; gap: $space-1; } time { color: $color-text-secondary; }
+  @media (min-width: $breakpoint-md) { gap: $space-10; &__welcome h1 { font-size: $font-size-3xl; } }
   @media (min-width: $breakpoint-xl) { &__columns { grid-template-columns: 1.5fr 1fr; } }
 }
 </style>

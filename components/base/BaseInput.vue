@@ -64,6 +64,7 @@ const descriptionId = computed(() => props.error
 .base-input {
   display: grid;
   gap: $space-2;
+  min-width: 0;
 
   &__label {
     font-size: $font-size-sm;
@@ -73,6 +74,8 @@ const descriptionId = computed(() => props.error
   &__control {
     display: flex;
     align-items: center;
+    min-width: 0;
+    max-width: 100%;
     background: $color-surface;
     border: 1px solid $color-border-strong;
     border-radius: $radius-md;
@@ -89,6 +92,7 @@ const descriptionId = computed(() => props.error
   &__field {
     width: 100%;
     min-width: 0;
+    max-width: 100%;
     min-height: 3rem;
     padding: 0.75rem 0.875rem;
     color: $color-text-primary;

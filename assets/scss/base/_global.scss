@@ -4,6 +4,8 @@
   color-scheme: light;
   font-family: $font-family-base;
   font-synthesis: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   color: $color-text-primary;
   background: $color-background;
   text-rendering: optimizeLegibility;
