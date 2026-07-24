@@ -8,6 +8,23 @@ import type { DbRow } from './mappers'
 const text = (value: unknown, fallback = '') => typeof value === 'string' ? value : fallback
 const number = (value: unknown) => typeof value === 'number' ? value : 0
 const bool = (value: unknown) => value === true
+type RatingStats = { averageRating: number | null, ratingCount: number }
+
+const ratingStats = (records: DbRow[]) => {
+  const stats = new Map<string, { total: number, count: number }>()
+  for (const record of records) {
+    const cleanerId = text(record.reviewee_id)
+    const current = stats.get(cleanerId) ?? { total: 0, count: 0 }
+    stats.set(cleanerId, {
+      total: current.total + number(record.overall_score),
+      count: current.count + 1,
+    })
+  }
+  return new Map([...stats].map(([cleanerId, value]) => [cleanerId, {
+    averageRating: value.count ? Number((value.total / value.count).toFixed(1)) : null,
+    ratingCount: value.count,
+  }]))
+}
 const base = (row: DbRow) => ({
   id: text(row.id ?? row.user_id), isDemo: bool(row.is_demo),
   createdAt: text(row.created_at), updatedAt: text(row.updated_at),
@@ -69,9 +86,16 @@ export class SupabaseUserRepository implements UserRepository {
   }
 
   async listCleaners(): Promise<CleanerProfile[]> {
-    const { data, error } = await this.client.from('cleaner_profiles').select('*, profiles(*)')
-    throwIfSupabaseError(error)
-    return Promise.all((data as DbRow[]).map((item) => this.mapCleaner(item)))
+    const [{ data, error }, { data: reviews, error: reviewsError }] = await Promise.all([
+      this.client.from('cleaner_profiles').select('*, profiles(*)'),
+      this.client.from('reviews').select('reviewee_id, overall_score').eq('verified_completed_job', true),
+    ])
+    throwIfSupabaseError(error ?? reviewsError)
+    const stats = ratingStats(reviews as DbRow[] ?? [])
+    return Promise.all((data as DbRow[]).map((item) => this.mapCleaner(
+      item,
+      stats.get(text(item.user_id)),
+    )))
   }
 
   async getOwnerById(id: string): Promise<OwnerProfile | null> {
@@ -81,9 +105,13 @@ export class SupabaseUserRepository implements UserRepository {
   }
 
   async getCleanerById(id: string): Promise<CleanerProfile | null> {
-    const { data, error } = await this.client.from('cleaner_profiles').select('*, profiles(*)').eq('user_id', id).maybeSingle()
-    throwIfSupabaseError(error)
-    return data ? this.mapCleaner(data as DbRow) : null
+    const [{ data, error }, { data: reviews, error: reviewsError }] = await Promise.all([
+      this.client.from('cleaner_profiles').select('*, profiles(*)').eq('user_id', id).maybeSingle(),
+      this.client.from('reviews').select('reviewee_id, overall_score').eq('reviewee_id', id).eq('verified_completed_job', true),
+    ])
+    throwIfSupabaseError(error ?? reviewsError)
+    const stats = ratingStats(reviews as DbRow[] ?? []).get(id)
+    return data ? this.mapCleaner(data as DbRow, stats) : null
   }
 
   async updateOwner(profile: OwnerProfile): Promise<OwnerProfile> {
@@ -164,7 +192,7 @@ export class SupabaseUserRepository implements UserRepository {
     }
   }
 
-  private async mapCleaner(row: DbRow): Promise<CleanerProfile> {
+  private async mapCleaner(row: DbRow, stats?: RatingStats): Promise<CleanerProfile> {
     const profile = (row.profiles as DbRow) ?? {}
     const id = text(row.user_id)
     const [contact, privateResult, areasResult, languagesResult, favouritesResult, availabilityResult] = await Promise.all([
@@ -189,7 +217,7 @@ export class SupabaseUserRepository implements UserRepository {
       languages: (languagesResult.data as DbRow[] ?? []).map((item) => text(item.language_code)),
       ownTransportation: bool(row.own_transportation), bringsSupplies: bool(row.brings_supplies),
       sameDayAvailable: bool(row.same_day_available), weekendAvailable: bool(row.weekend_available),
-      averageRating: null, ratingCount: 0, completedJobs: 0,
+      averageRating: stats?.averageRating ?? null, ratingCount: stats?.ratingCount ?? 0, completedJobs: 0,
       favouriteJobIds: (favouritesResult.data as DbRow[] ?? []).map((item) => text(item.job_id)),
       vacationMode: bool(row.vacation_mode), avatarUrl: await this.signedAvatar(text(profile.avatar_path)),
       onboardingCompleted: bool(profile.onboarding_completed),

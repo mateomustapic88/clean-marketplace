@@ -10,11 +10,6 @@ const login = async (page: Page, email: string, expectedPath: RegExp) => {
   await expect(page).toHaveURL(expectedPath)
 }
 
-const logout = async (page: Page) => {
-  await page.getByRole('button', { name: /Odjav/ }).click()
-  await expect(page).toHaveURL(/\/prijava$/)
-}
-
 test('restores the cleaner session and keeps all cleaner pages responsive', async ({ page }) => {
   test.setTimeout(90_000)
   await login(page, 'cleaner01@demo.clean.hr', /\/dashboard-cleaner$/)
@@ -59,38 +54,16 @@ test('saves a favourite job and weekly availability', async ({ page }) => {
   await expect(page.getByLabel('Na odmoru sam i trenutačno nisam dostupna')).toBeChecked()
 })
 
-test('submits an offer that the owner accepts and exposes contact details afterward', async ({ page }) => {
+test('blocks offers on demo jobs with a friendly explanation', async ({ page }) => {
   const pageErrors: string[] = []
   page.on('pageerror', (error) => pageErrors.push(error.message))
   await login(page, 'cleaner01@demo.clean.hr', /\/dashboard-cleaner$/)
-  await page.goto('/dashboard-cleaner/poslovi/job-02/ponuda')
-  await page.getByLabel('Predložena cijena').fill('78')
-  await page.getByLabel('Procijenjeno trajanje u satima').fill('3')
-  await page.getByLabel('Vrijeme dolaska').fill('09:30')
-  await page.getByLabel('Ponuda vrijedi do').fill('2026-09-01T12:00')
-  await page.getByLabel('Poruka vlasniku').fill('Mogu doći na vrijeme i donijeti potrebna sredstva za čišćenje.')
-  await page.getByText('Sredstva za čišćenje uključena su u cijenu', { exact: true }).click()
+  await page.goto('/dashboard-cleaner/poslovi/job-02')
   await page.getByRole('button', { name: 'Pošalji ponudu' }).click()
-  await expect(page).toHaveURL(/\/dashboard-cleaner\/ponude$/)
-  await expect(page.locator('.offer-card').filter({ hasText: '78' })).toContainText('Na čekanju')
+  await expect(page.getByText('Ovo je demonstracijski oglas i nije moguće poslati ponudu.')).toBeVisible()
 
-  await logout(page)
-  await login(page, 'owner02@demo.clean.hr', /\/dashboard$/)
-  await page.goto('/dashboard/poslovi/job-02/ponude')
-  await page.waitForLoadState('networkidle')
+  await page.goto('/dashboard-cleaner/poslovi/job-02/ponuda')
+  await expect(page.getByText('Ovo je demonstracijski oglas i nije moguće poslati ponudu.')).toBeVisible()
+  await expect(page.getByLabel('Predložena cijena')).toHaveCount(0)
   expect(pageErrors).toEqual([])
-  const marijaOffer = page.locator('.offer-comparison-card').filter({ hasText: 'Marija Knežević' })
-  await marijaOffer.getByRole('button', { name: 'Prihvati ponudu' }).click()
-  await expect(page.getByText('Odabrana je osoba za čišćenje.')).toBeVisible()
-  await expect(marijaOffer.getByText('Kontaktni podaci')).toBeVisible()
-  await expect(marijaOffer.getByRole('link', { name: 'cleaner01@demo.clean.hr' })).toBeVisible()
-
-  await logout(page)
-  await login(page, 'cleaner01@demo.clean.hr', /\/dashboard-cleaner$/)
-  await page.goto('/dashboard-cleaner/ponude')
-  const accepted = page.locator('.offer-card')
-    .filter({ hasText: 'Priprema apartmana za novu rezervaciju' })
-    .filter({ hasText: 'Prihvaćena' })
-  await expect(accepted).toContainText('Prihvaćena')
-  await expect(accepted.getByText('Kontakt vlasnika')).toBeVisible()
 })

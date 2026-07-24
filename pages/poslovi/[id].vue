@@ -6,10 +6,12 @@
         <main>
           <header class="detail-page__header">
             <div class="detail-page__badges">
-              <DemoBadge v-if="job.isDemo" type="listing" />
               <BaseBadge v-if="job.isUrgent" variant="error">{{ t('jobs.card.urgent') }}</BaseBadge>
             </div>
-            <h1>{{ job.title }}</h1>
+            <div class="detail-page__title">
+              <h1>{{ displayTitle }}</h1>
+              <DemoBadge v-if="job.isDemo" type="listing" />
+            </div>
             <p><MapPin :size="18" />{{ cityName(job.cityCode) }} - {{ job.approximateArea }}</p>
           </header>
           <section class="detail-page__facts" :aria-label="t('jobDetail.keyFacts')">
@@ -40,9 +42,9 @@
           <BaseCard v-if="owner" class="detail-page__section">
             <h2>{{ t('jobDetail.owner') }}</h2>
             <div class="detail-page__owner">
-              <BaseAvatar :name="`${owner.firstName} ${owner.lastName}`" />
+              <BaseAvatar :name="ownerName" />
               <div>
-                <strong>{{ owner.firstName }} {{ owner.lastName }}</strong>
+                <strong>{{ ownerName }}</strong>
                 <RatingSummary :value="owner.averageRating" :count="owner.ratingCount" />
               </div>
               <DemoBadge v-if="owner.isDemo" type="profile" />
@@ -77,6 +79,7 @@ import { useAuthStore } from '~/stores/auth'
 import { useJobsStore } from '~/stores/jobs'
 import { useUserStore } from '~/stores/user'
 import { formatPublicDate } from '~/utils/formatters'
+import { demoDisplayName, demoDisplayText } from '~/utils/demoPresentation'
 import { getAppRoute, getCleanerJobRoute, getJobRoute } from '~/utils/routes'
 
 defineI18nRoute({ paths: { hr: '/poslovi/[id]', en: '/jobs/[id]' } })
@@ -89,6 +92,12 @@ await Promise.all([jobsStore.loadJobs(), userStore.loadDirectory()])
 const job = computed(() => jobsStore.jobs.find((item) => item.id === String(route.params.id)) ?? null)
 if (!job.value) setResponseStatus(404)
 const owner = computed(() => userStore.owners.find((item) => item.userId === job.value?.ownerId))
+const displayTitle = computed(() => job.value
+  ? demoDisplayText(job.value.title, job.value.isDemo)
+  : '')
+const ownerName = computed(() => owner.value
+  ? demoDisplayName(owner.value.firstName, owner.value.lastName, owner.value.isDemo)
+  : '')
 const cityName = (code: string) => userStore.cities.find((city) => city.code === code)?.name ?? code
 const enabledServices = computed(() => job.value
   ? Object.entries(job.value.services).filter(([, enabled]) => enabled).map(([key]) => key)
@@ -100,7 +109,7 @@ const relatedJobs = computed(() => jobsStore.jobs
 const breadcrumbs = computed(() => [
   { label: t('navigation.home'), to: getAppRoute('home', locale.value) },
   { label: t('jobs.title'), to: getAppRoute('jobs', locale.value) },
-  { label: job.value?.title ?? t('jobDetail.notFound') },
+  { label: displayTitle.value || t('jobDetail.notFound') },
 ])
 const actionRoute = computed(() => {
   if (!authStore.user) return getAppRoute('login', locale.value)
@@ -116,7 +125,7 @@ const actionLabel = computed(() => !authStore.user
     : t('cleaner.jobs.open'))
 const actionHint = computed(() => t('jobDetail.actionHint'))
 usePublicSeo({
-  title: computed(() => job.value ? job.value.title : t('jobDetail.notFound')),
+  title: computed(() => displayTitle.value || t('jobDetail.notFound')),
   description: computed(() => job.value
     ? t('jobDetail.metaDescription', { city: cityName(job.value.cityCode), size: job.value.sizeSquareMeters })
     : t('jobDetail.notFoundDescription')),
@@ -139,7 +148,6 @@ usePublicSeo({
 
     h1 {
       max-width: 48rem;
-      margin-block: $space-4;
       font-size: $font-size-3xl;
     }
 
@@ -150,6 +158,14 @@ usePublicSeo({
       align-items: center;
       color: $color-text-secondary;
     }
+  }
+
+  &__title {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-3;
+    align-items: center;
+    margin-block: $space-4;
   }
 
   &__badges {

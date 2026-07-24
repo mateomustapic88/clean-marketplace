@@ -1,8 +1,9 @@
 <template>
   <div class="offer-page">
     <Breadcrumbs :items="breadcrumbs" />
-    <header><h1>{{ existing ? t('cleaner.offer.editTitle') : t('cleaner.offer.newTitle') }}</h1><p>{{ job?.title }}</p></header>
-    <BaseCard v-if="job && (!existing || existing.status === 'pending')"><OfferEditor v-model="form" :submit-label="existing ? t('cleaner.offer.save') : t('cleaner.offer.submit')" :withdrawable="Boolean(existing)" :error-message="errorMessage" :loading="submitting" @submit="submit" @withdraw="withdraw" /></BaseCard>
+    <header><h1>{{ existing ? t('cleaner.offer.editTitle') : t('cleaner.offer.newTitle') }}</h1><p>{{ displayTitle }}</p></header>
+    <BaseAlert v-if="job?.isDemo" variant="info">{{ t('cleaner.offer.demoUnavailable') }}</BaseAlert>
+    <BaseCard v-else-if="job && (!existing || existing.status === 'pending')"><OfferEditor v-model="form" :submit-label="existing ? t('cleaner.offer.save') : t('cleaner.offer.submit')" :withdrawable="Boolean(existing)" :error-message="errorMessage" :loading="submitting" @submit="submit" @withdraw="withdraw" /></BaseCard>
     <OfferCard v-else-if="existing" :offer="existing" :job="job" />
     <BaseEmptyState v-else :title="t('jobDetail.notFound')" :description="t('jobDetail.notFoundDescription')" />
   </div>
@@ -15,6 +16,7 @@ import { useAuthStore } from '~/stores/auth'
 import { useJobsStore } from '~/stores/jobs'
 import { useOffersStore } from '~/stores/offers'
 import { emptyOfferForm } from '~/utils/cleaner'
+import { demoDisplayText } from '~/utils/demoPresentation'
 import { getAppRoute, getCleanerJobRoute } from '~/utils/routes'
 
 definePageMeta({ layout: 'dashboard-cleaner', middleware: ['auth', 'role', 'subscription'], roles: ['cleaner'], subscriptionCapability: 'submit_offers' })
@@ -40,14 +42,19 @@ const load = async (id?: string) => {
 }
 watch(() => authStore.user?.id, load, { immediate: true })
 const job = computed(() => jobsStore.selectedJob)
+const displayTitle = computed(() => job.value ? demoDisplayText(job.value.title, job.value.isDemo) : '')
 const existing = computed(() => offersStore.offers.find((offer) => offer.jobId === jobId))
-const breadcrumbs = computed(() => [{ label: t('cleaner.navigation.jobs'), to: getAppRoute('cleanerJobs', locale.value) }, { label: job.value?.title ?? '', to: getCleanerJobRoute(jobId, locale.value) }, { label: t('cleaner.offer.title') }])
+const breadcrumbs = computed(() => [{ label: t('cleaner.navigation.jobs'), to: getAppRoute('cleanerJobs', locale.value) }, { label: displayTitle.value, to: getCleanerJobRoute(jobId, locale.value) }, { label: t('cleaner.offer.title') }])
 const handleError = (error: unknown) => {
   const code = error instanceof DomainError ? error.code : 'unknown'
   errorMessage.value = t(`cleaner.offer.errors.${code}`)
 }
 const submit = async (value: OfferFormData) => {
   if (!authStore.user || !job.value || submitting.value) return
+  if (job.value.isDemo) {
+    errorMessage.value = t('cleaner.offer.demoUnavailable')
+    return
+  }
   submitting.value = true
   try {
     if (existing.value) await offersStore.updateOffer({ id: existing.value.id, ...value }, authStore.user.id)

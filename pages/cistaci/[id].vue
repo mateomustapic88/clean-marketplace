@@ -5,8 +5,10 @@
       <header class="profile-page__header">
         <BaseAvatar :name="fullName" size="lg" />
         <div>
-          <DemoBadge v-if="cleaner.isDemo" type="profile" />
-          <h1>{{ fullName }}</h1>
+          <div class="profile-page__identity">
+            <h1>{{ fullName }}</h1>
+            <DemoBadge v-if="cleaner.isDemo" type="profile" />
+          </div>
           <p><MapPin :size="18" />{{ cityName(cleaner.cityCode) }}</p>
           <RatingSummary :value="cleaner.averageRating" :count="cleaner.ratingCount" />
         </div>
@@ -83,6 +85,7 @@ import { MapPin } from '@lucide/vue'
 import { useRatingsStore } from '~/stores/ratings'
 import { useUserStore } from '~/stores/user'
 import { formatPrice } from '~/utils/formatters'
+import { demoDisplayName } from '~/utils/demoPresentation'
 import { getAppRoute, getCleanerRoute } from '~/utils/routes'
 
 defineI18nRoute({ paths: { hr: '/cistaci/[id]', en: '/cleaners/[id]' } })
@@ -94,7 +97,9 @@ await userStore.loadDirectory()
 const cleaner = computed(() => userStore.cleaners.find((item) => item.id === String(route.params.id)) ?? null)
 if (!cleaner.value) setResponseStatus(404)
 if (cleaner.value) await ratingsStore.loadForUser(cleaner.value.userId)
-const fullName = computed(() => cleaner.value ? `${cleaner.value.firstName} ${cleaner.value.lastName}` : '')
+const fullName = computed(() => cleaner.value
+  ? demoDisplayName(cleaner.value.firstName, cleaner.value.lastName, cleaner.value.isDemo)
+  : '')
 const receivedRatings = computed(() => ratingsStore.ratings.filter(
   (rating) => rating.subjectId === cleaner.value?.userId,
 ))
@@ -135,7 +140,6 @@ usePublicSeo({
     box-shadow: $shadow-sm;
 
     h1 {
-      margin-block: $space-3 $space-2;
       font-size: $font-size-3xl;
     }
 
@@ -145,6 +149,14 @@ usePublicSeo({
       align-items: center;
       color: $color-text-secondary;
     }
+  }
+
+  &__identity {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-3;
+    align-items: center;
+    margin-block: $space-3 $space-2;
   }
 
   &__price {

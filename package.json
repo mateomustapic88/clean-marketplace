@@ -7,6 +7,8 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "demo:seed": "node scripts/seed-demo-marketplace.mjs",
+    "demo:seed:validate": "node scripts/seed-demo-marketplace.mjs --validate",
     "generate": "nuxt generate",
     "lint": "eslint .",
     "mock:generate": "node scripts/generate-mock-data.mjs",

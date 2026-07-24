@@ -32,6 +32,34 @@ For a new project, all files in `supabase/migrations` must run in numeric order.
 Do not apply undocumented Dashboard SQL changes. Use `supabase db reset` only
 against a disposable local project.
 
+## Public demo marketplace seed
+
+The production demo catalog is populated by an idempotent service-role script.
+It reserves its own Auth emails and job identifiers, updates only records that
+carry the matching demo seed marker, and refuses to overwrite a non-demo job or
+reuse a non-seed Auth account.
+
+Validate the static dataset without connecting to Supabase:
+
+```sh
+pnpm demo:seed:validate
+```
+
+To insert or refresh the 20 demo jobs and 40 demo cleaner profiles, provide the
+production values through the process environment and run:
+
+```sh
+NUXT_PUBLIC_SUPABASE_URL=... \
+SUPABASE_SERVICE_ROLE_JWT=... \
+pnpm demo:seed
+```
+
+The script does not delete records. Demo Auth accounts receive random unknown
+passwords and confirmed placeholder email addresses, so they are catalog
+identities rather than shared login accounts. Auth Admin currently requires the
+project's legacy `service_role` JWT; keep it process-local and never commit it.
+The application can continue using its separately configured `sb_secret_` key.
+
 ## Supabase Dashboard
 
 1. Create a production project in the required EU region.

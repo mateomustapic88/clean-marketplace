@@ -997,6 +997,7 @@
       "withdraw": "Withdraw offer",
       "details": "Offer details",
       "unknownJob": "Unknown job",
+      "demoUnavailable": "This is a demonstration listing and offers cannot be submitted.",
       "fields": {
         "price": "Proposed price",
         "priceType": "Price type",

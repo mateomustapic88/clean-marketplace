@@ -1000,6 +1000,7 @@
       "withdraw": "Povuci ponudu",
       "details": "Detalji ponude",
       "unknownJob": "Nepoznati posao",
+      "demoUnavailable": "Ovo je demonstracijski oglas i nije moguće poslati ponudu.",
       "fields": {
         "price": "Predložena cijena",
         "priceType": "Vrsta cijene",

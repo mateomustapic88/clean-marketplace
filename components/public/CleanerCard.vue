@@ -2,10 +2,10 @@
   <article class="cleaner-card">
     <header class="cleaner-card__header">
       <BaseAvatar :name="fullName" size="lg" />
-      <div>
-        <DemoBadge v-if="cleaner.isDemo" type="profile" />
+      <div class="cleaner-card__identity">
         <h3><NuxtLink :to="getCleanerRoute(cleaner.id, locale)">{{ fullName }}</NuxtLink></h3>
-        <p><MapPin :size="15" />{{ cityName }}</p>
+        <DemoBadge v-if="cleaner.isDemo" type="profile" />
+        <p class="cleaner-card__location"><MapPin :size="15" />{{ cityName }}</p>
       </div>
     </header>
     <RatingSummary :value="cleaner.averageRating" :count="cleaner.ratingCount" />
@@ -30,12 +30,17 @@
 <script setup lang="ts">
 import { MapPin } from '@lucide/vue'
 import type { CleanerProfile } from '~/domains/users/types'
+import { demoDisplayName } from '~/utils/demoPresentation'
 import { formatPrice } from '~/utils/formatters'
 import { getCleanerRoute } from '~/utils/routes'
 
 const props = defineProps<{ cleaner: CleanerProfile, cityName: string }>()
 const { t, locale } = useI18n()
-const fullName = computed(() => `${props.cleaner.firstName} ${props.cleaner.lastName}`)
+const fullName = computed(() => demoDisplayName(
+  props.cleaner.firstName,
+  props.cleaner.lastName,
+  props.cleaner.isDemo,
+))
 </script>
 
 <style scoped lang="scss">
@@ -55,7 +60,6 @@ const fullName = computed(() => `${props.cleaner.firstName} ${props.cleaner.last
     align-items: center;
 
     h3 {
-      margin-top: $space-2;
       font-size: $font-size-lg;
     }
 
@@ -64,7 +68,8 @@ const fullName = computed(() => `${props.cleaner.firstName} ${props.cleaner.last
       text-decoration: none;
     }
 
-    p {
+    .cleaner-card__location {
+      flex-basis: 100%;
       display: flex;
       gap: $space-1;
       align-items: center;
@@ -72,6 +77,15 @@ const fullName = computed(() => `${props.cleaner.firstName} ${props.cleaner.last
       font-size: $font-size-sm;
       color: $color-text-secondary;
     }
+  }
+
+  &__identity {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    gap: $space-2;
+    align-items: center;
+    min-width: 0;
   }
 
   &__bio {

@@ -1,5 +1,5 @@
 <template>
-  <BaseBadge variant="warning">
+  <BaseBadge class="demo-badge" variant="neutral">
     {{ t(labelKey) }}
   </BaseBadge>
 </template>
@@ -17,3 +17,11 @@ const labelKey = computed(() => ({
   rating: 'demo.ratingBadge',
 })[props.type])
 </script>
+
+<style scoped lang="scss">
+.demo-badge {
+  color: $color-primary-dark;
+  background: rgba($color-primary, 0.09);
+  border: 1px solid rgba($color-primary, 0.14);
+}
+</style>

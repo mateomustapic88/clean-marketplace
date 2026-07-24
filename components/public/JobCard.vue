@@ -1,9 +1,9 @@
 <template>
   <article class="job-card">
     <header class="job-card__header">
-      <div>
+      <div class="job-card__title">
+        <h3><NuxtLink :to="getJobRoute(job.id, locale)">{{ displayTitle }}</NuxtLink></h3>
         <DemoBadge v-if="job.isDemo" type="listing" />
-        <h3><NuxtLink :to="getJobRoute(job.id, locale)">{{ job.title }}</NuxtLink></h3>
       </div>
       <BaseBadge v-if="job.isUrgent" variant="error">{{ t('jobs.card.urgent') }}</BaseBadge>
     </header>
@@ -30,11 +30,13 @@
 <script setup lang="ts">
 import { CalendarDays, Clock3, MapPin } from '@lucide/vue'
 import type { CleaningJob } from '~/domains/jobs/types'
+import { demoDisplayText } from '~/utils/demoPresentation'
 import { formatPublicDate } from '~/utils/formatters'
 import { getJobRoute } from '~/utils/routes'
 
-defineProps<{ job: CleaningJob, cityName: string }>()
+const props = defineProps<{ job: CleaningJob, cityName: string }>()
 const { t, locale } = useI18n()
+const displayTitle = computed(() => demoDisplayText(props.job.title, props.job.isDemo))
 </script>
 
 <style scoped lang="scss">
@@ -62,8 +64,14 @@ const { t, locale } = useI18n()
     justify-content: space-between;
   }
 
+  &__title {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+    align-items: center;
+  }
+
   h3 {
-    margin-top: $space-3;
     font-size: $font-size-lg;
     line-height: 1.35;
   }
