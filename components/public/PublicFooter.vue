@@ -4,7 +4,6 @@
       <div class="public-footer__brand">
         <AppLogo />
         <p>{{ t('footer.description') }}</p>
-        <BaseBadge variant="premium">{{ t('footer.beta') }}</BaseBadge>
       </div>
       <nav v-for="group in groups" :key="group.title" :aria-label="group.title">
         <h2>{{ group.title }}</h2>

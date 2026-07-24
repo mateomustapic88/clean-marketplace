@@ -97,9 +97,9 @@ test('mobile navigation is keyboard accessible', async ({ page }) => {
   await expect(page.getByRole('dialog')).toBeHidden()
 })
 
-test('publishes complete private-beta legal and feedback navigation', async ({ page }) => {
+test('publishes complete legal and feedback navigation', async ({ page }) => {
   await openHydratedPage(page, '/')
-  await expect(page.getByText('Privatna beta')).toBeVisible()
+  await expect(page.getByText(/beta/i)).toHaveCount(0)
   await expect(page.getByRole('link', { name: 'Prijavi grešku' })).toHaveAttribute('href', '/kontakt?topic=bug')
   await expect(page.getByRole('link', { name: 'Predloži poboljšanje' })).toHaveAttribute('href', '/kontakt?topic=feature')
   await page.getByRole('link', { name: 'Politika kolačića' }).click()

@@ -74,7 +74,7 @@ The application can continue using its separately configured `sb_secret_` key.
    - approved localhost equivalents for development
 8. Customize confirmation and reset email templates without changing the
    generated token parameters.
-9. Configure SMTP before inviting real beta users.
+9. Configure SMTP before inviting real users.
 10. Do not create admins through signup metadata. Promote an existing verified
     user only through a trusted service-role administration procedure.
 

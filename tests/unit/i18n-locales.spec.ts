@@ -55,4 +55,12 @@ describe('localised messages', () => {
     expect(catalogs.sl.get('header.brandLabel')).toContain('Clean')
     expect(catalogs.sl.get('footer.copyright')).toContain('Clean')
   })
+
+  it('does not expose beta language in the application', () => {
+    for (const locale of locales) {
+      for (const message of catalogs[locale].values()) {
+        expect(message).not.toMatch(/\bbeta\b/i)
+      }
+    }
+  })
 })

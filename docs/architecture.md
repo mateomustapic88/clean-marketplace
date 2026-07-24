@@ -17,7 +17,7 @@ Phase 2 adds:
 7. Croatian and English authentication and protected route shells
 8. Zod schemas for login, registration, owner profiles, and cleaner profiles
 
-Phase 3 adds the complete public-facing beta experience. Public pages consume
+Phase 3 adds the complete public-facing marketplace experience. Public pages consume
 existing Pinia stores, stores coordinate repository calls, and pure catalogue
 utilities own filtering, sorting, query serialization, pagination, and display
 formatting. Presentational components do not fetch data.

@@ -67,7 +67,6 @@
     "cookies": "Cookie policy",
     "rights": "All rights reserved.",
     "copyright": "© {year} Clean. All rights reserved.",
-    "beta": "Private beta",
     "faq": "Frequently asked questions",
     "phaseNotice": "Demo environment - business data is not real."
   },
@@ -527,7 +526,7 @@
     "featuredJobs": {
       "eyebrow": "Demo content",
       "title": "Examples of active jobs",
-      "description": "Listings in this beta show the intended future experience.",
+      "description": "Listings demonstrate the experience and are clearly marked as demo content.",
       "action": "Browse all jobs"
     },
     "featuredCleaners": {
@@ -636,7 +635,7 @@
         "5": "Completed jobs build collaboration history."
       }
     },
-    "ctaTitle": "Try the public beta experience",
+    "ctaTitle": "Try Clean",
     "ctaDescription": "Registration is a demo and does not require a card.",
     "metaTitle": "How Clean works",
     "metaDescription": "Learn how apartment owners and cleaning professionals arrange work through Clean."
@@ -709,7 +708,7 @@
   "contact": {
     "eyebrow": "Contact",
     "title": "How can we help?",
-    "description": "Send a beta enquiry, report a bug, or suggest an improvement. Your message is securely recorded for the support team.",
+    "description": "Send an enquiry, report a bug, or suggest an improvement. Your message is securely recorded for the support team.",
     "fields": {
       "name": "Full name",
       "email": "Email address",
@@ -738,18 +737,18 @@
   },
   "legal": {
     "contents": "Contents",
-    "reviewTitle": "Beta legal template",
+    "reviewTitle": "Legal template",
     "reviewDescription": "This text requires professional legal review before a production launch.",
     "privacy": {
       "eyebrow": "Legal",
       "title": "Privacy policy",
-      "description": "An informational beta template about data processing without invented legal entity details.",
+      "description": "An informational template about data processing without invented legal entity details.",
       "metaTitle": "Privacy policy",
-      "metaDescription": "Beta privacy policy template for Clean.",
+      "metaDescription": "Privacy policy template for Clean.",
       "sections": {
         "1": {
           "title": "Purpose of this document",
-          "text": "This template describes the intended privacy approach during the public beta."
+          "text": "This template describes the intended privacy approach for the platform."
         },
         "2": {
           "title": "Account data",
@@ -776,13 +775,13 @@
     "terms": {
       "eyebrow": "Legal",
       "title": "Terms of service",
-      "description": "An informational beta template without invented company registration details.",
+      "description": "An informational template without invented company registration details.",
       "metaTitle": "Terms of service",
-      "metaDescription": "Beta terms of service template for Clean.",
+      "metaDescription": "Terms of service template for Clean.",
       "sections": {
         "1": {
-          "title": "Beta status",
-          "text": "The platform is in a demo and beta phase. Features, data, and availability may change."
+          "title": "Platform status",
+          "text": "The platform uses demo content. Features, data, and availability may change."
         },
         "2": {
           "title": "Platform role",
@@ -798,7 +797,7 @@
         },
         "5": {
           "title": "Ratings",
-          "text": "Ratings should describe completed collaboration. Every current beta rating is marked as demo."
+          "text": "Ratings should describe completed collaboration. Every demo rating is clearly marked."
         },
         "6": {
           "title": "Legal review",
@@ -809,9 +808,9 @@
     "cookies": {
       "eyebrow": "Legal",
       "title": "Cookie policy",
-      "description": "An informational template covering essential cookies during the private beta.",
+      "description": "An informational template covering essential cookies used by the platform.",
       "metaTitle": "Cookie policy",
-      "metaDescription": "Beta cookie policy for Clean.",
+      "metaDescription": "Cookie policy for Clean.",
       "sections": {
         "1": {
           "title": "Essential storage",

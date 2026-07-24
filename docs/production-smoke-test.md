@@ -1,4 +1,4 @@
-# Private beta smoke test
+# Production smoke test
 
 Run against Stripe test mode and a staging Supabase project first.
 

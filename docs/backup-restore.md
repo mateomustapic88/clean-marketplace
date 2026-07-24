@@ -1,6 +1,6 @@
 # Backup, restore and retention
 
-Enable Supabase daily backups and point-in-time recovery appropriate to the beta
+Enable Supabase daily backups and point-in-time recovery appropriate to the production
 risk level. Before launch, perform a staging restore and verify Auth/profile
 links, RLS, subscription projections and Storage object references.
 

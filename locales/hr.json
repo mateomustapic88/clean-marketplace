@@ -67,7 +67,6 @@
     "cookies": "Politika kolačića",
     "rights": "Sva prava pridržana.",
     "copyright": "© {year} Clean. Sva prava pridržana.",
-    "beta": "Privatna beta",
     "faq": "Česta pitanja",
     "phaseNotice": "Demo okruženje - poslovni podaci nisu stvarni."
   },
@@ -527,7 +526,7 @@
     "featuredJobs": {
       "eyebrow": "Demo sadržaj",
       "title": "Primjeri aktivnih poslova",
-      "description": "Oglasi u ovoj beta verziji služe za prikaz budućeg iskustva.",
+      "description": "Oglasi služe za prikaz iskustva i jasno su označeni kao demo sadržaj.",
       "action": "Pregledaj sve poslove"
     },
     "featuredCleaners": {
@@ -636,7 +635,7 @@
         "5": "Završeni poslovi grade povijest suradnje."
       }
     },
-    "ctaTitle": "Isprobajte javno beta iskustvo",
+    "ctaTitle": "Isprobajte Clean",
     "ctaDescription": "Registracija je demo i ne zahtijeva karticu.",
     "metaTitle": "Kako funkcionira Clean",
     "metaDescription": "Saznajte kako vlasnici apartmana i osobe za čišćenje dogovaraju posao kroz Clean."
@@ -709,7 +708,7 @@
   "contact": {
     "eyebrow": "Kontakt",
     "title": "Kako vam možemo pomoći?",
-    "description": "Pošaljite beta upit, prijavite grešku ili predložite poboljšanje. Vaša poruka sigurno se bilježi za tim podrške.",
+    "description": "Pošaljite upit, prijavite grešku ili predložite poboljšanje. Vaša poruka sigurno se bilježi za tim podrške.",
     "fields": {
       "name": "Ime i prezime",
       "email": "Adresa e-pošte",
@@ -738,18 +737,18 @@
   },
   "legal": {
     "contents": "Sadržaj",
-    "reviewTitle": "Beta pravni predložak",
+    "reviewTitle": "Pravni predložak",
     "reviewDescription": "Ovaj tekst zahtijeva stručni pravni pregled prije produkcijskog objavljivanja.",
     "privacy": {
       "eyebrow": "Pravno",
       "title": "Politika privatnosti",
-      "description": "Informativni beta predložak o obradi podataka bez izmišljenih podataka o pravnoj osobi.",
+      "description": "Informativni predložak o obradi podataka bez izmišljenih podataka o pravnoj osobi.",
       "metaTitle": "Politika privatnosti",
-      "metaDescription": "Beta predložak politike privatnosti platforme Clean.",
+      "metaDescription": "Predložak politike privatnosti platforme Clean.",
       "sections": {
         "1": {
           "title": "Svrha dokumenta",
-          "text": "Ovaj predložak opisuje planirani pristup privatnosti tijekom javne beta faze."
+          "text": "Ovaj predložak opisuje planirani pristup privatnosti platforme."
         },
         "2": {
           "title": "Podaci računa",
@@ -776,13 +775,13 @@
     "terms": {
       "eyebrow": "Pravno",
       "title": "Uvjeti korištenja",
-      "description": "Informativni beta predložak pravila korištenja bez izmišljenih registracijskih podataka.",
+      "description": "Informativni predložak pravila korištenja bez izmišljenih registracijskih podataka.",
       "metaTitle": "Uvjeti korištenja",
-      "metaDescription": "Beta predložak uvjeta korištenja platforme Clean.",
+      "metaDescription": "Predložak uvjeta korištenja platforme Clean.",
       "sections": {
         "1": {
-          "title": "Beta status",
-          "text": "Platforma je u demo i beta fazi. Funkcionalnosti, podaci i dostupnost mogu se mijenjati."
+          "title": "Status platforme",
+          "text": "Platforma koristi demo sadržaj. Funkcionalnosti, podaci i dostupnost mogu se mijenjati."
         },
         "2": {
           "title": "Uloge platforme",
@@ -798,7 +797,7 @@
         },
         "5": {
           "title": "Ocjene",
-          "text": "Ocjene trebaju opisivati stvarno završenu suradnju. U beta prikazu sve postojeće ocjene označene su kao demo."
+          "text": "Ocjene trebaju opisivati stvarno završenu suradnju. Sve postojeće demo ocjene jasno su označene."
         },
         "6": {
           "title": "Pravni pregled",
@@ -809,9 +808,9 @@
     "cookies": {
       "eyebrow": "Pravno",
       "title": "Politika kolačića",
-      "description": "Informativni predložak o nužnim kolačićima tijekom privatne beta faze.",
+      "description": "Informativni predložak o nužnim kolačićima tijekom korištenja platforme.",
       "metaTitle": "Politika kolačića",
-      "metaDescription": "Beta politika kolačića platforme Clean.",
+      "metaDescription": "Politika kolačića platforme Clean.",
       "sections": {
         "1": {
           "title": "Nužna pohrana",
