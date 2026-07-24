@@ -228,7 +228,17 @@ const jobs = Array.from({ length: 40 }, (_, index) => {
   const number = String(index + 1).padStart(2, '0')
   const status = jobStatuses[index % jobStatuses.length]
   const accepted = ['assigned', 'in_progress', 'completed'].includes(status)
-  const city = cities[index % cities.length]
+  const scheduledCity = cities[index % cities.length]
+  const isDubrovnikSlot = scheduledCity.code === 'dubrovnik'
+  const city = isDubrovnikSlot && index !== 3
+    ? cities.find(({ code }) => code === 'split')
+    : scheduledCity
+  if (!city) throw new Error('Mock job city could not be resolved')
+  const approximateArea = isDubrovnikSlot
+    ? index === 3
+      ? 'Stari grad'
+      : 'Žnjan'
+    : `${city.name} - šire središte`
   const acceptedOfferId = accepted ? `offer-${number}-01` : null
   const assignedCleanerId = accepted
     ? `cleaner-user-${String((index % cleanerNames.length) + 1).padStart(2, '0')}`
@@ -241,7 +251,7 @@ const jobs = Array.from({ length: 40 }, (_, index) => {
     title: jobTitles[index % jobTitles.length],
     apartmentName: `Demo apartman ${city.name} ${index + 1}`,
     cityCode: city.code,
-    approximateArea: `${city.name} - šire središte`,
+    approximateArea,
     address: `Primjer ulice ${index + 1}`,
     hideExactAddress: true,
     sizeSquareMeters: 35 + (index % 8) * 10,

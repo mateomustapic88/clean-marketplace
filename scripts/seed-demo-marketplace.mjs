@@ -21,8 +21,8 @@ const cleanerNames = [
 ]
 
 const locations = [
-  { cityCode: 'dubrovnik', area: 'Lapad', label: 'Dubrovnik' },
-  { cityCode: 'dubrovnik', area: 'Cavtat, u blizini rive', label: 'Cavtat' },
+  { cityCode: 'split', area: 'Žnjan', label: 'Split' },
+  { cityCode: 'dubrovnik', area: 'Stari grad', label: 'Dubrovnik' },
   { cityCode: 'zagreb', area: 'Donji grad', label: 'Zagreb' },
   { cityCode: 'split', area: 'Bačvice', label: 'Split' },
   { cityCode: 'zadar', area: 'Poluotok', label: 'Zadar' },
@@ -31,6 +31,20 @@ const locations = [
   { cityCode: 'rijeka', area: 'Trsat', label: 'Rijeka' },
   { cityCode: 'pula', area: 'Verudela', label: 'Pula' },
   { cityCode: 'pula', area: 'Rovinj, stari grad', label: 'Rovinj' },
+]
+
+const jobLocations = [
+  ...locations,
+  { cityCode: 'zagreb', area: 'Maksimir', label: 'Zagreb' },
+  { cityCode: 'split', area: 'Firule', label: 'Split' },
+  { cityCode: 'zadar', area: 'Borik', label: 'Zadar' },
+  { cityCode: 'sibenik', area: 'Solaris', label: 'Šibenik' },
+  { cityCode: 'split', area: 'Meje', label: 'Split' },
+  { cityCode: 'rijeka', area: 'Kantrida', label: 'Rijeka' },
+  { cityCode: 'pula', area: 'Medulin', label: 'Pula' },
+  { cityCode: 'zagreb', area: 'Trešnjevka', label: 'Zagreb' },
+  { cityCode: 'split', area: 'Trogir, stara jezgra', label: 'Trogir' },
+  { cityCode: 'zadar', area: 'Petrčane', label: 'Zadar' },
 ]
 
 const biographies = [
@@ -102,7 +116,7 @@ const cleaners = cleanerNames.map(([firstName, lastName], index) => {
 const buildJobs = (ownerId, cleanerIds, now = new Date()) => jobTemplates.map((template, index) => {
   const [title, apartmentName, description] = template
   const completed = index >= 15
-  const location = locations[index % locations.length]
+  const location = jobLocations[index]
   const preferredDate = addDays(now, completed ? -(index - 13) * 8 : 7 + index * 2)
   const cleanerId = completed ? cleanerIds[index - 15] : null
   const size = 28 + (index % 9) * 11
@@ -143,6 +157,8 @@ const validateSeed = () => {
   const errors = []
   if (cleaners.length !== 40) errors.push(`Expected 40 cleaners, received ${cleaners.length}`)
   if (jobTemplates.length !== 20) errors.push(`Expected 20 jobs, received ${jobTemplates.length}`)
+  if (jobLocations.filter(({ cityCode }) => cityCode === 'dubrovnik').length !== 1) errors.push('Expected exactly one Dubrovnik job')
+  if (!jobLocations.some(({ cityCode, area }) => cityCode === 'split' && area === 'Žnjan')) errors.push('Expected a Split - Žnjan job')
   if (new Set(cleaners.map(({ email }) => email)).size !== cleaners.length) errors.push('Cleaner emails must be unique')
   if (cleaners.some(({ firstName, lastName }) => !firstName || !lastName)) errors.push('Every cleaner requires a full name')
   if (jobTemplates.some(([title, apartmentName]) => !title || !apartmentName)) errors.push('Every job requires a title and apartment name')
@@ -330,7 +346,7 @@ const seed = async () => {
   }))
   const locationsRows = jobs.map((job, index) => ({
     job_id: job.id,
-    exact_address: `[DEMO] Primjer lokacije ${index + 1}, ${locations[index % locations.length].label}`,
+    exact_address: `[DEMO] Primjer lokacije ${index + 1}, ${jobLocations[index].label}`,
   }))
   const [{ error: servicesError }, { error: locationsError }] = await Promise.all([
     client.from('job_services').upsert(services, { onConflict: 'job_id' }),
