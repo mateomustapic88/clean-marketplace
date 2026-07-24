@@ -7,15 +7,16 @@
     <BaseAlert v-if="actionError" variant="error" :title="t('billing.actionErrorTitle')">{{ t('billing.actionErrorDescription') }}</BaseAlert>
     <TrialBanner :subscription="subscription" :days="trialDays" />
     <div class="billing-page__grid" :aria-busy="isLoading">
-      <SubscriptionCard :role="role" :subscription="subscription">
+      <SubscriptionCard :role="role" :subscription="subscription" :billing-period="selectedBillingPeriod">
         <BillingSummary v-if="subscription" :subscription="subscription" :trial-days="trialDays" />
       </SubscriptionCard>
       <PaymentMethodCard :method="paymentMethod" />
     </div>
     <section class="billing-page__management" aria-labelledby="billing-management-title">
       <h2 id="billing-management-title">{{ t('billing.manage') }}</h2>
+      <BillingPeriodToggle v-if="checkoutAction" v-model="selectedBillingPeriod" :discount-percent="annualDiscountPercent" />
       <div class="billing-page__actions">
-        <BaseButton v-if="checkoutAction" :loading="isActionLoading" :disabled="isLoading" @click="$emit('checkout')">{{ t(`billing.${checkoutAction}`) }}</BaseButton>
+        <BaseButton v-if="checkoutAction" :loading="isActionLoading" :disabled="isLoading" @click="$emit('checkout', selectedBillingPeriod)">{{ t(`billing.${checkoutAction}`) }}</BaseButton>
         <BaseButton v-if="subscription?.stripeCustomerId" variant="secondary" :loading="isActionLoading" @click="$emit('portal')">{{ t('billing.portal') }}</BaseButton>
         <BaseButton v-if="hasProviderSubscription && (subscription?.cancelAtPeriodEnd || subscription?.status === 'cancelled')" variant="secondary" :disabled="isActionLoading" @click="$emit('resume')">{{ t('billing.resume') }}</BaseButton>
         <BaseButton v-else-if="hasProviderSubscription" variant="danger" :disabled="isActionLoading" @click="$emit('cancel')">{{ t('billing.cancel') }}</BaseButton>
@@ -26,9 +27,9 @@
 </template>
 
 <script setup lang="ts">
-import type { BillingInvoice, PaymentMethod, Subscription } from '~/domains/subscriptions/types'
+import type { BillingInvoice, BillingPeriod, PaymentMethod, Subscription } from '~/domains/subscriptions/types'
 import type { BillingRole } from '~/services/billing/billingPresentation'
-import { getBillingCheckoutAction } from '~/services/billing/billingPresentation'
+import { calculateAnnualSavings, getBillingCheckoutAction } from '~/services/billing/billingPresentation'
 
 const props = defineProps<{
   role: BillingRole
@@ -41,7 +42,7 @@ const props = defineProps<{
   actionError: boolean
   isActionLoading: boolean
 }>()
-defineEmits<{ checkout: [], portal: [], cancel: [], resume: [] }>()
+defineEmits<{ checkout: [billingPeriod: BillingPeriod], portal: [], cancel: [], resume: [] }>()
 const { t } = useI18n()
 const config = useRuntimeConfig()
 const showMockWarning = computed(() =>
@@ -55,6 +56,9 @@ const showWebhookWarning = computed(() =>
 )
 const hasProviderSubscription = computed(() => Boolean(props.subscription?.stripeSubscriptionId))
 const checkoutAction = computed(() => getBillingCheckoutAction(props.subscription))
+const selectedBillingPeriod = ref<BillingPeriod>(props.subscription?.billingPeriod ?? 'monthly')
+const plan = computed(() => config.public.plans[props.role])
+const annualDiscountPercent = computed(() => calculateAnnualSavings(plan.value).percent)
 </script>
 
 <style scoped lang="scss">

@@ -12,11 +12,16 @@ export type SubscriptionStatus
     | 'incomplete_expired'
     | 'paused'
 
+export type BillingPeriod = 'monthly' | 'annual'
+export type StripeBillingInterval = 'month' | 'year'
+
 export interface Subscription extends DemoEntity {
   userId: string
   plan: 'owner' | 'cleaner'
   status: SubscriptionStatus
   unitAmount: number
+  billingPeriod: BillingPeriod
+  stripeInterval: StripeBillingInterval | null
   currency: 'EUR'
   trialStartedAt: string | null
   trialEndsAt: string | null

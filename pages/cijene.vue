@@ -2,12 +2,24 @@
   <div class="pricing-page">
     <PageHero :eyebrow="t('pricing.eyebrow')" :title="t('pricing.title')" :description="t('pricing.description')" />
     <section class="pricing-page__section container">
+      <div class="pricing-page__period">
+        <BillingPeriodToggle v-model="billingPeriod" :discount-percent="annualDiscountPercent" />
+      </div>
       <div class="pricing-page__plans">
         <article v-for="plan in pricingPlans" :key="plan.role" class="pricing-page__plan">
           <BaseBadge variant="premium">{{ t(`pricing.${plan.translationKey}.badge`) }}</BaseBadge>
           <h2>{{ t(`pricing.${plan.translationKey}.title`) }}</h2>
           <p>{{ t(`pricing.${plan.translationKey}.trial`) }}</p>
-          <div><PriceDisplay :value="plan.monthlyAmount / 100" :suffix="t('pricing.plan.month')" /></div>
+          <div>
+            <PriceDisplay :value="plan.amount / 100" :suffix="t(`billing.periodSuffix.${billingPeriod}`)" />
+            <p v-if="billingPeriod === 'annual'" class="pricing-page__annual-note">
+              {{ t('pricing.annualNote', {
+                monthly: formatPrice(plan.monthlyEquivalent / 100, locale),
+                savings: formatPrice(plan.annualSavings.amount / 100, locale),
+                percent: plan.annualSavings.percent,
+              }) }}
+            </p>
+          </div>
           <ul>
             <li v-for="item in plan.featureCount" :key="item">
               <Check :size="18" />
@@ -34,25 +46,36 @@
 
 <script setup lang="ts">
 import { Check } from '@lucide/vue'
+import type { BillingPeriod } from '~/domains/subscriptions/types'
+import { calculateAnnualSavings } from '~/services/billing/billingPresentation'
 import { getAppRoute } from '~/utils/routes'
+import { formatPrice } from '~/utils/formatters'
 
 defineI18nRoute({ paths: { hr: '/cijene', en: '/pricing' } })
 const { t, locale } = useI18n()
 const config = useRuntimeConfig()
-const pricingPlans = [
+const billingPeriod = ref<BillingPeriod>('monthly')
+const pricingPlans = computed(() => [
   {
     role: 'owner',
     translationKey: 'owner',
-    monthlyAmount: config.public.plans.owner.monthlyAmount,
+    amount: billingPeriod.value === 'annual' ? config.public.plans.owner.annualAmount : config.public.plans.owner.monthlyAmount,
+    monthlyEquivalent: config.public.plans.owner.annualAmount / 12,
+    annualSavings: calculateAnnualSavings(config.public.plans.owner),
     featureCount: 5,
   },
   {
     role: 'cleaner',
     translationKey: 'plan',
-    monthlyAmount: config.public.plans.cleaner.monthlyAmount,
+    amount: billingPeriod.value === 'annual' ? config.public.plans.cleaner.annualAmount : config.public.plans.cleaner.monthlyAmount,
+    monthlyEquivalent: config.public.plans.cleaner.annualAmount / 12,
+    annualSavings: calculateAnnualSavings(config.public.plans.cleaner),
     featureCount: 7,
   },
-] as const
+] as const)
+const annualDiscountPercent = computed(() => Math.min(
+  ...pricingPlans.value.map((plan) => plan.annualSavings.percent),
+))
 const faqItems = computed(() => Array.from({ length: 4 }, (_, index) => ({
   question: t(`pricing.faq.${index + 1}.question`),
   answer: t(`pricing.faq.${index + 1}.answer`),
@@ -79,6 +102,19 @@ usePublicSeo({
     gap: $space-6;
     max-width: 72rem;
     margin-inline: auto;
+  }
+
+  &__period {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $space-8;
+  }
+
+  &__annual-note {
+    margin-top: $space-2;
+    color: $color-success;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
   }
 
   &__plan {

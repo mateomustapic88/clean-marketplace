@@ -49,8 +49,10 @@ export default defineNuxtConfig({
     supabaseServiceRoleKey: process.env.NUXT_SUPABASE_SERVICE_ROLE_KEY || '',
     stripeSecretKey: process.env.STRIPE_SECRET_KEY || '',
     stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET || '',
-    stripeOwnerPriceId: process.env.STRIPE_OWNER_PRICE_ID || '',
-    stripeCleanerPriceId: process.env.STRIPE_CLEANER_PRICE_ID || '',
+    stripeOwnerMonthlyPriceId: process.env.STRIPE_OWNER_MONTHLY_PRICE_ID || '',
+    stripeOwnerAnnualPriceId: process.env.STRIPE_OWNER_ANNUAL_PRICE_ID || '',
+    stripeCleanerMonthlyPriceId: process.env.STRIPE_CLEANER_MONTHLY_PRICE_ID || '',
+    stripeCleanerAnnualPriceId: process.env.STRIPE_CLEANER_ANNUAL_PRICE_ID || '',
     public: {
       siteUrl: resolveAppBaseUrl(process.env.APP_BASE_URL, isProduction),
       infrastructureMode: resolveInfrastructureMode(
@@ -68,11 +70,13 @@ export default defineNuxtConfig({
       plans: {
         owner: {
           monthlyAmount: saasConfig.plans.owner.monthlyAmount,
+          annualAmount: saasConfig.plans.owner.annualAmount,
           currency: saasConfig.currency,
           trialDays: saasConfig.trialDays,
         },
         cleaner: {
           monthlyAmount: saasConfig.plans.cleaner.monthlyAmount,
+          annualAmount: saasConfig.plans.cleaner.annualAmount,
           currency: saasConfig.currency,
           trialDays: saasConfig.trialDays,
         },

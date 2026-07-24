@@ -27,6 +27,8 @@ const subscriptionFixture = (overrides: Partial<Subscription> = {}): Subscriptio
   plan: 'cleaner',
   status: 'trial',
   unitAmount: 3900,
+  billingPeriod: 'monthly',
+  stripeInterval: 'month',
   currency: 'EUR',
   trialStartedAt: '2026-07-20T00:00:00.000Z',
   trialEndsAt: '2026-07-27T00:00:00.000Z',
@@ -87,14 +89,18 @@ describe('Phase 6 SaaS rules', () => {
     const redirect = await gateway.createCheckout({
       userId: 'new-cleaner',
       plan: 'cleaner',
+      billingPeriod: 'annual',
       customerId: null,
       successUrl: '/dashboard-cleaner/billing',
       cancelUrl: '/dashboard-cleaner/billing',
       trialDays: 7,
     })
     expect(redirect.url).toContain('checkout=success')
-    const active = await subscriptions.activateFromCheckout('new-cleaner', 'cus_test', 'sub_test')
+    const active = await subscriptions.activateFromCheckout('new-cleaner', 'cus_test', 'sub_test', 'annual')
     expect(active.status).toBe('active')
+    expect(active.billingPeriod).toBe('annual')
+    expect(active.stripeInterval).toBe('year')
+    expect(active.unitAmount).toBe(19900)
     expect(await subscriptions.listInvoices('new-cleaner')).toHaveLength(1)
     expect(await subscriptions.getPaymentMethod('new-cleaner')).toMatchObject({ last4: '4242' })
     expect(await notifications.listByUser('new-cleaner')).toEqual(

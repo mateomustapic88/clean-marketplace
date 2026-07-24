@@ -9,6 +9,7 @@ import { MockOfferRepository } from '~/repositories/mock/MockOfferRepository'
 import { MockStripeEventRepository } from '~/repositories/mock/MockStripeEventRepository'
 import {
   createBillingPresentation,
+  calculateAnnualSavings,
   getBillingCheckoutAction,
   type PublicBillingPlan,
 } from '~/services/billing/billingPresentation'
@@ -33,6 +34,7 @@ import type { StripeBillingService } from '~/server/services/StripeBillingServic
 const checkoutRequest = {
   userId: 'owner-user-01',
   plan: 'owner' as const,
+  billingPeriod: 'monthly' as const,
   customerId: 'cus_owner',
   successUrl: 'https://example.test/dashboard/billing?checkout=success',
   cancelUrl: 'https://example.test/dashboard/billing?checkout=cancelled',
@@ -49,13 +51,13 @@ describe('Phase 7 Stripe architecture', () => {
       checkout: { sessions: { create } },
     } as unknown as Stripe
     const gateway = new StripeServerGateway(stripe, {
-      owner: 'price_owner_from_env',
-      cleaner: 'price_cleaner_from_env',
+      owner: { monthly: 'price_owner_monthly', annual: 'price_owner_annual' },
+      cleaner: { monthly: 'price_cleaner_monthly', annual: 'price_cleaner_annual' },
     })
 
     await gateway.createCheckout(checkoutRequest)
     expect(create).toHaveBeenLastCalledWith(expect.objectContaining({
-      line_items: [{ price: 'price_owner_from_env', quantity: 1 }],
+      line_items: [{ price: 'price_owner_monthly', quantity: 1 }],
       subscription_data: expect.objectContaining({ trial_period_days: 7 }),
     }))
 
@@ -63,15 +65,30 @@ describe('Phase 7 Stripe architecture', () => {
       ...checkoutRequest,
       userId: 'cleaner-user-01',
       plan: 'cleaner',
+      billingPeriod: 'annual',
     })
     expect(create).toHaveBeenLastCalledWith(expect.objectContaining({
-      line_items: [{ price: 'price_cleaner_from_env', quantity: 1 }],
+      line_items: [{ price: 'price_cleaner_annual', quantity: 1 }],
+    }))
+
+    await gateway.createCheckout({ ...checkoutRequest, billingPeriod: 'annual' })
+    expect(create).toHaveBeenLastCalledWith(expect.objectContaining({
+      line_items: [{ price: 'price_owner_annual', quantity: 1 }],
+    }))
+
+    await gateway.createCheckout({ ...checkoutRequest, plan: 'cleaner' })
+    expect(create).toHaveBeenLastCalledWith(expect.objectContaining({
+      line_items: [{ price: 'price_cleaner_monthly', quantity: 1 }],
     }))
   })
 
   it('uses centralized role prices and trial duration for presentation', () => {
     expect(saasConfig.plans.owner.monthlyAmount).toBe(1900)
     expect(saasConfig.plans.cleaner.monthlyAmount).toBe(3900)
+    expect(saasConfig.plans.owner.annualAmount).toBe(9900)
+    expect(saasConfig.plans.cleaner.annualAmount).toBe(19900)
+    expect(calculateAnnualSavings(saasConfig.plans.owner)).toEqual({ amount: 12900, percent: 57 })
+    expect(calculateAnnualSavings(saasConfig.plans.cleaner)).toEqual({ amount: 26900, percent: 57 })
     expect(saasConfig.currency).toBe('EUR')
     expect(saasConfig.trialDays).toBe(7)
   })
@@ -79,26 +96,31 @@ describe('Phase 7 Stripe architecture', () => {
   it('presents the configured role plan when the API returns no subscription', () => {
     const ownerPlan: PublicBillingPlan = {
       monthlyAmount: 1900,
+      annualAmount: 9900,
       currency: 'EUR',
       trialDays: 7,
     }
     const cleanerPlan: PublicBillingPlan = {
       monthlyAmount: 3900,
+      annualAmount: 19900,
       currency: 'EUR',
       trialDays: 7,
     }
 
-    expect(createBillingPresentation('owner', null, ownerPlan)).toEqual({
+    expect(createBillingPresentation('owner', null, ownerPlan, 'annual')).toEqual({
       role: 'owner',
-      monthlyAmount: 1900,
+      amount: 9900,
+      billingPeriod: 'annual',
+      annualDiscountPercent: 57,
       currency: 'EUR',
       includedTrialDays: 7,
       status: 'not_subscribed',
       hasProviderSubscription: false,
     })
-    expect(createBillingPresentation('cleaner', null, cleanerPlan)).toMatchObject({
+    expect(createBillingPresentation('cleaner', null, cleanerPlan, 'monthly')).toMatchObject({
       role: 'cleaner',
-      monthlyAmount: 3900,
+      amount: 3900,
+      billingPeriod: 'monthly',
       includedTrialDays: 7,
       status: 'not_subscribed',
       hasProviderSubscription: false,
@@ -109,14 +131,17 @@ describe('Phase 7 Stripe architecture', () => {
     const presentation = createBillingPresentation('owner', {
       status: 'active',
       stripeSubscriptionId: 'provider-subscription',
+      billingPeriod: 'monthly',
+      unitAmount: 1900,
     } as Subscription, {
       monthlyAmount: 1900,
+      annualAmount: 9900,
       currency: 'EUR',
       trialDays: 7,
-    })
+    }, 'monthly')
 
     expect(presentation).toMatchObject({
-      monthlyAmount: 1900,
+      amount: 1900,
       status: 'active',
       hasProviderSubscription: true,
     })
@@ -148,7 +173,7 @@ describe('Phase 7 Stripe architecture', () => {
       cancel_at_period_end: false,
       items: {
         data: [{
-          price: { id: 'price_server_selected', unit_amount: 1900 },
+          price: { id: 'price_server_selected', unit_amount: 1900, recurring: { interval: 'month' } },
           current_period_start: 1_720_604_800,
           current_period_end: 1_723_196_800,
         }],
@@ -161,6 +186,8 @@ describe('Phase 7 Stripe architecture', () => {
       plan: 'owner',
       status: 'active',
       unitAmount: 1900,
+      billingPeriod: 'monthly',
+      stripeInterval: 'month',
       cancelAtPeriodEnd: false,
     })
     expect(patch.trialEndsAt).toBe('2024-07-10T09:46:40.000Z')
@@ -171,19 +198,20 @@ describe('Phase 7 Stripe architecture', () => {
 
   it('rejects arbitrary price IDs and open redirect URLs from checkout input', () => {
     expect(checkoutRequestSchema.safeParse({
-      successPath: '/dashboard/billing',
-      cancelPath: '/dashboard/billing',
+      role: 'owner',
+      billingPeriod: 'monthly',
       priceId: 'attacker-supplied-plan',
     }).success).toBe(false)
     expect(checkoutRequestSchema.safeParse({
-      successPath: '/dashboard/billing',
-      cancelPath: '/dashboard/billing',
+      role: 'owner',
+      billingPeriod: 'annual',
       customerId: 'attacker-supplied-customer',
     }).success).toBe(false)
     expect(checkoutRequestSchema.safeParse({
-      successPath: '//attacker.test',
-      cancelPath: '/dashboard/billing',
+      role: 'owner',
+      billingPeriod: 'weekly',
     }).success).toBe(false)
+    expect(checkoutRequestSchema.safeParse({ role: 'cleaner', billingPeriod: 'annual' }).success).toBe(true)
   })
 
   it('prevents duplicate active provider subscriptions', () => {
@@ -208,13 +236,13 @@ describe('Phase 7 Stripe architecture', () => {
     expect(() => parseBillingMode('automatic')).toThrow()
     expect(() => validateStripeServerConfiguration('stripe', {
       secretKey: '',
-      ownerPriceId: '',
-      cleanerPriceId: '',
+      ownerMonthlyPriceId: '', ownerAnnualPriceId: '',
+      cleanerMonthlyPriceId: '', cleanerAnnualPriceId: '',
     })).toThrow('incomplete')
     expect(() => validateStripeServerConfiguration('mock', {
       secretKey: '',
-      ownerPriceId: '',
-      cleanerPriceId: '',
+      ownerMonthlyPriceId: '', ownerAnnualPriceId: '',
+      cleanerMonthlyPriceId: '', cleanerAnnualPriceId: '',
     })).not.toThrow()
   })
 
@@ -225,8 +253,10 @@ describe('Phase 7 Stripe architecture', () => {
       ?.split('compatibilityDate:')[0] ?? ''
     expect(publicConfig).not.toContain('stripeSecretKey')
     expect(publicConfig).not.toContain('stripeWebhookSecret')
-    expect(publicConfig).not.toContain('stripeOwnerPriceId')
-    expect(publicConfig).not.toContain('stripeCleanerPriceId')
+    expect(publicConfig).not.toContain('stripeOwnerMonthlyPriceId')
+    expect(publicConfig).not.toContain('stripeOwnerAnnualPriceId')
+    expect(publicConfig).not.toContain('stripeCleanerMonthlyPriceId')
+    expect(publicConfig).not.toContain('stripeCleanerAnnualPriceId')
     expect(publicConfig).not.toContain('authSessionSecret')
   })
 

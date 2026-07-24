@@ -173,6 +173,8 @@ export class MockAuthRepository implements AuthRepository {
         plan: input.role,
         status: 'trial',
         unitAmount: saasConfig.plans[input.role].monthlyAmount,
+        billingPeriod: 'monthly',
+        stripeInterval: 'month',
         currency: saasConfig.currency,
         trialStartedAt: trial.startedAt,
         trialEndsAt: trial.endsAt,

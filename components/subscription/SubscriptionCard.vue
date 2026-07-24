@@ -8,8 +8,8 @@
       <SubscriptionStatusBadge :status="presentation.status" />
     </header>
     <p class="subscription-card__price">
-      {{ formatPrice(presentation.monthlyAmount / 100, locale) }}
-      <small>/ {{ t('billing.month') }}</small>
+      {{ formatPrice(presentation.amount / 100, locale) }}
+      <small>/ {{ t(`billing.periodSuffix.${presentation.billingPeriod}`) }}</small>
     </p>
     <p class="subscription-card__trial">
       {{ t('billing.trial.included', { days: presentation.includedTrialDays }) }}
@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Subscription } from '~/domains/subscriptions/types'
+import type { BillingPeriod, Subscription } from '~/domains/subscriptions/types'
 import type { BillingRole, PublicBillingPlan } from '~/services/billing/billingPresentation'
 import { createBillingPresentation } from '~/services/billing/billingPresentation'
 import { formatPrice } from '~/utils/formatters'
@@ -35,6 +35,7 @@ import { formatPrice } from '~/utils/formatters'
 const props = defineProps<{
   role: BillingRole
   subscription: Subscription | null
+  billingPeriod: BillingPeriod
 }>()
 const { t, locale } = useI18n()
 const config = useRuntimeConfig()
@@ -43,6 +44,7 @@ const presentation = computed(() => createBillingPresentation(
   props.role,
   props.subscription,
   config.public.plans[props.role] as PublicBillingPlan,
+  props.billingPeriod,
 ))
 </script>
 

@@ -63,9 +63,15 @@ NUXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 NUXT_SUPABASE_SERVICE_ROLE_KEY=
 STRIPE_SECRET_KEY=
 STRIPE_WEBHOOK_SECRET=
-STRIPE_OWNER_PRICE_ID=
-STRIPE_CLEANER_PRICE_ID=
+STRIPE_OWNER_MONTHLY_PRICE_ID=
+STRIPE_OWNER_ANNUAL_PRICE_ID=
+STRIPE_CLEANER_MONTHLY_PRICE_ID=
+STRIPE_CLEANER_ANNUAL_PRICE_ID=
 ```
+
+The Stripe Prices must represent €19/month or €99/year for owners and
+€39/month or €199/year for cleaning professionals. Annual savings shown in the
+application are calculated from these centralized amounts.
 
 Add `clean-marketplace.com` as primary and `www.clean-marketplace.com` as an
 alias. The application also returns a 308 redirect from `www` to the apex host.

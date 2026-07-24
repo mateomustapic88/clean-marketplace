@@ -2,8 +2,10 @@ export type BillingMode = 'mock' | 'stripe'
 
 export interface StripeServerConfiguration {
   secretKey: string
-  ownerPriceId: string
-  cleanerPriceId: string
+  ownerMonthlyPriceId: string
+  ownerAnnualPriceId: string
+  cleanerMonthlyPriceId: string
+  cleanerAnnualPriceId: string
 }
 
 export const parseBillingMode = (value: string | undefined): BillingMode => {
@@ -21,8 +23,10 @@ export const validateStripeServerConfiguration = (
   if (mode === 'mock') return
   if (
     !configuration.secretKey
-    || !configuration.ownerPriceId
-    || !configuration.cleanerPriceId
+    || !configuration.ownerMonthlyPriceId
+    || !configuration.ownerAnnualPriceId
+    || !configuration.cleanerMonthlyPriceId
+    || !configuration.cleanerAnnualPriceId
   ) {
     throw new Error('Stripe billing configuration is incomplete')
   }

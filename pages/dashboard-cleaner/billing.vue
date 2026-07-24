@@ -4,6 +4,7 @@
 
 <script setup lang="ts">
 import { useAuthStore } from '~/stores/auth'
+import type { BillingPeriod } from '~/domains/subscriptions/types'
 import { useSubscriptionStore } from '~/stores/subscription'
 import { getAppRoute } from '~/utils/routes'
 
@@ -18,9 +19,9 @@ const load = async () => {
 }
 watch(() => auth.user?.id, load, { immediate: true })
 const returnUrl = computed(() => getAppRoute('cleanerBilling', locale.value))
-const checkout = async () => {
+const checkout = async (billingPeriod: BillingPeriod) => {
   if (auth.user?.role === 'cleaner')
-    await store.checkout(auth.user.id, 'cleaner', returnUrl.value)
+    await store.checkout(auth.user.id, 'cleaner', billingPeriod, returnUrl.value)
 }
 const portal = async () => {
   await store.openPortal(returnUrl.value)

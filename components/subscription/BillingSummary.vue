@@ -2,6 +2,8 @@
   <dl class="billing-summary">
     <div><dt>{{ t('billing.currentPlan') }}</dt><dd>{{ t(`billing.plan.${subscription.plan}`) }}</dd></div>
     <div><dt>{{ t('billing.subscriptionStatus') }}</dt><dd><SubscriptionStatusBadge :status="subscription.status" /></dd></div>
+    <div><dt>{{ t('billing.billingPeriod') }}</dt><dd>{{ t(`billing.period.${subscription.billingPeriod}`) }}</dd></div>
+    <div><dt>{{ t('billing.stripeInterval') }}</dt><dd>{{ subscription.stripeInterval ? t(`billing.interval.${subscription.stripeInterval}`) : t('common.notAvailable') }}</dd></div>
     <div v-if="subscription.status === 'trial'"><dt>{{ t('billing.trialRemaining') }}</dt><dd>{{ t('billing.trial.remaining', { days: trialDays }) }}</dd></div>
     <div><dt>{{ t('billing.renewal') }}</dt><dd>{{ subscription.currentPeriodEndsAt ? formatPublicDate(subscription.currentPeriodEndsAt.slice(0, 10), locale) : t('common.notAvailable') }}</dd></div>
     <div><dt>{{ t('billing.cancellationState') }}</dt><dd>{{ subscription.cancelAtPeriodEnd ? t('billing.cancelsAtPeriodEnd') : t('billing.renewsAutomatically') }}</dd></div>

@@ -10,12 +10,17 @@ export default defineEventHandler(async (event) => {
   const user = await requireSupabaseUser(event)
   const body = await parseBody(event, checkoutRequestSchema)
   const role = user.role as 'owner' | 'cleaner'
+  if (body.role !== role) {
+    throw createError({ statusCode: 403, statusMessage: 'The requested billing role is not allowed' })
+  }
   const siteUrl = useRuntimeConfig().public.siteUrl
-  const successUrl = new URL(body.successPath, siteUrl).toString()
-  const cancelUrl = new URL(body.cancelPath, siteUrl).toString()
+  const billingPath = role === 'owner' ? '/dashboard/billing' : '/dashboard-cleaner/billing'
+  const successUrl = new URL(`${billingPath}?checkout=success`, siteUrl).toString()
+  const cancelUrl = new URL(`${billingPath}?checkout=cancelled`, siteUrl).toString()
   const session = await new StripeBillingService().checkout(
     user.id,
     role,
+    body.billingPeriod,
     user.email,
     successUrl,
     cancelUrl,

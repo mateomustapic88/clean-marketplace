@@ -7,12 +7,12 @@ export const saasConfig = {
     owner: {
       code: 'owner' as const,
       monthlyAmount: 1900,
-      stripePriceIdEnv: 'STRIPE_OWNER_PRICE_ID',
+      annualAmount: 9900,
     },
     cleaner: {
       code: 'cleaner' as const,
       monthlyAmount: 3900,
-      stripePriceIdEnv: 'STRIPE_CLEANER_PRICE_ID',
+      annualAmount: 19900,
     },
   },
   features: {

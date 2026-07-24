@@ -134,6 +134,8 @@ export const mapSubscription = (record: DbRow): Subscription => ({
   plan: record.plan as Subscription['plan'],
   status: record.status as Subscription['status'],
   unitAmount: number(record.unit_amount_cents),
+  billingPeriod: record.billing_period === 'annual' ? 'annual' : 'monthly',
+  stripeInterval: record.stripe_interval === 'year' ? 'year' : record.stripe_interval === 'month' ? 'month' : null,
   currency: 'EUR',
   trialStartedAt: nullableText(record.trial_started_at),
   trialEndsAt: nullableText(record.trial_ends_at),

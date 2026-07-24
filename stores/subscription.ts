@@ -5,6 +5,7 @@ import type {
 } from '~/domains/subscriptions/api'
 import type {
   BillingInvoice,
+  BillingPeriod,
   PaymentMethod,
   Subscription,
   SubscriptionCapability,
@@ -115,7 +116,7 @@ export const useSubscriptionStore = defineStore('subscription', () => {
     await loadForUser(userId, role)
   }
 
-  const checkout = async (userId: string, role: Exclude<UserRole, 'admin'>, returnUrl: string) => {
+  const checkout = async (userId: string, role: Exclude<UserRole, 'admin'>, billingPeriod: BillingPeriod, returnUrl: string) => {
     isActionLoading.value = true
     actionError.value = false
     try {
@@ -123,8 +124,8 @@ export const useSubscriptionStore = defineStore('subscription', () => {
         const redirect = await $fetch<BillingRedirect>('/api/billing/checkout', {
           method: 'POST',
           body: {
-            successPath: `${returnUrl}?checkout=success`,
-            cancelPath: `${returnUrl}?checkout=cancelled`,
+            role,
+            billingPeriod,
           },
         })
         await navigateTo(redirect.url, { external: true })
@@ -133,6 +134,7 @@ export const useSubscriptionStore = defineStore('subscription', () => {
       const redirect = await useNuxtApp().$stripe.createCheckout({
         userId,
         plan: role,
+        billingPeriod,
         customerId: subscription.value?.stripeCustomerId ?? null,
         successUrl: returnUrl,
         cancelUrl: returnUrl,
@@ -142,6 +144,7 @@ export const useSubscriptionStore = defineStore('subscription', () => {
         userId,
         subscription.value?.stripeCustomerId ?? `cus_mock_${userId}`,
         `sub_mock_${userId}`,
+        billingPeriod,
       )
       await loadForUser(userId, role)
       await navigateTo(redirect.url)

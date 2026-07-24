@@ -1,5 +1,6 @@
 import type {
   BillingInvoice,
+  BillingPeriod,
   PaymentMethod,
   Subscription,
   SubscriptionCapability,
@@ -16,7 +17,7 @@ export interface SubscriptionRepository {
   updateStatus(userId: string, status: SubscriptionStatus): Promise<Subscription>
   cancel(userId: string): Promise<Subscription>
   resume(userId: string): Promise<Subscription>
-  activateFromCheckout(userId: string, stripeCustomerId: string, stripeSubscriptionId: string): Promise<Subscription>
+  activateFromCheckout(userId: string, stripeCustomerId: string, stripeSubscriptionId: string, billingPeriod: BillingPeriod): Promise<Subscription>
   markPastDue(userId: string): Promise<Subscription>
   sync(subscription: Subscription): Promise<Subscription>
   can(userId: string, role: UserRole, capability: SubscriptionCapability): Promise<boolean>

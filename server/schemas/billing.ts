@@ -2,8 +2,8 @@ import { z } from 'zod'
 import { relativePathSchema } from '~/server/utils/billingValidation'
 
 export const checkoutRequestSchema = z.object({
-  successPath: relativePathSchema,
-  cancelPath: relativePathSchema,
+  role: z.enum(['owner', 'cleaner']),
+  billingPeriod: z.enum(['monthly', 'annual']),
 }).strict()
 
 export const portalRequestSchema = z.object({

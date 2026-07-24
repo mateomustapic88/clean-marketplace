@@ -50,6 +50,12 @@ test('opens pricing and registration', async ({ page }) => {
   await expect(page.getByText(/19\s*€/).first()).toBeVisible()
   await expect(page.getByText(/39\s*€/).first()).toBeVisible()
   await expect(page.getByText('Besplatno za vlasnike')).toHaveCount(0)
+  await page.getByRole('radio', { name: /Godišnje/ }).check()
+  await expect(page.getByText(/99\s*€/).first()).toBeVisible()
+  await expect(page.getByText(/199\s*€/).first()).toBeVisible()
+  await expect(page.getByText('Uštedi 57%')).toBeVisible()
+  await expect(page.getByText(/Ušteda 129\s*€ godišnje \(57%\)/).first()).toBeVisible()
+  await expect(page.getByText(/Ušteda 269\s*€ godišnje \(57%\)/).first()).toBeVisible()
 
   await openHydratedPage(page, '/registracija')
   await expect(page.getByRole('radio', { name: /Vlasnik apartmana/ })).toBeVisible()

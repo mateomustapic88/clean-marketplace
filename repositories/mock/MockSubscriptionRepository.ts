@@ -2,6 +2,7 @@ import { saasConfig } from '~/config/saas'
 import { DomainError } from '~/domains/shared/errors'
 import type {
   BillingInvoice,
+  BillingPeriod,
   PaymentMethod,
   Subscription,
   SubscriptionCapability,
@@ -40,6 +41,8 @@ export class MockSubscriptionRepository implements SubscriptionRepository {
         plan,
         status: 'trial',
         unitAmount: saasConfig.plans[plan].monthlyAmount,
+        billingPeriod: 'monthly',
+        stripeInterval: 'month',
         currency: saasConfig.currency,
         trialStartedAt: trial.startedAt,
         trialEndsAt: trial.endsAt,
@@ -94,13 +97,17 @@ export class MockSubscriptionRepository implements SubscriptionRepository {
     })
   }
 
-  async activateFromCheckout(userId: string, customerId: string, stripeSubscriptionId: string): Promise<Subscription> {
+  async activateFromCheckout(userId: string, customerId: string, stripeSubscriptionId: string, billingPeriod: BillingPeriod): Promise<Subscription> {
     return this.database.transaction((snapshot) => {
       const subscription = this.find(snapshot.subscriptions, userId)
       const timestamp = nowIso()
       const periodEnd = new Date(timestamp)
-      periodEnd.setUTCMonth(periodEnd.getUTCMonth() + 1)
+      if (billingPeriod === 'annual') periodEnd.setUTCFullYear(periodEnd.getUTCFullYear() + 1)
+      else periodEnd.setUTCMonth(periodEnd.getUTCMonth() + 1)
       subscription.status = 'active'
+      subscription.billingPeriod = billingPeriod
+      subscription.stripeInterval = billingPeriod === 'annual' ? 'year' : 'month'
+      subscription.unitAmount = saasConfig.plans[subscription.plan][billingPeriod === 'annual' ? 'annualAmount' : 'monthlyAmount']
       subscription.stripeCustomerId = customerId
       subscription.stripeSubscriptionId = stripeSubscriptionId
       subscription.currentPeriodStartedAt = timestamp

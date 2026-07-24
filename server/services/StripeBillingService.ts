@@ -1,7 +1,7 @@
 import type Stripe from 'stripe'
 import { saasConfig } from '~/config/saas'
 import type { BillingState } from '~/domains/subscriptions/api'
-import type { Subscription, SubscriptionStatus } from '~/domains/subscriptions/types'
+import type { BillingPeriod, Subscription, SubscriptionStatus } from '~/domains/subscriptions/types'
 import { SupabaseStripeEventRepository } from '~/repositories/supabase/SupabaseStripeEventRepository'
 import { mapInvoice, mapPaymentMethod, mapSubscription } from '~/repositories/supabase/mappers'
 import type { DbRow } from '~/repositories/supabase/mappers'
@@ -28,6 +28,10 @@ export const subscriptionPatchFromStripe = (subscription: Stripe.Subscription) =
   const item = subscription.items.data[0]
   const customerId = typeof subscription.customer === 'string' ? subscription.customer : subscription.customer.id
   const metadataPlan = subscription.metadata.plan
+  const recurringInterval = item?.price.recurring?.interval
+  const stripeInterval = recurringInterval === 'year'
+    ? 'year' as const
+    : recurringInterval === 'month' ? 'month' as const : null
   const plan: Subscription['plan'] | null
     = metadataPlan === 'owner' || metadataPlan === 'cleaner' ? metadataPlan : null
   return {
@@ -37,6 +41,10 @@ export const subscriptionPatchFromStripe = (subscription: Stripe.Subscription) =
     stripeSubscriptionId: subscription.id,
     stripePriceId: item?.price.id ?? null,
     unitAmount: item?.price.unit_amount ?? null,
+    billingPeriod: stripeInterval === 'year' || subscription.metadata.billingPeriod === 'annual'
+      ? 'annual' as const
+      : 'monthly' as const,
+    stripeInterval,
     trialStartedAt: unixIso(subscription.trial_start),
     trialEndsAt: unixIso(subscription.trial_end),
     currentPeriodStartedAt: unixIso(item?.current_period_start),
@@ -60,7 +68,7 @@ export class StripeBillingService {
     )
   }
 
-  async checkout(userId: string, role: 'owner' | 'cleaner', email: string, successUrl: string, cancelUrl: string) {
+  async checkout(userId: string, role: 'owner' | 'cleaner', billingPeriod: BillingPeriod, email: string, successUrl: string, cancelUrl: string) {
     const existing = await this.subscription(userId)
     if (existing && hasActiveProviderSubscription(existing)) {
       throw createError({ statusCode: 409, statusMessage: 'An active subscription already exists' })
@@ -71,16 +79,14 @@ export class StripeBillingService {
       customerId = customer.id
       const { error } = await this.database.from('subscriptions').upsert({
         user_id: userId, plan: role, status: 'incomplete',
-        unit_amount_cents: saasConfig.plans[role].monthlyAmount, currency: 'EUR',
+        unit_amount_cents: saasConfig.plans[role][billingPeriod === 'annual' ? 'annualAmount' : 'monthlyAmount'],
+        billing_period: billingPeriod, stripe_interval: billingPeriod === 'annual' ? 'year' : 'month', currency: 'EUR',
         stripe_customer_id: customerId, trial_consumed: false,
       })
       if (error) throw createError({ statusCode: 500, statusMessage: 'Billing state could not be persisted' })
     }
-    const config = useRuntimeConfig()
-    return new StripeServerGateway(this.stripe(), {
-      owner: config.stripeOwnerPriceId, cleaner: config.stripeCleanerPriceId,
-    }).createCheckout({
-      userId, plan: role, customerId, successUrl, cancelUrl,
+    return this.gateway().createCheckout({
+      userId, plan: role, billingPeriod, customerId, successUrl, cancelUrl,
       trialDays: existing?.trialConsumed ? 0 : saasConfig.trialDays,
     })
   }
@@ -88,10 +94,7 @@ export class StripeBillingService {
   async portal(userId: string, returnUrl: string) {
     const subscription = await this.requiredSubscription(userId)
     if (!subscription.stripeCustomerId) throw createError({ statusCode: 409, statusMessage: 'Stripe customer is missing' })
-    const config = useRuntimeConfig()
-    return new StripeServerGateway(this.stripe(), {
-      owner: config.stripeOwnerPriceId, cleaner: config.stripeCleanerPriceId,
-    }).createCustomerPortal(subscription.stripeCustomerId, returnUrl)
+    return this.gateway().createCustomerPortal(subscription.stripeCustomerId, returnUrl)
   }
 
   async cancel(userId: string): Promise<Subscription> {
@@ -139,6 +142,8 @@ export class StripeBillingService {
     const { data, error } = await this.database.from('subscriptions').upsert({
       user_id: userId, plan, status: patch.status,
       unit_amount_cents: patch.unitAmount ?? existing?.unit_amount_cents ?? saasConfig.plans[plan].monthlyAmount,
+      billing_period: patch.billingPeriod,
+      stripe_interval: patch.stripeInterval,
       currency: 'EUR', stripe_customer_id: patch.customerId,
       stripe_subscription_id: patch.stripeSubscriptionId, stripe_price_id: patch.stripePriceId,
       trial_started_at: patch.trialStartedAt, trial_ends_at: patch.trialEndsAt,
@@ -204,6 +209,15 @@ export class StripeBillingService {
   }
 
   private stripe(): Stripe { return useStripeServer() }
+
+  private gateway(): StripeServerGateway {
+    const config = useRuntimeConfig()
+    return new StripeServerGateway(this.stripe(), {
+      owner: { monthly: config.stripeOwnerMonthlyPriceId, annual: config.stripeOwnerAnnualPriceId },
+      cleaner: { monthly: config.stripeCleanerMonthlyPriceId, annual: config.stripeCleanerAnnualPriceId },
+    })
+  }
+
   private invoiceRecord(invoice: Stripe.Invoice, userId: string) {
     return {
       id: invoice.id, user_id: userId, number: invoice.number ?? invoice.id,

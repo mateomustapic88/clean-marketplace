@@ -524,31 +524,32 @@
     "metaTitle": "How Clean works", "metaDescription": "Learn how apartment owners and cleaning professionals arrange work through Clean."
   },
   "pricing": {
-    "eyebrow": "Transparent pricing", "title": "Two clear plans with no commission", "description": "Apartment owners pay EUR 19 and cleaning professionals EUR 39 per month. Both plans include a seven-day trial.",
+    "eyebrow": "Transparent pricing", "title": "Two clear plans with no commission", "description": "Choose monthly billing or a discounted annual subscription. Both plans include a seven-day trial.",
     "owner": {
       "badge": "7-day trial",
       "title": "Clean for apartment owners",
       "description": "Post jobs, compare offers, and manage bookings.",
-      "trial": "EUR 19 per month after the trial.",
+      "trial": "A seven-day trial is included with either billing option.",
       "action": "Start trial",
       "billingNote": "Billing details are collected securely through Stripe Checkout.",
       "features": { "1": "Post and manage jobs", "2": "Receive and compare offers", "3": "Manage bookings", "4": "Protected contact details", "5": "Notifications and collaboration history" }
     },
     "plan": {
-      "badge": "7-day trial", "title": "Clean for cleaning professionals", "trial": "EUR 39 per month after the trial.", "month": "per month", "action": "Start trial", "billingNote": "Billing details are collected securely through Stripe Checkout.",
+      "badge": "7-day trial", "title": "Clean for cleaning professionals", "trial": "A seven-day trial is included with either billing option.", "month": "per month", "action": "Start trial", "billingNote": "Billing details are collected securely through Stripe Checkout.",
       "features": { "1": "Public profile", "2": "Browse jobs", "3": "Submit offers", "4": "Offer history", "5": "Job history", "6": "Mutual ratings", "7": "Notifications" }
     },
     "notes": {
       "commissionTitle": "No cleaning commission", "commission": "Cleaning payments are arranged directly between users.", "demoTitle": "Secure subscription billing", "demo": "Subscriptions and payment methods are managed through Stripe Checkout and Billing Portal."
     },
     "faqTitle": "Subscription questions",
+    "annualNote": "Equivalent to {monthly} per month. Save {savings} per year ({percent}%).",
     "faq": {
       "1": { "question": "Can I cancel the subscription?", "answer": "Yes. A future active subscription can be cancelled before the next billing period." },
-      "2": { "question": "Is a payment method required for the trial?", "answer": "Yes. Stripe Checkout securely collects billing details for the future monthly subscription." },
+      "2": { "question": "Is a payment method required for the trial?", "answer": "Yes. Stripe Checkout securely collects billing details for your selected monthly or annual subscription." },
       "3": { "question": "Do I pay commission per job?", "answer": "No. Clean does not take commission from the agreed cleaning price." },
       "4": { "question": "Is billing active?", "answer": "Yes. Subscriptions start through Stripe Checkout and are managed through Billing Portal." }
     },
-    "metaTitle": "Pricing", "metaDescription": "Clean offers a seven-day trial, followed by a EUR 19 owner plan or EUR 39 cleaner plan per month."
+    "metaTitle": "Pricing", "metaDescription": "Clean offers a seven-day trial followed by monthly or discounted annual plans for owners and cleaning professionals."
   },
   "contact": {
     "eyebrow": "Contact", "title": "How can we help?", "description": "Send a beta enquiry, report a bug, or suggest an improvement. Your message is securely recorded for the support team.",
@@ -1083,6 +1084,13 @@
       "cleaner": "Cleaner"
     },
     "month": "per month",
+    "choosePeriod": "Choose billing period",
+    "billingPeriod": "Billing period",
+    "stripeInterval": "Stripe interval",
+    "period": { "monthly": "Monthly", "annual": "Annual" },
+    "periodSuffix": { "monthly": "per month", "annual": "per year" },
+    "interval": { "month": "Month", "year": "Year" },
+    "save": "Save {percent}%",
     "renewal": "Next renewal",
     "trialRemaining": "Trial remaining",
     "trialEnds": "Trial ends: {date}",

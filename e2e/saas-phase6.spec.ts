@@ -13,8 +13,8 @@ const login = async (page: Page, email: string, expectedPath: RegExp) => {
 test('billing server endpoints require an authenticated HTTP-only session', async ({ request }) => {
   const checkout = await request.post('/api/billing/checkout', {
     data: {
-      successPath: '/dashboard/billing',
-      cancelPath: '/dashboard/billing',
+      role: 'owner',
+      billingPeriod: 'monthly',
     },
   })
   expect(checkout.status()).toBe(401)
@@ -51,10 +51,14 @@ test('mock checkout activates a plan and exposes invoice and card details', asyn
   await expect(page.getByRole('heading', { name: 'Upravljaj pretplatom' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Način plaćanja' })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Započni besplatno probno razdoblje' })).toHaveCount(0)
+  await page.getByRole('radio', { name: /Godišnje/ }).check()
+  await expect(page.getByText(/199\s*€/).first()).toBeVisible()
   await page.getByRole('button', { name: 'Dodaj način plaćanja' }).click()
   await expect(page).toHaveURL(/checkout=success/)
   await expect(page.getByText('Aktivno', { exact: true }).first()).toBeVisible()
   await expect(page.getByText('VISA **** 4242')).toBeVisible()
+  await expect(page.getByText('Godišnje', { exact: true })).toBeVisible()
+  await expect(page.getByText('Godina', { exact: true })).toBeVisible()
   await expect(page.getByRole('cell', { name: /DEMO-/ })).toBeVisible()
   await page.getByRole('button', { name: 'Otvori portal za naplatu' }).click()
   await expect(page).toHaveURL(/portal=returned/)

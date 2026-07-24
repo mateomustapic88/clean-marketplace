@@ -1,6 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import type {
-  BillingInvoice, PaymentMethod, Subscription, SubscriptionCapability, SubscriptionStatus,
+  BillingInvoice, BillingPeriod, PaymentMethod, Subscription, SubscriptionCapability, SubscriptionStatus,
 } from '~/domains/subscriptions/types'
 import type { UserRole } from '~/domains/users/types'
 import type { SubscriptionRepository } from '~/repositories/subscriptions/SubscriptionRepository'
@@ -44,7 +44,7 @@ export class SupabaseSubscriptionRepository implements SubscriptionRepository {
   async updateStatus(_userId: string, _status: SubscriptionStatus): Promise<Subscription> { return this.serverOnly() }
   async cancel(_userId: string): Promise<Subscription> { return this.serverOnly() }
   async resume(_userId: string): Promise<Subscription> { return this.serverOnly() }
-  async activateFromCheckout(_userId: string, _customer: string, _subscription: string): Promise<Subscription> { return this.serverOnly() }
+  async activateFromCheckout(_userId: string, _customer: string, _subscription: string, _billingPeriod: BillingPeriod): Promise<Subscription> { return this.serverOnly() }
   async markPastDue(_userId: string): Promise<Subscription> { return this.serverOnly() }
   async sync(subscription: Subscription): Promise<Subscription> { return subscription }
   async can(userId: string, role: UserRole, capability: SubscriptionCapability): Promise<boolean> {

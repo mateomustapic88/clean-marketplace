@@ -39,6 +39,7 @@ describe('production infrastructure', () => {
       '0012_storage_buckets_policies.sql',
       '0013_safe_marketplace_views.sql',
       '0014_rls_verification.sql',
+      '0015_subscription_billing_period.sql',
     ])
   })
 
@@ -60,5 +61,11 @@ describe('production infrastructure', () => {
     expect(migrationSql).toContain("'avatars', 'avatars', false")
     expect(migrationSql).toContain("'job-images', 'job-images', false")
     expect(migrationSql).toContain("set search_path = ''")
+  })
+
+  it('persists the Stripe subscription cadence with constrained values', () => {
+    expect(migrationSql).toContain("create type public.billing_period as enum ('monthly', 'annual')")
+    expect(migrationSql).toContain('billing_period public.billing_period not null')
+    expect(migrationSql).toContain("stripe_interval in ('month', 'year')")
   })
 })

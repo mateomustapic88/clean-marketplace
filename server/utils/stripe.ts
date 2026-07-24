@@ -9,8 +9,10 @@ export const useStripeServer = () => {
   try {
     validateStripeServerConfiguration(parseBillingMode(config.public.billingMode), {
       secretKey: config.stripeSecretKey,
-      ownerPriceId: config.stripeOwnerPriceId,
-      cleanerPriceId: config.stripeCleanerPriceId,
+      ownerMonthlyPriceId: config.stripeOwnerMonthlyPriceId,
+      ownerAnnualPriceId: config.stripeOwnerAnnualPriceId,
+      cleanerMonthlyPriceId: config.stripeCleanerMonthlyPriceId,
+      cleanerAnnualPriceId: config.stripeCleanerAnnualPriceId,
     })
   }
   catch {
