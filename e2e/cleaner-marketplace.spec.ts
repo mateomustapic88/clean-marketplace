@@ -67,3 +67,31 @@ test('blocks offers on demo jobs with a friendly explanation', async ({ page }) 
   await expect(page.getByLabel('Predložena cijena')).toHaveCount(0)
   expect(pageErrors).toEqual([])
 })
+
+test('new cleaner can finish account setup', async ({ page }) => {
+  test.setTimeout(60_000)
+  await page.goto('/registracija')
+  await page.waitForLoadState('networkidle')
+  await page.getByRole('radio', { name: /Pružam usluge čišćenja/ }).check()
+  await page.locator('input[name="firstName"]').fill('Ivana')
+  await page.locator('input[name="lastName"]').fill('Testić')
+  await page.getByLabel('Adresa e-pošte').fill(`ivana.${Date.now()}@example.com`)
+  await page.getByLabel('Telefon').fill('+385 91 555 0123')
+  await page.getByLabel('Grad').selectOption('split')
+  await page.getByLabel('Lozinka').fill('Sigurna123')
+  await page.getByRole('button', { name: 'Izradi račun' }).click()
+
+  await expect(page).toHaveURL(/\/onboarding\/cistac$/)
+  await page.getByRole('button', { name: 'Sljedeće' }).click()
+  await page.getByLabel('O meni i iskustvo').fill(
+    'Pouzdana sam i temeljita osoba s iskustvom u čišćenju apartmana.',
+  )
+  await expect(page.getByRole('checkbox', { name: 'Hrvatski' })).toBeChecked()
+  await page.getByRole('button', { name: 'Sljedeće' }).click()
+  await page.getByRole('button', { name: 'Sljedeće' }).click()
+  await page.getByRole('button', { name: 'Sljedeće' }).click()
+  await page.getByRole('button', { name: 'Završi postavljanje' }).click()
+
+  await expect(page).toHaveURL(/\/dashboard-cleaner$/)
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Dobro došli')
+})

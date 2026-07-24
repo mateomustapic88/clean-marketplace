@@ -1300,7 +1300,7 @@
       "title": "Nastavite profil čistilnega strokovnjaka",
       "description": "Dodajte podrobnosti, potrebne za prejemanje delovnih mest.",
       "progress": "Napredek vkrcanja",
-      "validation": "Izpolnite zahtevana polja in izberite vsaj eno mesto.",
+      "validation": "Izpolnite zahtevana polja ter izberite vsaj en jezik in mesto.",
       "finish": "Dokončajte nastavitev",
       "steps": {
         "personal": "Osebni podatki",

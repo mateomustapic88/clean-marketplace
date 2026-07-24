@@ -1300,7 +1300,7 @@
       "title": "Set up your cleaner profile",
       "description": "Add the details needed to receive jobs.",
       "progress": "Onboarding progress",
-      "validation": "Complete the required fields and choose at least one city.",
+      "validation": "Complete the required fields and choose at least one language and city.",
       "finish": "Finish setup",
       "steps": {
         "personal": "Personal details",

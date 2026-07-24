@@ -13,6 +13,7 @@ export const defaultAvailability = (): Availability[] =>
 
 export const normalizeCleanerProfile = (profile: CleanerProfile): CleanerProfile => ({
   ...profile,
+  languages: profile.languages.length ? [...profile.languages] : ['hr'],
   favouriteJobIds: [...(profile.favouriteJobIds ?? [])],
   vacationMode: profile.vacationMode ?? false,
   avatarUrl: profile.avatarUrl ?? null,

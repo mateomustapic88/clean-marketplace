@@ -1300,7 +1300,7 @@
       "title": "Postavite profil osobe za čišćenje",
       "description": "Dodajte podatke potrebne za primanje poslova.",
       "progress": "Napredak uvodnog postavljanja",
-      "validation": "Ispunite obavezna polja i odaberite barem jedan grad.",
+      "validation": "Ispunite obavezna polja i odaberite barem jedan jezik i grad.",
       "finish": "Završi postavljanje",
       "steps": {
         "personal": "Osobni podaci",
