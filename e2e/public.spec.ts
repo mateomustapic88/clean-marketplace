@@ -39,6 +39,16 @@ test('publishes an indexable apartment-cleaning landing page', async ({ page }) 
   expect(structuredData).toContain('"@type":"Service"')
 })
 
+test('publishes compelling and accurate search snippets', async ({ page }) => {
+  await openHydratedPage(page, '/kako-funkcionira')
+  await expect(page).toHaveTitle('Kako dogovoriti čišćenje apartmana | Clean')
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+    'content',
+    /Objavite posao čišćenja apartmana, primite ponude i usporedite cijene/,
+  )
+  await expect(page.getByText('Registracija je demo')).toHaveCount(0)
+})
+
 test('opens the complete Slovenian locale', async ({ page }) => {
   await openHydratedPage(page, '/')
   await page.getByRole('link', { name: /Slovenščina/ }).first().click()

@@ -290,9 +290,9 @@
   "jobs": {
     "eyebrow": "Public job examples",
     "title": "Find a cleaning job",
-    "description": "Browse clearly structured demo listings and find work that matches your availability.",
-    "metaTitle": "Apartment cleaning jobs",
-    "metaDescription": "Browse example apartment cleaning jobs by city, date, and budget.",
+    "description": "Browse apartment cleaning jobs by city, schedule, and budget to find a listing that matches your availability.",
+    "metaTitle": "Apartment cleaning jobs in Croatia",
+    "metaDescription": "Find apartment cleaning jobs by city, date, and budget. Review listing details and submit your offer through Clean.",
     "pagination": "Job pages",
     "card": {
       "urgent": "Urgent",
@@ -339,9 +339,9 @@
   "cleaners": {
     "eyebrow": "Public demo profiles",
     "title": "Find a cleaning professional",
-    "description": "Compare rates, availability, service areas, and clearly marked demo ratings.",
-    "metaTitle": "Apartment cleaning professionals",
-    "metaDescription": "Browse demo profiles of apartment cleaning professionals in Croatia.",
+    "description": "Compare rates, availability, service areas, experience, and ratings of apartment cleaning professionals.",
+    "metaTitle": "Apartment cleaners in Croatia",
+    "metaDescription": "Find an apartment cleaner in Croatia. Compare rates, availability, experience, and service areas in one place.",
     "pagination": "Profile pages",
     "card": {
       "perHour": "per hour",
@@ -723,8 +723,8 @@
   },
   "how": {
     "eyebrow": "How the platform works",
-    "title": "A clear path for both sides",
-    "description": "From the first listing to the final rating, every step has its place.",
+    "title": "Arrange apartment cleaning in a few clear steps",
+    "description": "Post a job, receive offers, and compare prices, or find cleaning jobs that fit your schedule.",
     "ownerEyebrow": "Apartment owners",
     "ownerTitle": "From posting to completed service",
     "cleanerEyebrow": "Cleaning professionals",
@@ -761,10 +761,10 @@
         "5": "Completed jobs build collaboration history."
       }
     },
-    "ctaTitle": "Try Clean",
-    "ctaDescription": "Registration is a demo and does not require a card.",
-    "metaTitle": "How Clean works",
-    "metaDescription": "Learn how apartment owners and cleaning professionals arrange work through Clean."
+    "ctaTitle": "Find an apartment cleaner or your next job",
+    "ctaDescription": "Create a profile, choose your role, and organise apartment cleaning in one place.",
+    "metaTitle": "How to arrange apartment cleaning",
+    "metaDescription": "Post an apartment cleaning job, receive offers, and compare rates, or find new cleaning jobs throughout Croatia."
   },
   "pricing": {
     "eyebrow": "Transparent pricing",
@@ -828,8 +828,8 @@
         "answer": "Yes. Subscriptions start through Stripe Checkout and are managed through Billing Portal."
       }
     },
-    "metaTitle": "Pricing",
-    "metaDescription": "Clean offers a seven-day trial followed by monthly or discounted annual plans for owners and cleaning professionals."
+    "metaTitle": "Pricing for owners and cleaning professionals",
+    "metaDescription": "Try Clean for 7 days. Plans cost EUR 19 monthly for apartment owners and EUR 39 monthly for cleaning professionals, with no commission."
   },
   "contact": {
     "eyebrow": "Contact",
@@ -858,8 +858,8 @@
     "successDescription": "Thank you. Your message was securely recorded for the Clean support team.",
     "errorTitle": "Message not recorded",
     "errorDescription": "Please try again. If the problem persists, return later.",
-    "metaTitle": "Contact",
-    "metaDescription": "Send a support enquiry to the Clean platform team."
+    "metaTitle": "Contact and support",
+    "metaDescription": "Need help with your Clean account, listing, or offer? Contact our team, report a problem, or suggest an improvement."
   },
   "legal": {
     "contents": "Contents",

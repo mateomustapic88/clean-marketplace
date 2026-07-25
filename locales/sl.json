@@ -290,9 +290,9 @@
   "jobs": {
     "eyebrow": "Javni demo oglasi",
     "title": "Poiščite delo čiščenja",
-    "description": "Prebrskajte jasno strukturirane demo oglase in poiščite delo, ki ustreza vaši razpoložljivosti.",
-    "metaTitle": "Dela čiščenja apartmajev",
-    "metaDescription": "Prebrskajte demo dela čiščenja apartmajev po mestu, datumu in proračunu.",
+    "description": "Prebrskajte dela za čiščenje apartmajev po mestu, terminu in proračunu ter poiščite oglas, ki ustreza vaši razpoložljivosti.",
+    "metaTitle": "Dela za čiščenje apartmajev na Hrvaškem",
+    "metaDescription": "Poiščite dela za čiščenje apartmajev po mestu, datumu in proračunu. Preglejte podrobnosti oglasa in oddajte ponudbo prek Cleana.",
     "pagination": "Strani za delo",
     "card": {
       "urgent": "Nujno",
@@ -339,9 +339,9 @@
   "cleaners": {
     "eyebrow": "Javni demo profili",
     "title": "Poiščite strokovnjaka za čiščenje",
-    "description": "Primerjajte cene, razpoložljivost, področja storitev in jasno označene demo ocene.",
-    "metaTitle": "Strokovnjaki za čiščenje apartmajev",
-    "metaDescription": "Prebrskajte demo profile strokovnjakov za čiščenje apartmajev na Hrvaškem.",
+    "description": "Primerjajte cene, razpoložljivost, območja dela, izkušnje in ocene strokovnjakov za čiščenje apartmajev.",
+    "metaTitle": "Osebe za čiščenje apartmajev na Hrvaškem",
+    "metaDescription": "Poiščite osebo za čiščenje apartmaja na Hrvaškem. Primerjajte cene, razpoložljivost, izkušnje in območja dela na enem mestu.",
     "pagination": "Strani profila",
     "card": {
       "perHour": "na uro",
@@ -723,8 +723,8 @@
   },
   "how": {
     "eyebrow": "Kako platforma deluje",
-    "title": "Jasna pot za obe strani",
-    "description": "Od prvega vpisa do končne ocene ima vsak korak svoje mesto.",
+    "title": "Dogovorite čiščenje apartmaja v nekaj jasnih korakih",
+    "description": "Objavite delo, prejmite ponudbe in primerjajte cene ali poiščite čistilna dela, ki ustrezajo vašemu urniku.",
     "ownerEyebrow": "Lastniki apartmajev",
     "ownerTitle": "Od napotitve do opravljene storitve",
     "cleanerEyebrow": "Strokovnjaki za čiščenje",
@@ -761,10 +761,10 @@
         "5": "Dokončana dela gradijo zgodovino sodelovanja."
       }
     },
-    "ctaTitle": "Preizkusite Clean",
-    "ctaDescription": "Registracija je demo in ne zahteva kartice.",
-    "metaTitle": "Kako deluje Clean",
-    "metaDescription": "Preberite, kako lastniki apartmajev in čistilni strokovnjaki uredijo delo prek platforme Clean."
+    "ctaTitle": "Poiščite osebo za čiščenje ali novo delo",
+    "ctaDescription": "Ustvarite profil, izberite svojo vlogo in organizirajte čiščenje apartmaja na enem mestu.",
+    "metaTitle": "Kako dogovoriti čiščenje apartmaja",
+    "metaDescription": "Objavite delo za čiščenje apartmaja, prejmite ponudbe in primerjajte cene ali poiščite nova čistilna dela po Hrvaški."
   },
   "pricing": {
     "eyebrow": "Transparentne cene",
@@ -828,8 +828,8 @@
         "answer": "Da. Naročnine se začnejo prek Stripe Checkout in se upravljajo prek portala za obračunavanje."
       }
     },
-    "metaTitle": "Cene",
-    "metaDescription": "Clean ponuja sedemdnevno preskusno obdobje, ki mu sledijo mesečni ali znižani letni načrti za lastnike in strokovnjake za čiščenje."
+    "metaTitle": "Cene za lastnike in strokovnjake za čiščenje",
+    "metaDescription": "Preizkusite Clean 7 dni. Načrt za lastnike apartmajev stane 19 EUR mesečno, za strokovnjake za čiščenje pa 39 EUR mesečno, brez provizije."
   },
   "contact": {
     "eyebrow": "Kontakt",
@@ -858,8 +858,8 @@
     "successDescription": "Hvala. Vaše sporočilo je bilo varno zabeleženo za skupino za podporo Clean.",
     "errorTitle": "Sporočilo ni zabeleženo",
     "errorDescription": "prosim poskusite ponovno Če težave ne odpravite, se vrnite pozneje.",
-    "metaTitle": "Kontakt",
-    "metaDescription": "Pošljite povpraševanje za podporo skupini Clean platform."
+    "metaTitle": "Kontakt in podpora",
+    "metaDescription": "Potrebujete pomoč z računom Clean, oglasom ali ponudbo? Pošljite vprašanje, prijavite težavo ali predlagajte izboljšavo naši ekipi."
   },
   "legal": {
     "contents": "Vsebina",
