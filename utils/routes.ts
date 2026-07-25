@@ -38,6 +38,11 @@ const routePaths = {
     en: '/en/cleaners',
     sl: '/sl/cistilci',
   },
+  apartmentCleaning: {
+    hr: '/ciscenje-apartmana',
+    en: '/en/apartment-cleaning-croatia',
+    sl: '/sl/ciscenje-apartmajev-hrvaska',
+  },
   howItWorks: {
     hr: '/kako-funkcionira',
     en: '/en/how-it-works',

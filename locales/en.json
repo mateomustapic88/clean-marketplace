@@ -1,8 +1,9 @@
 {
   "meta": {
     "siteName": "Clean",
-    "homeTitle": "Reliable apartment cleaning",
-    "homeDescription": "The foundation for a platform connecting apartment owners with cleaning professionals."
+    "homeTitle": "Apartment cleaning on the Adriatic and across Croatia",
+    "homeDescription": "Clean connects apartment owners with cleaning professionals across Croatia.",
+    "socialImageAlt": "Clean - a platform for arranging apartment cleaning"
   },
   "common": {
     "close": "Close",
@@ -28,6 +29,7 @@
     "nextSteps": "Next steps",
     "jobs": "Cleaning jobs",
     "cleaners": "Cleaning professionals",
+    "apartmentCleaning": "Apartment cleaning",
     "howItWorks": "How it works",
     "pricing": "Pricing",
     "skipToContent": "Skip to content"
@@ -452,8 +454,8 @@
     "fairness": "Fairness"
   },
   "publicHome": {
-    "metaTitle": "Clean - reliable apartment cleaning",
-    "metaDescription": "Post an apartment cleaning job or find clearly structured demo opportunities across Croatia.",
+    "metaTitle": "Apartment cleaning on the Adriatic and across Croatia",
+    "metaDescription": "Find apartment cleaning professionals or post a job in Split, Zadar, Šibenik, Dubrovnik, Pula, and across Croatia.",
     "hero": {
       "eyebrow": "Simpler cleaning arrangements",
       "title": "Find a reliable apartment cleaning professional",
@@ -466,6 +468,14 @@
       "cardCity": "Dubrovnik",
       "profileName": "Marija Knežević",
       "profileShortName": "Marija K."
+    },
+    "apartmentCleaning": {
+      "eyebrow": "Apartment cleaning across Croatia",
+      "title": "One place for apartment cleaning on the Adriatic",
+      "description": "Compare profiles, rates, and availability or post a detailed job for guest turnover, regular, or deep apartment cleaning.",
+      "citiesLabel": "Cities where you can find apartment cleaning",
+      "cityLink": "Apartment cleaning in {city}",
+      "action": "Learn more about apartment cleaning"
     },
     "problem": {
       "eyebrow": "Why Clean",
@@ -576,7 +586,7 @@
         },
         "3": {
           "question": "Are the displayed profiles real?",
-          "answer": "No. All current profiles, jobs, and ratings are clearly marked demo data."
+          "answer": "The platform can contain real and demonstration profiles. Every demonstration profile, job, or rating is clearly marked with a Demo badge."
         },
         "4": {
           "question": "Are users verified?",
@@ -584,15 +594,131 @@
         },
         "5": {
           "question": "Can I submit an offer now?",
-          "answer": "Not in this public phase. The offer workflow belongs to the next phase."
+          "answer": "Yes. A registered cleaning professional with an active trial or subscription can submit an offer for a real published job."
         }
       }
     },
     "cta": {
       "title": "Ready for a more organised cleaning agreement?",
-      "description": "Create a demo account or explore the public job experience.",
+      "description": "Create an account or browse current jobs and clearly marked demonstration listings.",
       "primary": "Create account",
       "secondary": "Browse jobs"
+    }
+  },
+  "apartmentCleaning": {
+    "metaTitle": "Apartment cleaning on the Adriatic and across Croatia",
+    "metaDescription": "Find cleaning professionals for apartments and holiday homes in Split, Zadar, Šibenik, Dubrovnik, Pula, Rijeka, and across Croatia.",
+    "eyebrow": "Apartment cleaning in Croatia",
+    "title": "Apartment cleaning on the Adriatic, without scattered messages",
+    "description": "Clean helps apartment owners find cleaning professionals and helps service providers discover clearly described jobs. Users agree rates, times, and expectations directly.",
+    "audiences": {
+      "owners": {
+        "title": "For apartment and holiday-home owners",
+        "description": "Post the date, time, property size, required services, and budget. Compare the offers you receive before deciding.",
+        "action": "Find a cleaning professional"
+      },
+      "cleaners": {
+        "title": "For individuals and companies offering cleaning",
+        "description": "Show your service areas, rates, and availability, then find apartment cleaning jobs that suit your schedule.",
+        "action": "Browse cleaning jobs"
+      }
+    },
+    "services": {
+      "eyebrow": "Types of cleaning",
+      "title": "What tourist-apartment cleaning can include",
+      "description": "Owners specify what each job requires, while cleaning professionals confirm the rate, time, and included tasks in their offer.",
+      "items": {
+        "turnover": {
+          "title": "Cleaning after guest checkout",
+          "description": "Preparing an apartment between departing and arriving guests, with check-in and checkout times clearly stated."
+        },
+        "regular": {
+          "title": "Regular apartment cleaning",
+          "description": "Agreed visits during the tourist season or throughout the year to keep the property ready."
+        },
+        "deep": {
+          "title": "Deep and seasonal cleaning",
+          "description": "More thorough cleaning before the season, after building work, or whenever the owner needs it."
+        },
+        "linen": {
+          "title": "Bed linen and towels",
+          "description": "Changing bed linen and towels can be selected separately in the job details."
+        },
+        "windows": {
+          "title": "Windows, kitchens, and extra tasks",
+          "description": "Windows, ovens, fridges, balconies, and other additional tasks are stated in advance."
+        },
+        "urgent": {
+          "title": "Urgent apartment cleaning",
+          "description": "A listing can be marked urgent when an available professional is needed quickly."
+        }
+      }
+    },
+    "adriatic": {
+      "eyebrow": "The Adriatic and inland Croatia",
+      "title": "Find apartment cleaning by city",
+      "description": "Search profiles and jobs by city, then check each user's service area and availability.",
+      "cityDescription": "Browse professionals and current apartment cleaning jobs in the {city} area.",
+      "cleanersAction": "Cleaning professionals - {city}",
+      "jobsAction": "Cleaning jobs - {city}"
+    },
+    "guide": {
+      "eyebrow": "A clear agreement",
+      "title": "How to arrange apartment cleaning through Clean",
+      "items": {
+        "details": {
+          "title": "Provide complete property details",
+          "description": "Apartment size, rooms, bathrooms, date, time, and required services help professionals prepare more accurate offers."
+        },
+        "offers": {
+          "title": "Receive offers from available professionals",
+          "description": "Cleaning professionals state their price, estimated duration, arrival time, and whether they bring supplies."
+        },
+        "comparison": {
+          "title": "Compare rates and profiles",
+          "description": "Before accepting, compare price, service area, availability, and previous ratings when available."
+        },
+        "agreement": {
+          "title": "Confirm the arrangement before arrival",
+          "description": "You arrange payment for the cleaning service directly. Clean does not charge commission on the agreed cleaning price."
+        }
+      }
+    },
+    "faq": {
+      "eyebrow": "Frequently asked questions",
+      "title": "Apartment cleaning - essential information",
+      "items": {
+        "1": {
+          "question": "How do I find an apartment cleaning professional?",
+          "answer": "Open the professional directory and filter by city, rate, availability, transport, and other important criteria. Owners can also post a job with a date, budget, and description to collect specific offers."
+        },
+        "2": {
+          "question": "How much does apartment cleaning cost?",
+          "answer": "The price depends on property size, scope, timing, and location. Clean displays profile rates and listing budgets, while users confirm the final price before acceptance."
+        },
+        "3": {
+          "question": "Can I arrange cleaning after guest checkout?",
+          "answer": "Yes. A listing can include the checkout time, next check-in, expected duration, and whether it is a same-day guest turnover."
+        },
+        "4": {
+          "question": "Does Clean cover apartment cleaning along the entire Adriatic?",
+          "answer": "Users can specify the cities and areas where they work. Availability depends on the professionals and jobs currently listed in each city."
+        },
+        "5": {
+          "question": "Does Clean charge commission on the cleaning price?",
+          "answer": "No. Owners and cleaning professionals arrange and complete service payments directly. Clean charges a subscription for its Premium platform features."
+        }
+      }
+    },
+    "cta": {
+      "title": "Arrange your next apartment cleaning",
+      "description": "Post a detailed job as an owner or browse available work as a cleaning professional.",
+      "ownerAction": "Register as an owner",
+      "cleanerAction": "Find cleaning jobs"
+    },
+    "schema": {
+      "serviceName": "Apartment cleaning marketplace in Croatia",
+      "serviceType": "Connecting apartment owners with cleaning service providers"
     }
   },
   "how": {

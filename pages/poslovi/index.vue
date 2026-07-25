@@ -164,7 +164,7 @@ useHead({
     textContent: computed(() => JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      'itemListElement': pagedJobs.value.map((job, index) => ({
+      'itemListElement': pagedJobs.value.filter((job) => !job.isDemo).map((job, index) => ({
         '@type': 'ListItem',
         'position': index + 1,
         'name': job.title,

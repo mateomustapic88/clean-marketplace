@@ -88,6 +88,7 @@ const { t, locale } = useI18n()
 const jobsStore = useJobsStore()
 const userStore = useUserStore()
 const authStore = useAuthStore()
+const config = useRuntimeConfig()
 await Promise.all([jobsStore.loadJobs(), userStore.loadDirectory()])
 const job = computed(() => jobsStore.jobs.find((item) => item.id === String(route.params.id)) ?? null)
 if (!job.value) setResponseStatus(404)
@@ -130,7 +131,62 @@ usePublicSeo({
     ? t('jobDetail.metaDescription', { city: cityName(job.value.cityCode), size: job.value.sizeSquareMeters })
     : t('jobDetail.notFoundDescription')),
   path: computed(() => getJobRoute(String(route.params.id), locale.value)),
+  index: computed(() => Boolean(job.value && !job.value.isDemo)),
 })
+useHead(() => ({
+  script: job.value && !job.value.isDemo
+    ? [{
+        type: 'application/ld+json',
+        textContent: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@graph': [
+            {
+              '@type': 'JobPosting',
+              'title': displayTitle.value,
+              'description': [
+                job.value.additionalInstructions,
+                t('jobDetail.metaDescription', {
+                  city: cityName(job.value.cityCode),
+                  size: job.value.sizeSquareMeters,
+                }),
+              ].filter(Boolean).join(' '),
+              'datePosted': job.value.createdAt,
+              'validThrough': job.value.offerDeadline,
+              'employmentType': 'CONTRACTOR',
+              'hiringOrganization': {
+                '@type': 'Organization',
+                'name': owner.value?.companyName || ownerName.value || 'Private apartment owner',
+              },
+              'jobLocation': {
+                '@type': 'Place',
+                'address': {
+                  '@type': 'PostalAddress',
+                  'addressLocality': cityName(job.value.cityCode),
+                  'addressCountry': 'HR',
+                },
+              },
+              'industry': t('apartmentCleaning.schema.serviceType'),
+              'url': new URL(
+                getJobRoute(job.value.id, locale.value),
+                String(config.public.siteUrl),
+              ).href,
+            },
+            {
+              '@type': 'BreadcrumbList',
+              'itemListElement': breadcrumbs.value.map((item, index) => ({
+                '@type': 'ListItem',
+                'position': index + 1,
+                'name': item.label,
+                ...(item.to && {
+                  item: new URL(item.to, String(config.public.siteUrl)).href,
+                }),
+              })),
+            },
+          ],
+        }),
+      }]
+    : [],
+}))
 </script>
 
 <style scoped lang="scss">

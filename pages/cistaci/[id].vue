@@ -93,6 +93,7 @@ const route = useRoute()
 const { t, locale } = useI18n()
 const userStore = useUserStore()
 const ratingsStore = useRatingsStore()
+const config = useRuntimeConfig()
 await userStore.loadDirectory()
 const cleaner = computed(() => userStore.cleaners.find((item) => item.id === String(route.params.id)) ?? null)
 if (!cleaner.value) setResponseStatus(404)
@@ -120,7 +121,56 @@ usePublicSeo({
     ? t('cleanerProfile.metaDescription', { name: fullName.value, city: cityName(cleaner.value.cityCode) })
     : t('cleanerProfile.notFoundDescription')),
   path: computed(() => getCleanerRoute(String(route.params.id), locale.value)),
+  index: computed(() => Boolean(cleaner.value && !cleaner.value.isDemo)),
 })
+useHead(() => ({
+  script: cleaner.value && !cleaner.value.isDemo
+    ? [{
+        type: 'application/ld+json',
+        textContent: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@graph': [
+            {
+              '@type': 'ProfilePage',
+              'dateCreated': cleaner.value.createdAt,
+              'dateModified': cleaner.value.updatedAt,
+              'mainEntity': {
+                '@type': 'Person',
+                'name': fullName.value,
+                'description': cleaner.value.biography,
+                'jobTitle': t('navigation.cleaners'),
+                'knowsLanguage': cleaner.value.languages,
+                'homeLocation': {
+                  '@type': 'Place',
+                  'name': cityName(cleaner.value.cityCode),
+                  'address': {
+                    '@type': 'PostalAddress',
+                    'addressLocality': cityName(cleaner.value.cityCode),
+                    'addressCountry': 'HR',
+                  },
+                },
+                'url': new URL(
+                  getCleanerRoute(cleaner.value.id, locale.value),
+                  String(config.public.siteUrl),
+                ).href,
+              },
+            },
+            {
+              '@type': 'BreadcrumbList',
+              'itemListElement': breadcrumbs.value.map((item, index) => ({
+                '@type': 'ListItem',
+                'position': index + 1,
+                'name': item.label,
+                ...(item.to && {
+                  item: new URL(item.to, String(config.public.siteUrl)).href,
+                }),
+              })),
+            },
+          ],
+        }),
+      }]
+    : [],
+}))
 </script>
 
 <style scoped lang="scss">

@@ -1,8 +1,9 @@
 {
   "meta": {
     "siteName": "Clean",
-    "homeTitle": "Pouzdano čišćenje apartmana",
-    "homeDescription": "Temelj platforme koja povezuje vlasnike apartmana i osobe za čišćenje."
+    "homeTitle": "Čišćenje apartmana na Jadranu i u Hrvatskoj",
+    "homeDescription": "Clean povezuje vlasnike apartmana i osobe za čišćenje diljem Hrvatske.",
+    "socialImageAlt": "Clean - platforma za dogovaranje čišćenja apartmana"
   },
   "common": {
     "close": "Zatvori",
@@ -28,6 +29,7 @@
     "nextSteps": "Sljedeći koraci",
     "jobs": "Poslovi čišćenja",
     "cleaners": "Osobe za čišćenje",
+    "apartmentCleaning": "Čišćenje apartmana",
     "howItWorks": "Kako funkcionira",
     "pricing": "Cijene",
     "skipToContent": "Preskoči na sadržaj"
@@ -452,8 +454,8 @@
     "fairness": "Korektnost"
   },
   "publicHome": {
-    "metaTitle": "Clean - pouzdano čišćenje apartmana",
-    "metaDescription": "Objavite posao čišćenja apartmana ili pronađite jasno strukturirane demo prilike diljem Hrvatske.",
+    "metaTitle": "Čišćenje apartmana na Jadranu i u Hrvatskoj",
+    "metaDescription": "Pronađite osobe za čišćenje apartmana ili objavite posao u Splitu, Zadru, Šibeniku, Dubrovniku, Puli i diljem Hrvatske.",
     "hero": {
       "eyebrow": "Jednostavniji dogovor čišćenja",
       "title": "Pronađite pouzdanu osobu za čišćenje apartmana",
@@ -466,6 +468,14 @@
       "cardCity": "Dubrovnik",
       "profileName": "Marija Knežević",
       "profileShortName": "Marija K."
+    },
+    "apartmentCleaning": {
+      "eyebrow": "Čišćenje apartmana diljem Hrvatske",
+      "title": "Jedno mjesto za čišćenje apartmana na Jadranu",
+      "description": "Usporedite profile, cijene i dostupnost osoba za čišćenje ili objavite detaljan posao za smjenu gostiju, redovno i dubinsko čišćenje.",
+      "citiesLabel": "Gradovi u kojima možete pronaći čišćenje apartmana",
+      "cityLink": "Čišćenje apartmana {city}",
+      "action": "Saznajte više o čišćenju apartmana"
     },
     "problem": {
       "eyebrow": "Zašto Clean",
@@ -576,7 +586,7 @@
         },
         "3": {
           "question": "Jesu li prikazani profili stvarni?",
-          "answer": "Ne. Trenutačno su svi profili, poslovi i ocjene jasno označeni demo podaci."
+          "answer": "Platforma može sadržavati stvarne i demonstracijske profile. Svaki demonstracijski profil, posao ili ocjena jasno je označen oznakom Demo."
         },
         "4": {
           "question": "Jesu li korisnici verificirani?",
@@ -584,15 +594,131 @@
         },
         "5": {
           "question": "Mogu li odmah poslati ponudu?",
-          "answer": "Ne u ovoj javnoj fazi. Tijek ponuda bit će implementiran u sljedećoj fazi."
+          "answer": "Da. Registrirana osoba za čišćenje s aktivnim probnim razdobljem ili pretplatom može poslati ponudu na stvarni objavljeni posao."
         }
       }
     },
     "cta": {
       "title": "Spremni za uredniji dogovor čišćenja?",
-      "description": "Izradite demo račun ili pregledajte kako će izgledati javni poslovi.",
+      "description": "Izradite račun ili pregledajte aktualne i jasno označene demonstracijske poslove.",
       "primary": "Izradi račun",
       "secondary": "Pregledaj poslove"
+    }
+  },
+  "apartmentCleaning": {
+    "metaTitle": "Čišćenje apartmana na Jadranu i u Hrvatskoj",
+    "metaDescription": "Pronađite osobe za čišćenje apartmana i kuća za odmor u Splitu, Zadru, Šibeniku, Dubrovniku, Puli, Rijeci i diljem Hrvatske.",
+    "eyebrow": "Čišćenje apartmana u Hrvatskoj",
+    "title": "Čišćenje apartmana na Jadranu, bez nepreglednih poruka",
+    "description": "Clean pomaže vlasnicima apartmana pronaći osobe za čišćenje, a pružateljima usluge omogućuje pronalazak jasno opisanih poslova. Cijene, termini i očekivanja dogovaraju se izravno između korisnika.",
+    "audiences": {
+      "owners": {
+        "title": "Za vlasnike apartmana i kuća za odmor",
+        "description": "Objavite datum, vrijeme, veličinu objekta, potrebne usluge i budžet. Usporedite pristigle ponude prije odluke.",
+        "action": "Pronađi osobu za čišćenje"
+      },
+      "cleaners": {
+        "title": "Za osobe i tvrtke koje nude čišćenje",
+        "description": "Prikažite područja rada, cijene i dostupnost te pronađite poslove čišćenja apartmana koji odgovaraju vašem rasporedu.",
+        "action": "Pregledaj poslove čišćenja"
+      }
+    },
+    "services": {
+      "eyebrow": "Vrste čišćenja",
+      "title": "Što može uključivati čišćenje turističkog apartmana",
+      "description": "Vlasnik u svakom oglasu navodi što je potrebno, a osoba za čišćenje u ponudi potvrđuje cijenu, termin i uključene stavke.",
+      "items": {
+        "turnover": {
+          "title": "Čišćenje nakon odjave gostiju",
+          "description": "Priprema apartmana između odlaska jednih i dolaska sljedećih gostiju, uz jasno navedeno vrijeme prijave i odjave."
+        },
+        "regular": {
+          "title": "Redovno čišćenje apartmana",
+          "description": "Dogovoreni termini tijekom sezone ili cijele godine za održavanje urednosti objekta."
+        },
+        "deep": {
+          "title": "Dubinsko i sezonsko čišćenje",
+          "description": "Temeljitije čišćenje prije početka sezone, nakon radova ili prema potrebi vlasnika."
+        },
+        "linen": {
+          "title": "Posteljina i ručnici",
+          "description": "Zamjena posteljine i ručnika može se posebno označiti u detaljima posla."
+        },
+        "windows": {
+          "title": "Prozori, kuhinja i dodatne stavke",
+          "description": "Pranje prozora, čišćenje pećnice, hladnjaka, balkona i druge dodatne usluge navode se unaprijed."
+        },
+        "urgent": {
+          "title": "Hitno čišćenje apartmana",
+          "description": "Oglasi mogu biti označeni kao hitni kada je potrebno brzo pronaći dostupnu osobu."
+        }
+      }
+    },
+    "adriatic": {
+      "eyebrow": "Jadran i kontinentalna Hrvatska",
+      "title": "Pronađite čišćenje apartmana prema gradu",
+      "description": "Pretražite profile i poslove prema gradu te provjerite područje rada i dostupnost svakog korisnika.",
+      "cityDescription": "Pregledajte osobe i aktualne poslove povezane s čišćenjem apartmana na području grada {city}.",
+      "cleanersAction": "Osobe za čišćenje - {city}",
+      "jobsAction": "Poslovi čišćenja - {city}"
+    },
+    "guide": {
+      "eyebrow": "Jasan dogovor",
+      "title": "Kako organizirati čišćenje apartmana preko Cleana",
+      "items": {
+        "details": {
+          "title": "Navedite sve detalje objekta",
+          "description": "Veličina apartmana, broj soba i kupaonica, datum, vrijeme i potrebne usluge pomažu da ponude budu preciznije."
+        },
+        "offers": {
+          "title": "Primite ponude dostupnih osoba",
+          "description": "Osobe za čišćenje navode cijenu, procijenjeno trajanje, termin dolaska i donose li vlastita sredstva."
+        },
+        "comparison": {
+          "title": "Usporedite cijene i profile",
+          "description": "Prije prihvaćanja usporedite cijenu, područje rada, dostupnost i prethodne ocjene kada postoje."
+        },
+        "agreement": {
+          "title": "Potvrdite dogovor prije dolaska",
+          "description": "Plaćanje usluge čišćenja dogovarate izravno. Clean ne uzima proviziju od dogovorene cijene čišćenja."
+        }
+      }
+    },
+    "faq": {
+      "eyebrow": "Česta pitanja",
+      "title": "Čišćenje apartmana - najvažnije informacije",
+      "items": {
+        "1": {
+          "question": "Kako pronaći osobu za čišćenje apartmana?",
+          "answer": "Otvorite popis osoba za čišćenje i filtrirajte prema gradu, cijeni, dostupnosti, prijevozu i drugim važnim kriterijima. Za prikupljanje konkretnih ponuda vlasnik može objaviti posao s datumom, budžetom i opisom."
+        },
+        "2": {
+          "question": "Koliko košta čišćenje apartmana?",
+          "answer": "Cijenu određuju veličina objekta, opseg posla, termin i lokacija. Clean prikazuje cijene profila i budžete oglasa, dok konačnu cijenu korisnici potvrđuju prije prihvaćanja."
+        },
+        "3": {
+          "question": "Mogu li dogovoriti čišćenje apartmana nakon odjave gostiju?",
+          "answer": "Da. U oglasu možete navesti vrijeme odjave i sljedeće prijave, očekivano trajanje te označiti radi li se o smjeni gostiju istoga dana."
+        },
+        "4": {
+          "question": "Pokriva li Clean čišćenje apartmana na cijelom Jadranu?",
+          "answer": "Korisnici mogu navesti gradove i područja na kojima rade. Dostupnost ovisi o trenutačno registriranim osobama i objavljenim poslovima u pojedinom gradu."
+        },
+        "5": {
+          "question": "Uzima li Clean proviziju od cijene čišćenja?",
+          "answer": "Ne. Vlasnik i osoba za čišćenje izravno dogovaraju i izvršavaju plaćanje usluge. Clean naplaćuje pretplatu za korištenje Premium funkcija platforme."
+        }
+      }
+    },
+    "cta": {
+      "title": "Organizirajte sljedeće čišćenje apartmana",
+      "description": "Objavite detaljan posao kao vlasnik ili pregledajte dostupne poslove kao osoba za čišćenje.",
+      "ownerAction": "Registriraj se kao vlasnik",
+      "cleanerAction": "Pronađi poslove čišćenja"
+    },
+    "schema": {
+      "serviceName": "Platforma za čišćenje apartmana u Hrvatskoj",
+      "serviceType": "Povezivanje vlasnika apartmana i pružatelja usluga čišćenja"
     }
   },
   "how": {

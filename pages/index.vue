@@ -17,6 +17,32 @@
         </div>
       </div>
     </section>
+    <section class="public-home__section public-home__apartment-cleaning">
+      <div class="container">
+        <SectionHeader
+          :eyebrow="t('publicHome.apartmentCleaning.eyebrow')"
+          :title="t('publicHome.apartmentCleaning.title')"
+          :description="t('publicHome.apartmentCleaning.description')"
+        />
+        <div class="public-home__city-links" :aria-label="t('publicHome.apartmentCleaning.citiesLabel')">
+          <NuxtLink
+            v-for="city in apartmentCleaningCities"
+            :key="city.code"
+            :to="`${getAppRoute('cleaners', locale)}?city=${city.code}`"
+          >
+            {{ t('publicHome.apartmentCleaning.cityLink', { city: city.name }) }}
+          </NuxtLink>
+        </div>
+        <div class="public-home__center">
+          <BaseButton
+            variant="secondary"
+            :to="getAppRoute('apartmentCleaning', locale)"
+          >
+            {{ t('publicHome.apartmentCleaning.action') }}
+          </BaseButton>
+        </div>
+      </div>
+    </section>
     <section class="public-home__section public-home__steps">
       <div class="container">
         <SectionHeader :eyebrow="t('publicHome.steps.eyebrow')" :title="t('publicHome.steps.title')" />
@@ -178,6 +204,14 @@ const pricingPlans = [
   },
 ] as const
 const ownerSteps = Array.from({ length: 5 }, (_, index) => `how.steps.owner.${index + 1}`)
+const apartmentCleaningCities = [
+  { code: 'split', name: 'Split' },
+  { code: 'zadar', name: 'Zadar' },
+  { code: 'sibenik', name: 'Šibenik' },
+  { code: 'dubrovnik', name: 'Dubrovnik' },
+  { code: 'pula', name: 'Pula' },
+  { code: 'rijeka', name: 'Rijeka' },
+] as const
 const faqItems = computed(() => Array.from({ length: 5 }, (_, index) => ({
   question: t(`publicHome.faq.items.${index + 1}.question`),
   answer: t(`publicHome.faq.items.${index + 1}.answer`),
@@ -198,6 +232,35 @@ useHead({
           'name': 'Clean',
           'url': String(config.public.siteUrl),
           'inLanguage': locale.value === 'en' ? 'en-GB' : locale.value === 'sl' ? 'sl-SI' : 'hr-HR',
+        },
+        {
+          '@type': 'Organization',
+          'name': 'Clean',
+          'url': String(config.public.siteUrl),
+          'logo': new URL('/favicon.svg', String(config.public.siteUrl)).href,
+          'description': t('publicHome.metaDescription'),
+          'areaServed': {
+            '@type': 'Country',
+            'name': 'Croatia',
+          },
+        },
+        {
+          '@type': 'Service',
+          'name': t('apartmentCleaning.schema.serviceName'),
+          'serviceType': t('apartmentCleaning.schema.serviceType'),
+          'areaServed': {
+            '@type': 'Country',
+            'name': 'Croatia',
+          },
+          'provider': {
+            '@type': 'Organization',
+            'name': 'Clean',
+            'url': String(config.public.siteUrl),
+          },
+          'url': new URL(
+            getAppRoute('apartmentCleaning', locale.value),
+            String(config.public.siteUrl),
+          ).href,
         },
         {
           '@type': 'FAQPage',
@@ -230,6 +293,33 @@ useHead({
     display: grid;
     gap: $space-5;
     margin-top: $space-10;
+  }
+
+  &__apartment-cleaning {
+    background: $color-surface;
+  }
+
+  &__city-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-3;
+    justify-content: center;
+    margin-block: $space-8;
+
+    a {
+      padding: $space-3 $space-4;
+      font-weight: $font-weight-semibold;
+      color: $color-primary-dark;
+      text-decoration: none;
+      background: $color-primary-light;
+      border: 1px solid $color-border;
+      border-radius: $radius-full;
+    }
+
+    a:hover {
+      color: $color-primary;
+      border-color: $color-primary;
+    }
   }
 
   &__problem-grid article,

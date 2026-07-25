@@ -105,6 +105,7 @@ export default defineNuxtConfig({
   },
   i18n: {
     restructureDir: '.',
+    langDir: 'locales',
     defaultLocale: 'hr',
     strategy: 'prefix_except_default',
     detectBrowserLanguage: false,
@@ -113,16 +114,19 @@ export default defineNuxtConfig({
         code: 'hr',
         language: 'hr-HR',
         name: 'Hrvatski',
+        file: 'hr.json',
       },
       {
         code: 'en',
         language: 'en-GB',
         name: 'English',
+        file: 'en.json',
       },
       {
         code: 'sl',
         language: 'sl-SI',
         name: 'Slovenščina',
+        file: 'sl.json',
       },
     ],
     vueI18n: 'i18n.config.ts',

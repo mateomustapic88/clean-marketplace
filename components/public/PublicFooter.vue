@@ -32,6 +32,7 @@ const groups = computed(() => [
   {
     title: t('footer.product'),
     items: [
+      { label: t('navigation.apartmentCleaning'), to: getAppRoute('apartmentCleaning', locale.value) },
       { label: t('navigation.jobs'), to: getAppRoute('jobs', locale.value) },
       { label: t('navigation.cleaners'), to: getAppRoute('cleaners', locale.value) },
       { label: t('navigation.howItWorks'), to: getAppRoute('howItWorks', locale.value) },

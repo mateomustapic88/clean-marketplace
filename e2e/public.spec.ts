@@ -16,6 +16,29 @@ test('opens the homepage and changes language', async ({ page }) => {
   await expect(page).toHaveURL(/\/en/)
 })
 
+test('publishes an indexable apartment-cleaning landing page', async ({ page }) => {
+  await openHydratedPage(page, '/ciscenje-apartmana')
+  await expect(page.getByRole('heading', {
+    level: 1,
+    name: 'Čišćenje apartmana na Jadranu, bez nepreglednih poruka',
+  })).toBeVisible()
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    /\/ciscenje-apartmana$/,
+  )
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+    'content',
+    /index, follow/,
+  )
+  await expect(page.getByRole('link', {
+    name: 'Osobe za čišćenje - Split',
+  })).toHaveAttribute('href', '/cistaci?city=split')
+  const structuredData = await page
+    .locator('script[type="application/ld+json"]')
+    .evaluateAll((nodes) => nodes.map((node) => node.textContent).join(''))
+  expect(structuredData).toContain('"@type":"Service"')
+})
+
 test('opens the complete Slovenian locale', async ({ page }) => {
   await openHydratedPage(page, '/')
   await page.getByRole('link', { name: /Slovenščina/ }).first().click()
@@ -113,15 +136,28 @@ test('serves canonical social metadata, robots, sitemap, and security headers', 
   expect(response?.headers()['x-frame-options']).toBe('DENY')
   expect(response?.headers()['content-security-policy']).toContain("frame-ancestors 'none'")
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/cijene$/)
-  await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute('content', 'summary')
+  await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute('content', 'summary_large_image')
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
+    'content',
+    /\/images\/clean-apartment-cleaning-og\.png$/,
+  )
 
   const robots = await request.get('/robots.txt')
   expect(robots.ok()).toBeTruthy()
-  expect(await robots.text()).toContain('Disallow: /dashboard')
+  const robotsText = await robots.text()
+  expect(robotsText).toContain('Disallow: /dashboard')
+  expect(robotsText).toContain('User-agent: OAI-SearchBot')
 
   const sitemap = await request.get('/sitemap.xml')
   expect(sitemap.ok()).toBeTruthy()
-  expect(await sitemap.text()).toContain('/politika-kolacica')
+  const sitemapText = await sitemap.text()
+  expect(sitemapText).toContain('/politika-kolacica')
+  expect(sitemapText).toContain('/ciscenje-apartmana')
+  expect(sitemapText).toContain('hreflang="hr-HR"')
+
+  const llms = await request.get('/llms.txt')
+  expect(llms.ok()).toBeTruthy()
+  expect(await llms.text()).toContain('/ciscenje-apartmana')
 })
 
 test('clears an expired session and redirects protected routes to login', async ({ page }) => {
