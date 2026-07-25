@@ -1,6 +1,8 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import type { StripeEventRepository } from '~/repositories/billing/StripeEventRepository'
 
+const STALE_EVENT_CLAIM_MS = 15 * 60_000
+
 export class SupabaseStripeEventRepository implements StripeEventRepository {
   constructor(
     private readonly client: SupabaseClient,
@@ -23,7 +25,22 @@ export class SupabaseStripeEventRepository implements StripeEventRepository {
       status: 'processing',
     })
     if (!error) return true
-    if (error.code === '23505') return false
+    if (error.code === '23505') {
+      const staleBefore = new Date(Date.now() - STALE_EVENT_CLAIM_MS).toISOString()
+      const { data, error: reclaimError } = await this.client.from('stripe_events').update({
+        event_type: this.eventType,
+        event_created_at: this.eventCreatedAt,
+        claimed_at: new Date().toISOString(),
+        processing_result: null,
+      })
+        .eq('stripe_event_id', eventId)
+        .eq('status', 'processing')
+        .lt('claimed_at', staleBefore)
+        .select('stripe_event_id')
+        .maybeSingle()
+      if (reclaimError) throw new Error(reclaimError.message)
+      return Boolean(data)
+    }
     throw new Error(error.message)
   }
 

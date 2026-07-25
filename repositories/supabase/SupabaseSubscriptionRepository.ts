@@ -48,7 +48,13 @@ export class SupabaseSubscriptionRepository implements SubscriptionRepository {
   async markPastDue(_userId: string): Promise<Subscription> { return this.serverOnly() }
   async sync(subscription: Subscription): Promise<Subscription> { return subscription }
   async can(userId: string, role: UserRole, capability: SubscriptionCapability): Promise<boolean> {
-    return canUseSubscriptionCapability(role, await this.getByUserId(userId), capability)
+    return canUseSubscriptionCapability(
+      role,
+      await this.getByUserId(userId),
+      capability,
+      new Date(),
+      true,
+    )
   }
 
   private serverOnly(): never { throw new Error('Subscription mutations are server-only') }

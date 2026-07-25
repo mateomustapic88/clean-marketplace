@@ -21,7 +21,11 @@ export const processVerifiedStripeEvent = async (
       || event.type === 'customer.subscription.updated'
       || event.type === 'customer.subscription.deleted'
     ) {
-      await billing.syncSubscription(event.data.object, undefined, eventCreatedAt)
+      await billing.syncSubscription(
+        await stripe.subscriptions.retrieve(event.data.object.id),
+        undefined,
+        eventCreatedAt,
+      )
     }
     else if (event.type === 'checkout.session.completed') {
       const session = event.data.object
@@ -36,13 +40,31 @@ export const processVerifiedStripeEvent = async (
       }
     }
     else if (event.type === 'invoice.paid') {
-      await billing.markInvoice(event.data.object, 'paid', eventCreatedAt)
+      const subscriptionId = await billing.recordInvoice(event.data.object, 'paid', eventCreatedAt)
+      if (subscriptionId) {
+        await billing.syncSubscription(
+          await stripe.subscriptions.retrieve(subscriptionId),
+          undefined,
+          eventCreatedAt,
+        )
+      }
     }
     else if (
       event.type === 'invoice.payment_failed'
       || event.type === 'invoice.payment_action_required'
     ) {
-      await billing.markInvoice(event.data.object as Stripe.Invoice, 'payment_failed', eventCreatedAt)
+      const subscriptionId = await billing.recordInvoice(
+        event.data.object as Stripe.Invoice,
+        'payment_failed',
+        eventCreatedAt,
+      )
+      if (subscriptionId) {
+        await billing.syncSubscription(
+          await stripe.subscriptions.retrieve(subscriptionId),
+          undefined,
+          eventCreatedAt,
+        )
+      }
     }
     await events.complete(event.id)
     return { duplicate: false }

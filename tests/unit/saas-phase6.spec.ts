@@ -66,13 +66,34 @@ describe('Phase 6 SaaS rules', () => {
   })
 
   it('enforces role-specific capabilities through one permission service', () => {
-    const active = subscriptionFixture({ status: 'active' })
+    const active = subscriptionFixture({
+      status: 'active',
+      stripeSubscriptionId: 'sub_provider',
+    })
     const expired = subscriptionFixture({ status: 'expired' })
     expect(canUseSubscriptionCapability('owner', active, 'publish_jobs')).toBe(true)
     expect(canUseSubscriptionCapability('owner', active, 'submit_offers')).toBe(false)
     expect(canUseSubscriptionCapability('cleaner', active, 'submit_offers')).toBe(true)
     expect(canUseSubscriptionCapability('cleaner', active, 'view_contact')).toBe(true)
     expect(canUseSubscriptionCapability('cleaner', expired, 'submit_offers')).toBe(false)
+    expect(canUseSubscriptionCapability(
+      'cleaner',
+      subscriptionFixture({ status: 'trial' }),
+      'submit_offers',
+      new Date('2026-07-23T00:00:00.000Z'),
+      true,
+    )).toBe(false)
+    expect(canUseSubscriptionCapability(
+      'cleaner',
+      subscriptionFixture({
+        status: 'past_due',
+        stripeSubscriptionId: 'sub_provider',
+        gracePeriodEndsAt: '2026-07-24T00:00:00.000Z',
+      }),
+      'submit_offers',
+      new Date('2026-07-23T00:00:00.000Z'),
+      true,
+    )).toBe(true)
   })
 
   it('creates a trial once and never restarts a consumed trial', async () => {
@@ -111,11 +132,12 @@ describe('Phase 6 SaaS rules', () => {
   it('maps signed Stripe event payloads into idempotent synchronization commands', () => {
     expect(mapStripeEvent({
       id: 'evt_1',
-      type: 'invoice.payment_failed',
+      type: 'customer.subscription.updated',
       data: {
         object: {
+          id: 'sub_1',
+          status: 'past_due',
           customer: 'cus_1',
-          subscription: 'sub_1',
           metadata: { userId: 'owner-user-01' },
         },
       },
@@ -126,6 +148,18 @@ describe('Phase 6 SaaS rules', () => {
       stripeCustomerId: 'cus_1',
       stripeSubscriptionId: 'sub_1',
     })
+    expect(mapStripeEvent({
+      id: 'evt_invoice',
+      type: 'invoice.paid',
+      data: {
+        object: {
+          id: 'in_1',
+          customer: 'cus_1',
+          subscription: 'sub_1',
+          metadata: { userId: 'owner-user-01' },
+        },
+      },
+    })).toBeNull()
   })
 
   it('creates, edits, summarizes, and deduplicates verified bilateral reviews', async () => {

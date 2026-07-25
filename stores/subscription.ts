@@ -28,8 +28,16 @@ export const useSubscriptionStore = defineStore('subscription', () => {
   const loadError = ref(false)
   const actionError = ref(false)
   const isActionLoading = ref(false)
-  const isActive = computed(() => hasActiveSubscription(subscription.value))
-  const trialDaysRemaining = computed(() => trialRemainingDays(subscription.value))
+  const isActive = computed(() => hasActiveSubscription(
+    subscription.value,
+    new Date(),
+    isStripeMode(),
+  ))
+  const trialDaysRemaining = computed(() => trialRemainingDays(
+    subscription.value,
+    new Date(),
+    isStripeMode(),
+  ))
   const repositories = () => useNuxtApp().$repositories
   const isStripeMode = () => useRuntimeConfig().public.billingMode === 'stripe'
 
@@ -47,9 +55,9 @@ export const useSubscriptionStore = defineStore('subscription', () => {
           await repositories().subscriptions.sync(state.subscription)
         }
         capabilities.value = {
-          publish_jobs: role === 'owner' && hasActiveSubscription(state.subscription),
-          submit_offers: role === 'cleaner' && hasActiveSubscription(state.subscription),
-          view_contact: role === 'cleaner' && hasActiveSubscription(state.subscription),
+          publish_jobs: role === 'owner' && hasActiveSubscription(state.subscription, new Date(), true),
+          submit_offers: role === 'cleaner' && hasActiveSubscription(state.subscription, new Date(), true),
+          view_contact: role === 'cleaner' && hasActiveSubscription(state.subscription, new Date(), true),
         }
         return
       }

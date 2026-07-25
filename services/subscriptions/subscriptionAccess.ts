@@ -29,26 +29,52 @@ export const effectiveSubscriptionStatus = (
 export const hasActiveSubscription = (
   subscription: Subscription | null,
   now = new Date(),
-): boolean => subscription
-  ? ['trial', 'active'].includes(effectiveSubscriptionStatus(subscription, now))
-  : false
+  requireProviderSubscription = false,
+): boolean => {
+  if (!subscription) return false
+  if (requireProviderSubscription && !subscription.stripeSubscriptionId?.trim()) return false
+  const status = effectiveSubscriptionStatus(subscription, now)
+  if (status === 'trial') return true
+  if (status === 'active') {
+    return !requireProviderSubscription || Boolean(
+      subscription.currentPeriodEndsAt
+      && new Date(subscription.currentPeriodEndsAt) > now,
+    )
+  }
+  if (status === 'past_due') {
+    return Boolean(
+      subscription.gracePeriodEndsAt
+      && new Date(subscription.gracePeriodEndsAt) > now,
+    )
+  }
+  if (status === 'cancelled') {
+    return Boolean(
+      subscription.currentPeriodEndsAt
+      && new Date(subscription.currentPeriodEndsAt) > now,
+    )
+  }
+  return false
+}
 
 export const canUseSubscriptionCapability = (
   role: UserRole,
   subscription: Subscription | null,
   capability: SubscriptionCapability,
   now = new Date(),
+  requireProviderSubscription = false,
 ): boolean => {
   if (role === 'admin') return true
   if (role === 'owner' && capability !== 'publish_jobs') return false
   if (role === 'cleaner' && capability === 'publish_jobs') return false
-  return hasActiveSubscription(subscription, now)
+  return hasActiveSubscription(subscription, now, requireProviderSubscription)
 }
 
 export const trialRemainingDays = (
   subscription: Subscription | null,
   now = new Date(),
+  requireProviderSubscription = false,
 ): number => {
+  if (requireProviderSubscription && !subscription?.stripeSubscriptionId?.trim()) return 0
   if (!subscription?.trialEndsAt || effectiveSubscriptionStatus(subscription, now) !== 'trial') return 0
   return Math.max(0, Math.ceil((new Date(subscription.trialEndsAt).getTime() - now.getTime()) / 86_400_000))
 }

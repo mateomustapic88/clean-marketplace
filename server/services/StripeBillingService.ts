@@ -25,6 +25,52 @@ export const statusFromStripe = (status: Stripe.Subscription.Status): Subscripti
 const unixIso = (value: number | null | undefined): string | null =>
   value ? new Date(value * 1000).toISOString() : null
 
+export const BILLING_RECONCILIATION_INTERVAL_MS = 5 * 60_000
+
+export const isOlderStripeEvent = (
+  existingEventCreatedAt: string | null | undefined,
+  incomingEventCreatedAt: string | null | undefined,
+): boolean => Boolean(
+  existingEventCreatedAt
+  && incomingEventCreatedAt
+  && new Date(existingEventCreatedAt) > new Date(incomingEventCreatedAt),
+)
+
+export const shouldReconcileSubscription = (
+  subscription: Subscription,
+  now = new Date(),
+): boolean => Boolean(
+  subscription.stripeSubscriptionId
+  && (
+    !subscription.updatedAt
+    || now.getTime() - new Date(subscription.updatedAt).getTime() >= BILLING_RECONCILIATION_INTERVAL_MS
+  ),
+)
+
+export const stripeSubscriptionIdFromInvoice = (invoice: Stripe.Invoice): string | null => {
+  const subscription = invoice.parent?.subscription_details?.subscription
+  if (!subscription) return null
+  return typeof subscription === 'string' ? subscription : subscription.id
+}
+
+export const invoicePaymentPatch = (
+  type: 'paid' | 'payment_failed',
+  timestamp: string,
+) => {
+  if (type === 'paid') {
+    return {
+      grace_period_ends_at: null,
+      last_successful_payment_at: timestamp,
+    }
+  }
+  const graceEnd = new Date(timestamp)
+  graceEnd.setUTCDate(graceEnd.getUTCDate() + saasConfig.gracePeriodDays)
+  return {
+    grace_period_ends_at: graceEnd.toISOString(),
+    last_failed_payment_at: timestamp,
+  }
+}
+
 export const subscriptionPatchFromStripe = (subscription: Stripe.Subscription) => {
   const item = subscription.items.data[0]
   const customerId = typeof subscription.customer === 'string' ? subscription.customer : subscription.customer.id
@@ -55,8 +101,12 @@ export const subscriptionPatchFromStripe = (subscription: Stripe.Subscription) =
   }
 }
 
-export const hasActiveProviderSubscription = (subscription: Subscription): boolean =>
-  ['trial', 'active'].includes(subscription.status) && Boolean(subscription.stripeSubscriptionId)
+export const blocksNewProviderCheckout = (subscription: Subscription): boolean =>
+  Boolean(subscription.stripeSubscriptionId) && ![
+    'cancelled',
+    'expired',
+    'incomplete_expired',
+  ].includes(subscription.status)
 
 export class StripeBillingService {
   private readonly database = createAdminSupabaseClient()
@@ -71,7 +121,7 @@ export class StripeBillingService {
 
   async checkout(userId: string, role: 'owner' | 'cleaner', billingPeriod: BillingPeriod, email: string, successUrl: string, cancelUrl: string) {
     const existing = await this.subscription(userId)
-    if (existing && hasActiveProviderSubscription(existing)) {
+    if (existing && blocksNewProviderCheckout(existing)) {
       throw createError({ statusCode: 409, statusMessage: 'An active subscription already exists' })
     }
     let customerId = existing?.stripeCustomerId
@@ -113,8 +163,16 @@ export class StripeBillingService {
   }
 
   async state(userId: string, _role: 'owner' | 'cleaner'): Promise<BillingState> {
-    const [subscription, invoicesResult, methodResult] = await Promise.all([
-      this.subscription(userId),
+    let subscription = await this.subscription(userId)
+    if (subscription && shouldReconcileSubscription(subscription)) {
+      subscription = await this.syncSubscription(
+        await this.stripe().subscriptions.retrieve(subscription.stripeSubscriptionId!),
+        userId,
+        undefined,
+        subscription.updatedAt,
+      )
+    }
+    const [invoicesResult, methodResult] = await Promise.all([
       this.database.from('billing_invoices').select('*').eq('user_id', userId).order('issued_at', { ascending: false }).limit(20),
       this.database.from('payment_methods').select('*').eq('user_id', userId).eq('is_default', true).maybeSingle(),
     ])
@@ -126,21 +184,34 @@ export class StripeBillingService {
     }
   }
 
-  async syncSubscription(stripeSubscription: Stripe.Subscription, fallbackUserId?: string, eventCreatedAt?: string): Promise<Subscription> {
+  async syncSubscription(
+    stripeSubscription: Stripe.Subscription,
+    fallbackUserId?: string,
+    eventCreatedAt?: string,
+    expectedUpdatedAt?: string,
+    attempt = 0,
+  ): Promise<Subscription> {
     const patch = subscriptionPatchFromStripe(stripeSubscription)
-    const { data: existing } = await this.database.from('subscriptions').select('*')
+    const { data: existing, error: existingError } = await this.database.from('subscriptions').select('*')
       .or(`user_id.eq.${stripeSubscription.metadata.userId || fallbackUserId || '00000000-0000-0000-0000-000000000000'},stripe_customer_id.eq.${patch.customerId}`)
       .maybeSingle()
+    if (existingError) throw createError({ statusCode: 500, statusMessage: 'Subscription projection could not be loaded' })
     const userId = stripeSubscription.metadata.userId || fallbackUserId || existing?.user_id
     if (!userId) throw createError({ statusCode: 422, statusMessage: 'Stripe user metadata is missing' })
-    if (eventCreatedAt && existing?.stripe_event_created_at && new Date(existing.stripe_event_created_at) > new Date(eventCreatedAt)) {
+    if (existing?.user_id && existing.user_id !== userId) {
+      throw createError({ statusCode: 409, statusMessage: 'Stripe subscription user mismatch' })
+    }
+    if (expectedUpdatedAt && existing?.updated_at !== expectedUpdatedAt) {
+      return mapSubscription(existing as DbRow)
+    }
+    if (isOlderStripeEvent(existing?.stripe_event_created_at, eventCreatedAt)) {
       return mapSubscription(existing as DbRow)
     }
     const existingPlan: Subscription['plan'] | null
       = existing?.plan === 'owner' || existing?.plan === 'cleaner' ? existing.plan : null
     const plan: Subscription['plan'] | null = patch.plan ?? existingPlan
     if (plan !== 'owner' && plan !== 'cleaner') throw createError({ statusCode: 422, statusMessage: 'Stripe plan metadata is missing' })
-    const { data, error } = await this.database.from('subscriptions').upsert({
+    const projection = {
       user_id: userId, plan, status: patch.status,
       unit_amount_cents: patch.unitAmount ?? existing?.unit_amount_cents ?? saasConfig.plans[plan].monthlyAmount,
       billing_period: patch.billingPeriod,
@@ -151,32 +222,72 @@ export class StripeBillingService {
       trial_consumed: Boolean(patch.trialStartedAt) || existing?.trial_consumed,
       current_period_started_at: patch.currentPeriodStartedAt, current_period_ends_at: patch.currentPeriodEndsAt,
       cancel_at_period_end: patch.cancelAtPeriodEnd, cancelled_at: patch.cancelledAt,
-      stripe_event_created_at: eventCreatedAt ?? new Date().toISOString(),
-    }).select('*').single()
+      stripe_event_created_at: eventCreatedAt ?? existing?.stripe_event_created_at ?? null,
+    }
+    if (!existing) {
+      const { data, error } = await this.database.from('subscriptions').insert(projection).select('*').single()
+      if (!error) return mapSubscription(data as DbRow)
+      if (error.code !== '23505' || attempt >= 2) {
+        throw createError({ statusCode: 500, statusMessage: 'Subscription projection failed' })
+      }
+      return this.syncSubscription(
+        stripeSubscription,
+        fallbackUserId,
+        eventCreatedAt,
+        expectedUpdatedAt,
+        attempt + 1,
+      )
+    }
+    const { data, error } = await this.database.from('subscriptions').update(projection)
+      .eq('user_id', userId)
+      .eq('updated_at', existing.updated_at)
+      .select('*')
+      .maybeSingle()
     if (error) throw createError({ statusCode: 500, statusMessage: 'Subscription projection failed' })
-    return mapSubscription(data as DbRow)
+    if (data) return mapSubscription(data as DbRow)
+    if (attempt >= 2) throw createError({ statusCode: 409, statusMessage: 'Concurrent subscription update could not be resolved' })
+    return this.syncSubscription(
+      stripeSubscription,
+      fallbackUserId,
+      eventCreatedAt,
+      expectedUpdatedAt,
+      attempt + 1,
+    )
   }
 
-  async markInvoice(invoice: Stripe.Invoice, type: 'paid' | 'payment_failed', eventCreatedAt?: string): Promise<void> {
+  async recordInvoice(
+    invoice: Stripe.Invoice,
+    type: 'paid' | 'payment_failed',
+    eventCreatedAt?: string,
+    attempt = 0,
+  ): Promise<string | null> {
+    const invoiceSubscriptionId = stripeSubscriptionIdFromInvoice(invoice)
     const customerId = typeof invoice.customer === 'string' ? invoice.customer : invoice.customer?.id
-    if (!customerId) return
-    const { data: subscription } = await this.database.from('subscriptions').select('*').eq('stripe_customer_id', customerId).maybeSingle()
-    if (!subscription) return
-    if (
-      eventCreatedAt
-      && subscription.stripe_event_created_at
-      && new Date(subscription.stripe_event_created_at) > new Date(eventCreatedAt)
-    ) return
+    if (!customerId) return invoiceSubscriptionId
+    const { data: subscription, error: subscriptionError } = await this.database.from('subscriptions').select('*')
+      .eq('stripe_customer_id', customerId)
+      .maybeSingle()
+    if (subscriptionError) throw createError({ statusCode: 500, statusMessage: 'Invoice subscription could not be loaded' })
+    if (!subscription) return invoiceSubscriptionId
+    if (isOlderStripeEvent(subscription.stripe_event_created_at, eventCreatedAt)) return null
     const timestamp = unixIso(invoice.created) ?? new Date().toISOString()
-    const graceEnd = new Date(timestamp)
-    graceEnd.setUTCDate(graceEnd.getUTCDate() + saasConfig.gracePeriodDays)
-    await Promise.all([
-      this.database.from('subscriptions').update(type === 'paid'
-        ? { status: 'active', grace_period_ends_at: null, last_successful_payment_at: timestamp, stripe_event_created_at: eventCreatedAt }
-        : { status: 'past_due', grace_period_ends_at: graceEnd.toISOString(), last_failed_payment_at: timestamp, stripe_event_created_at: eventCreatedAt })
-        .eq('user_id', subscription.user_id),
-      this.database.from('billing_invoices').upsert(this.invoiceRecord(invoice, subscription.user_id)),
-    ])
+    const { data: updated, error: updateError } = await this.database.from('subscriptions').update({
+      ...invoicePaymentPatch(type, timestamp),
+      stripe_event_created_at: eventCreatedAt,
+    })
+      .eq('user_id', subscription.user_id)
+      .eq('updated_at', subscription.updated_at)
+      .select('user_id, stripe_subscription_id')
+      .maybeSingle()
+    if (updateError) throw createError({ statusCode: 500, statusMessage: 'Invoice projection failed' })
+    if (!updated) {
+      if (attempt >= 2) throw createError({ statusCode: 409, statusMessage: 'Concurrent invoice update could not be resolved' })
+      return this.recordInvoice(invoice, type, eventCreatedAt, attempt + 1)
+    }
+    const { error: invoiceError } = await this.database.from('billing_invoices')
+      .upsert(this.invoiceRecord(invoice, subscription.user_id))
+    if (invoiceError) throw createError({ statusCode: 500, statusMessage: 'Invoice projection failed' })
+    return invoiceSubscriptionId ?? updated.stripe_subscription_id ?? null
   }
 
   async syncPaymentMethod(userId: string): Promise<void> {

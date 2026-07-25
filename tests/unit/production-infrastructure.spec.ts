@@ -11,6 +11,10 @@ const migrationFiles = readdirSync(migrationsDirectory).sort()
 const migrationSql = migrationFiles.map((file) =>
   readFileSync(new URL(file, migrationsDirectory), 'utf8'),
 ).join('\n')
+const providerEntitlementMigrationSql = readFileSync(
+  new URL('0018_provider_backed_entitlements.sql', migrationsDirectory),
+  'utf8',
+)
 
 describe('production infrastructure', () => {
   it('uses the approved canonical domain and rejects unsafe infrastructure modes', () => {
@@ -42,6 +46,7 @@ describe('production infrastructure', () => {
       '0015_subscription_billing_period.sql',
       '0016_add_slovenian_locale.sql',
       '0017_ranked_marketplace_search.sql',
+      '0018_provider_backed_entitlements.sql',
     ])
   })
 
@@ -69,6 +74,23 @@ describe('production infrastructure', () => {
     expect(migrationSql).toContain("create type public.billing_period as enum ('monthly', 'annual')")
     expect(migrationSql).toContain('billing_period public.billing_period not null')
     expect(migrationSql).toContain("stripe_interval in ('month', 'year')")
+  })
+
+  it('requires a provider-backed subscription for database Premium access', () => {
+    expect(providerEntitlementMigrationSql).toContain("nullif(btrim(s.stripe_subscription_id), '') is not null")
+    expect(providerEntitlementMigrationSql).toContain("s.status = 'past_due'")
+    expect(providerEntitlementMigrationSql).toContain('s.grace_period_ends_at')
+    expect(providerEntitlementMigrationSql).not.toContain('s.current_period_ends_at is null')
+  })
+
+  it('allows crashed Stripe webhook claims to be retried without duplicating live workers', () => {
+    const repositorySource = readFileSync(
+      new URL('../../repositories/supabase/SupabaseStripeEventRepository.ts', import.meta.url),
+      'utf8',
+    )
+    expect(repositorySource).toContain('STALE_EVENT_CLAIM_MS')
+    expect(repositorySource).toContain(".eq('status', 'processing')")
+    expect(repositorySource).toContain(".lt('claimed_at', staleBefore)")
   })
 
   it('uses indexed, RLS-safe ranked marketplace search', () => {

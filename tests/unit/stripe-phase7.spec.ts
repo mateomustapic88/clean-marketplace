@@ -25,11 +25,19 @@ import {
   verifyStripeWebhookEvent,
 } from '~/server/utils/webhookConfiguration'
 import {
-  hasActiveProviderSubscription,
+  blocksNewProviderCheckout,
+  invoicePaymentPatch,
+  isOlderStripeEvent,
+  shouldReconcileSubscription,
   statusFromStripe,
+  stripeSubscriptionIdFromInvoice,
   subscriptionPatchFromStripe,
 } from '~/server/services/StripeBillingService'
 import type { StripeBillingService } from '~/server/services/StripeBillingService'
+import {
+  canUseSubscriptionCapability,
+  hasActiveSubscription,
+} from '~/services/subscriptions/subscriptionAccess'
 
 const checkoutRequest = {
   userId: 'owner-user-01',
@@ -219,12 +227,20 @@ describe('Phase 7 Stripe architecture', () => {
       status: 'active',
       stripeSubscriptionId: 'provider-subscription',
     } as Subscription
-    expect(hasActiveProviderSubscription(active)).toBe(true)
-    expect(hasActiveProviderSubscription({
+    expect(blocksNewProviderCheckout(active)).toBe(true)
+    expect(blocksNewProviderCheckout({
       ...active,
       status: 'past_due',
+    })).toBe(true)
+    expect(blocksNewProviderCheckout({
+      ...active,
+      status: 'incomplete',
+    })).toBe(true)
+    expect(blocksNewProviderCheckout({
+      ...active,
+      status: 'incomplete_expired',
     })).toBe(false)
-    expect(hasActiveProviderSubscription({
+    expect(blocksNewProviderCheckout({
       ...active,
       stripeSubscriptionId: 'sub_demo_local',
     })).toBe(true)
@@ -318,10 +334,15 @@ describe('Phase 7 Stripe architecture', () => {
     const billing = {
       events: vi.fn(() => events),
       syncSubscription: vi.fn(),
-      markInvoice: vi.fn(),
+      recordInvoice: vi.fn()
+        .mockResolvedValueOnce('sub_paid')
+        .mockResolvedValueOnce('sub_failed'),
       syncPaymentMethod: vi.fn(),
     } as unknown as StripeBillingService
-    const retrieve = vi.fn().mockResolvedValue({ id: 'sub_checkout' })
+    const retrieve = vi.fn(async (id: string) => ({
+      id,
+      status: id === 'sub_failed' ? 'past_due' : 'active',
+    }))
     const stripe = {
       subscriptions: { retrieve },
     } as unknown as Stripe
@@ -331,15 +352,21 @@ describe('Phase 7 Stripe architecture', () => {
       type: 'customer.subscription.updated',
       data: { object: { id: 'sub_updated' } },
     } as unknown as Stripe.Event, billing, stripe)
-    expect(billing.syncSubscription).toHaveBeenCalled()
+    expect(retrieve).toHaveBeenCalledWith('sub_updated')
+    expect(billing.syncSubscription).toHaveBeenCalledWith(
+      expect.objectContaining({ id: 'sub_updated', status: 'active' }),
+      undefined,
+      expect.any(String),
+    )
 
     await processVerifiedStripeEvent({
       id: 'evt_deleted',
       type: 'customer.subscription.deleted',
       data: { object: { id: 'sub_deleted' } },
     } as unknown as Stripe.Event, billing, stripe)
+    expect(retrieve).toHaveBeenCalledWith('sub_deleted')
     expect(billing.syncSubscription).toHaveBeenCalledWith(
-      expect.objectContaining({ id: 'sub_deleted' }),
+      expect.objectContaining({ id: 'sub_deleted', status: 'active' }),
       undefined,
       expect.any(String),
     )
@@ -361,9 +388,15 @@ describe('Phase 7 Stripe architecture', () => {
       type: 'invoice.paid',
       data: { object: { id: 'in_paid' } },
     } as unknown as Stripe.Event, billing, stripe)
-    expect(billing.markInvoice).toHaveBeenCalledWith(
+    expect(billing.recordInvoice).toHaveBeenCalledWith(
       expect.objectContaining({ id: 'in_paid' }),
       'paid',
+      expect.any(String),
+    )
+    expect(retrieve).toHaveBeenCalledWith('sub_paid')
+    expect(billing.syncSubscription).toHaveBeenCalledWith(
+      expect.objectContaining({ id: 'sub_paid', status: 'active' }),
+      undefined,
       expect.any(String),
     )
 
@@ -372,9 +405,15 @@ describe('Phase 7 Stripe architecture', () => {
       type: 'invoice.payment_failed',
       data: { object: { id: 'in_failed' } },
     } as unknown as Stripe.Event, billing, stripe)
-    expect(billing.markInvoice).toHaveBeenCalledWith(
+    expect(billing.recordInvoice).toHaveBeenCalledWith(
       expect.objectContaining({ id: 'in_failed' }),
       'payment_failed',
+      expect.any(String),
+    )
+    expect(retrieve).toHaveBeenCalledWith('sub_failed')
+    expect(billing.syncSubscription).toHaveBeenCalledWith(
+      expect.objectContaining({ id: 'sub_failed', status: 'past_due' }),
+      undefined,
       expect.any(String),
     )
 
@@ -384,6 +423,192 @@ describe('Phase 7 Stripe architecture', () => {
       data: { object: { id: 'in_failed' } },
     } as unknown as Stripe.Event, billing, stripe)
     expect(duplicate.duplicate).toBe(true)
+  })
+
+  it('keeps a subscription trialing after the initial zero-value paid invoice', async () => {
+    let localStatus = 'trial'
+    const events = {
+      isProcessed: vi.fn(async () => false),
+      tryClaim: vi.fn(async () => true),
+      complete: vi.fn(async () => undefined),
+      release: vi.fn(async () => undefined),
+    }
+    const billing = {
+      events: vi.fn(() => events),
+      recordInvoice: vi.fn().mockResolvedValue('sub_trial'),
+      syncSubscription: vi.fn(async (subscription: Stripe.Subscription) => {
+        localStatus = statusFromStripe(subscription.status)
+      }),
+    } as unknown as StripeBillingService
+    const stripe = {
+      subscriptions: {
+        retrieve: vi.fn().mockResolvedValue({
+          id: 'sub_trial',
+          status: 'trialing',
+        }),
+      },
+    } as unknown as Stripe
+
+    await processVerifiedStripeEvent({
+      id: 'evt_trial_invoice',
+      type: 'invoice.paid',
+      data: {
+        object: {
+          id: 'in_trial_zero',
+          amount_paid: 0,
+          parent: {
+            type: 'subscription_details',
+            subscription_details: { subscription: 'sub_trial' },
+          },
+        },
+      },
+    } as unknown as Stripe.Event, billing, stripe)
+
+    expect(localStatus).toBe('trial')
+    expect(billing.recordInvoice).toHaveBeenCalledWith(
+      expect.objectContaining({ amount_paid: 0 }),
+      'paid',
+      expect.any(String),
+    )
+  })
+
+  it('uses the Stripe subscription as lifecycle authority after trial payment events', async () => {
+    let localStatus = 'trial'
+    let gracePeriodEndsAt: string | null = null
+    const events = {
+      isProcessed: vi.fn(async () => false),
+      tryClaim: vi.fn(async () => true),
+      complete: vi.fn(async () => undefined),
+      release: vi.fn(async () => undefined),
+    }
+    const billing = {
+      events: vi.fn(() => events),
+      recordInvoice: vi.fn(async (_invoice: Stripe.Invoice, type: 'paid' | 'payment_failed') => {
+        const patch = invoicePaymentPatch(type, '2026-08-01T00:00:00.000Z')
+        gracePeriodEndsAt = patch.grace_period_ends_at
+        return 'sub_provider'
+      }),
+      syncSubscription: vi.fn(async (subscription: Stripe.Subscription) => {
+        localStatus = statusFromStripe(subscription.status)
+      }),
+    } as unknown as StripeBillingService
+    const retrieve = vi.fn()
+      .mockResolvedValueOnce({ id: 'sub_provider', status: 'active' })
+      .mockResolvedValueOnce({ id: 'sub_provider', status: 'past_due' })
+    const stripe = { subscriptions: { retrieve } } as unknown as Stripe
+
+    await processVerifiedStripeEvent({
+      id: 'evt_post_trial_paid',
+      type: 'invoice.paid',
+      data: { object: { id: 'in_paid' } },
+    } as unknown as Stripe.Event, billing, stripe)
+    expect(localStatus).toBe('active')
+    expect(gracePeriodEndsAt).toBeNull()
+
+    await processVerifiedStripeEvent({
+      id: 'evt_post_trial_failed',
+      type: 'invoice.payment_failed',
+      data: { object: { id: 'in_failed' } },
+    } as unknown as Stripe.Event, billing, stripe)
+    expect(localStatus).toBe('past_due')
+    expect(gracePeriodEndsAt).toBe('2026-08-04T00:00:00.000Z')
+    expect(canUseSubscriptionCapability('owner', {
+      status: localStatus,
+      stripeSubscriptionId: 'sub_provider',
+      gracePeriodEndsAt,
+    } as Subscription, 'publish_jobs', new Date('2026-08-02T00:00:00.000Z'), true)).toBe(true)
+    expect(canUseSubscriptionCapability('owner', {
+      status: localStatus,
+      stripeSubscriptionId: 'sub_provider',
+      gracePeriodEndsAt,
+    } as Subscription, 'publish_jobs', new Date('2026-08-05T00:00:00.000Z'), true)).toBe(false)
+  })
+
+  it('ignores older lifecycle projections and throttles billing reconciliation', () => {
+    expect(isOlderStripeEvent(
+      '2026-08-01T10:00:00.000Z',
+      '2026-08-01T09:59:59.000Z',
+    )).toBe(true)
+    expect(isOlderStripeEvent(
+      '2026-08-01T10:00:00.000Z',
+      '2026-08-01T10:00:01.000Z',
+    )).toBe(false)
+    const subscription = {
+      stripeSubscriptionId: 'sub_provider',
+      updatedAt: '2026-08-01T10:00:00.000Z',
+    } as Subscription
+    expect(shouldReconcileSubscription(
+      subscription,
+      new Date('2026-08-01T10:04:59.000Z'),
+    )).toBe(false)
+    expect(shouldReconcileSubscription(
+      subscription,
+      new Date('2026-08-01T10:05:00.000Z'),
+    )).toBe(true)
+  })
+
+  it('extracts current Stripe invoice subscription IDs without legacy fields', () => {
+    expect(stripeSubscriptionIdFromInvoice({
+      parent: {
+        type: 'subscription_details',
+        quote_details: null,
+        subscription_details: {
+          metadata: null,
+          subscription: 'sub_invoice',
+        },
+      },
+    } as Stripe.Invoice)).toBe('sub_invoice')
+    expect(stripeSubscriptionIdFromInvoice({ parent: null } as Stripe.Invoice)).toBeNull()
+  })
+
+  it('denies Premium access for local or abandoned Checkout records without a provider subscription', () => {
+    const localTrial = {
+      status: 'trial',
+      trialEndsAt: '2026-08-08T00:00:00.000Z',
+      stripeSubscriptionId: null,
+    } as Subscription
+    const abandonedCheckout = {
+      status: 'incomplete',
+      stripeCustomerId: 'cus_abandoned',
+      stripeSubscriptionId: null,
+    } as Subscription
+    const now = new Date('2026-08-01T00:00:00.000Z')
+    expect(hasActiveSubscription(localTrial, now, true)).toBe(false)
+    expect(hasActiveSubscription(abandonedCheckout, now, true)).toBe(false)
+    expect(canUseSubscriptionCapability(
+      'cleaner',
+      localTrial,
+      'submit_offers',
+      now,
+      true,
+    )).toBe(false)
+    expect(hasActiveSubscription({
+      status: 'active',
+      stripeSubscriptionId: 'sub_provider',
+      currentPeriodEndsAt: '2026-08-02T00:00:00.000Z',
+    } as Subscription, now, true)).toBe(true)
+    expect(hasActiveSubscription({
+      status: 'active',
+      stripeSubscriptionId: 'sub_provider',
+      currentPeriodEndsAt: '2026-07-31T00:00:00.000Z',
+    } as Subscription, now, true)).toBe(false)
+    expect(hasActiveSubscription({
+      status: 'active',
+      stripeSubscriptionId: 'sub_provider',
+      currentPeriodEndsAt: null,
+    } as Subscription, now, true)).toBe(false)
+  })
+
+  it('keeps free registration and Premium billing redirects declared on their existing routes', () => {
+    const registrationPage = readFileSync('pages/registracija.vue', 'utf8')
+    const ownerPublishPage = readFileSync('pages/dashboard/poslovi/novi.vue', 'utf8')
+    const cleanerOfferPage = readFileSync('pages/dashboard-cleaner/poslovi/[id]/ponuda.vue', 'utf8')
+    const subscriptionMiddleware = readFileSync('middleware/subscription.ts', 'utf8')
+
+    expect(registrationPage).not.toContain("middleware: ['subscription']")
+    expect(ownerPublishPage).toContain("subscriptionCapability: 'publish_jobs'")
+    expect(cleanerOfferPage).toContain("subscriptionCapability: 'submit_offers'")
+    expect(subscriptionMiddleware).toContain("auth.user.role === 'owner' ? 'ownerBilling' : 'cleanerBilling'")
   })
 })
 
