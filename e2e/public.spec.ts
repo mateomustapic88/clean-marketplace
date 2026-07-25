@@ -141,6 +141,15 @@ test('serves canonical social metadata, robots, sitemap, and security headers', 
     'content',
     /\/images\/clean-apartment-cleaning-og\.png$/,
   )
+  await expect(page.locator('link[rel="icon"][type="image/png"]')).toHaveAttribute(
+    'href',
+    '/favicon-96x96.png',
+  )
+
+  const favicon = await request.get('/favicon.ico')
+  expect(favicon.ok()).toBeTruthy()
+  expect(favicon.headers()['content-type']).toMatch(/^image\/(?:x-icon|vnd\.microsoft\.icon)/)
+  expect((await favicon.body()).byteLength).toBeGreaterThan(100)
 
   const robots = await request.get('/robots.txt')
   expect(robots.ok()).toBeTruthy()
