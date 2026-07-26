@@ -606,11 +606,11 @@
     }
   },
   "apartmentCleaning": {
-    "metaTitle": "Čiščenje apartmajev ob Jadranu in na Hrvaškem",
-    "metaDescription": "Poiščite strokovnjake za čiščenje apartmajev in počitniških hiš v Splitu, Zadru, Šibeniku, Dubrovniku, Pulju, Reki in po vsej Hrvaški.",
+    "metaTitle": "Čiščenje apartmajev | Poiščite čistilca ali objavite delo",
+    "metaDescription": "Čiščenje apartmajev na Hrvaškem: poiščite čistilce, primerjajte cene in objavite dela za Split, Makarsko, Zadar, Dubrovnik, Zagreb in druga mesta.",
     "eyebrow": "Čiščenje apartmajev na Hrvaškem",
-    "title": "Čiščenje apartmajev ob Jadranu brez nepreglednih sporočil",
-    "description": "Clean pomaga lastnikom apartmajev poiskati strokovnjake za čiščenje, ponudnikom storitev pa jasno opisana dela. Uporabniki se o cenah, terminih in pričakovanjih dogovorijo neposredno.",
+    "title": "Čiščenje apartmajev",
+    "description": "Poiščite strokovnjake za čiščenje apartmajev, primerjajte cene in razpoložljivost ali objavite delo za menjavo gostov, sezonsko čiščenje in redno vzdrževanje turistične nastanitve.",
     "audiences": {
       "owners": {
         "title": "Za lastnike apartmajev in počitniških hiš",
@@ -660,7 +660,8 @@
       "description": "Preiščite profile in dela po mestu ter preverite območje dela in razpoložljivost posameznega uporabnika.",
       "cityDescription": "Preglejte strokovnjake in aktualna dela čiščenja apartmajev na območju mesta {city}.",
       "cleanersAction": "Strokovnjaki za čiščenje - {city}",
-      "jobsAction": "Čistilna dela - {city}"
+      "jobsAction": "Čistilna dela - {city}",
+      "cityKeyword": "Čiščenje apartmajev {city}"
     },
     "guide": {
       "eyebrow": "Jasen dogovor",
@@ -707,6 +708,18 @@
         "5": {
           "question": "Ali Clean zaračuna provizijo od cene čiščenja?",
           "answer": "Ne. Lastnik in strokovnjak za čiščenje se o plačilu storitve dogovorita neposredno. Clean zaračuna naročnino za Premium funkcije platforme."
+        },
+        "6": {
+          "question": "Ali lahko najdem čiščenje apartmajev v Makarski?",
+          "answer": "Da. Makarska je dodana kot mesto, kjer lastniki lahko objavijo delo, čistilci pa označijo območje dela."
+        },
+        "7": {
+          "question": "Je bolje iskati posameznika ali čistilni servis?",
+          "answer": "Odvisno od obsega dela. Za redne menjave gostov je pogosto dovolj zanesljiva oseba, večji objekti ali več apartmajev pa lahko zahtevajo ekipo ali servis."
+        },
+        "8": {
+          "question": "Ali lahko objavim delo, če še ne poznam točne cene?",
+          "answer": "Da. Navedete lahko okvirni proračun in podrobnosti dela, ponudniki pa pošljejo ponudbo glede na obseg in termin."
         }
       }
     },
@@ -718,7 +731,85 @@
     },
     "schema": {
       "serviceName": "Platforma za čiščenje apartmajev na Hrvaškem",
-      "serviceType": "Povezovanje lastnikov apartmajev s ponudniki storitev čiščenja"
+      "serviceType": "Povezovanje lastnikov apartmajev s ponudniki storitev čiščenja",
+      "priceTopic": "Cene čiščenja apartmajev",
+      "cleanerTopic": "Strokovnjaki in servisi za čiščenje apartmajev",
+      "cityListName": "Čiščenje apartmajev po mestih"
+    },
+    "intro": {
+      "lead": "Clean je platforma za lastnike apartmajev in ponudnike čiščenja. Namesto iskanja po skupinah in sporočilih lahko na enem mestu pregledate profile, objavite delo in uredite čiščenje po mestu, terminu in obsegu.",
+      "items": {
+        "person": "Iščete osebo za čiščenje apartmaja",
+        "price": "Želite primerjati cene čiščenja apartmajev",
+        "city": "Potrebujete čiščenje apartmaja v določenem mestu",
+        "jobs": "Ponujate čiščenje in iščete nova dela"
+      }
+    },
+    "pricing": {
+      "eyebrow": "Cene čiščenja apartmajev",
+      "title": "Koliko stane čiščenje apartmaja?",
+      "description": "Cena je najpogosteje odvisna od velikosti objekta, števila kopalnic, nujnosti termina, dodatnih opravil in lokacije. Clean zato poudarja konkretne opise del in ponudbe.",
+      "action": "Preglej aktualna dela",
+      "items": {
+        "size": {
+          "title": "Velikost apartmaja",
+          "description": "Studio, dvosobni apartma in večja počitniška hiša nimajo enakega obsega čiščenja. Navedite kvadraturo, sobe in kopalnice."
+        },
+        "turnover": {
+          "title": "Menjava gostov",
+          "description": "Čiščenje med odjavo in naslednjo prijavo ima pogosto kratek rok, zato termin vpliva na ponudbo."
+        },
+        "extras": {
+          "title": "Dodatne storitve",
+          "description": "Posteljnina, brisače, okna, pečica, hladilnik, terasa ali balkon lahko spremenijo ceno in trajanje."
+        },
+        "location": {
+          "title": "Mesto in razpoložljivost",
+          "description": "Cene in razpoložljivost se razlikujejo po mestu in sezoni. Iščite po lokaciji, na primer Split, Makarska, Zadar ali Dubrovnik."
+        }
+      }
+    },
+    "finding": {
+      "eyebrow": "Iščem osebo za čiščenje apartmaja",
+      "title": "Kako najti zanesljivo osebo za čiščenje apartmaja",
+      "description": "Dober dogovor ni samo cena. Pomembni so območje dela, termin, vključena opravila in možnost rednega ali sezonskega čiščenja.",
+      "items": {
+        "availability": {
+          "title": "Preverite mesto in razpoložljivost",
+          "description": "Filtrirajte profile po mestu in območju dela, da najdete osebe, ki lahko pridejo na lokacijo apartmaja."
+        },
+        "scope": {
+          "title": "Napišite jasen opis dela",
+          "description": "Navedite datum, velikost, prostore, čas med gosti in dodatna opravila, kot so posteljnina ali okna."
+        },
+        "comparison": {
+          "title": "Primerjajte več ponudb",
+          "description": "Primerjava cene, razpoložljivosti in profilov pomaga izbrati najbolj primerno ponudbo."
+        },
+        "agreement": {
+          "title": "Potrdite podrobnosti pred prihodom",
+          "description": "Pred čiščenjem potrdite čas prihoda, vključena opravila, način plačila in kontakt na lokaciji."
+        }
+      }
+    },
+    "season": {
+      "eyebrow": "Sezonsko čiščenje apartmajev",
+      "title": "Priprava na turistično sezono in menjave gostov",
+      "description": "Največ povpraševanja je pred sezono, ob vikendih in pri menjavah gostov. Jasno opisan oglas pomaga do boljših ponudb.",
+      "items": {
+        "preseason": {
+          "title": "Čiščenje pred sezono",
+          "description": "Globinsko čiščenje, kuhinjo, kopalnice, terase in okna je najbolje urediti pred prvimi rezervacijami."
+        },
+        "turnover": {
+          "title": "Hitra priprava po odjavi",
+          "description": "Pri menjavi gostov navedite čas odjave, naslednje prijave in ali je potrebna menjava posteljnine."
+        },
+        "weekend": {
+          "title": "Vikendi in nujni termini",
+          "description": "Če potrebujete čiščenje ob vikendu ali isti dan, označite nujnost in proračun."
+        }
+      }
     }
   },
   "how": {

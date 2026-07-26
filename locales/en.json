@@ -606,11 +606,11 @@
     }
   },
   "apartmentCleaning": {
-    "metaTitle": "Apartment cleaning on the Adriatic and across Croatia",
-    "metaDescription": "Find cleaning professionals for apartments and holiday homes in Split, Zadar, Šibenik, Dubrovnik, Pula, Rijeka, and across Croatia.",
+    "metaTitle": "Apartment cleaning Croatia | Find cleaners or post a job",
+    "metaDescription": "Apartment cleaning in Croatia: find cleaners, compare prices, and post cleaning jobs for Split, Makarska, Zadar, Dubrovnik, Zagreb, and other cities.",
     "eyebrow": "Apartment cleaning in Croatia",
-    "title": "Apartment cleaning on the Adriatic, without scattered messages",
-    "description": "Clean helps apartment owners find cleaning professionals and helps service providers discover clearly described jobs. Users agree rates, times, and expectations directly.",
+    "title": "Apartment cleaning",
+    "description": "Find apartment cleaning professionals, compare prices and availability, or post a job for guest turnover, seasonal cleaning, and regular holiday-rental maintenance.",
     "audiences": {
       "owners": {
         "title": "For apartment and holiday-home owners",
@@ -660,7 +660,8 @@
       "description": "Search profiles and jobs by city, then check each user's service area and availability.",
       "cityDescription": "Browse professionals and current apartment cleaning jobs in the {city} area.",
       "cleanersAction": "Cleaning professionals - {city}",
-      "jobsAction": "Cleaning jobs - {city}"
+      "jobsAction": "Cleaning jobs - {city}",
+      "cityKeyword": "Apartment cleaning {city}"
     },
     "guide": {
       "eyebrow": "A clear agreement",
@@ -707,6 +708,18 @@
         "5": {
           "question": "Does Clean charge commission on the cleaning price?",
           "answer": "No. Owners and cleaning professionals arrange and complete service payments directly. Clean charges a subscription for its Premium platform features."
+        },
+        "6": {
+          "question": "Can I find apartment cleaning in Makarska?",
+          "answer": "Yes. Makarska is available as a city where owners can post jobs and cleaners can set their service area."
+        },
+        "7": {
+          "question": "Should I look for an individual cleaner or a cleaning service?",
+          "answer": "It depends on the scope. Regular turnovers may work well with a reliable individual, while larger properties or multiple apartments may need a team or service."
+        },
+        "8": {
+          "question": "Can I post a job if I do not know the exact price yet?",
+          "answer": "Yes. You can enter an approximate budget and job details, then cleaners can send offers based on the scope and timing."
         }
       }
     },
@@ -718,7 +731,85 @@
     },
     "schema": {
       "serviceName": "Apartment cleaning marketplace in Croatia",
-      "serviceType": "Connecting apartment owners with cleaning service providers"
+      "serviceType": "Connecting apartment owners with cleaning service providers",
+      "priceTopic": "Apartment cleaning prices",
+      "cleanerTopic": "Apartment cleaning professionals and services",
+      "cityListName": "Apartment cleaning by city"
+    },
+    "intro": {
+      "lead": "Clean is a platform for apartment owners and cleaning professionals. Instead of searching through groups and scattered messages, you can browse profiles, post a job, and arrange apartment cleaning by city, date, and scope.",
+      "items": {
+        "person": "Find a person or cleaner for apartment cleaning",
+        "price": "Compare apartment cleaning prices",
+        "city": "Search apartment cleaning in a specific city",
+        "jobs": "Offer cleaning services and find new jobs"
+      }
+    },
+    "pricing": {
+      "eyebrow": "Apartment cleaning prices",
+      "title": "How much does apartment cleaning cost?",
+      "description": "Apartment cleaning prices usually depend on property size, number of bathrooms, urgency, extra tasks, and location. Clean therefore focuses on specific job details and offers instead of a single generic price.",
+      "action": "Browse current jobs",
+      "items": {
+        "size": {
+          "title": "Property size",
+          "description": "A studio, a two-bedroom apartment, and a larger holiday home do not require the same cleaning scope. List size, rooms, and bathrooms."
+        },
+        "turnover": {
+          "title": "Guest turnover",
+          "description": "Cleaning between checkout and the next check-in often has a short time window, so timing affects the offer."
+        },
+        "extras": {
+          "title": "Extra services",
+          "description": "Linen, towels, windows, oven, fridge, terrace, or balcony can change the price and duration."
+        },
+        "location": {
+          "title": "City and availability",
+          "description": "Prices and availability vary by city and season. Search by location such as Split, Makarska, Zadar, or Dubrovnik."
+        }
+      }
+    },
+    "finding": {
+      "eyebrow": "Looking for an apartment cleaner",
+      "title": "How to find a reliable apartment cleaning professional",
+      "description": "A good agreement is not only about price. Check service area, timing, included tasks, and whether the person can handle regular or seasonal cleaning.",
+      "items": {
+        "availability": {
+          "title": "Check city and availability",
+          "description": "Filter profiles by city and service area to find people who can actually reach the apartment location."
+        },
+        "scope": {
+          "title": "Write a clear job description",
+          "description": "Include date, size, rooms, guest-turnover window, and extra tasks such as linen or windows."
+        },
+        "comparison": {
+          "title": "Compare multiple offers",
+          "description": "Comparing price, availability, and profiles helps you choose the most suitable offer, not only the fastest one."
+        },
+        "agreement": {
+          "title": "Confirm details before arrival",
+          "description": "Before cleaning, confirm arrival time, included tasks, payment method, and contact person on location."
+        }
+      }
+    },
+    "season": {
+      "eyebrow": "Seasonal apartment cleaning",
+      "title": "Preparation for tourist season and guest turnover",
+      "description": "Demand is highest before the season, on weekends, and during guest turnovers. A clear job description helps professionals send better offers.",
+      "items": {
+        "preseason": {
+          "title": "Pre-season cleaning",
+          "description": "Deep cleaning, kitchen, bathrooms, terraces, and windows are best arranged before the first bookings."
+        },
+        "turnover": {
+          "title": "Fast preparation after checkout",
+          "description": "For turnovers, state checkout time, next check-in, and whether linen replacement is required."
+        },
+        "weekend": {
+          "title": "Weekends and urgent dates",
+          "description": "If you need weekend or same-day cleaning, mark urgency and budget so available professionals can respond."
+        }
+      }
     }
   },
   "how": {

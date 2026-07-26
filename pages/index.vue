@@ -206,6 +206,7 @@ const pricingPlans = [
 const ownerSteps = Array.from({ length: 5 }, (_, index) => `how.steps.owner.${index + 1}`)
 const apartmentCleaningCities = [
   { code: 'split', name: 'Split' },
+  { code: 'makarska', name: 'Makarska' },
   { code: 'zadar', name: 'Zadar' },
   { code: 'sibenik', name: 'Šibenik' },
   { code: 'dubrovnik', name: 'Dubrovnik' },
