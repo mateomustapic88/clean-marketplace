@@ -27,7 +27,7 @@ const locations = [
   { cityCode: 'split', area: 'Bačvice', label: 'Split' },
   { cityCode: 'zadar', area: 'Poluotok', label: 'Zadar' },
   { cityCode: 'sibenik', area: 'Brodarica', label: 'Šibenik' },
-  { cityCode: 'split', area: 'Makarska, centar', label: 'Makarska' },
+  { cityCode: 'makarska', area: 'Makarska, centar', label: 'Makarska' },
   { cityCode: 'rijeka', area: 'Trsat', label: 'Rijeka' },
   { cityCode: 'pula', area: 'Verudela', label: 'Pula' },
   { cityCode: 'pula', area: 'Rovinj, stari grad', label: 'Rovinj' },
@@ -159,6 +159,7 @@ const validateSeed = () => {
   if (jobTemplates.length !== 20) errors.push(`Expected 20 jobs, received ${jobTemplates.length}`)
   if (jobLocations.filter(({ cityCode }) => cityCode === 'dubrovnik').length !== 1) errors.push('Expected exactly one Dubrovnik job')
   if (!jobLocations.some(({ cityCode, area }) => cityCode === 'split' && area === 'Žnjan')) errors.push('Expected a Split - Žnjan job')
+  if (!jobLocations.some(({ cityCode, area }) => cityCode === 'makarska' && area === 'Makarska, centar')) errors.push('Expected a Makarska job')
   if (new Set(cleaners.map(({ email }) => email)).size !== cleaners.length) errors.push('Cleaner emails must be unique')
   if (cleaners.some(({ firstName, lastName }) => !firstName || !lastName)) errors.push('Every cleaner requires a full name')
   if (jobTemplates.some(([title, apartmentName]) => !title || !apartmentName)) errors.push('Every job requires a title and apartment name')

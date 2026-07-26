@@ -13,6 +13,7 @@ insert into public.cities (code, name, county) values
   ('dubrovnik', 'Dubrovnik', 'Dubrovačko-neretvanska'),
   ('pula', 'Pula', 'Istarska'),
   ('sibenik', 'Šibenik', 'Šibensko-kninska'),
+  ('makarska', 'Makarska', 'Splitsko-dalmatinska'),
   ('varazdin', 'Varaždin', 'Varaždinska'),
   ('karlovac', 'Karlovac', 'Karlovačka')
 on conflict (code) do nothing;
