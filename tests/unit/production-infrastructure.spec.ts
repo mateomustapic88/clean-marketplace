@@ -19,6 +19,10 @@ const publicCleanerVisibilityMigrationSql = readFileSync(
   new URL('0020_hide_incomplete_cleaner_profiles.sql', migrationsDirectory),
   'utf8',
 )
+const completedProfileActionsMigrationSql = readFileSync(
+  new URL('0021_require_completed_profiles_for_marketplace_actions.sql', migrationsDirectory),
+  'utf8',
+)
 
 describe('production infrastructure', () => {
   it('uses the approved canonical domain and rejects unsafe infrastructure modes', () => {
@@ -53,6 +57,7 @@ describe('production infrastructure', () => {
       '0018_provider_backed_entitlements.sql',
       '0019_add_makarska_city.sql',
       '0020_hide_incomplete_cleaner_profiles.sql',
+      '0021_require_completed_profiles_for_marketplace_actions.sql',
     ])
   })
 
@@ -116,5 +121,18 @@ describe('production infrastructure', () => {
       .toContain('p.onboarding_completed')
     expect(publicCleanerVisibilityMigrationSql)
       .toContain('profile.onboarding_completed')
+  })
+
+  it('requires completed profiles for protected marketplace writes', () => {
+    expect(completedProfileActionsMigrationSql)
+      .toContain('public.has_completed_profile')
+    expect(completedProfileActionsMigrationSql)
+      .toContain('profile.onboarding_completed')
+    expect(completedProfileActionsMigrationSql)
+      .toContain("public.has_completed_profile('owner')")
+    expect(completedProfileActionsMigrationSql)
+      .toContain("public.has_completed_profile('cleaner')")
+    expect(completedProfileActionsMigrationSql)
+      .toContain("status = 'withdrawn'")
   })
 })

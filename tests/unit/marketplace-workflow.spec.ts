@@ -195,6 +195,37 @@ describe('marketplace workflow', () => {
       ]))
   })
 
+  it('prevents an incomplete owner profile from publishing a job', async () => {
+    const draft = await jobs.create(jobInput())
+    database.transaction((snapshot) => {
+      const owner = snapshot.owners.find((profile) => profile.userId === draft.ownerId)
+      if (!owner) throw new Error('Missing owner profile')
+      owner.onboardingCompleted = false
+    })
+
+    await expect(jobs.update({ id: draft.id, status: 'published' }))
+      .rejects.toMatchObject({ code: 'profile_incomplete' })
+  })
+
+  it('prevents an incomplete cleaner profile from creating or editing offers', async () => {
+    const job = await publishedJob()
+    const offer = await offers.create(offerInput(job.id))
+    database.transaction((snapshot) => {
+      const cleaner = snapshot.cleaners.find(
+        (profile) => profile.userId === offer.cleanerId,
+      )
+      if (!cleaner) throw new Error('Missing cleaner profile')
+      cleaner.onboardingCompleted = false
+    })
+
+    await expect(offers.create(offerInput(job.id, offer.cleanerId)))
+      .rejects.toMatchObject({ code: 'profile_incomplete' })
+    await expect(offers.update(
+      { id: offer.id, proposedPrice: 75 },
+      offer.cleanerId,
+    )).rejects.toMatchObject({ code: 'profile_incomplete' })
+  })
+
   it('records the offer and accepted-job timeline in chronological order', async () => {
     const job = await publishedJob()
     const offer = await offers.create(offerInput(job.id))

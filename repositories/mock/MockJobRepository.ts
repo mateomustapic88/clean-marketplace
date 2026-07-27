@@ -107,6 +107,12 @@ export class MockJobRepository implements JobRepository {
         throw new DomainError('invalid_job_status_transition')
       }
       if (input.status === 'published') {
+        const ownerProfile = snapshot.owners.find(
+          (profile) => profile.userId === currentJob.ownerId,
+        )
+        if (!ownerProfile?.onboardingCompleted) {
+          throw new DomainError('profile_incomplete')
+        }
         const subscription = snapshot.subscriptions.find((item) => item.userId === currentJob.ownerId) ?? null
         if (!canUseSubscriptionCapability('owner', subscription, 'publish_jobs')) {
           throw new DomainError('subscription_required')

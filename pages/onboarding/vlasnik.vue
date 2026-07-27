@@ -2,6 +2,13 @@
   <div class="owner-onboarding">
     <div class="owner-onboarding__container container">
       <header><DemoBadge v-if="isMockMode" type="profile" /><h1>{{ t('owner.onboarding.title') }}</h1><p>{{ t('owner.onboarding.description') }}</p></header>
+      <BaseAlert
+        v-if="route.query.reason === 'profile_required'"
+        variant="info"
+        :title="t('profileCompletion.requiredTitle')"
+      >
+        {{ t('profileCompletion.requiredDescription') }}
+      </BaseAlert>
       <WizardStepper :steps="steps" :current="current" :label="t('owner.onboarding.progress')" @select="goTo" />
       <AutosaveIndicator :status="saveStatus" />
       <BaseCard>
@@ -27,6 +34,7 @@ import { getAppRoute } from '~/utils/routes'
 
 definePageMeta({ middleware: ['auth', 'role'], roles: ['owner'] })
 defineI18nRoute({ paths: { hr: '/onboarding/vlasnik', en: '/onboarding/owner', sl: '/uvajanje/lastnik' } })
+const route = useRoute()
 const { t, locale } = useI18n(), authStore = useAuthStore(), userStore = useUserStore()
 const isMockMode = useRuntimeConfig().public.infrastructureMode === 'mock'
 const profile = computed(() => userStore.profile as OwnerProfile | null)
@@ -81,7 +89,7 @@ const persist = async () => {
   if (!import.meta.client || saveStatus.value !== 'unsaved') return
   saveStatus.value = 'saving'
   try {
-    const owner = ownerFromDraft(false)
+    const owner = ownerFromDraft(profile.value?.onboardingCompleted ?? false)
     if (!owner) return
     await userStore.updateOwner(owner)
     saveStatus.value = 'saved'

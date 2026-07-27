@@ -58,6 +58,9 @@ export default defineNuxtConfig({
     stripeOwnerAnnualPriceId: process.env.STRIPE_OWNER_ANNUAL_PRICE_ID || '',
     stripeCleanerMonthlyPriceId: process.env.STRIPE_CLEANER_MONTHLY_PRICE_ID || '',
     stripeCleanerAnnualPriceId: process.env.STRIPE_CLEANER_ANNUAL_PRICE_ID || '',
+    resendApiKey: process.env.RESEND_API_KEY || '',
+    contactEmailFrom: process.env.CONTACT_EMAIL_FROM || '',
+    contactEmailTo: process.env.CONTACT_EMAIL_TO || 'cleanmarketplace.2026@gmail.com',
     public: {
       siteUrl: resolveAppBaseUrl(process.env.APP_BASE_URL, isProduction),
       infrastructureMode: resolveInfrastructureMode(

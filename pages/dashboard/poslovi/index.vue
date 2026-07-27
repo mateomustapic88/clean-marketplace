@@ -43,6 +43,7 @@ const authStore = useAuthStore()
 const jobsStore = useJobsStore()
 const userStore = useUserStore()
 const { isCheckingAccess, openNewJob } = useOwnerJobAccess()
+const { ensureCompletedProfile } = useProfileCompletionGuard()
 const search = ref('')
 const status = ref('')
 const city = ref('')
@@ -73,7 +74,10 @@ const statusOptions = computed(() => statuses.map((value) => ({ value, label: t(
 const cityOptions = computed(() => userStore.cities.map((item) => ({ value: item.code, label: item.name })))
 const sortOptions = computed(() => ['newest', 'oldest', 'date', 'offers'].map((value) => ({ value, label: t(`owner.jobs.sort.${value}`) })))
 const cityName = (code: string) => userStore.cities.find((item) => item.code === code)?.name ?? code
-const transition = async (id: string, next: CleaningJobStatus) => jobsStore.transitionJob(id, next)
+const transition = async (id: string, next: CleaningJobStatus) => {
+  if (next === 'published' && !await ensureCompletedProfile()) return
+  await jobsStore.transitionJob(id, next)
+}
 const duplicate = async (id: string) => {
   if (!authStore.user) return
   const job = await jobsStore.duplicateJob(id, authStore.user.id)

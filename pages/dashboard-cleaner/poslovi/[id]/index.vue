@@ -48,6 +48,7 @@ defineI18nRoute({ paths: { hr: '/dashboard-cleaner/poslovi/[id]', en: '/dashboar
 const route = useRoute(), { t, locale } = useI18n()
 const authStore = useAuthStore(), jobsStore = useJobsStore(), offersStore = useOffersStore(), userStore = useUserStore()
 const subscriptionStore = useSubscriptionStore()
+const { ensureCompletedProfile } = useProfileCompletionGuard()
 const jobId = String(route.params.id)
 const load = async (id?: string) => {
   if (!id) return
@@ -75,6 +76,7 @@ const apply = async () => {
     demoOfferBlocked.value = true
     return
   }
+  if (!await ensureCompletedProfile()) return
   await navigateTo(getCleanerOfferRoute(job.value.id, locale.value))
 }
 const toggleFavourite = async (id: string) => {

@@ -82,6 +82,10 @@ const migrateSnapshot = (source: MockDatabaseSnapshot): MockDatabaseSnapshot => 
     ...notification,
     archivedAt: notification.archivedAt ?? null,
   }))
+  snapshot.owners = (snapshot.owners ?? []).map((owner) => ({
+    ...owner,
+    onboardingCompleted: owner.onboardingCompleted ?? true,
+  }))
   snapshot.cleaners = (snapshot.cleaners ?? []).map((cleaner) => ({
     ...cleaner,
     onboardingCompleted: cleaner.onboardingCompleted ?? true,

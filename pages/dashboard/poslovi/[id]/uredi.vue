@@ -36,6 +36,7 @@ const { t, locale } = useI18n()
 const authStore = useAuthStore()
 const jobsStore = useJobsStore()
 const userStore = useUserStore()
+const { ensureCompletedProfile } = useProfileCompletionGuard()
 await Promise.all([jobsStore.loadJob(String(route.params.id)), userStore.loadDirectory()])
 const job = computed(() => jobsStore.selectedJob?.ownerId === authStore.user?.id ? jobsStore.selectedJob : null)
 const form = ref(job.value ? jobToForm(job.value) : emptyJobForm())
@@ -60,6 +61,7 @@ watch(form, () => {
 const saveDraft = () => autosave.saveNow()
 const publish = async () => {
   if (publishing.value) return
+  if (!await ensureCompletedProfile()) return
   actionError.value = false
   const result = createJobSchema(t).safeParse(form.value)
   invalidSteps.value = invalidJobSteps(form.value)

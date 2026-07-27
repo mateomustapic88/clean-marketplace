@@ -6,6 +6,13 @@
         <h1>{{ t('cleaner.onboarding.title') }}</h1>
         <p>{{ t('cleaner.onboarding.description') }}</p>
       </header>
+      <BaseAlert
+        v-if="route.query.reason === 'profile_required'"
+        variant="info"
+        :title="t('profileCompletion.requiredTitle')"
+      >
+        {{ t('profileCompletion.requiredDescription') }}
+      </BaseAlert>
       <WizardStepper
         :steps="steps"
         :current="current"
@@ -201,6 +208,7 @@ import { getFieldErrors } from '~/utils/validation'
 definePageMeta({ middleware: ['auth', 'role'], roles: ['cleaner'] })
 defineI18nRoute({ paths: { hr: '/onboarding/cistac', en: '/onboarding/cleaner', sl: '/uvajanje/cistilec' } })
 const { t, locale } = useI18n()
+const route = useRoute()
 const isMockMode = useRuntimeConfig().public.infrastructureMode === 'mock'
 const authStore = useAuthStore(), userStore = useUserStore()
 const profile = computed(() => userStore.profile && 'completedJobs' in userStore.profile ? userStore.profile as CleanerProfile : null)

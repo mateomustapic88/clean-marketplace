@@ -4,6 +4,7 @@
       <div class="public-footer__brand">
         <AppLogo />
         <p>{{ t('footer.description') }}</p>
+        <a :href="`mailto:${supportEmail}`">{{ supportEmail }}</a>
       </div>
       <nav v-for="group in groups" :key="group.title" :aria-label="group.title">
         <h2>{{ group.title }}</h2>
@@ -28,6 +29,7 @@ import { getAppRoute } from '~/utils/routes'
 
 const { t, locale } = useI18n()
 const year = new Date().getFullYear()
+const supportEmail = 'cleanmarketplace.2026@gmail.com'
 const groups = computed(() => [
   {
     title: t('footer.product'),

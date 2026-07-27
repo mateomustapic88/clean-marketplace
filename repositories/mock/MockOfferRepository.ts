@@ -38,6 +38,12 @@ export class MockOfferRepository implements OfferRepository {
       if (job.ownerId === input.cleanerId) {
         throw new DomainError('cannot_offer_own_job')
       }
+      const cleanerProfile = snapshot.cleaners.find(
+        (profile) => profile.userId === input.cleanerId,
+      )
+      if (!cleanerProfile?.onboardingCompleted) {
+        throw new DomainError('profile_incomplete')
+      }
       const subscription = snapshot.subscriptions.find((item) => item.userId === input.cleanerId) ?? null
       if (!canUseSubscriptionCapability('cleaner', subscription, 'submit_offers')) {
         throw new DomainError('subscription_required')
@@ -93,6 +99,12 @@ export class MockOfferRepository implements OfferRepository {
       }
       if (currentOffer.status !== 'pending') {
         throw new DomainError('offer_not_editable')
+      }
+      const cleanerProfile = snapshot.cleaners.find(
+        (profile) => profile.userId === cleanerId,
+      )
+      if (!cleanerProfile?.onboardingCompleted) {
+        throw new DomainError('profile_incomplete')
       }
       const subscription = snapshot.subscriptions.find((item) => item.userId === cleanerId) ?? null
       if (!canUseSubscriptionCapability('cleaner', subscription, 'submit_offers')) {

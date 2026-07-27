@@ -26,6 +26,34 @@ test('restores an owner session and exposes the responsive dashboard navigation'
   await expect(drawer).toBeHidden()
 })
 
+test('prompts an incomplete owner once per session and guards job publishing', async ({ page }) => {
+  await page.goto('/registracija')
+  await page.waitForLoadState('networkidle')
+  await page.getByRole('radio', { name: /Vlasnik apartmana/ }).check()
+  await page.locator('input[name="firstName"]').fill('Nedovršeni')
+  await page.locator('input[name="lastName"]').fill('Vlasnik')
+  await page.getByLabel('Adresa e-pošte').fill(`owner.${Date.now()}@example.com`)
+  await page.getByLabel('Telefon').fill('+385 91 555 0202')
+  await page.getByLabel('Grad').selectOption('split')
+  await page.getByLabel('Lozinka').fill('Sigurna123')
+  await page.getByRole('button', { name: 'Izradi račun' }).click()
+  await expect(page).toHaveURL(/\/onboarding\/vlasnik$/)
+
+  await page.goto('/dashboard')
+
+  const prompt = page.getByRole('dialog', { name: 'Dovršite profil' })
+  await expect(prompt).toBeVisible()
+  await prompt.getByRole('button', { name: 'Nastavi kasnije' }).click()
+  await expect(prompt).toBeHidden()
+  await expect(page.getByText('Vaš profil još nije dovršen')).toBeVisible()
+
+  await page.reload()
+  await expect(prompt).toBeHidden()
+  await page.getByRole('button', { name: 'Objavi novi posao' }).first().click()
+  await expect(page).toHaveURL(/\/onboarding\/vlasnik\?reason=profile_required$/)
+  await expect(page.getByText('Prvo dovršite profil')).toBeVisible()
+})
+
 test('filters owner jobs and opens a job detail', async ({ page }) => {
   await loginAsOwner(page)
   await page.getByRole('link', { name: 'Moji poslovi' }).first().click()

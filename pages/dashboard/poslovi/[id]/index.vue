@@ -49,6 +49,7 @@ const { t, locale } = useI18n()
 const authStore = useAuthStore()
 const jobsStore = useJobsStore()
 const userStore = useUserStore()
+const { ensureCompletedProfile } = useProfileCompletionGuard()
 await Promise.all([jobsStore.loadJob(String(route.params.id)), userStore.loadDirectory()])
 const job = computed(() => jobsStore.selectedJob?.ownerId === authStore.user?.id ? jobsStore.selectedJob : null)
 const cityName = (code: string) => userStore.cities.find((city) => city.code === code)?.name ?? code
@@ -56,7 +57,9 @@ const activeServices = computed(() => job.value ? Object.entries(job.value.servi
 const timeline = computed(() => job.value ? buildJobTimeline(job.value) : [])
 const breadcrumbs = computed(() => [{ label: t('owner.navigation.dashboard'), to: getAppRoute('ownerDashboard', locale.value) }, { label: t('owner.jobs.title'), to: getAppRoute('ownerJobs', locale.value) }, { label: job.value?.title ?? '' }])
 const transition = async (status: CleaningJobStatus) => {
-  if (job.value) await jobsStore.transitionJob(job.value.id, status)
+  if (!job.value) return
+  if (status === 'published' && !await ensureCompletedProfile()) return
+  await jobsStore.transitionJob(job.value.id, status)
 }
 const duplicate = async () => {
   if (!job.value || !authStore.user) return

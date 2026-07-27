@@ -19,10 +19,11 @@ import { emptyOfferForm } from '~/utils/cleaner'
 import { demoDisplayText } from '~/utils/demoPresentation'
 import { getAppRoute, getCleanerJobRoute } from '~/utils/routes'
 
-definePageMeta({ layout: 'dashboard-cleaner', middleware: ['auth', 'role', 'subscription'], roles: ['cleaner'], subscriptionCapability: 'submit_offers' })
+definePageMeta({ layout: 'dashboard-cleaner', middleware: ['auth', 'role', 'profile-complete', 'subscription'], roles: ['cleaner'], requiresCompletedProfile: true, subscriptionCapability: 'submit_offers' })
 defineI18nRoute({ paths: { hr: '/dashboard-cleaner/poslovi/[id]/ponuda', en: '/dashboard-cleaner/jobs/[id]/offer', sl: '/nadzorna-plosca-cistilec/dela/[id]/ponudba' } })
 const route = useRoute(), { t, locale } = useI18n()
 const authStore = useAuthStore(), jobsStore = useJobsStore(), offersStore = useOffersStore()
+const { ensureCompletedProfile } = useProfileCompletionGuard()
 const jobId = String(route.params.id), form = ref<OfferFormData>(emptyOfferForm()), errorMessage = ref('')
 const submitting = ref(false)
 const load = async (id?: string) => {
@@ -55,6 +56,7 @@ const submit = async (value: OfferFormData) => {
     errorMessage.value = t('cleaner.offer.demoUnavailable')
     return
   }
+  if (!await ensureCompletedProfile()) return
   submitting.value = true
   try {
     if (existing.value) await offersStore.updateOffer({ id: existing.value.id, ...value }, authStore.user.id)

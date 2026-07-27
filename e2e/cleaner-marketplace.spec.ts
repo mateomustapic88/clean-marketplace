@@ -36,6 +36,24 @@ test('restores the cleaner session and keeps all cleaner pages responsive', asyn
   }
 })
 
+test('redirects an incomplete cleaner to profile setup before an offer', async ({ page }) => {
+  await page.goto('/registracija')
+  await page.waitForLoadState('networkidle')
+  await page.getByRole('radio', { name: /Pružam usluge čišćenja/ }).check()
+  await page.locator('input[name="firstName"]').fill('Nedovršena')
+  await page.locator('input[name="lastName"]').fill('Osoba')
+  await page.getByLabel('Adresa e-pošte').fill(`cleaner.${Date.now()}@example.com`)
+  await page.getByLabel('Telefon').fill('+385 91 555 0303')
+  await page.getByLabel('Grad').selectOption('split')
+  await page.getByLabel('Lozinka').fill('Sigurna123')
+  await page.getByRole('button', { name: 'Izradi račun' }).click()
+  await expect(page).toHaveURL(/\/onboarding\/cistac$/)
+
+  await page.goto('/dashboard-cleaner/poslovi/job-02/ponuda')
+  await expect(page).toHaveURL(/\/onboarding\/cistac\?reason=profile_required$/)
+  await expect(page.getByText('Prvo dovršite profil')).toBeVisible()
+})
+
 test('saves a favourite job and weekly availability', async ({ page }) => {
   await login(page, 'cleaner01@demo.clean.hr', /\/dashboard-cleaner$/)
   await page.goto('/dashboard-cleaner/poslovi')

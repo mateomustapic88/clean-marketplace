@@ -3,6 +3,10 @@
     <PageHero :eyebrow="t('contact.eyebrow')" :title="t('contact.title')" :description="t('contact.description')" />
     <section class="contact-page__section container">
       <BaseCard class="contact-page__card">
+        <p class="contact-page__direct">
+          {{ t('contact.directEmail') }}
+          <a :href="`mailto:${supportEmail}`">{{ supportEmail }}</a>
+        </p>
         <BaseAlert v-if="submitted" variant="success" :title="t('contact.successTitle')">
           {{ t('contact.successDescription') }}
         </BaseAlert>
@@ -36,6 +40,7 @@ import { getFieldErrors } from '~/utils/validation'
 defineI18nRoute({ paths: { hr: '/kontakt', en: '/contact', sl: '/kontakt' } })
 const { t, locale } = useI18n()
 const route = useRoute()
+const supportEmail = 'cleanmarketplace.2026@gmail.com'
 const form = reactive({ name: '', email: '', userType: 'owner' as 'owner' | 'cleaner' | 'other', subject: '', message: '', consent: false })
 const errors = ref<Record<string, string>>({})
 const loading = ref(false)
@@ -104,6 +109,16 @@ usePublicSeo({
   &__card {
     max-width: 42rem;
     margin-inline: auto;
+  }
+
+  &__direct {
+    margin-bottom: $space-5;
+    color: $color-text-secondary;
+
+    a {
+      color: $color-primary;
+      font-weight: $font-weight-semibold;
+    }
   }
 
   form {

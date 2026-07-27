@@ -136,6 +136,17 @@
     "dataBadge": "Demo podaci",
     "ratingBadge": "Demo ocjena"
   },
+  "profileCompletion": {
+    "title": "Dovršite profil",
+    "description": "Dovršite profil kako biste bili vidljivi i koristili sve funkcije.",
+    "restrictions": "Objava poslova i slanje ponuda dostupni su nakon dovršetka profila. Do tada možete pregledavati platformu i uređivati svoje podatke.",
+    "bannerTitle": "Vaš profil još nije dovršen",
+    "bannerDescription": "Dovršite profil kako biste mogli koristiti sve funkcije platforme.",
+    "action": "Dovrši profil",
+    "later": "Nastavi kasnije",
+    "requiredTitle": "Prvo dovršite profil",
+    "requiredDescription": "Za objavu posla ili slanje ponude potrebno je dovršiti profil. Vaši uneseni podaci ostat će sačuvani."
+  },
   "auth": {
     "fields": {
       "firstName": "Ime",
@@ -288,7 +299,7 @@
     "it": "Talijanski"
   },
   "jobs": {
-    "eyebrow": "Javni primjeri poslova",
+    "eyebrow": "Poslovi čišćenja",
     "title": "Pronađite posao čišćenja",
     "description": "Pregledajte poslove čišćenja apartmana prema gradu, terminu i budžetu te pronađite oglas koji odgovara vašoj dostupnosti.",
     "metaTitle": "Poslovi čišćenja apartmana u Hrvatskoj",
@@ -337,7 +348,7 @@
     }
   },
   "cleaners": {
-    "eyebrow": "Javni demo profili",
+    "eyebrow": "Osobe za čišćenje",
     "title": "Pronađite osobu za čišćenje",
     "description": "Usporedite cijene, dostupnost, područja rada, iskustvo i ocjene osoba za čišćenje apartmana.",
     "metaTitle": "Osobe za čišćenje apartmana u Hrvatskoj",
@@ -925,7 +936,7 @@
   "contact": {
     "eyebrow": "Kontakt",
     "title": "Kako vam možemo pomoći?",
-    "description": "Pošaljite upit, prijavite grešku ili predložite poboljšanje. Vaša poruka sigurno se bilježi za tim podrške.",
+    "description": "Pošaljite upit, prijavite grešku ili predložite poboljšanje našem timu podrške.",
     "fields": {
       "name": "Ime i prezime",
       "email": "Adresa e-pošte",
@@ -945,10 +956,11 @@
       "feature": "Prijedlog poboljšanja"
     },
     "submit": "Pošalji poruku",
+    "directEmail": "Možete nam pisati i izravno na",
     "successTitle": "Poruka je zabilježena",
-    "successDescription": "Hvala. Vaša poruka sigurno je zabilježena za Clean Marketplace tim podrške.",
+    "successDescription": "Hvala. Vaša poruka poslana je Clean Marketplace timu podrške.",
     "errorTitle": "Poruka nije zabilježena",
-    "errorDescription": "Pokušajte ponovno. Ako se problem nastavi, vratite se kasnije.",
+    "errorDescription": "Pokušajte ponovno ili upotrijebite izravnu adresu e-pošte prikazanu iznad obrasca.",
     "metaTitle": "Kontakt i podrška",
     "metaDescription": "Trebate pomoć s Clean Marketplace računom, oglasom ili ponudom? Pošaljite upit, prijavite problem ili predložite poboljšanje našem timu."
   },

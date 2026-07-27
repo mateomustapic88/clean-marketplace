@@ -134,7 +134,7 @@
 
     <footer class="owner-brochure__footer">
       <strong>Clean Marketplace</strong>
-      <span>support@clean-marketplace.com</span>
+      <span>cleanmarketplace.2026@gmail.com</span>
       <a href="https://clean-marketplace.com">clean-marketplace.com</a>
     </footer>
   </article>

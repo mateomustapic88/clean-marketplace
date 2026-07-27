@@ -136,6 +136,17 @@
     "dataBadge": "Demo data",
     "ratingBadge": "Demo rating"
   },
+  "profileCompletion": {
+    "title": "Complete your profile",
+    "description": "Complete your profile to become visible and use all features.",
+    "restrictions": "Publishing jobs and submitting offers become available after profile completion. Until then, you can browse the platform and edit your details.",
+    "bannerTitle": "Your profile is not complete",
+    "bannerDescription": "Complete your profile to use all platform features.",
+    "action": "Complete profile",
+    "later": "Continue later",
+    "requiredTitle": "Complete your profile first",
+    "requiredDescription": "You need to complete your profile before publishing a job or submitting an offer. Your entered details will remain saved."
+  },
   "auth": {
     "fields": {
       "firstName": "First name",
@@ -288,7 +299,7 @@
     "it": "Italian"
   },
   "jobs": {
-    "eyebrow": "Public job examples",
+    "eyebrow": "Cleaning jobs",
     "title": "Find a cleaning job",
     "description": "Browse apartment cleaning jobs by city, schedule, and budget to find a listing that matches your availability.",
     "metaTitle": "Apartment cleaning jobs in Croatia",
@@ -337,7 +348,7 @@
     }
   },
   "cleaners": {
-    "eyebrow": "Public demo profiles",
+    "eyebrow": "Cleaning professionals",
     "title": "Find a cleaning professional",
     "description": "Compare rates, availability, service areas, experience, and ratings of apartment cleaning professionals.",
     "metaTitle": "Apartment cleaners in Croatia",
@@ -925,7 +936,7 @@
   "contact": {
     "eyebrow": "Contact",
     "title": "How can we help?",
-    "description": "Send an enquiry, report a bug, or suggest an improvement. Your message is securely recorded for the support team.",
+    "description": "Send an enquiry, report a bug, or suggest an improvement to our support team.",
     "fields": {
       "name": "Full name",
       "email": "Email address",
@@ -945,10 +956,11 @@
       "feature": "Improvement suggestion"
     },
     "submit": "Send message",
+    "directEmail": "You can also email us directly at",
     "successTitle": "Message recorded",
-    "successDescription": "Thank you. Your message was securely recorded for the Clean Marketplace support team.",
+    "successDescription": "Thank you. Your message was sent to the Clean Marketplace support team.",
     "errorTitle": "Message not recorded",
-    "errorDescription": "Please try again. If the problem persists, return later.",
+    "errorDescription": "Please try again or use the direct email address shown above the form.",
     "metaTitle": "Contact and support",
     "metaDescription": "Need help with your Clean Marketplace account, listing, or offer? Contact our team, report a problem, or suggest an improvement."
   },

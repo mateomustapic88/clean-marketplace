@@ -4,7 +4,10 @@
     <aside class="dashboard-layout__sidebar"><DashboardSidebar /></aside>
     <div class="dashboard-layout__body">
       <DashboardHeader :user="authStore.user" :notification-to="getAppRoute('ownerNotifications', locale)" :unread-count="notificationsStore.unreadCount" @menu="menuOpen = true" @logout="logout" />
-      <main id="main-content" class="dashboard-layout__content" tabindex="-1"><slot /></main>
+      <main id="main-content" class="dashboard-layout__content" tabindex="-1">
+        <ProfileCompletionNotice />
+        <slot />
+      </main>
     </div>
     <BaseDrawer v-model="menuOpen" :title="t('owner.navigation.label')"><DashboardSidebar @navigate="menuOpen = false" /></BaseDrawer>
   </div>

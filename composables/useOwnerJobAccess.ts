@@ -6,10 +6,12 @@ export const useOwnerJobAccess = () => {
   const { locale } = useI18n()
   const authStore = useAuthStore()
   const subscriptionStore = useSubscriptionStore()
+  const { ensureCompletedProfile } = useProfileCompletionGuard()
 
   const openNewJob = async () => {
     const user = authStore.user
     if (!user || user.role !== 'owner' || subscriptionStore.isLoading) return
+    if (!await ensureCompletedProfile()) return
 
     await subscriptionStore.loadForUser(user.id, user.role)
     if (subscriptionStore.capabilities.publish_jobs) {

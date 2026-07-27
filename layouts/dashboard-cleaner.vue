@@ -4,7 +4,10 @@
     <aside class="cleaner-layout__sidebar"><CleanerSidebar /></aside>
     <div class="cleaner-layout__body">
       <CleanerHeader :user="authStore.user" :notification-to="getAppRoute('cleanerNotifications', locale)" :unread-count="notificationsStore.unreadCount" @menu="menuOpen = true" @logout="logout" />
-      <main id="main-content" class="cleaner-layout__content" tabindex="-1"><slot /></main>
+      <main id="main-content" class="cleaner-layout__content" tabindex="-1">
+        <ProfileCompletionNotice />
+        <slot />
+      </main>
     </div>
     <BaseDrawer v-model="menuOpen" :title="t('cleaner.navigation.label')"><CleanerSidebar @navigate="menuOpen = false" /></BaseDrawer>
   </div>
