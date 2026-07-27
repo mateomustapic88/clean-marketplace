@@ -1,9 +1,9 @@
 {
   "meta": {
-    "siteName": "Clean",
+    "siteName": "Clean Marketplace",
     "homeTitle": "Apartment cleaning on the Adriatic and across Croatia",
-    "homeDescription": "Clean connects apartment owners with cleaning professionals across Croatia.",
-    "socialImageAlt": "Clean - a platform for arranging apartment cleaning"
+    "homeDescription": "Clean Marketplace connects apartment owners with cleaning professionals across Croatia.",
+    "socialImageAlt": "Clean Marketplace - a platform for arranging apartment cleaning"
   },
   "common": {
     "close": "Close",
@@ -42,7 +42,7 @@
     "switchTo": "Switch language to {language}"
   },
   "header": {
-    "brandLabel": "Clean - home page",
+    "brandLabel": "Clean Marketplace - home page",
     "ownerAction": "Post a job",
     "cleanerAction": "Find jobs",
     "login": "Log in",
@@ -68,7 +68,7 @@
     "privacy": "Privacy policy",
     "cookies": "Cookie policy",
     "rights": "All rights reserved.",
-    "copyright": "© {year} Clean. All rights reserved.",
+    "copyright": "© {year} Clean Marketplace. All rights reserved.",
     "faq": "Frequently asked questions",
     "phaseNotice": "Demo environment - business data is not real."
   },
@@ -159,7 +159,7 @@
       "noAccount": "Do not have an account?",
       "register": "Register",
       "metaTitle": "Log in",
-      "metaDescription": "Log in to your Clean account."
+      "metaDescription": "Log in to your Clean Marketplace account."
     },
     "register": {
       "eyebrow": "Create an account",
@@ -175,7 +175,7 @@
       "hasAccount": "Already have an account?",
       "login": "Log in",
       "metaTitle": "Register",
-      "metaDescription": "Create a Clean account as an owner or cleaning professional."
+      "metaDescription": "Create a Clean Marketplace account as an owner or cleaning professional."
     },
     "forgot": {
       "eyebrow": "Restore access",
@@ -186,7 +186,7 @@
       "successTitle": "Request received",
       "successDescription": "If the account exists, a password recovery message has been sent.",
       "metaTitle": "Forgot password",
-      "metaDescription": "Start a secure Clean account recovery."
+      "metaDescription": "Start a secure Clean Marketplace account recovery."
     },
     "confirmation": {
       "title": "Check your email",
@@ -202,7 +202,7 @@
       "successTitle": "Password changed",
       "successDescription": "You can now log in with your new password.",
       "metaTitle": "New password",
-      "metaDescription": "Securely set a new password for your Clean account."
+      "metaDescription": "Securely set a new password for your Clean Marketplace account."
     },
     "demo": {
       "title": "Demo access",
@@ -292,7 +292,7 @@
     "title": "Find a cleaning job",
     "description": "Browse apartment cleaning jobs by city, schedule, and budget to find a listing that matches your availability.",
     "metaTitle": "Apartment cleaning jobs in Croatia",
-    "metaDescription": "Find apartment cleaning jobs by city, date, and budget. Review listing details and submit your offer through Clean.",
+    "metaDescription": "Find apartment cleaning jobs by city, date, and budget. Review listing details and submit your offer through Clean Marketplace.",
     "pagination": "Job pages",
     "card": {
       "urgent": "Urgent",
@@ -478,9 +478,9 @@
       "action": "Learn more about apartment cleaning"
     },
     "problem": {
-      "eyebrow": "Why Clean",
+      "eyebrow": "Why Clean Marketplace",
       "title": "Arranging cleaning should not depend on dozens of messages",
-      "description": "Facebook groups, recommendations, and messages play an important role, but details can easily become scattered. Clean brings them into one structured place.",
+      "description": "Facebook groups, recommendations, and messages play an important role, but details can easily become scattered. Clean Marketplace brings them into one structured place.",
       "items": {
         "pricing": {
           "title": "Clearer pricing",
@@ -577,7 +577,7 @@
       "title": "What to know before starting",
       "items": {
         "1": {
-          "question": "How much does Clean cost apartment owners?",
+          "question": "How much does Clean Marketplace cost apartment owners?",
           "answer": "The owner plan costs EUR 19 per month after a seven-day trial."
         },
         "2": {
@@ -665,7 +665,7 @@
     },
     "guide": {
       "eyebrow": "A clear agreement",
-      "title": "How to arrange apartment cleaning through Clean",
+      "title": "How to arrange apartment cleaning through Clean Marketplace",
       "items": {
         "details": {
           "title": "Provide complete property details",
@@ -681,7 +681,7 @@
         },
         "agreement": {
           "title": "Confirm the arrangement before arrival",
-          "description": "You arrange payment for the cleaning service directly. Clean does not charge commission on the agreed cleaning price."
+          "description": "You arrange payment for the cleaning service directly. Clean Marketplace does not charge commission on the agreed cleaning price."
         }
       }
     },
@@ -695,19 +695,19 @@
         },
         "2": {
           "question": "How much does apartment cleaning cost?",
-          "answer": "The price depends on property size, scope, timing, and location. Clean displays profile rates and listing budgets, while users confirm the final price before acceptance."
+          "answer": "The price depends on property size, scope, timing, and location. Clean Marketplace displays profile rates and listing budgets, while users confirm the final price before acceptance."
         },
         "3": {
           "question": "Can I arrange cleaning after guest checkout?",
           "answer": "Yes. A listing can include the checkout time, next check-in, expected duration, and whether it is a same-day guest turnover."
         },
         "4": {
-          "question": "Does Clean cover apartment cleaning along the entire Adriatic?",
+          "question": "Does Clean Marketplace cover apartment cleaning along the entire Adriatic?",
           "answer": "Users can specify the cities and areas where they work. Availability depends on the professionals and jobs currently listed in each city."
         },
         "5": {
-          "question": "Does Clean charge commission on the cleaning price?",
-          "answer": "No. Owners and cleaning professionals arrange and complete service payments directly. Clean charges a subscription for its Premium platform features."
+          "question": "Does Clean Marketplace charge commission on the cleaning price?",
+          "answer": "No. Owners and cleaning professionals arrange and complete service payments directly. Clean Marketplace charges a subscription for its Premium platform features."
         },
         "6": {
           "question": "Can I find apartment cleaning in Makarska?",
@@ -737,7 +737,7 @@
       "cityListName": "Apartment cleaning by city"
     },
     "intro": {
-      "lead": "Clean is a platform for apartment owners and cleaning professionals. Instead of searching through groups and scattered messages, you can browse profiles, post a job, and arrange apartment cleaning by city, date, and scope.",
+      "lead": "Clean Marketplace is a platform for apartment owners and cleaning professionals. Instead of searching through groups and scattered messages, you can browse profiles, post a job, and arrange apartment cleaning by city, date, and scope.",
       "items": {
         "person": "Find a person or cleaner for apartment cleaning",
         "price": "Compare apartment cleaning prices",
@@ -748,7 +748,7 @@
     "pricing": {
       "eyebrow": "Apartment cleaning prices",
       "title": "How much does apartment cleaning cost?",
-      "description": "Apartment cleaning prices usually depend on property size, number of bathrooms, urgency, extra tasks, and location. Clean therefore focuses on specific job details and offers instead of a single generic price.",
+      "description": "Apartment cleaning prices usually depend on property size, number of bathrooms, urgency, extra tasks, and location. Clean Marketplace therefore focuses on specific job details and offers instead of a single generic price.",
       "action": "Browse current jobs",
       "items": {
         "size": {
@@ -863,7 +863,7 @@
     "description": "Choose monthly billing or a discounted annual subscription. Both plans include a seven-day trial.",
     "owner": {
       "badge": "7-day trial",
-      "title": "Clean for apartment owners",
+      "title": "Clean Marketplace for apartment owners",
       "description": "Post jobs, compare offers, and manage bookings.",
       "trial": "A seven-day trial is included with either billing option.",
       "action": "Start trial",
@@ -878,7 +878,7 @@
     },
     "plan": {
       "badge": "7-day trial",
-      "title": "Clean for cleaning professionals",
+      "title": "Clean Marketplace for cleaning professionals",
       "trial": "A seven-day trial is included with either billing option.",
       "month": "per month",
       "action": "Start trial",
@@ -912,7 +912,7 @@
       },
       "3": {
         "question": "Do I pay commission per job?",
-        "answer": "No. Clean does not take commission from the agreed cleaning price."
+        "answer": "No. Clean Marketplace does not take commission from the agreed cleaning price."
       },
       "4": {
         "question": "Is billing active?",
@@ -920,7 +920,7 @@
       }
     },
     "metaTitle": "Pricing for owners and cleaning professionals",
-    "metaDescription": "Try Clean for 7 days. Plans cost EUR 19 monthly for apartment owners and EUR 39 monthly for cleaning professionals, with no commission."
+    "metaDescription": "Try Clean Marketplace for 7 days. Plans cost EUR 19 monthly for apartment owners and EUR 39 monthly for cleaning professionals, with no commission."
   },
   "contact": {
     "eyebrow": "Contact",
@@ -946,11 +946,11 @@
     },
     "submit": "Send message",
     "successTitle": "Message recorded",
-    "successDescription": "Thank you. Your message was securely recorded for the Clean support team.",
+    "successDescription": "Thank you. Your message was securely recorded for the Clean Marketplace support team.",
     "errorTitle": "Message not recorded",
     "errorDescription": "Please try again. If the problem persists, return later.",
     "metaTitle": "Contact and support",
-    "metaDescription": "Need help with your Clean account, listing, or offer? Contact our team, report a problem, or suggest an improvement."
+    "metaDescription": "Need help with your Clean Marketplace account, listing, or offer? Contact our team, report a problem, or suggest an improvement."
   },
   "legal": {
     "contents": "Contents",
@@ -961,7 +961,7 @@
       "title": "Privacy policy",
       "description": "An informational template about data processing without invented legal entity details.",
       "metaTitle": "Privacy policy",
-      "metaDescription": "Privacy policy template for Clean.",
+      "metaDescription": "Privacy policy template for Clean Marketplace.",
       "sections": {
         "1": {
           "title": "Purpose of this document",
@@ -994,7 +994,7 @@
       "title": "Terms of service",
       "description": "An informational template without invented company registration details.",
       "metaTitle": "Terms of service",
-      "metaDescription": "Terms of service template for Clean.",
+      "metaDescription": "Terms of service template for Clean Marketplace.",
       "sections": {
         "1": {
           "title": "Platform status",
@@ -1002,7 +1002,7 @@
         },
         "2": {
           "title": "Platform role",
-          "text": "Clean provides a structured place for users to connect and is not a cleaning service provider."
+          "text": "Clean Marketplace provides a structured place for users to connect and is not a cleaning service provider."
         },
         "3": {
           "title": "User agreement",
@@ -1027,7 +1027,7 @@
       "title": "Cookie policy",
       "description": "An informational template covering essential cookies used by the platform.",
       "metaTitle": "Cookie policy",
-      "metaDescription": "Cookie policy for Clean.",
+      "metaDescription": "Cookie policy for Clean Marketplace.",
       "sections": {
         "1": {
           "title": "Essential storage",
@@ -1673,8 +1673,8 @@
   },
   "email": {
     "welcome": {
-      "subject": "Welcome to Clean",
-      "body": "Your Clean account is ready."
+      "subject": "Welcome to Clean Marketplace",
+      "body": "Your Clean Marketplace account is ready."
     },
     "trialEnding": {
       "subject": "Your trial ends soon",

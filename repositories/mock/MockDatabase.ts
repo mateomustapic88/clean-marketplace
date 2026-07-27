@@ -82,6 +82,10 @@ const migrateSnapshot = (source: MockDatabaseSnapshot): MockDatabaseSnapshot => 
     ...notification,
     archivedAt: notification.archivedAt ?? null,
   }))
+  snapshot.cleaners = (snapshot.cleaners ?? []).map((cleaner) => ({
+    ...cleaner,
+    onboardingCompleted: cleaner.onboardingCompleted ?? true,
+  }))
   snapshot.subscriptions = (snapshot.subscriptions ?? []).map((subscription) => {
     const legacy = subscription as Subscription & {
       cleanerId?: string

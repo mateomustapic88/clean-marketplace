@@ -4,7 +4,7 @@
       <Menu :size="22" aria-hidden="true" />
     </button>
     <div class="dashboard-header__identity">
-      <BaseAvatar :name="user?.displayName ?? 'Clean'" />
+      <BaseAvatar :name="user?.displayName ?? 'Clean Marketplace'" />
       <div><strong>{{ user?.displayName }}</strong><small>{{ t('owner.navigation.owner') }}</small></div>
     </div>
     <NuxtLink class="dashboard-header__notifications" :to="notificationTo" :aria-label="t('notifications.title')">

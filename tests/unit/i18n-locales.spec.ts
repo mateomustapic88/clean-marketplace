@@ -50,10 +50,10 @@ describe('localised messages', () => {
     }
   })
 
-  it('keeps the Clean product name untranslated in Slovenian', () => {
-    expect(catalogs.sl.get('meta.siteName')).toBe('Clean')
-    expect(catalogs.sl.get('header.brandLabel')).toContain('Clean')
-    expect(catalogs.sl.get('footer.copyright')).toContain('Clean')
+  it('keeps the Clean Marketplace product name untranslated in Slovenian', () => {
+    expect(catalogs.sl.get('meta.siteName')).toBe('Clean Marketplace')
+    expect(catalogs.sl.get('header.brandLabel')).toContain('Clean Marketplace')
+    expect(catalogs.sl.get('footer.copyright')).toContain('Clean Marketplace')
   })
 
   it('does not expose beta language in the application', () => {

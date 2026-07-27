@@ -15,6 +15,10 @@ const providerEntitlementMigrationSql = readFileSync(
   new URL('0018_provider_backed_entitlements.sql', migrationsDirectory),
   'utf8',
 )
+const publicCleanerVisibilityMigrationSql = readFileSync(
+  new URL('0020_hide_incomplete_cleaner_profiles.sql', migrationsDirectory),
+  'utf8',
+)
 
 describe('production infrastructure', () => {
   it('uses the approved canonical domain and rejects unsafe infrastructure modes', () => {
@@ -48,6 +52,7 @@ describe('production infrastructure', () => {
       '0017_ranked_marketplace_search.sql',
       '0018_provider_backed_entitlements.sql',
       '0019_add_makarska_city.sql',
+      '0020_hide_incomplete_cleaner_profiles.sql',
     ])
   })
 
@@ -104,5 +109,12 @@ describe('production infrastructure', () => {
     expect(migrationSql).toContain('function public.search_marketplace_cleaners')
     expect(migrationSql).toContain('security invoker')
     expect(migrationSql).toContain('least(greatest(p_page_size, 1), 100)')
+  })
+
+  it('keeps incomplete cleaner profiles out of every public catalog path', () => {
+    expect(publicCleanerVisibilityMigrationSql)
+      .toContain('p.onboarding_completed')
+    expect(publicCleanerVisibilityMigrationSql)
+      .toContain('profile.onboarding_completed')
   })
 })

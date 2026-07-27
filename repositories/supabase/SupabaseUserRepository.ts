@@ -88,7 +88,11 @@ export class SupabaseUserRepository implements UserRepository {
 
   async listCleaners(): Promise<CleanerProfile[]> {
     const [{ data, error }, { data: reviews, error: reviewsError }] = await Promise.all([
-      this.client.from('cleaner_profiles').select('*, profiles(*)'),
+      this.client
+        .from('cleaner_profiles')
+        .select('*, profiles!inner(*)')
+        .eq('profiles.onboarding_completed', true)
+        .eq('profiles.status', 'active'),
       this.client.from('reviews').select('reviewee_id, overall_score').eq('verified_completed_job', true),
     ])
     throwIfSupabaseError(error ?? reviewsError)
@@ -128,7 +132,12 @@ export class SupabaseUserRepository implements UserRepository {
     const ids = matches.map((match) => match.entity_id)
     const [{ data: cleaners, error: cleanersError }, { data: reviews, error: reviewsError }]
       = await Promise.all([
-        this.client.from('cleaner_profiles').select('*, profiles(*)').in('user_id', ids),
+        this.client
+          .from('cleaner_profiles')
+          .select('*, profiles!inner(*)')
+          .in('user_id', ids)
+          .eq('profiles.onboarding_completed', true)
+          .eq('profiles.status', 'active'),
         this.client.from('reviews')
           .select('reviewee_id, overall_score')
           .in('reviewee_id', ids)

@@ -181,6 +181,20 @@ describe('marketplace workflow', () => {
     })
   })
 
+  it('hides incomplete cleaner profiles from the public directory', async () => {
+    const stored = await users.getCleanerById('cleaner-user-01')
+    const profile = normalizeCleanerProfile(stored!)
+    profile.onboardingCompleted = false
+    await users.updateCleaner(profile)
+
+    await expect(users.getCleanerById(profile.userId))
+      .resolves.toMatchObject({ onboardingCompleted: false })
+    await expect(users.listCleaners())
+      .resolves.not.toEqual(expect.arrayContaining([
+        expect.objectContaining({ userId: profile.userId }),
+      ]))
+  })
+
   it('records the offer and accepted-job timeline in chronological order', async () => {
     const job = await publishedJob()
     const offer = await offers.create(offerInput(job.id))

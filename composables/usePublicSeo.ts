@@ -32,7 +32,7 @@ export const usePublicSeo = (options: PublicSeoOptions) => {
     ogDescription: () => toValue(options.description),
     ogType: options.type ?? 'website',
     ogLocale: () => locale.value === 'en' ? 'en_GB' : locale.value === 'sl' ? 'sl_SI' : 'hr_HR',
-    ogSiteName: () => 'Clean',
+    ogSiteName: () => 'Clean Marketplace',
     ogUrl: () => canonical.value,
     ogImage: () => socialImage.value,
     ogImageAlt: () => t('meta.socialImageAlt'),

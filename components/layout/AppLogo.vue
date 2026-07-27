@@ -42,13 +42,25 @@ const localePath = useLocalePath()
   text-decoration: none;
 
   &__mark {
+    flex: 0 0 auto;
     width: 2.5rem;
     height: 2.5rem;
     color: $color-primary-dark;
   }
 
   &__name {
+    white-space: nowrap;
     letter-spacing: -0.03em;
+  }
+
+  @media (max-width: 30rem) {
+    gap: $space-2;
+    font-size: $font-size-lg;
+
+    &__mark {
+      width: 2.25rem;
+      height: 2.25rem;
+    }
   }
 }
 </style>

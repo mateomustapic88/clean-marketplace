@@ -265,7 +265,7 @@ useHead({
           })),
           'provider': {
             '@type': 'Organization',
-            'name': 'Clean',
+            'name': 'Clean Marketplace',
             'url': String(config.public.siteUrl),
           },
           'url': new URL(

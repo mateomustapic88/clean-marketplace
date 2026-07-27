@@ -41,7 +41,7 @@ test('publishes an indexable apartment-cleaning landing page', async ({ page }) 
 
 test('publishes compelling and accurate search snippets', async ({ page }) => {
   await openHydratedPage(page, '/kako-funkcionira')
-  await expect(page).toHaveTitle('Kako dogovoriti čišćenje apartmana | Clean')
+  await expect(page).toHaveTitle('Kako dogovoriti čišćenje apartmana | Clean Marketplace')
   await expect(page.locator('meta[name="description"]')).toHaveAttribute(
     'content',
     /Objavite posao čišćenja apartmana, primite ponude i usporedite cijene/,
@@ -93,10 +93,10 @@ test('opens pricing and registration', async ({ page }) => {
 
   await openHydratedPage(page, '/cijene')
   await expect(page.getByRole('heading', {
-    name: 'Clean za vlasnike apartmana',
+    name: 'Clean Marketplace za vlasnike apartmana',
   })).toBeVisible()
   await expect(page.getByRole('heading', {
-    name: 'Clean za osobe za čišćenje',
+    name: 'Clean Marketplace za osobe za čišćenje',
   })).toBeVisible()
   await expect(page.getByText(/19\s*€/).first()).toBeVisible()
   await expect(page.getByText(/39\s*€/).first()).toBeVisible()
@@ -109,7 +109,7 @@ test('opens pricing and registration', async ({ page }) => {
   await expect(page.getByText(/Ušteda 269\s*€ godišnje \(57%\)/).first()).toBeVisible()
 
   await page.getByRole('heading', {
-    name: 'Clean za osobe za čišćenje',
+    name: 'Clean Marketplace za osobe za čišćenje',
   }).locator('..').getByRole('link', { name: 'Započni probno razdoblje' }).click()
   await expect(page).toHaveURL(/\/registracija\?role=cleaner$/)
   await expect(page.getByRole('radio', { name: /Pružam usluge čišćenja/ })).toBeChecked()
@@ -138,6 +138,29 @@ test('publishes complete legal and feedback navigation', async ({ page }) => {
   await page.getByRole('link', { name: 'Politika kolačića' }).click()
   await expect(page).toHaveURL(/\/politika-kolacica$/)
   await expect(page.getByRole('heading', { level: 1, name: 'Politika kolačića' })).toBeVisible()
+})
+
+test('renders a single-page printable Clean Marketplace brochure', async ({ page }) => {
+  await openHydratedPage(page, '/brochure')
+  await expect(page.getByRole('heading', {
+    level: 1,
+    name: 'Tražite pouzdanu osobu za čišćenje apartmana?',
+  })).toBeVisible()
+  await expect(page.getByText('Clean Marketplace', { exact: true }).first()).toBeVisible()
+  await expect(page.getByRole('img', {
+    name: 'QR kod za otvaranje stranice clean-marketplace.com',
+  })).toHaveAttribute('src', '/images/clean-marketplace-qr.svg')
+  await expect(page.getByRole('link', { name: 'Preuzmi PDF' })).toHaveAttribute(
+    'href',
+    '/downloads/clean-marketplace-brosura-iznajmljivaci.pdf',
+  )
+  await expect(page.getByRole('button', { name: 'Ispiši' })).toBeVisible()
+
+  const dimensions = await page.locator('.owner-brochure').evaluate((element) => ({
+    clientHeight: element.clientHeight,
+    scrollHeight: element.scrollHeight,
+  }))
+  expect(dimensions.scrollHeight).toBe(dimensions.clientHeight)
 })
 
 test('serves canonical social metadata, robots, sitemap, and security headers', async ({ page, request }) => {

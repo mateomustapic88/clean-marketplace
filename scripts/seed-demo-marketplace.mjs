@@ -243,7 +243,7 @@ const seed = async () => {
 
   const accounts = [
     {
-      seedKey: 'owner', email: DEMO_OWNER_EMAIL, firstName: 'Clean', lastName: 'Demo vlasnik',
+      seedKey: 'owner', email: DEMO_OWNER_EMAIL, firstName: 'Clean Marketplace', lastName: 'Demo vlasnik',
       cityCode: 'dubrovnik', role: 'owner',
     },
     ...cleaners.map((cleaner) => ({ ...cleaner, role: 'cleaner' })),

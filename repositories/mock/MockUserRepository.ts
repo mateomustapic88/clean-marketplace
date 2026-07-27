@@ -51,13 +51,20 @@ export class MockUserRepository implements UserRepository {
   }
 
   async listCleaners(): Promise<CleanerProfile[]> {
-    return clone(this.database.read().cleaners)
+    const snapshot = this.database.read()
+    const activeUserIds = new Set(snapshot.users
+      .filter((user) => user.status === 'active')
+      .map((user) => user.id))
+    return clone(snapshot.cleaners.filter(
+      (profile) => profile.onboardingCompleted && activeUserIds.has(profile.userId),
+    ))
   }
 
   async searchCleaners(
     criteria: PublicCleanerSearch,
   ): Promise<SearchPage<CleanerProfile>> {
-    return clone(searchLocalCleaners(this.database.read().cleaners, criteria))
+    const visibleCleaners = await this.listCleaners()
+    return clone(searchLocalCleaners(visibleCleaners, criteria))
   }
 
   async getOwnerById(id: string): Promise<OwnerProfile | null> {

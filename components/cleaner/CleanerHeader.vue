@@ -1,7 +1,7 @@
 <template>
   <header class="cleaner-header">
     <button class="cleaner-header__menu" type="button" :aria-label="t('cleaner.navigation.open')" @click="$emit('menu')"><Menu :size="22" /></button>
-    <div class="cleaner-header__identity"><BaseAvatar :name="user?.displayName ?? 'Clean'" /><div><strong>{{ user?.displayName }}</strong><small>{{ t('cleaner.navigation.account') }}</small></div></div>
+    <div class="cleaner-header__identity"><BaseAvatar :name="user?.displayName ?? 'Clean Marketplace'" /><div><strong>{{ user?.displayName }}</strong><small>{{ t('cleaner.navigation.account') }}</small></div></div>
     <NuxtLink class="cleaner-header__notifications" :to="notificationTo" :aria-label="t('notifications.title')"><Bell :size="21" aria-hidden="true" /><span v-if="unreadCount" aria-hidden="true">{{ unreadCount > 99 ? '99+' : unreadCount }}</span></NuxtLink>
     <LanguageSwitcher />
     <BaseButton size="sm" variant="ghost" @click="$emit('logout')">{{ t('header.logout') }}</BaseButton>

@@ -230,13 +230,13 @@ useHead({
       '@graph': [
         {
           '@type': 'WebSite',
-          'name': 'Clean',
+          'name': 'Clean Marketplace',
           'url': String(config.public.siteUrl),
           'inLanguage': locale.value === 'en' ? 'en-GB' : locale.value === 'sl' ? 'sl-SI' : 'hr-HR',
         },
         {
           '@type': 'Organization',
-          'name': 'Clean',
+          'name': 'Clean Marketplace',
           'url': String(config.public.siteUrl),
           'logo': new URL('/favicon.svg', String(config.public.siteUrl)).href,
           'description': t('publicHome.metaDescription'),
@@ -255,7 +255,7 @@ useHead({
           },
           'provider': {
             '@type': 'Organization',
-            'name': 'Clean',
+            'name': 'Clean Marketplace',
             'url': String(config.public.siteUrl),
           },
           'url': new URL(

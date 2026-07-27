@@ -1,9 +1,9 @@
 {
   "meta": {
-    "siteName": "Clean",
+    "siteName": "Clean Marketplace",
     "homeTitle": "Čiščenje apartmajev ob Jadranu in na Hrvaškem",
-    "homeDescription": "Clean povezuje lastnike apartmajev s strokovnjaki za čiščenje po vsej Hrvaški.",
-    "socialImageAlt": "Clean - platforma za dogovarjanje čiščenja apartmajev"
+    "homeDescription": "Clean Marketplace povezuje lastnike apartmajev s strokovnjaki za čiščenje po vsej Hrvaški.",
+    "socialImageAlt": "Clean Marketplace - platforma za dogovarjanje čiščenja apartmajev"
   },
   "common": {
     "close": "Zapri",
@@ -42,7 +42,7 @@
     "switchTo": "Preklopite jezik na {language}"
   },
   "header": {
-    "brandLabel": "Clean - domača stran",
+    "brandLabel": "Clean Marketplace - domača stran",
     "ownerAction": "Objavite delo",
     "cleanerAction": "Poiščite dela",
     "login": "Prijavite se",
@@ -68,7 +68,7 @@
     "privacy": "Politika zasebnosti",
     "cookies": "Politika piškotkov",
     "rights": "Vse pravice pridržane.",
-    "copyright": "© {year} Clean. Vse pravice pridržane.",
+    "copyright": "© {year} Clean Marketplace. Vse pravice pridržane.",
     "faq": "Pogosta vprašanja",
     "phaseNotice": "Demo okolje - poslovni podatki niso resnični."
   },
@@ -159,7 +159,7 @@
       "noAccount": "Nimate računa?",
       "register": "Registrirajte se",
       "metaTitle": "Prijavite se",
-      "metaDescription": "Prijavite se v svoj račun Clean."
+      "metaDescription": "Prijavite se v svoj račun Clean Marketplace."
     },
     "register": {
       "eyebrow": "Ustvari račun",
@@ -175,7 +175,7 @@
       "hasAccount": "Že imate račun?",
       "login": "Prijavite se",
       "metaTitle": "Registrirajte se",
-      "metaDescription": "Ustvarite račun Clean kot lastnik ali strokovnjak za čiščenje."
+      "metaDescription": "Ustvarite račun Clean Marketplace kot lastnik ali strokovnjak za čiščenje."
     },
     "forgot": {
       "eyebrow": "Obnovi dostop",
@@ -186,7 +186,7 @@
       "successTitle": "Zahteva prejeta",
       "successDescription": "Če račun obstaja, je bilo poslano sporočilo za obnovitev gesla.",
       "metaTitle": "Pozabljeno geslo",
-      "metaDescription": "Začnite varno obnovitev računa Clean."
+      "metaDescription": "Začnite varno obnovitev računa Clean Marketplace."
     },
     "confirmation": {
       "title": "Preverite svojo e-pošto",
@@ -202,7 +202,7 @@
       "successTitle": "Geslo spremenjeno",
       "successDescription": "Zdaj se lahko prijavite z novim geslom.",
       "metaTitle": "Novo geslo",
-      "metaDescription": "Varno nastavite novo geslo za svoj račun Clean."
+      "metaDescription": "Varno nastavite novo geslo za svoj račun Clean Marketplace."
     },
     "demo": {
       "title": "Demo dostop",
@@ -292,7 +292,7 @@
     "title": "Poiščite delo čiščenja",
     "description": "Prebrskajte dela za čiščenje apartmajev po mestu, terminu in proračunu ter poiščite oglas, ki ustreza vaši razpoložljivosti.",
     "metaTitle": "Dela za čiščenje apartmajev na Hrvaškem",
-    "metaDescription": "Poiščite dela za čiščenje apartmajev po mestu, datumu in proračunu. Preglejte podrobnosti oglasa in oddajte ponudbo prek Cleana.",
+    "metaDescription": "Poiščite dela za čiščenje apartmajev po mestu, datumu in proračunu. Preglejte podrobnosti oglasa in oddajte ponudbo prek Clean Marketplacea.",
     "pagination": "Strani za delo",
     "card": {
       "urgent": "Nujno",
@@ -478,9 +478,9 @@
       "action": "Več o čiščenju apartmajev"
     },
     "problem": {
-      "eyebrow": "Zakaj Clean",
+      "eyebrow": "Zakaj Clean Marketplace",
       "title": "Urejanje čiščenja ne bi smelo biti odvisno od desetin sporočil",
-      "description": "Skupine na Facebooku, priporočila in sporočila igrajo pomembno vlogo, vendar se lahko podrobnosti zlahka razpršijo. Clean jih združi na eno strukturirano mesto.",
+      "description": "Skupine na Facebooku, priporočila in sporočila igrajo pomembno vlogo, vendar se lahko podrobnosti zlahka razpršijo. Clean Marketplace jih združi na eno strukturirano mesto.",
       "items": {
         "pricing": {
           "title": "Jasnejše cene",
@@ -577,7 +577,7 @@
       "title": "Kaj morate vedeti pred začetkom",
       "items": {
         "1": {
-          "question": "Koliko stane Clean za lastnike apartmajev?",
+          "question": "Koliko stane Clean Marketplace za lastnike apartmajev?",
           "answer": "Lastniški načrt po sedemdnevnem preizkusu stane 19 EUR na mesec."
         },
         "2": {
@@ -665,7 +665,7 @@
     },
     "guide": {
       "eyebrow": "Jasen dogovor",
-      "title": "Kako urediti čiščenje apartmaja prek Cleana",
+      "title": "Kako urediti čiščenje apartmaja prek Clean Marketplacea",
       "items": {
         "details": {
           "title": "Navedite vse podrobnosti objekta",
@@ -681,7 +681,7 @@
         },
         "agreement": {
           "title": "Potrdite dogovor pred prihodom",
-          "description": "Plačilo storitve čiščenja uredite neposredno. Clean ne zaračuna provizije od dogovorjene cene čiščenja."
+          "description": "Plačilo storitve čiščenja uredite neposredno. Clean Marketplace ne zaračuna provizije od dogovorjene cene čiščenja."
         }
       }
     },
@@ -695,19 +695,19 @@
         },
         "2": {
           "question": "Koliko stane čiščenje apartmaja?",
-          "answer": "Cena je odvisna od velikosti objekta, obsega dela, termina in lokacije. Clean prikazuje cene profilov in proračune oglasov, končno ceno pa uporabniki potrdijo pred sprejemom."
+          "answer": "Cena je odvisna od velikosti objekta, obsega dela, termina in lokacije. Clean Marketplace prikazuje cene profilov in proračune oglasov, končno ceno pa uporabniki potrdijo pred sprejemom."
         },
         "3": {
           "question": "Ali lahko uredim čiščenje po odjavi gostov?",
           "answer": "Da. V oglasu lahko navedete čas odjave in naslednje prijave, pričakovano trajanje ter ali gre za menjavo gostov istega dne."
         },
         "4": {
-          "question": "Ali Clean pokriva čiščenje apartmajev vzdolž celotnega Jadrana?",
+          "question": "Ali Clean Marketplace pokriva čiščenje apartmajev vzdolž celotnega Jadrana?",
           "answer": "Uporabniki navedejo mesta in območja, kjer delajo. Razpoložljivost je odvisna od trenutno registriranih strokovnjakov in objavljenih del v posameznem mestu."
         },
         "5": {
-          "question": "Ali Clean zaračuna provizijo od cene čiščenja?",
-          "answer": "Ne. Lastnik in strokovnjak za čiščenje se o plačilu storitve dogovorita neposredno. Clean zaračuna naročnino za Premium funkcije platforme."
+          "question": "Ali Clean Marketplace zaračuna provizijo od cene čiščenja?",
+          "answer": "Ne. Lastnik in strokovnjak za čiščenje se o plačilu storitve dogovorita neposredno. Clean Marketplace zaračuna naročnino za Premium funkcije platforme."
         },
         "6": {
           "question": "Ali lahko najdem čiščenje apartmajev v Makarski?",
@@ -737,7 +737,7 @@
       "cityListName": "Čiščenje apartmajev po mestih"
     },
     "intro": {
-      "lead": "Clean je platforma za lastnike apartmajev in ponudnike čiščenja. Namesto iskanja po skupinah in sporočilih lahko na enem mestu pregledate profile, objavite delo in uredite čiščenje po mestu, terminu in obsegu.",
+      "lead": "Clean Marketplace je platforma za lastnike apartmajev in ponudnike čiščenja. Namesto iskanja po skupinah in sporočilih lahko na enem mestu pregledate profile, objavite delo in uredite čiščenje po mestu, terminu in obsegu.",
       "items": {
         "person": "Iščete osebo za čiščenje apartmaja",
         "price": "Želite primerjati cene čiščenja apartmajev",
@@ -748,7 +748,7 @@
     "pricing": {
       "eyebrow": "Cene čiščenja apartmajev",
       "title": "Koliko stane čiščenje apartmaja?",
-      "description": "Cena je najpogosteje odvisna od velikosti objekta, števila kopalnic, nujnosti termina, dodatnih opravil in lokacije. Clean zato poudarja konkretne opise del in ponudbe.",
+      "description": "Cena je najpogosteje odvisna od velikosti objekta, števila kopalnic, nujnosti termina, dodatnih opravil in lokacije. Clean Marketplace zato poudarja konkretne opise del in ponudbe.",
       "action": "Preglej aktualna dela",
       "items": {
         "size": {
@@ -863,7 +863,7 @@
     "description": "Izberite mesečno obračunavanje ali letno naročnino s popustom. Oba načrta vključujeta sedemdnevno preizkusno obdobje.",
     "owner": {
       "badge": "7-dnevni preizkus",
-      "title": "Clean za lastnike apartmajev",
+      "title": "Clean Marketplace za lastnike apartmajev",
       "description": "Objavljajte dela, primerjajte ponudbe in upravljajte rezervacije.",
       "trial": "Sedemdnevno preskusno obdobje je vključeno v katero koli možnost zaračunavanja.",
       "action": "Začni poskus",
@@ -878,7 +878,7 @@
     },
     "plan": {
       "badge": "7-dnevni preizkus",
-      "title": "Clean za strokovnjake za čiščenje",
+      "title": "Clean Marketplace za strokovnjake za čiščenje",
       "trial": "Sedemdnevno preskusno obdobje je vključeno v katero koli možnost zaračunavanja.",
       "month": "na mesec",
       "action": "Začni poskus",
@@ -912,7 +912,7 @@
       },
       "3": {
         "question": "Ali plačam provizijo na delo?",
-        "answer": "Ne. Clean ne zaračuna provizije od dogovorjene cene čiščenja."
+        "answer": "Ne. Clean Marketplace ne zaračuna provizije od dogovorjene cene čiščenja."
       },
       "4": {
         "question": "Ali je obračunavanje aktivno?",
@@ -920,7 +920,7 @@
       }
     },
     "metaTitle": "Cene za lastnike in strokovnjake za čiščenje",
-    "metaDescription": "Preizkusite Clean 7 dni. Načrt za lastnike apartmajev stane 19 EUR mesečno, za strokovnjake za čiščenje pa 39 EUR mesečno, brez provizije."
+    "metaDescription": "Preizkusite Clean Marketplace 7 dni. Načrt za lastnike apartmajev stane 19 EUR mesečno, za strokovnjake za čiščenje pa 39 EUR mesečno, brez provizije."
   },
   "contact": {
     "eyebrow": "Kontakt",
@@ -946,11 +946,11 @@
     },
     "submit": "Pošlji sporočilo",
     "successTitle": "Sporočilo posneto",
-    "successDescription": "Hvala. Vaše sporočilo je bilo varno zabeleženo za skupino za podporo Clean.",
+    "successDescription": "Hvala. Vaše sporočilo je bilo varno zabeleženo za skupino za podporo Clean Marketplace.",
     "errorTitle": "Sporočilo ni zabeleženo",
     "errorDescription": "prosim poskusite ponovno Če težave ne odpravite, se vrnite pozneje.",
     "metaTitle": "Kontakt in podpora",
-    "metaDescription": "Potrebujete pomoč z računom Clean, oglasom ali ponudbo? Pošljite vprašanje, prijavite težavo ali predlagajte izboljšavo naši ekipi."
+    "metaDescription": "Potrebujete pomoč z računom Clean Marketplace, oglasom ali ponudbo? Pošljite vprašanje, prijavite težavo ali predlagajte izboljšavo naši ekipi."
   },
   "legal": {
     "contents": "Vsebina",
@@ -961,7 +961,7 @@
       "title": "Politika zasebnosti",
       "description": "Informativna predloga o obdelavi podatkov brez izmišljenih podatkov o pravni osebi.",
       "metaTitle": "Politika zasebnosti",
-      "metaDescription": "Predloga pravilnika o zasebnosti za Clean.",
+      "metaDescription": "Predloga pravilnika o zasebnosti za Clean Marketplace.",
       "sections": {
         "1": {
           "title": "Namen tega dokumenta",
@@ -994,7 +994,7 @@
       "title": "Pogoji storitve",
       "description": "Informativna predloga brez izmišljenih podrobnosti o registraciji podjetja.",
       "metaTitle": "Pogoji storitve",
-      "metaDescription": "Predloga pogojev storitve za Clean.",
+      "metaDescription": "Predloga pogojev storitve za Clean Marketplace.",
       "sections": {
         "1": {
           "title": "Stanje platforme",
@@ -1002,7 +1002,7 @@
         },
         "2": {
           "title": "Vloga platforme",
-          "text": "Clean ponuja strukturirano mesto za povezovanje uporabnikov in ni ponudnik storitev čiščenja."
+          "text": "Clean Marketplace ponuja strukturirano mesto za povezovanje uporabnikov in ni ponudnik storitev čiščenja."
         },
         "3": {
           "title": "Uporabniška pogodba",
@@ -1027,7 +1027,7 @@
       "title": "Politika piškotkov",
       "description": "Informativna predloga, ki zajema bistvene piškotke platforme.",
       "metaTitle": "Politika piškotkov",
-      "metaDescription": "Pravilnik o piškotkih za Clean.",
+      "metaDescription": "Pravilnik o piškotkih za Clean Marketplace.",
       "sections": {
         "1": {
           "title": "Nujno shranjevanje",
@@ -1673,8 +1673,8 @@
   },
   "email": {
     "welcome": {
-      "subject": "Dobrodošli v Clean",
-      "body": "Vaš račun Clean je pripravljen."
+      "subject": "Dobrodošli v Clean Marketplace",
+      "body": "Vaš račun Clean Marketplace je pripravljen."
     },
     "trialEnding": {
       "subject": "Vaše preizkusno obdobje se kmalu konča",
