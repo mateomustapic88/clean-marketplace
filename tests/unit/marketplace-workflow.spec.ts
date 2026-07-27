@@ -70,7 +70,23 @@ const publishedJob = async () => {
 }
 
 describe('marketplace workflow', () => {
-  beforeEach(() => database.reset())
+  beforeEach(() => {
+    database.reset()
+    database.transaction((snapshot) => {
+      const cleanerSubscription = snapshot.subscriptions.find(
+        (subscription) => subscription.userId === 'cleaner-user-01',
+      )
+      if (!cleanerSubscription) {
+        throw new Error('Missing cleaner marketplace test subscription')
+      }
+
+      cleanerSubscription.status = 'active'
+      cleanerSubscription.trialStartedAt = null
+      cleanerSubscription.trialEndsAt = null
+      cleanerSubscription.currentPeriodStartedAt = '2026-01-01T00:00:00.000Z'
+      cleanerSubscription.currentPeriodEndsAt = '2099-01-01T00:00:00.000Z'
+    })
+  })
 
   it('creates one demo offer and prevents a duplicate application', async () => {
     const job = await publishedJob()

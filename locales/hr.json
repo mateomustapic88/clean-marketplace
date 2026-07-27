@@ -1517,6 +1517,9 @@
       "description": "Dodajte podatke potrebne za primanje poslova.",
       "progress": "Napredak uvodnog postavljanja",
       "validation": "Ispunite obavezna polja i odaberite barem jedan jezik i grad.",
+      "biographyHint": "Napišite najmanje 30 znakova o iskustvu i uslugama koje nudite.",
+      "serviceAreasRequired": "Odaberite barem jedno područje rada.",
+      "saveError": "Profil se trenutačno ne može spremiti. Provjerite vezu i pokušajte ponovno.",
       "finish": "Završi postavljanje",
       "steps": {
         "personal": "Osobni podaci",

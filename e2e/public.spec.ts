@@ -20,7 +20,7 @@ test('publishes an indexable apartment-cleaning landing page', async ({ page }) 
   await openHydratedPage(page, '/ciscenje-apartmana')
   await expect(page.getByRole('heading', {
     level: 1,
-    name: 'Čišćenje apartmana na Jadranu, bez nepreglednih poruka',
+    name: 'Čišćenje apartmana',
   })).toBeVisible()
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     'href',

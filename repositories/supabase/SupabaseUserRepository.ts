@@ -176,24 +176,30 @@ export class SupabaseUserRepository implements UserRepository {
   }
 
   async updateCleaner(profile: CleanerProfile): Promise<CleanerProfile> {
-    await this.updateCommonProfile(profile)
-    const { error } = await this.client.from('cleaner_profiles').update({
-      hourly_rate_cents: Math.round(profile.hourlyRate * 100),
-      minimum_job_price_cents: Math.round(profile.minimumJobPrice * 100),
-      service_radius_km: profile.serviceRadiusKm, years_of_experience: profile.yearsOfExperience,
-      biography: profile.biography, company_name: profile.companyName, website: profile.website,
-      own_transportation: profile.ownTransportation, brings_supplies: profile.bringsSupplies,
-      same_day_available: profile.sameDayAvailable, weekend_available: profile.weekendAvailable,
-      vacation_mode: profile.vacationMode,
-    }).eq('user_id', profile.userId)
-    throwIfSupabaseError(error)
+    const [{ error: cleanerError }, { error: privateError }] = await Promise.all([
+      this.client.from('cleaner_profiles').update({
+        hourly_rate_cents: Math.round(profile.hourlyRate * 100),
+        minimum_job_price_cents: Math.round(profile.minimumJobPrice * 100),
+        service_radius_km: profile.serviceRadiusKm, years_of_experience: profile.yearsOfExperience,
+        biography: profile.biography, company_name: profile.companyName, website: profile.website,
+        own_transportation: profile.ownTransportation, brings_supplies: profile.bringsSupplies,
+        same_day_available: profile.sameDayAvailable, weekend_available: profile.weekendAvailable,
+        vacation_mode: profile.vacationMode,
+      }).eq('user_id', profile.userId),
+      this.client.from('cleaner_private_details').update({
+        oib: profile.oib,
+      }).eq('user_id', profile.userId),
+    ])
+    throwIfSupabaseError(cleanerError ?? privateError)
     await Promise.all([
       this.replaceRows('cleaner_service_areas', 'cleaner_id', profile.userId,
         profile.serviceAreas.map((area) => ({ cleaner_id: profile.userId, city_code: area.cityCode, radius_km: area.radiusKm }))),
       this.replaceRows('cleaner_languages', 'cleaner_id', profile.userId,
         profile.languages.map((language) => ({ cleaner_id: profile.userId, language_code: language }))),
       this.replaceFavourites(profile.userId, profile.favouriteJobIds),
+      this.replaceAvailability(profile.userId, profile.availability),
     ])
+    await this.updateCommonProfile(profile)
     return (await this.getCleanerById(profile.userId))!
   }
 
@@ -322,6 +328,55 @@ export class SupabaseUserRepository implements UserRepository {
   private async replaceFavourites(userId: string, jobIds: string[]) {
     await this.replaceRows('cleaner_favourite_jobs', 'cleaner_id', userId,
       jobIds.map((jobId) => ({ cleaner_id: userId, job_id: jobId })))
+  }
+
+  private async replaceAvailability(userId: string, availability: CleanerProfile['availability']) {
+    const { data: existing, error: existingError } = await this.client
+      .from('cleaner_availability')
+      .select('id')
+      .eq('cleaner_id', userId)
+    throwIfSupabaseError(existingError)
+
+    const availabilityIds = (existing as DbRow[] ?? []).map((item) => text(item.id))
+    if (availabilityIds.length) {
+      const { error: rangeDeleteError } = await this.client
+        .from('cleaner_availability_ranges')
+        .delete()
+        .in('availability_id', availabilityIds)
+      throwIfSupabaseError(rangeDeleteError)
+    }
+
+    const { error: availabilityDeleteError } = await this.client
+      .from('cleaner_availability')
+      .delete()
+      .eq('cleaner_id', userId)
+    throwIfSupabaseError(availabilityDeleteError)
+    if (!availability.length) return
+
+    const { data: inserted, error: availabilityInsertError } = await this.client
+      .from('cleaner_availability')
+      .insert(availability.map((day) => ({
+        cleaner_id: userId,
+        weekday: day.weekday,
+        enabled: day.enabled,
+      })))
+      .select('id, weekday')
+    throwIfSupabaseError(availabilityInsertError)
+
+    const idsByWeekday = new Map(
+      (inserted as DbRow[] ?? []).map((item) => [number(item.weekday), text(item.id)]),
+    )
+    const ranges = availability.flatMap((day) => day.ranges.map((range) => ({
+      availability_id: idsByWeekday.get(day.weekday),
+      start_time: range.start,
+      end_time: range.end,
+    }))).filter((range) => range.availability_id)
+    if (!ranges.length) return
+
+    const { error: rangeInsertError } = await this.client
+      .from('cleaner_availability_ranges')
+      .insert(ranges)
+    throwIfSupabaseError(rangeInsertError)
   }
 
   private async signedAvatar(path: string): Promise<string | null> {

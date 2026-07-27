@@ -1517,6 +1517,9 @@
       "description": "Add the details needed to receive jobs.",
       "progress": "Onboarding progress",
       "validation": "Complete the required fields and choose at least one language and city.",
+      "biographyHint": "Write at least 30 characters about your experience and the services you offer.",
+      "serviceAreasRequired": "Select at least one service area.",
+      "saveError": "Your profile cannot be saved right now. Check your connection and try again.",
       "finish": "Finish setup",
       "steps": {
         "personal": "Personal details",

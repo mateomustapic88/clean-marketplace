@@ -57,7 +57,7 @@ test('saves a favourite job and weekly availability', async ({ page }) => {
 test('blocks offers on demo jobs with a friendly explanation', async ({ page }) => {
   const pageErrors: string[] = []
   page.on('pageerror', (error) => pageErrors.push(error.message))
-  await login(page, 'cleaner01@demo.clean.hr', /\/dashboard-cleaner$/)
+  await login(page, 'cleaner09@demo.clean.hr', /\/dashboard-cleaner$/)
   await page.goto('/dashboard-cleaner/poslovi/job-02')
   await page.getByRole('button', { name: 'Pošalji ponudu' }).click()
   await expect(page.getByText('Ovo je demonstracijski oglas i nije moguće poslati ponudu.')).toBeVisible()
@@ -83,11 +83,17 @@ test('new cleaner can finish account setup', async ({ page }) => {
 
   await expect(page).toHaveURL(/\/onboarding\/cistac$/)
   await page.getByRole('button', { name: 'Sljedeće' }).click()
+  await page.getByRole('button', { name: 'Sljedeće' }).click()
+  await expect(page.getByLabel('O meni i iskustvo')).toHaveAttribute('aria-invalid', 'true')
+  await expect(page.getByLabel('Cijena po satu')).toHaveAttribute('aria-invalid', 'true')
+  await expect(page).toHaveURL(/\/onboarding\/cistac$/)
   await page.getByLabel('O meni i iskustvo').fill(
     'Pouzdana sam i temeljita osoba s iskustvom u čišćenju apartmana.',
   )
+  await page.getByLabel('Cijena po satu').fill('18')
   await expect(page.getByRole('checkbox', { name: 'Hrvatski' })).toBeChecked()
   await page.getByRole('button', { name: 'Sljedeće' }).click()
+  await expect(page.getByRole('checkbox', { name: 'Split' })).toBeChecked()
   await page.getByRole('button', { name: 'Sljedeće' }).click()
   await page.getByRole('button', { name: 'Sljedeće' }).click()
   await page.getByRole('button', { name: 'Završi postavljanje' }).click()

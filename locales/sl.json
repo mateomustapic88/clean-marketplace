@@ -1517,6 +1517,9 @@
       "description": "Dodajte podrobnosti, potrebne za prejemanje delovnih mest.",
       "progress": "Napredek vkrcanja",
       "validation": "Izpolnite zahtevana polja ter izberite vsaj en jezik in mesto.",
+      "biographyHint": "Napišite vsaj 30 znakov o svojih izkušnjah in storitvah, ki jih ponujate.",
+      "serviceAreasRequired": "Izberite vsaj eno območje dela.",
+      "saveError": "Profila trenutno ni mogoče shraniti. Preverite povezavo in poskusite znova.",
       "finish": "Dokončajte nastavitev",
       "steps": {
         "personal": "Osebni podatki",

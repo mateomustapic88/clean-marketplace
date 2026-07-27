@@ -47,6 +47,7 @@ describe('production infrastructure', () => {
       '0016_add_slovenian_locale.sql',
       '0017_ranked_marketplace_search.sql',
       '0018_provider_backed_entitlements.sql',
+      '0019_add_makarska_city.sql',
     ])
   })
 
