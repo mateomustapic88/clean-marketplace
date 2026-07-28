@@ -1,7 +1,7 @@
 <template>
   <article class="cleaner-card">
     <header class="cleaner-card__header">
-      <BaseAvatar :name="fullName" size="lg" />
+      <BaseAvatar :name="fullName" size="md" />
       <div class="cleaner-card__identity">
         <h3><NuxtLink :to="getCleanerRoute(cleaner.id, locale)">{{ fullName }}</NuxtLink></h3>
         <DemoBadge v-if="cleaner.isDemo" type="profile" />
@@ -46,9 +46,9 @@ const fullName = computed(() => demoDisplayName(
 <style scoped lang="scss">
 .cleaner-card {
   display: grid;
-  gap: $space-4;
+  gap: $space-3;
   height: 100%;
-  padding: $space-6;
+  padding: $space-5;
   background: $color-surface;
   border: 1px solid $color-border;
   border-radius: $radius-xl;
@@ -60,7 +60,13 @@ const fullName = computed(() => demoDisplayName(
     align-items: center;
 
     h3 {
-      font-size: $font-size-lg;
+      min-width: 0;
+      font-size: $font-size-md;
+      line-height: 1.35;
+
+      a {
+        overflow-wrap: anywhere;
+      }
     }
 
     a {
@@ -74,7 +80,7 @@ const fullName = computed(() => demoDisplayName(
       gap: $space-1;
       align-items: center;
       margin-top: $space-1;
-      font-size: $font-size-sm;
+      font-size: $font-size-xs;
       color: $color-text-secondary;
     }
   }
@@ -90,7 +96,11 @@ const fullName = computed(() => demoDisplayName(
 
   &__bio {
     display: -webkit-box;
+    min-height: 4.5em;
+    max-height: 4.5em;
     overflow: hidden;
+    font-size: $font-size-sm;
+    line-height: 1.5;
     color: $color-text-secondary;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
@@ -117,10 +127,19 @@ const fullName = computed(() => demoDisplayName(
     gap: $space-3;
     align-items: center;
     justify-content: space-between;
-    padding-top: $space-4;
-    font-size: $font-size-sm;
+    padding-top: $space-3;
+    font-size: $font-size-xs;
+    line-height: 1.4;
     color: $color-text-secondary;
     border-top: 1px solid $color-border;
+
+    > span {
+      min-width: 0;
+    }
+
+    :deep(.base-button) {
+      flex: 0 0 auto;
+    }
   }
 }
 </style>

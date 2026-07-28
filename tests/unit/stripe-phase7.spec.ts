@@ -15,6 +15,7 @@ import {
 } from '~/services/billing/billingPresentation'
 import {
   parseBillingMode,
+  resolveBillingMode,
   validateStripeServerConfiguration,
 } from '~/services/billing/billingConfiguration'
 import { StripeServerGateway } from '~/server/services/StripeServerGateway'
@@ -250,6 +251,9 @@ describe('Phase 7 Stripe architecture', () => {
     expect(parseBillingMode('mock')).toBe('mock')
     expect(parseBillingMode('stripe')).toBe('stripe')
     expect(() => parseBillingMode('automatic')).toThrow()
+    expect(resolveBillingMode(undefined, false)).toBe('mock')
+    expect(resolveBillingMode(undefined, true)).toBe('stripe')
+    expect(resolveBillingMode('stripe', false)).toBe('stripe')
     expect(() => validateStripeServerConfiguration('stripe', {
       secretKey: '',
       ownerMonthlyPriceId: '', ownerAnnualPriceId: '',

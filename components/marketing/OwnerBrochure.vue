@@ -41,9 +41,14 @@
       <div class="owner-brochure__hero-visual" aria-hidden="true">
         <div class="owner-brochure__visual-card owner-brochure__visual-card--main">
           <span><Sparkles :size="13" /></span>
-          <div>
-            <small>Čišćenje apartmana</small>
-            <strong>Split · 65 €</strong>
+          <div class="owner-brochure__price-preview">
+            <small>Budžeti oglasa</small>
+            <ul class="owner-brochure__price-list">
+              <li v-for="price in brochurePrices" :key="price.city">
+                <strong>{{ price.city }}</strong>
+                <span>{{ price.amount }} €</span>
+              </li>
+            </ul>
           </div>
           <Check :size="15" />
         </div>
@@ -153,6 +158,12 @@ import {
   ShieldCheck,
   Sparkles,
 } from '@lucide/vue'
+
+const brochurePrices = [
+  { city: 'Split', amount: 65 },
+  { city: 'Zadar', amount: 55 },
+  { city: 'Makarska', amount: 80 },
+]
 
 const benefits = [
   { icon: ClipboardPlus, label: 'Objavite potrebu za čišćenjem u nekoliko minuta' },
@@ -331,9 +342,10 @@ const differences = [
     }
 
     &--main {
-      top: 9mm;
+      top: 5mm;
       right: 4mm;
       width: 49mm;
+      align-items: flex-start;
 
       > span {
         display: grid;
@@ -356,6 +368,38 @@ const differences = [
       right: 12mm;
       bottom: 7mm;
       width: 42mm;
+    }
+  }
+
+  &__price-preview {
+    flex: 1;
+  }
+
+  &__price-list {
+    display: grid;
+    padding: 0;
+    margin: 0.8mm 0 0;
+    gap: 0.45mm;
+    list-style: none;
+
+    li {
+      display: flex;
+      min-width: 24mm;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2mm;
+      font-size: 2.05mm;
+      line-height: 1.25;
+    }
+
+    strong {
+      font-size: 2.05mm;
+    }
+
+    span {
+      font-weight: $font-weight-bold;
+      color: $color-primary-dark;
+      white-space: nowrap;
     }
   }
 

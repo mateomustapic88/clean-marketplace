@@ -1,12 +1,12 @@
 import { saasConfig } from './config/saas'
-import { parseBillingMode } from './services/billing/billingConfiguration'
+import { resolveBillingMode } from './services/billing/billingConfiguration'
 import {
   resolveAppBaseUrl,
   resolveInfrastructureMode,
 } from './config/infrastructure'
 
-const billingMode = parseBillingMode(process.env.BILLING_MODE)
 const isProduction = process.env.NODE_ENV === 'production'
+const billingMode = resolveBillingMode(process.env.BILLING_MODE, isProduction)
 const hasSupabaseConfiguration = Boolean(
   process.env.NUXT_PUBLIC_SUPABASE_URL
   && process.env.NUXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY

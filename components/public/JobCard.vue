@@ -42,9 +42,9 @@ const displayTitle = computed(() => demoDisplayText(props.job.title, props.job.i
 <style scoped lang="scss">
 .job-card {
   display: grid;
-  gap: $space-5;
+  gap: $space-4;
   height: 100%;
-  padding: $space-6;
+  padding: $space-5;
   background: $color-surface;
   border: 1px solid $color-border;
   border-radius: $radius-xl;
@@ -69,22 +69,26 @@ const displayTitle = computed(() => demoDisplayText(props.job.title, props.job.i
     flex-wrap: wrap;
     gap: $space-2;
     align-items: center;
+    min-width: 0;
   }
 
   h3 {
-    font-size: $font-size-lg;
+    min-width: 0;
+    font-size: $font-size-md;
     line-height: 1.35;
   }
 
   h3 a {
     color: $color-text-primary;
     text-decoration: none;
+    overflow-wrap: anywhere;
   }
 
   &__meta {
     display: grid;
     gap: $space-2;
-    font-size: $font-size-sm;
+    font-size: $font-size-xs;
+    line-height: 1.45;
     color: $color-text-secondary;
 
     span {
@@ -109,12 +113,14 @@ const displayTitle = computed(() => demoDisplayText(props.job.title, props.job.i
 
   &__footer {
     align-items: end;
-    padding-top: $space-4;
+    padding-top: $space-3;
     border-top: 1px solid $color-border;
   }
 
   &__offers {
-    font-size: $font-size-sm;
+    font-size: $font-size-xs;
+    line-height: 1.4;
+    text-align: right;
     color: $color-text-secondary;
   }
 }

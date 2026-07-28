@@ -16,6 +16,11 @@ export const parseBillingMode = (value: string | undefined): BillingMode => {
   return mode
 }
 
+export const resolveBillingMode = (
+  value: string | undefined,
+  isProduction: boolean,
+): BillingMode => parseBillingMode(value || (isProduction ? 'stripe' : 'mock'))
+
 export const validateStripeServerConfiguration = (
   mode: BillingMode,
   configuration: StripeServerConfiguration,
