@@ -67,10 +67,6 @@
           </BaseCard>
         </aside>
       </div>
-      <section class="profile-page__related">
-        <SectionHeader align="left" :title="t('cleanerProfile.related')" />
-        <div><CleanerCard v-for="item in related" :key="item.id" :cleaner="item" :city-name="cityName(item.cityCode)" /></div>
-      </section>
     </div>
   </div>
   <div v-else class="profile-page__missing container">
@@ -105,11 +101,6 @@ const receivedRatings = computed(() => ratingsStore.ratings.filter(
   (rating) => rating.subjectId === cleaner.value?.userId,
 ))
 const cityName = (code: string) => userStore.cities.find((city) => city.code === code)?.name ?? code
-const related = computed(() => userStore.cleaners
-  .filter((item) => item.id !== cleaner.value?.id
-    && (item.cityCode === cleaner.value?.cityCode
-      || item.serviceAreas.some((area) => area.cityCode === cleaner.value?.cityCode)))
-  .slice(0, 3))
 const breadcrumbs = computed(() => [
   { label: t('navigation.home'), to: getAppRoute('home', locale.value) },
   { label: t('cleaners.title'), to: getAppRoute('cleaners', locale.value) },
@@ -286,16 +277,6 @@ useHead(() => ({
     }
   }
 
-  &__related {
-    margin-top: $space-16;
-
-    > div {
-      display: grid;
-      gap: $space-5;
-      margin-top: $space-6;
-    }
-  }
-
   &__missing {
     padding-block: $space-20;
   }
@@ -305,9 +286,6 @@ useHead(() => ({
       grid-template-columns: auto 1fr auto;
     }
 
-    &__related > div {
-      grid-template-columns: repeat(3, 1fr);
-    }
   }
 
   @media (min-width: $breakpoint-lg) {
