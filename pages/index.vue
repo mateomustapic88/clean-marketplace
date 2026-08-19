@@ -174,11 +174,23 @@ const { t, locale } = useI18n()
 const jobsStore = useJobsStore()
 const userStore = useUserStore()
 const config = useRuntimeConfig()
-await Promise.all([jobsStore.loadJobs(), userStore.loadDirectory()])
-const featuredJobs = computed(() => jobsStore.jobs
-  .filter((job) => ['published', 'receiving_offers'].includes(job.status)).slice(0, 3))
-const featuredCleaners = computed(() => [...userStore.cleaners]
-  .sort((a, b) => (b.averageRating ?? 0) - (a.averageRating ?? 0)).slice(0, 3))
+await Promise.all([
+  jobsStore.searchPublicJobs({
+    search: '',
+    page: 1,
+    pageSize: 3,
+    sort: 'newest',
+  }),
+  userStore.searchCleaners({
+    search: '',
+    page: 1,
+    pageSize: 3,
+    sort: 'rating',
+  }),
+  userStore.loadCities(),
+])
+const featuredJobs = computed(() => jobsStore.jobs)
+const featuredCleaners = computed(() => userStore.cleaners)
 const cityName = (code: string) => userStore.cities.find((city) => city.code === code)?.name ?? code
 const problems = [
   { key: 'pricing', icon: Tags },

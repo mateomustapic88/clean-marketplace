@@ -18,9 +18,14 @@
           <PriceDisplay :value="85" :suffix="t('jobs.budgetType.fixed')" />
         </div>
         <div class="hero-section__profile">
-          <BaseAvatar :name="t('publicHome.hero.profileName')" size="lg" />
-          <div><strong>{{ t('publicHome.hero.profileShortName') }}</strong><RatingSummary :value="4.9" :count="12" /></div>
-          <DemoBadge type="profile" />
+          <BaseAvatar :name="t('publicHome.hero.profileName')" size="md" />
+          <div class="hero-section__profile-details">
+            <div class="hero-section__profile-identity">
+              <strong>{{ t('publicHome.hero.profileShortName') }}</strong>
+              <DemoBadge type="profile" />
+            </div>
+            <RatingSummary :value="4.9" :count="12" />
+          </div>
         </div>
         <svg viewBox="0 0 480 360" aria-hidden="true">
           <path d="M52 280C90 191 132 121 230 92c106-31 172 32 198 117 25 83-36 114-118 117-103 4-296 35-258-46Z" fill="#e7f3f2" />
@@ -88,7 +93,7 @@ const { t, locale } = useI18n()
     position: relative;
     min-height: 25rem;
 
-    svg {
+    > svg {
       width: 100%;
       height: 100%;
     }
@@ -108,28 +113,74 @@ const { t, locale } = useI18n()
   }
 
   &__job {
-    top: 1rem;
+    top: 1.5rem;
     left: 0;
+    width: min(12.5rem, 48%);
+    gap: $space-3;
+    padding: $space-5;
 
     > span {
       font-size: $font-size-xs;
+      font-weight: $font-weight-semibold;
       color: $color-primary;
+    }
+
+    > strong {
+      font-size: $font-size-md;
+      line-height: 1.35;
     }
 
     p {
       display: flex;
-      gap: $space-1;
+      gap: $space-2;
       align-items: center;
-      font-size: $font-size-sm;
+      font-size: $font-size-xs;
+      line-height: 1.4;
       color: $color-text-secondary;
+
+      svg {
+        flex: 0 0 auto;
+      }
+    }
+
+    :deep(.price-display) {
+      padding-top: $space-3;
+      border-top: 1px solid $color-border;
+    }
+
+    :deep(.price-display strong) {
+      font-size: $font-size-lg;
+    }
+
+    :deep(.price-display span) {
+      font-size: $font-size-xs;
     }
   }
 
   &__profile {
     right: 0;
-    bottom: 1rem;
-    grid-template-columns: auto 1fr;
+    bottom: 1.5rem;
+    display: flex;
+    width: min(18rem, 78%);
     align-items: center;
+  }
+
+  &__profile-details {
+    display: grid;
+    min-width: 0;
+    gap: $space-2;
+  }
+
+  &__profile-identity {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+    align-items: center;
+
+    strong {
+      font-size: $font-size-sm;
+      line-height: 1.35;
+    }
   }
 
   @media (min-width: $breakpoint-lg) {
