@@ -29,7 +29,7 @@ import { getAppRoute } from '~/utils/routes'
 
 const { t, locale } = useI18n()
 const year = new Date().getFullYear()
-const supportEmail = 'cleanmarketplace.2026@gmail.com'
+const supportEmail = 'cleanmarketplace2026@gmail.com'
 const groups = computed(() => [
   {
     title: t('footer.product'),

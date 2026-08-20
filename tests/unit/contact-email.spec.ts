@@ -21,7 +21,7 @@ describe('contact email delivery', () => {
     await sendContactEmail(input, {
       apiKey: 'resend-test-key',
       from: 'Clean Marketplace <support@clean-marketplace.com>',
-      to: 'cleanmarketplace.2026@gmail.com',
+      to: 'cleanmarketplace2026@gmail.com',
     }, 'contact-feedback-123')
 
     expect(fetchMock).toHaveBeenCalledOnce()
@@ -32,7 +32,7 @@ describe('contact email delivery', () => {
       'Authorization': 'Bearer resend-test-key',
       'Idempotency-Key': 'contact-feedback-123',
     })
-    expect(body.to).toEqual(['cleanmarketplace.2026@gmail.com'])
+    expect(body.to).toEqual(['cleanmarketplace2026@gmail.com'])
     expect(body.reply_to).toBe('ana@example.com')
     expect(body.html).toContain('Ana &lt;script&gt;')
     expect(body.html).not.toContain('Ana <script>')
@@ -44,7 +44,7 @@ describe('contact email delivery', () => {
     await expect(sendContactEmail(input, {
       apiKey: 'resend-test-key',
       from: 'Clean Marketplace <support@clean-marketplace.com>',
-      to: 'cleanmarketplace.2026@gmail.com',
+      to: 'cleanmarketplace2026@gmail.com',
     }, 'contact-feedback-456')).rejects.toThrow('status 422')
   })
 })

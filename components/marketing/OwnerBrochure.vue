@@ -139,7 +139,7 @@
 
     <footer class="owner-brochure__footer">
       <strong>Clean Marketplace</strong>
-      <span>cleanmarketplace.2026@gmail.com</span>
+      <span>cleanmarketplace2026@gmail.com</span>
       <a href="https://clean-marketplace.com">clean-marketplace.com</a>
     </footer>
   </article>

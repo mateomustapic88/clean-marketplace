@@ -40,7 +40,7 @@ import { getFieldErrors } from '~/utils/validation'
 defineI18nRoute({ paths: { hr: '/kontakt', en: '/contact', sl: '/kontakt' } })
 const { t, locale } = useI18n()
 const route = useRoute()
-const supportEmail = 'cleanmarketplace.2026@gmail.com'
+const supportEmail = 'cleanmarketplace2026@gmail.com'
 const form = reactive({ name: '', email: '', userType: 'owner' as 'owner' | 'cleaner' | 'other', subject: '', message: '', consent: false })
 const errors = ref<Record<string, string>>({})
 const loading = ref(false)
