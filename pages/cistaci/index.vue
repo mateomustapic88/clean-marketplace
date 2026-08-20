@@ -21,6 +21,9 @@
           </BaseButton>
         </div>
         <ActiveFilterChips :items="activeChips" @remove="removeFilter" @clear="resetFilters" />
+        <p v-if="hasIllustrativeProfiles" class="catalog-page__disclosure" role="note">
+          {{ t('cleaners.illustrativeNotice') }}
+        </p>
         <div v-if="userStore.isLoading" class="catalog-page__grid">
           <CleanerCardSkeleton v-for="item in pageSize" :key="item" />
         </div>
@@ -73,7 +76,7 @@ const fromQuery = () => ({
 })
 const filters = ref(fromQuery())
 const sort = ref<CleanerSort>((route.query.sort as CleanerSort)
-  || (filters.value.search ? 'relevance' : 'rating'))
+  || (filters.value.search ? 'relevance' : 'newest'))
 const page = ref(Number(route.query.page) || 1)
 const pageSize = 9
 const drawerOpen = ref(false)
@@ -107,6 +110,7 @@ const filteredCleaners = computed(() => userStore.cleaners)
 const totalPages = computed(() =>
   Math.max(1, Math.ceil(userStore.cleanerSearchTotal / pageSize)))
 const pagedCleaners = computed(() => filteredCleaners.value)
+const hasIllustrativeProfiles = computed(() => pagedCleaners.value.some((cleaner) => cleaner.isDemo))
 const cityOptions = computed(() => userStore.cities.map((city) => ({ label: city.name, value: city.code })))
 const cityName = (code: string) => userStore.cities.find((city) => city.code === code)?.name ?? code
 const sortOptions = computed(() => (['relevance', 'rating', 'rate', 'completed', 'newest'] as CleanerSort[])
@@ -130,13 +134,13 @@ watch([filters, sort, page], () => {
 }, { deep: true })
 watch([filters, sort], () => page.value = 1, { deep: true })
 watch(() => filters.value.search, (search) => {
-  if (search && sort.value === 'rating') sort.value = 'relevance'
-  if (!search && sort.value === 'relevance') sort.value = 'rating'
+  if (search && sort.value === 'newest') sort.value = 'relevance'
+  if (!search && sort.value === 'relevance') sort.value = 'newest'
 })
 watch(totalPages, (value) => page.value = Math.min(page.value, value))
 const resetFilters = () => {
   filters.value = emptyCleanerFilters()
-  sort.value = 'rating'
+  sort.value = 'newest'
 }
 const removeFilter = (key: string) => {
   const defaults = emptyCleanerFilters()
@@ -213,6 +217,16 @@ useHead({
     display: grid;
     gap: $space-6;
     min-width: 0;
+  }
+
+  &__disclosure {
+    padding: $space-3 $space-4;
+    font-size: $font-size-xs;
+    line-height: 1.5;
+    color: $color-text-secondary;
+    background: rgba($color-primary, 0.05);
+    border-left: 3px solid rgba($color-primary, 0.35);
+    border-radius: $radius-md;
   }
 
   &__toolbar {

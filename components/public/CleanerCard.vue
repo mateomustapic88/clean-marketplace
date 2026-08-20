@@ -4,7 +4,6 @@
       <BaseAvatar :name="fullName" size="md" />
       <div class="cleaner-card__identity">
         <h3><NuxtLink :to="getCleanerRoute(cleaner.id, locale)">{{ fullName }}</NuxtLink></h3>
-        <DemoBadge v-if="cleaner.isDemo" type="profile" />
         <p class="cleaner-card__location"><MapPin :size="15" />{{ cityName }}</p>
       </div>
     </header>

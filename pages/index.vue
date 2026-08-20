@@ -97,6 +97,9 @@
     <section class="public-home__section public-home__section--tinted">
       <div class="container">
         <SectionHeader :eyebrow="t('publicHome.featuredCleaners.eyebrow')" :title="t('publicHome.featuredCleaners.title')" :description="t('publicHome.featuredCleaners.description')" />
+        <p v-if="hasIllustrativeCleaners" class="public-home__disclosure" role="note">
+          {{ t('cleaners.illustrativeNotice') }}
+        </p>
         <div class="public-home__cards">
           <CleanerCard v-for="cleaner in featuredCleaners" :key="cleaner.id" :cleaner="cleaner" :city-name="cityName(cleaner.cityCode)" />
         </div>
@@ -191,6 +194,7 @@ await Promise.all([
 ])
 const featuredJobs = computed(() => jobsStore.jobs)
 const featuredCleaners = computed(() => userStore.cleaners)
+const hasIllustrativeCleaners = computed(() => featuredCleaners.value.some((cleaner) => cleaner.isDemo))
 const cityName = (code: string) => userStore.cities.find((city) => city.code === code)?.name ?? code
 const problems = [
   { key: 'pricing', icon: Tags },
@@ -427,6 +431,18 @@ useHead({
   &__center {
     margin-top: $space-8;
     text-align: center;
+  }
+
+  &__disclosure {
+    max-width: 48rem;
+    padding: $space-3 $space-4;
+    margin: $space-6 auto 0;
+    font-size: $font-size-xs;
+    line-height: 1.5;
+    color: $color-text-secondary;
+    text-align: center;
+    background: rgba($color-primary, 0.05);
+    border-radius: $radius-md;
   }
 
   &__transparency {
