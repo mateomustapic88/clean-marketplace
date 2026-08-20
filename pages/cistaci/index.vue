@@ -21,9 +21,6 @@
           </BaseButton>
         </div>
         <ActiveFilterChips :items="activeChips" @remove="removeFilter" @clear="resetFilters" />
-        <p v-if="hasIllustrativeProfiles" class="catalog-page__disclosure" role="note">
-          {{ t('cleaners.illustrativeNotice') }}
-        </p>
         <div v-if="userStore.isLoading" class="catalog-page__grid">
           <CleanerCardSkeleton v-for="item in pageSize" :key="item" />
         </div>
@@ -110,7 +107,6 @@ const filteredCleaners = computed(() => userStore.cleaners)
 const totalPages = computed(() =>
   Math.max(1, Math.ceil(userStore.cleanerSearchTotal / pageSize)))
 const pagedCleaners = computed(() => filteredCleaners.value)
-const hasIllustrativeProfiles = computed(() => pagedCleaners.value.some((cleaner) => cleaner.isDemo))
 const cityOptions = computed(() => userStore.cities.map((city) => ({ label: city.name, value: city.code })))
 const cityName = (code: string) => userStore.cities.find((city) => city.code === code)?.name ?? code
 const sortOptions = computed(() => (['relevance', 'rating', 'rate', 'completed', 'newest'] as CleanerSort[])
@@ -217,16 +213,6 @@ useHead({
     display: grid;
     gap: $space-6;
     min-width: 0;
-  }
-
-  &__disclosure {
-    padding: $space-3 $space-4;
-    font-size: $font-size-xs;
-    line-height: 1.5;
-    color: $color-text-secondary;
-    background: rgba($color-primary, 0.05);
-    border-left: 3px solid rgba($color-primary, 0.35);
-    border-radius: $radius-md;
   }
 
   &__toolbar {

@@ -132,7 +132,7 @@
   },
   "demo": {
     "profileBadge": "Demo profil",
-    "listingBadge": "Primjer oglasa",
+    "listingBadge": "Ilustrativni oglas",
     "dataBadge": "Demo podaci",
     "ratingBadge": "Demo ocjena"
   },
@@ -351,7 +351,6 @@
     "eyebrow": "Osobe za čišćenje",
     "title": "Pronađite osobu za čišćenje",
     "description": "Usporedite cijene, dostupnost, područja rada, iskustvo i ocjene osoba za čišćenje apartmana.",
-    "illustrativeNotice": "Dio prikazanih profila ilustrativan je i služi za prikaz načina rada platforme.",
     "metaTitle": "Osobe za čišćenje apartmana u Hrvatskoj",
     "metaDescription": "Pronađite osobu za čišćenje apartmana u Hrvatskoj. Usporedite cijene, dostupnost, iskustvo i područja rada na jednom mjestu.",
     "pagination": "Stranice profila",

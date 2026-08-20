@@ -16,9 +16,6 @@
           <span>{{ t('cleaners.card.minimum', { price: formatPrice(cleaner.minimumJobPrice, locale) }) }}</span>
         </div>
       </header>
-      <p v-if="cleaner.isDemo" class="profile-page__disclosure" role="note">
-        {{ t('cleaners.illustrativeNotice') }}
-      </p>
       <div class="profile-page__layout">
         <main>
           <BaseCard class="profile-page__section">
@@ -200,17 +197,6 @@ useHead(() => ({
     gap: $space-3;
     align-items: center;
     margin-block: $space-3 $space-2;
-  }
-
-  &__disclosure {
-    padding: $space-3 $space-4;
-    margin: -$space-4 0 $space-8;
-    font-size: $font-size-xs;
-    line-height: 1.5;
-    color: $color-text-secondary;
-    background: rgba($color-primary, 0.05);
-    border-left: 3px solid rgba($color-primary, 0.35);
-    border-radius: $radius-md;
   }
 
   &__price {
