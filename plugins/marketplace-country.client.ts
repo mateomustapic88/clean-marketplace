@@ -1,9 +1,9 @@
 import { getDefaultMarketplaceLocale, marketplaceLocaleCodes } from '~/config/marketplaces'
 import { useMarketplaceStore } from '~/stores/marketplace'
 
-export default defineNuxtPlugin(async () => {
+export default defineNuxtPlugin(async (nuxtApp) => {
   const marketplaceStore = useMarketplaceStore()
-  const { locale, setLocale } = useI18n()
+  const { locale, setLocale } = nuxtApp.$i18n as ReturnType<typeof useI18n>
   marketplaceStore.initialize()
 
   const ensureSupportedLocale = async () => {

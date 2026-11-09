@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest'
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import type { CleaningJob } from '~/domains/jobs/types'
 import type { CleanerProfile } from '~/domains/users/types'
 import { getDefaultMarketplaceLocale, marketplaceLocaleCodes } from '~/config/marketplaces'
@@ -31,6 +33,12 @@ const cleaner = (countryCode: 'HR' | 'US'): CleanerProfile => ({
 })
 
 describe('country marketplace isolation', () => {
+  it('uses the Nuxt i18n instance from the client plugin context', () => {
+    const source = readFileSync(resolve('plugins/marketplace-country.client.ts'), 'utf8')
+    expect(source).toContain('nuxtApp.$i18n')
+    expect(source).not.toContain('useI18n()')
+  })
+
   it('limits languages to the selected marketplace', () => {
     expect(marketplaceLocaleCodes.HR).toEqual(['hr', 'en'])
     expect(marketplaceLocaleCodes.US).toEqual(['en'])
