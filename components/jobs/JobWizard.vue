@@ -9,7 +9,7 @@
         <legend>{{ steps[0] }}</legend>
         <div class="job-wizard__grid">
           <BaseInput v-model="model.title" required :label="t('owner.job.fields.title')" />
-          <BaseInput v-model="model.apartmentName" required :label="t('owner.job.fields.apartmentName')" />
+          <BaseInput v-model="model.apartmentName" required :label="t(isUsMarketplace ? 'owner.job.fields.propertyName' : 'owner.job.fields.apartmentName')" />
           <BaseSelect v-model="model.cityCode" required :label="t('catalog.city')" :options="cities" />
           <BaseInput v-model="model.approximateArea" required :label="t('owner.job.fields.approximateArea')" />
           <BaseInput v-model="model.address" required :label="t('owner.job.fields.address')" />
@@ -19,7 +19,7 @@
       <fieldset v-show="current === 1">
         <legend>{{ steps[1] }}</legend>
         <div class="job-wizard__grid">
-          <BaseInput v-model.number="model.sizeSquareMeters" type="number" required :label="t('owner.job.fields.size')" />
+          <BaseInput v-model.number="model.sizeSquareMeters" type="number" required :label="t(isUsMarketplace ? 'owner.job.fields.propertySize' : 'owner.job.fields.size')" />
           <BaseInput v-model.number="model.bedrooms" type="number" required :label="t('owner.job.fields.bedrooms')" />
           <BaseInput v-model.number="model.bathrooms" type="number" required :label="t('owner.job.fields.bathrooms')" />
           <BaseInput v-model.number="model.beds" type="number" required :label="t('owner.job.fields.beds')" />
@@ -59,8 +59,8 @@
           <p>{{ model.apartmentName }} · {{ cityLabel }}</p>
           <dl>
             <div><dt>{{ t('owner.job.fields.date') }}</dt><dd>{{ model.preferredDate || '-' }} {{ model.preferredStartTime }}</dd></div>
-            <div><dt>{{ t('owner.job.fields.budget') }}</dt><dd>{{ model.proposedBudget }} EUR</dd></div>
-            <div><dt>{{ t('owner.job.fields.size') }}</dt><dd>{{ model.sizeSquareMeters }} m²</dd></div>
+            <div><dt>{{ t('owner.job.fields.budget') }}</dt><dd>{{ formatPrice(model.proposedBudget, locale, marketplaceStore.country.currencyCode) }}</dd></div>
+            <div><dt>{{ t(isUsMarketplace ? 'owner.job.fields.propertySize' : 'owner.job.fields.size') }}</dt><dd>{{ formatArea(model.sizeSquareMeters, marketplaceStore.country.measurementSystem) }}</dd></div>
           </dl>
           <BaseAlert v-if="invalidSteps.length" variant="error">{{ t('owner.job.validationError') }}</BaseAlert>
         </div>
@@ -79,6 +79,7 @@
 <script setup lang="ts">
 import type { CleaningJobServices } from '~/domains/jobs/types'
 import type { JobFormData } from '~/schemas/validation'
+import { formatArea, formatPrice } from '~/utils/formatters'
 
 const props = withDefaults(defineProps<{
   cities: Array<{ label: string, value: string }>
@@ -95,9 +96,11 @@ const props = withDefaults(defineProps<{
 })
 const emit = defineEmits<{ save: [], publish: [] }>()
 const model = defineModel<JobFormData & { photoUrls: string[] }>({ required: true })
-const { t } = useI18n()
+const { t, locale } = useI18n()
+const marketplaceStore = useMarketplaceStore()
+const isUsMarketplace = computed(() => marketplaceStore.effectiveCountryCode === 'US')
 const current = ref(0)
-const steps = computed(() => ['basic', 'apartment', 'requirements', 'budget', 'schedule', 'review'].map((key) => t(`owner.job.steps.${key}`)))
+const steps = computed(() => ['basic', isUsMarketplace.value ? 'property' : 'apartment', 'requirements', 'budget', 'schedule', 'review'].map((key) => t(`owner.job.steps.${key}`)))
 const serviceKeys: Array<keyof CleaningJobServices> = ['cleaningSuppliesProvided', 'linenReplacement', 'towelReplacement', 'laundry', 'balconyCleaning', 'kitchenCleaning', 'fridgeCleaning', 'ovenCleaning', 'windowCleaning', 'sameDayTurnover']
 const budgetOptions = computed(() => ['fixed', 'hourly'].map((value) => ({ value, label: t(`jobs.budgetType.${value}`) })))
 const cityLabel = computed(() => props.cities.find((city) => city.value === model.value.cityCode)?.label ?? '')

@@ -16,6 +16,7 @@ const jobPayload = (input: Partial<CreateCleaningJobInput>) => {
     ['ownerId', 'owner_id', (value) => value], ['assignedCleanerId', 'assigned_cleaner_id', (value) => value],
     ['acceptedOfferId', 'accepted_offer_id', (value) => value], ['title', 'title', (value) => value],
     ['apartmentName', 'apartment_name', (value) => value], ['cityCode', 'city_code', (value) => value],
+    ['countryCode', 'country_code', (value) => value], ['currencyCode', 'currency_code', (value) => value],
     ['approximateArea', 'approximate_area', (value) => value], ['hideExactAddress', 'hide_exact_address', (value) => value],
     ['sizeSquareMeters', 'size_square_meters', (value) => value], ['bedrooms', 'bedrooms', (value) => value],
     ['bathrooms', 'bathrooms', (value) => value], ['beds', 'beds', (value) => value],
@@ -47,8 +48,9 @@ export class SupabaseJobRepository implements JobRepository {
 
   async list(filters: JobFilters = {}): Promise<CleaningJob[]> {
     if (filters.search?.trim()) {
-      const { data, error } = await this.client.rpc('search_marketplace_jobs', {
+      const { data, error } = await this.client.rpc('search_marketplace_jobs_by_country', {
         p_search: filters.search,
+        p_country_code: filters.countryCode ?? null,
         p_city_code: filters.cityCode ?? null,
         p_budget_type: filters.budgetType ?? null,
         p_minimum_budget_cents: filters.minimumBudget === undefined
@@ -87,6 +89,7 @@ export class SupabaseJobRepository implements JobRepository {
 
     let query = this.client.from('jobs').select(selection).order('created_at', { ascending: false })
     if (filters.cityCode) query = query.eq('city_code', filters.cityCode)
+    if (filters.countryCode) query = query.eq('country_code', filters.countryCode)
     if (filters.ownerId) query = query.eq('owner_id', filters.ownerId)
     if (filters.cleanerId) query = query.eq('assigned_cleaner_id', filters.cleanerId)
     if (filters.status) query = query.eq('status', filters.status)
@@ -102,8 +105,9 @@ export class SupabaseJobRepository implements JobRepository {
   }
 
   async searchPublic(criteria: PublicJobSearch): Promise<SearchPage<CleaningJob>> {
-    const { data, error } = await this.client.rpc('search_marketplace_jobs', {
+    const { data, error } = await this.client.rpc('search_marketplace_jobs_by_country', {
       p_search: criteria.search,
+      p_country_code: criteria.countryCode,
       p_city_code: criteria.cityCode ?? null,
       p_budget_type: criteria.budgetType ?? null,
       p_minimum_budget_cents: criteria.minimumBudget === undefined

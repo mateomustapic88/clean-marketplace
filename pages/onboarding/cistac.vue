@@ -197,6 +197,7 @@
 </template>
 
 <script setup lang="ts">
+import { marketplaceCityLabel } from '~/config/marketplaces'
 import type { CleanerProfile } from '~/domains/users/types'
 import { createCleanerProfileSchema } from '~/schemas/validation'
 import { useAuthStore } from '~/stores/auth'
@@ -256,7 +257,7 @@ const load = async (id?: string) => {
   }
 }
 watch(() => authStore.user?.id, load, { immediate: true })
-const cityOptions = computed(() => userStore.cities.map((city) => ({ value: city.code, label: city.name })))
+const cityOptions = computed(() => userStore.cities.map((city) => ({ value: city.code, label: marketplaceCityLabel(city) })))
 const toggleCity = (code: string) => {
   serviceCities.value = serviceCities.value.includes(code)
     ? serviceCities.value.filter((item) => item !== code)

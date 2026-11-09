@@ -8,6 +8,7 @@
         </NuxtLink>
       </nav>
       <div class="public-header__actions">
+        <CountrySwitcher class="public-header__country" />
         <LanguageSwitcher class="public-header__language" />
         <BaseButton v-if="!user" class="public-header__desktop-action" size="sm" variant="ghost" :to="loginRoute">
           {{ t('header.login') }}
@@ -45,6 +46,7 @@
 import { Menu } from '@lucide/vue'
 import { storeToRefs } from 'pinia'
 import AppLogo from '~/components/layout/AppLogo.vue'
+import CountrySwitcher from '~/components/location/CountrySwitcher.vue'
 import LanguageSwitcher from '~/components/navigation/LanguageSwitcher.vue'
 import { useAuthStore } from '~/stores/auth'
 import { getAppRoute, getRoleDashboardRoute } from '~/utils/routes'

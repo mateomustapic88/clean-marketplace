@@ -22,7 +22,10 @@ const isMockMode = useRuntimeConfig().public.infrastructureMode === 'mock'
 const authStore = useAuthStore()
 const jobsStore = useJobsStore()
 const userStore = useUserStore()
-await userStore.loadDirectory()
+await userStore.loadCurrentProfile(authStore.user?.id ?? '')
+await userStore.loadDirectory(userStore.profile && 'countryCode' in userStore.profile
+  ? userStore.profile.countryCode
+  : 'HR')
 const form = ref(emptyJobForm())
 const saveStatus = ref<'saved' | 'saving' | 'unsaved'>('saved')
 const invalidSteps = ref<number[]>([])
@@ -35,7 +38,13 @@ const persistDraft = async () => {
   if (!authStore.user) return
   const job = draftId.value
     ? await jobsStore.updateJob({ id: draftId.value, ...form.value, status: 'draft' })
-    : await jobsStore.createJob(formToJobInput(form.value, authStore.user.id, 'draft'))
+    : await jobsStore.createJob(formToJobInput(
+        form.value,
+        authStore.user.id,
+        'draft',
+        userStore.profile && 'countryCode' in userStore.profile ? userStore.profile.countryCode : 'HR',
+        userStore.profile && 'currencyCode' in userStore.profile ? userStore.profile.currencyCode : 'EUR',
+      ))
   draftId.value = job.id
 }
 const autosave = createAutosaveController(persistDraft, (status) => saveStatus.value = status)

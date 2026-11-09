@@ -29,7 +29,6 @@ describe('mock data', () => {
 
   it.each([
     'admins',
-    'cities',
     'users',
     'credentials',
     'owners',
@@ -41,6 +40,12 @@ describe('mock data', () => {
     'notifications',
   ])('marks every %s record as demo data', (name) => {
     expect(readRecords(name).every((record) => record.isDemo === true)).toBe(true)
+  })
+
+  it('contains selectable Croatian and United States cities', () => {
+    const cities = readRecords('cities')
+    expect(cities.some((city) => (city.countryCode ?? 'HR') === 'HR')).toBe(true)
+    expect(cities.some((city) => city.countryCode === 'US')).toBe(true)
   })
 
   it('keeps job and offer references internally consistent', () => {

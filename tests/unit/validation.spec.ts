@@ -21,6 +21,7 @@ describe('validation schemas', () => {
       email: 'ana@example.hr',
       password: 'Demo1234',
       phone: '+385 91 234 5678',
+      countryCode: 'HR',
       cityCode: 'split',
       role: 'owner',
     }).success).toBe(true)
@@ -38,6 +39,7 @@ describe('validation schemas', () => {
       email: 'nije-adresa',
       password: 'kratka',
       phone: '123',
+      countryCode: 'HR',
       cityCode: '',
       role: 'admin',
     }).success).toBe(false)

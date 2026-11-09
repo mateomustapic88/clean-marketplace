@@ -1,5 +1,5 @@
-import { expect, test } from '@playwright/test'
 import type { Page } from '@playwright/test'
+import { expect, test } from './fixtures'
 
 const loginAsOwner = async (page: Page) => {
   await page.goto('/prijava')

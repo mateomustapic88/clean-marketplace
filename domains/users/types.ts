@@ -1,5 +1,7 @@
 import type {
   Availability,
+  CountryCode,
+  CurrencyCode,
   DemoEntity,
   PreferredContactMethod,
   ServiceArea,
@@ -30,6 +32,8 @@ export interface OwnerProfile extends DemoEntity {
   lastName: string
   phone: string
   cityCode: string
+  countryCode: CountryCode
+  currencyCode: CurrencyCode
   preferredContactMethod: PreferredContactMethod
   companyName: string | null
   agencyName: string | null
@@ -51,6 +55,8 @@ export interface CleanerProfile extends DemoEntity {
   lastName: string
   phone: string
   cityCode: string
+  countryCode: CountryCode
+  currencyCode: CurrencyCode
   hourlyRate: number
   minimumJobPrice: number
   serviceRadiusKm: number

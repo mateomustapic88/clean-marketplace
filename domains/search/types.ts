@@ -1,4 +1,5 @@
 import type { BudgetType } from '~/domains/jobs/types'
+import type { CountryCode } from '~/domains/shared/types'
 
 export type JobSearchSort = 'relevance' | 'newest' | 'date' | 'budget-high' | 'budget-low'
 export type CleanerSearchSort = 'relevance' | 'rating' | 'rate' | 'completed' | 'newest'
@@ -10,6 +11,7 @@ export interface SearchPage<TEntity> {
 
 interface PaginatedSearch {
   search: string
+  countryCode: CountryCode
   page: number
   pageSize: number
 }

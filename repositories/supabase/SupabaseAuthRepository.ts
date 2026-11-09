@@ -44,6 +44,7 @@ export class SupabaseAuthRepository implements AuthRepository {
           last_name: input.lastName.trim(),
           phone: input.phone.trim(),
           city_code: input.cityCode,
+          country_code: input.countryCode,
           role: input.role,
         },
       },

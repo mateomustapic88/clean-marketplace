@@ -88,5 +88,65 @@
     "code": "trogir",
     "name": "Trogir",
     "county": "Splitsko-dalmatinska"
+  },
+  {
+    "id": "city-us-nyc", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-ny-new-york", "name": "New York", "county": "New York", "countryCode": "US", "regionCode": "NY", "regionName": "New York", "timeZone": "America/New_York"
+  },
+  {
+    "id": "city-us-miami", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-fl-miami", "name": "Miami", "county": "Florida", "countryCode": "US", "regionCode": "FL", "regionName": "Florida", "timeZone": "America/New_York"
+  },
+  {
+    "id": "city-us-orlando", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-fl-orlando", "name": "Orlando", "county": "Florida", "countryCode": "US", "regionCode": "FL", "regionName": "Florida", "timeZone": "America/New_York"
+  },
+  {
+    "id": "city-us-tampa", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-fl-tampa", "name": "Tampa", "county": "Florida", "countryCode": "US", "regionCode": "FL", "regionName": "Florida", "timeZone": "America/New_York"
+  },
+  {
+    "id": "city-us-la", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-ca-los-angeles", "name": "Los Angeles", "county": "California", "countryCode": "US", "regionCode": "CA", "regionName": "California", "timeZone": "America/Los_Angeles"
+  },
+  {
+    "id": "city-us-sd", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-ca-san-diego", "name": "San Diego", "county": "California", "countryCode": "US", "regionCode": "CA", "regionName": "California", "timeZone": "America/Los_Angeles"
+  },
+  {
+    "id": "city-us-sf", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-ca-san-francisco", "name": "San Francisco", "county": "California", "countryCode": "US", "regionCode": "CA", "regionName": "California", "timeZone": "America/Los_Angeles"
+  },
+  {
+    "id": "city-us-austin", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-tx-austin", "name": "Austin", "county": "Texas", "countryCode": "US", "regionCode": "TX", "regionName": "Texas", "timeZone": "America/Chicago"
+  },
+  {
+    "id": "city-us-dallas", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-tx-dallas", "name": "Dallas", "county": "Texas", "countryCode": "US", "regionCode": "TX", "regionName": "Texas", "timeZone": "America/Chicago"
+  },
+  {
+    "id": "city-us-houston", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-tx-houston", "name": "Houston", "county": "Texas", "countryCode": "US", "regionCode": "TX", "regionName": "Texas", "timeZone": "America/Chicago"
+  },
+  {
+    "id": "city-us-chicago", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-il-chicago", "name": "Chicago", "county": "Illinois", "countryCode": "US", "regionCode": "IL", "regionName": "Illinois", "timeZone": "America/Chicago"
+  },
+  {
+    "id": "city-us-phoenix", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-az-phoenix", "name": "Phoenix", "county": "Arizona", "countryCode": "US", "regionCode": "AZ", "regionName": "Arizona", "timeZone": "America/Phoenix"
+  },
+  {
+    "id": "city-us-vegas", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-nv-las-vegas", "name": "Las Vegas", "county": "Nevada", "countryCode": "US", "regionCode": "NV", "regionName": "Nevada", "timeZone": "America/Los_Angeles"
+  },
+  {
+    "id": "city-us-seattle", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-wa-seattle", "name": "Seattle", "county": "Washington", "countryCode": "US", "regionCode": "WA", "regionName": "Washington", "timeZone": "America/Los_Angeles"
+  },
+  {
+    "id": "city-us-boston", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-ma-boston", "name": "Boston", "county": "Massachusetts", "countryCode": "US", "regionCode": "MA", "regionName": "Massachusetts", "timeZone": "America/New_York"
+  },
+  {
+    "id": "city-us-denver", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-co-denver", "name": "Denver", "county": "Colorado", "countryCode": "US", "regionCode": "CO", "regionName": "Colorado", "timeZone": "America/Denver"
+  },
+  {
+    "id": "city-us-nashville", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-tn-nashville", "name": "Nashville", "county": "Tennessee", "countryCode": "US", "regionCode": "TN", "regionName": "Tennessee", "timeZone": "America/Chicago"
+  },
+  {
+    "id": "city-us-nola", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-la-new-orleans", "name": "New Orleans", "county": "Louisiana", "countryCode": "US", "regionCode": "LA", "regionName": "Louisiana", "timeZone": "America/Chicago"
+  },
+  {
+    "id": "city-us-honolulu", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-hi-honolulu", "name": "Honolulu", "county": "Hawaii", "countryCode": "US", "regionCode": "HI", "regionName": "Hawaii", "timeZone": "Pacific/Honolulu"
+  },
+  {
+    "id": "city-us-atlanta", "isDemo": false, "createdAt": "2026-11-09T00:00:00.000Z", "updatedAt": "2026-11-09T00:00:00.000Z", "code": "us-ga-atlanta", "name": "Atlanta", "county": "Georgia", "countryCode": "US", "regionCode": "GA", "regionName": "Georgia", "timeZone": "America/New_York"
   }
 ]

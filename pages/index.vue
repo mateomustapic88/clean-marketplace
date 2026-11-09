@@ -20,25 +20,25 @@
     <section class="public-home__section public-home__apartment-cleaning">
       <div class="container">
         <SectionHeader
-          :eyebrow="t('publicHome.apartmentCleaning.eyebrow')"
-          :title="t('publicHome.apartmentCleaning.title')"
-          :description="t('publicHome.apartmentCleaning.description')"
+          :eyebrow="marketHomeT('propertyCleaning.eyebrow', 'apartmentCleaning.eyebrow')"
+          :title="marketHomeT('propertyCleaning.title', 'apartmentCleaning.title')"
+          :description="marketHomeT('propertyCleaning.description', 'apartmentCleaning.description')"
         />
-        <div class="public-home__city-links" :aria-label="t('publicHome.apartmentCleaning.citiesLabel')">
+        <div class="public-home__city-links" :aria-label="marketHomeT('propertyCleaning.citiesLabel', 'apartmentCleaning.citiesLabel')">
           <NuxtLink
-            v-for="city in apartmentCleaningCities"
+            v-for="city in featuredCities"
             :key="city.code"
             :to="`${getAppRoute('cleaners', locale)}?city=${city.code}`"
           >
-            {{ t('publicHome.apartmentCleaning.cityLink', { city: city.name }) }}
+            {{ marketHomeT('propertyCleaning.cityLink', 'apartmentCleaning.cityLink', { city: city.name }) }}
           </NuxtLink>
         </div>
         <div class="public-home__center">
           <BaseButton
             variant="secondary"
-            :to="getAppRoute('apartmentCleaning', locale)"
+            :to="marketplaceStore.effectiveCountryCode === 'US' ? getAppRoute('cleaners', locale) : getAppRoute('apartmentCleaning', locale)"
           >
-            {{ t('publicHome.apartmentCleaning.action') }}
+            {{ marketHomeT('propertyCleaning.action', 'apartmentCleaning.action') }}
           </BaseButton>
         </div>
       </div>
@@ -60,14 +60,14 @@
     <section class="public-home__section">
       <div class="public-home__split container">
         <div>
-          <SectionHeader align="left" :eyebrow="t('publicHome.owners.eyebrow')" :title="t('publicHome.owners.title')" :description="t('publicHome.owners.description')" />
-          <ul><li v-for="item in 4" :key="item"><CheckCircle2 />{{ t(`publicHome.owners.items.${item}`) }}</li></ul>
-          <BaseButton :to="getAppRoute('register', locale)">{{ t('publicHome.owners.action') }}</BaseButton>
+          <SectionHeader align="left" :eyebrow="marketHomeT('owners.eyebrow', 'owners.eyebrow')" :title="marketHomeT('owners.title', 'owners.title')" :description="marketHomeT('owners.description', 'owners.description')" />
+          <ul><li v-for="item in 4" :key="item"><CheckCircle2 />{{ marketHomeT(`owners.items.${item}`, `owners.items.${item}`) }}</li></ul>
+          <BaseButton :to="getAppRoute('register', locale)">{{ marketHomeT('owners.action', 'owners.action') }}</BaseButton>
         </div>
         <div class="public-home__benefit-card">
           <ClipboardList :size="36" />
-          <h3>{{ t('publicHome.owners.cardTitle') }}</h3>
-          <p>{{ t('publicHome.owners.cardDescription') }}</p>
+          <h3>{{ marketHomeT('owners.cardTitle', 'owners.cardTitle') }}</h3>
+          <p>{{ marketHomeT('owners.cardDescription', 'owners.cardDescription') }}</p>
         </div>
       </div>
     </section>
@@ -120,14 +120,14 @@
     </section>
     <section class="public-home__section">
       <div class="container">
-        <SectionHeader :eyebrow="t('publicHome.pricing.eyebrow')" :title="t('publicHome.pricing.title')" :description="t('publicHome.pricing.description')" />
+        <SectionHeader :eyebrow="t('publicHome.pricing.eyebrow')" :title="t('publicHome.pricing.title')" :description="marketHomeT('pricing.description', 'pricing.description')" />
         <div class="public-home__price-grid">
           <BaseCard v-for="plan in pricingPlans" :key="plan.role" class="public-home__price-card">
             <div>
-              <h3>{{ t(`pricing.${plan.translationKey}.title`) }}</h3>
+              <h3>{{ plan.role === 'owner' && marketplaceStore.effectiveCountryCode === 'US' ? t('pricing.owner.titleUs') : t(`pricing.${plan.translationKey}.title`) }}</h3>
               <p>{{ t(`pricing.${plan.translationKey}.trial`) }}</p>
             </div>
-            <PriceDisplay :value="plan.monthlyAmount / 100" :suffix="t('pricing.plan.month')" />
+            <PriceDisplay :value="plan.monthlyAmount / 100" :currency="marketPricing.currency" :suffix="t('pricing.plan.month')" />
             <BaseButton :to="getAppRoute('pricing', locale)">{{ t('publicHome.pricing.action') }}</BaseButton>
           </BaseCard>
         </div>
@@ -142,8 +142,8 @@
     <section class="public-home__section">
       <div class="container">
         <CallToActionSection
-          :title="t('publicHome.cta.title')"
-          :description="t('publicHome.cta.description')"
+          :title="marketHomeT('cta.title', 'cta.title')"
+          :description="marketHomeT('cta.description', 'cta.description')"
           :primary-label="t('publicHome.cta.primary')"
           :primary-to="getAppRoute('register', locale)"
           :secondary-label="t('publicHome.cta.secondary')"
@@ -166,32 +166,56 @@ import {
   Tags,
 } from '@lucide/vue'
 import { useJobsStore } from '~/stores/jobs'
+import { useMarketplaceStore } from '~/stores/marketplace'
 import { useUserStore } from '~/stores/user'
 import { getAppRoute } from '~/utils/routes'
+import { getMarketplacePlans } from '~/config/saas'
 
 defineI18nRoute({ paths: { hr: '/', en: '/', sl: '/' } })
-const { t, locale } = useI18n()
+const { t, te, locale } = useI18n()
 const jobsStore = useJobsStore()
+const marketplaceStore = useMarketplaceStore()
 const userStore = useUserStore()
 const config = useRuntimeConfig()
 await Promise.all([
   jobsStore.searchPublicJobs({
     search: '',
+    countryCode: marketplaceStore.effectiveCountryCode,
+    ...(marketplaceStore.selectedCityCode && { cityCode: marketplaceStore.selectedCityCode }),
     page: 1,
     pageSize: 3,
     sort: 'newest',
   }),
   userStore.searchCleaners({
     search: '',
+    countryCode: marketplaceStore.effectiveCountryCode,
+    ...(marketplaceStore.selectedCityCode && { cityCode: marketplaceStore.selectedCityCode }),
     page: 1,
     pageSize: 3,
     sort: 'rating',
   }),
-  userStore.loadCities(),
+  userStore.loadCities(marketplaceStore.effectiveCountryCode),
 ])
 const featuredJobs = computed(() => jobsStore.jobs)
 const featuredCleaners = computed(() => userStore.cleaners)
 const cityName = (code: string) => userStore.cities.find((city) => city.code === code)?.name ?? code
+const marketHomeT = (usKey: string, defaultKey: string, named?: Record<string, string | number>) => {
+  const marketKey = `publicHomeUs.${usKey}`
+  const resolvedKey = marketplaceStore.effectiveCountryCode === 'US' && te(marketKey)
+    ? marketKey
+    : `publicHome.${defaultKey}`
+  return named ? t(resolvedKey, named) : t(resolvedKey)
+}
+watch(
+  [() => marketplaceStore.effectiveCountryCode, () => marketplaceStore.selectedCityCode],
+  async ([countryCode, cityCode]) => {
+    await Promise.all([
+      jobsStore.searchPublicJobs({ search: '', countryCode, ...(cityCode && { cityCode }), page: 1, pageSize: 3, sort: 'newest' }),
+      userStore.searchCleaners({ search: '', countryCode, ...(cityCode && { cityCode }), page: 1, pageSize: 3, sort: 'newest' }),
+      userStore.loadCities(countryCode, true),
+    ])
+  },
+)
 const problems = [
   { key: 'pricing', icon: Tags },
   { key: 'comparison', icon: Scale },
@@ -203,35 +227,28 @@ const transparencyItems = [
   { key: 'agreement', icon: ShieldCheck },
   { key: 'ratings', icon: Sparkles },
 ]
-const pricingPlans = [
+const marketPricing = computed(() => getMarketplacePlans(marketplaceStore.effectiveCountryCode))
+const pricingPlans = computed(() => [
   {
     role: 'owner',
     translationKey: 'owner',
-    monthlyAmount: config.public.plans.owner.monthlyAmount,
+    monthlyAmount: marketPricing.value.owner.monthlyAmount,
   },
   {
     role: 'cleaner',
     translationKey: 'plan',
-    monthlyAmount: config.public.plans.cleaner.monthlyAmount,
+    monthlyAmount: marketPricing.value.cleaner.monthlyAmount,
   },
-] as const
+] as const)
 const ownerSteps = Array.from({ length: 5 }, (_, index) => `how.steps.owner.${index + 1}`)
-const apartmentCleaningCities = [
-  { code: 'split', name: 'Split' },
-  { code: 'makarska', name: 'Makarska' },
-  { code: 'zadar', name: 'Zadar' },
-  { code: 'sibenik', name: 'Šibenik' },
-  { code: 'dubrovnik', name: 'Dubrovnik' },
-  { code: 'pula', name: 'Pula' },
-  { code: 'rijeka', name: 'Rijeka' },
-] as const
+const featuredCities = computed(() => userStore.cities.slice(0, 7))
 const faqItems = computed(() => Array.from({ length: 5 }, (_, index) => ({
-  question: t(`publicHome.faq.items.${index + 1}.question`),
-  answer: t(`publicHome.faq.items.${index + 1}.answer`),
+  question: marketHomeT(`faq.items.${index + 1}.question`, `faq.items.${index + 1}.question`),
+  answer: marketHomeT(`faq.items.${index + 1}.answer`, `faq.items.${index + 1}.answer`),
 })))
 usePublicSeo({
-  title: computed(() => t('publicHome.metaTitle')),
-  description: computed(() => t('publicHome.metaDescription')),
+  title: computed(() => marketHomeT('metaTitle', 'metaTitle')),
+  description: computed(() => marketHomeT('metaDescription', 'metaDescription')),
   path: computed(() => getAppRoute('home', locale.value)),
 })
 useHead({
@@ -244,26 +261,26 @@ useHead({
           '@type': 'WebSite',
           'name': 'Clean Marketplace',
           'url': String(config.public.siteUrl),
-          'inLanguage': locale.value === 'en' ? 'en-GB' : locale.value === 'sl' ? 'sl-SI' : 'hr-HR',
+          'inLanguage': locale.value === 'en' ? (marketplaceStore.effectiveCountryCode === 'US' ? 'en-US' : 'en-GB') : locale.value === 'sl' ? 'sl-SI' : 'hr-HR',
         },
         {
           '@type': 'Organization',
           'name': 'Clean Marketplace',
           'url': String(config.public.siteUrl),
           'logo': new URL('/favicon.svg', String(config.public.siteUrl)).href,
-          'description': t('publicHome.metaDescription'),
+          'description': marketHomeT('metaDescription', 'metaDescription'),
           'areaServed': {
             '@type': 'Country',
-            'name': 'Croatia',
+            'name': marketplaceStore.effectiveCountryCode === 'US' ? 'United States' : 'Croatia',
           },
         },
         {
           '@type': 'Service',
-          'name': t('apartmentCleaning.schema.serviceName'),
-          'serviceType': t('apartmentCleaning.schema.serviceType'),
+          'name': marketplaceStore.effectiveCountryCode === 'US' ? marketHomeT('serviceName', 'metaTitle') : t('apartmentCleaning.schema.serviceName'),
+          'serviceType': marketplaceStore.effectiveCountryCode === 'US' ? marketHomeT('serviceType', 'metaDescription') : t('apartmentCleaning.schema.serviceType'),
           'areaServed': {
             '@type': 'Country',
-            'name': 'Croatia',
+            'name': marketplaceStore.effectiveCountryCode === 'US' ? 'United States' : 'Croatia',
           },
           'provider': {
             '@type': 'Organization',
@@ -271,7 +288,7 @@ useHead({
             'url': String(config.public.siteUrl),
           },
           'url': new URL(
-            getAppRoute('apartmentCleaning', locale.value),
+            getAppRoute(marketplaceStore.effectiveCountryCode === 'US' ? 'cleaners' : 'apartmentCleaning', locale.value),
             String(config.public.siteUrl),
           ).href,
         },

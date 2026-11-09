@@ -73,6 +73,7 @@ export const searchLocalJobs = (
     if (
       !['published', 'receiving_offers'].includes(job.status)
       || rank < 0
+      || (job.countryCode ?? 'HR') !== criteria.countryCode
       || (criteria.cityCode && job.cityCode !== criteria.cityCode)
       || (criteria.budgetType && job.budgetType !== criteria.budgetType)
       || (criteria.minimumBudget !== undefined && job.proposedBudget < criteria.minimumBudget)
@@ -118,6 +119,7 @@ export const searchLocalCleaners = (
     ])
     if (
       rank < 0
+      || (cleaner.countryCode ?? 'HR') !== criteria.countryCode
       || (criteria.cityCode && cleaner.cityCode !== criteria.cityCode
         && !cleaner.serviceAreas.some((area) => area.cityCode === criteria.cityCode))
       || (criteria.maximumHourlyRate !== undefined

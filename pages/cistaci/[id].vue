@@ -12,7 +12,7 @@
           <RatingSummary :value="cleaner.averageRating" :count="cleaner.ratingCount" />
         </div>
         <div class="profile-page__price">
-          <PriceDisplay :value="cleaner.hourlyRate" :suffix="t('cleaners.card.perHour')" />
+          <PriceDisplay :value="cleaner.hourlyRate" :currency="cleaner.currencyCode" :suffix="t('cleaners.card.perHour')" />
           <span>{{ t('cleaners.card.minimum', { price: formatPrice(cleaner.minimumJobPrice, locale) }) }}</span>
         </div>
       </header>

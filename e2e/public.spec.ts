@@ -1,5 +1,5 @@
-import { expect, test } from '@playwright/test'
 import type { Page } from '@playwright/test'
+import { expect, test } from './fixtures'
 
 const openHydratedPage = async (page: Page, path: string) => {
   await page.goto(path)

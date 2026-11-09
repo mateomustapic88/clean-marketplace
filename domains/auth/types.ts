@@ -1,4 +1,5 @@
 import type { User, UserRole } from '~/domains/users/types'
+import type { CountryCode } from '~/domains/shared/types'
 
 export interface LoginCredentials {
   email: string
@@ -12,6 +13,7 @@ export interface RegisterInput {
   password: string
   phone: string
   cityCode: string
+  countryCode: CountryCode
   role: Exclude<UserRole, 'admin'>
 }
 

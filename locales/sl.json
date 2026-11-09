@@ -41,6 +41,31 @@
     "sl": "SL",
     "switchTo": "Preklopite jezik na {language}"
   },
+  "countries": {
+    "HR": {
+      "name": "Hrvaška",
+      "shortName": "Hrvaška",
+      "description": "Čistilna dela in strokovnjaki po vsej Hrvaški"
+    },
+    "US": {
+      "name": "Združene države Amerike",
+      "shortName": "ZDA",
+      "description": "Čistilna dela in strokovnjaki po Združenih državah"
+    }
+  },
+  "countryGate": {
+    "eyebrow": "Izberite trg",
+    "title": "Kje potrebujete čistilne storitve?",
+    "description": "Prikazali vam bomo lokalna dela, strokovnjake za čiščenje, mesta in cene za izbrano državo.",
+    "cityTitle": "Izberite mesto",
+    "cityDescription": "Izberite mesto za ustreznejše rezultate ali preglejte celotno državo.",
+    "allCities": "Vsa mesta",
+    "back": "Nazaj na države",
+    "note": "Državo lahko kadar koli spremenite v glavi strani."
+  },
+  "countrySwitcher": {
+    "label": "Država trga"
+  },
   "header": {
     "brandLabel": "Clean Marketplace - domača stran",
     "ownerAction": "Objavite delo",
@@ -158,6 +183,7 @@
       "showPassword": "Prikaži geslo",
       "hidePassword": "Skrij geslo",
       "phone": "Telefon",
+      "country": "Država",
       "city": "Mesto",
       "cityPlaceholder": "Izberite mesto"
     },
@@ -179,6 +205,8 @@
       "roleLegend": "Vrsta računa",
       "ownerRole": "Lastnik apartmaja",
       "ownerRoleDescription": "Objavljam dela in prejemam ponudbe.",
+      "ownerRoleUs": "Lastnik nepremičnine",
+      "ownerRoleDescriptionUs": "Objavljam čiščenje hiš, stanovanj ali drugih nepremičnin.",
       "cleanerRole": "Opravljam storitve čiščenja",
       "cleanerRoleDescription": "Poiščem zaposlitev in oddam ponudbe.",
       "passwordHint": "Vsaj 8 znakov.",
@@ -462,6 +490,59 @@
     "description_accuracy": "Natančnost opisa",
     "organization": "Organizacija",
     "fairness": "Pravičnost"
+  },
+  "publicHomeUs": {
+    "metaTitle": "Čiščenje hiš in stanovanj po Združenih državah",
+    "metaDescription": "Poiščite čistilne strokovnjake ali objavite čiščenje hiše, stanovanja, počitniške nastanitve ali druge nepremičnine v ZDA.",
+    "serviceName": "Tržnica za čiščenje nepremičnin v ZDA",
+    "serviceType": "Povezovanje lastnikov nepremičnin s čistilnimi strokovnjaki",
+    "hero": {
+      "eyebrow": "Preprostejše čiščenje nepremičnin",
+      "title": "Poiščite zanesljivo čiščenje za svojo nepremičnino",
+      "description": "Objavite čiščenje hiše, stanovanja, počitniške nastanitve ali druge nepremičnine in primerjajte ponudbe.",
+      "ownerAction": "Objavi čiščenje",
+      "visualLabel": "Ilustracija hiše s čiščenjem",
+      "cardLabel": "Primer dela",
+      "cardTitle": "Menjava gostov",
+      "cardCity": "Miami, FL"
+    },
+    "propertyCleaning": {
+      "eyebrow": "Čiščenje nepremičnin po ZDA",
+      "title": "Čiščenje hiš, stanovanj in počitniških nastanitev",
+      "description": "Primerjajte profile, cene in razpoložljivost ali objavite redno, globinsko ali zaključno čiščenje.",
+      "citiesLabel": "Mesta, kjer lahko najdete čistilne strokovnjake",
+      "cityLink": "Čistilne storitve v mestu {city}",
+      "action": "Preglej čistilne strokovnjake"
+    },
+    "owners": {
+      "eyebrow": "Za lastnike nepremičnin",
+      "title": "Več nadzora nad vsakim čiščenjem",
+      "description": "Objavite podatke o hiši, stanovanju, počitniški nastanitvi ali drugi nepremičnini in primerjajte ponudbe.",
+      "items": {
+        "1": "Vsi podatki o nepremičnini in delu na enem mestu",
+        "2": "Primerjava cen in razpoložljivosti",
+        "3": "Pregled profesionalnih profilov in ocen",
+        "4": "Jasna zgodovina storitev"
+      },
+      "action": "Registriraj se kot lastnik nepremičnine",
+      "cardTitle": "Oglas z vsemi ključnimi podatki",
+      "cardDescription": "Datum, čas, velikost nepremičnine, storitve in proračun ostanejo jasno zapisani."
+    },
+    "pricing": {
+      "description": "Lastniki nepremičnin plačajo približno 21 USD, čistilni strokovnjaki pa 43 USD mesečno, brez provizije."
+    },
+    "faq": {
+      "items": {
+        "1": {
+          "question": "Koliko Clean Marketplace stane lastnike nepremičnin?",
+          "answer": "Paket za lastnike nepremičnin stane približno 21 USD mesečno po sedemdnevnem preizkusu."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ste pripravljeni na preprostejše čiščenje nepremičnin?",
+      "description": "Ustvarite račun za objavo ali iskanje čiščenja hiš, stanovanj in drugih nepremičnin."
+    }
   },
   "publicHome": {
     "metaTitle": "Čiščenje apartmajev ob Jadranu in na Hrvaškem",
@@ -874,6 +955,7 @@
     "owner": {
       "badge": "7-dnevni preizkus",
       "title": "Clean Marketplace za lastnike apartmajev",
+      "titleUs": "Clean Marketplace za lastnike nepremičnin",
       "description": "Objavljajte dela, primerjajte ponudbe in upravljajte rezervacije.",
       "trial": "Sedemdnevno preskusno obdobje je vključeno v katero koli možnost zaračunavanja.",
       "action": "Začni poskus",
@@ -930,7 +1012,9 @@
       }
     },
     "metaTitle": "Cene za lastnike in strokovnjake za čiščenje",
-    "metaDescription": "Preizkusite Clean Marketplace 7 dni. Načrt za lastnike apartmajev stane 19 EUR mesečno, za strokovnjake za čiščenje pa 39 EUR mesečno, brez provizije."
+    "metaDescription": "Preizkusite Clean Marketplace 7 dni. Načrt za lastnike apartmajev stane 19 EUR mesečno, za strokovnjake za čiščenje pa 39 EUR mesečno, brez provizije.",
+    "metaTitleUs": "Cene za lastnike nepremičnin in čistilne strokovnjake",
+    "metaDescriptionUs": "Oglejte si cene Clean Marketplace za ZDA: približno 21 USD mesečno za lastnike nepremičnin in 43 USD za čistilne strokovnjake."
   },
   "contact": {
     "eyebrow": "Kontakt",
@@ -1234,6 +1318,7 @@
       "steps": {
         "basic": "Osnovne informacije",
         "apartment": "Apartma",
+        "property": "Nepremičnina",
         "requirements": "Zahteve",
         "budget": "Proračun",
         "schedule": "Urnik",
@@ -1242,10 +1327,12 @@
       "fields": {
         "title": "Naziv delovnega mesta",
         "apartmentName": "Ime apartmaja",
+        "propertyName": "Ime nepremičnine",
         "approximateArea": "Približna lokacija",
         "address": "Točen naslov",
         "hideAddress": "Skrij točen naslov iz javnega seznama",
         "size": "Velikost apartmaja",
+        "propertySize": "Velikost nepremičnine",
         "bedrooms": "Spalnice",
         "bathrooms": "Kopalnice",
         "beds": "Postelje",
@@ -1340,6 +1427,7 @@
         "personal": "Osebni podatki",
         "contact": "Kontaktni podatki",
         "apartment": "Podatki o apartmaju",
+        "property": "Podatki o nepremičnini",
         "preferences": "Nastavitve",
         "finish": "Končaj"
       },
@@ -1551,6 +1639,8 @@
     "navigation": "Obračunavanje",
     "title": "Naročnina in obračun",
     "description": "Upravljajte svoj načrt, način plačila in račune.",
+    "marketUnavailableTitle": "Naročnine za ZDA bodo kmalu na voljo",
+    "marketUnavailableDescription": "Brskanje in nastavitev profila sta na voljo. Plačevanje naročnine v ZDA bo omogočeno po aktivaciji paketov Stripe v USD.",
     "metaTitle": "Naročnina in obračun",
     "currentPlan": "Trenutni načrt",
     "subscriptionStatus": "Stanje naročnine",
@@ -1560,6 +1650,7 @@
     },
     "planName": {
       "owner": "Lastnik apartmaja",
+      "ownerUs": "Lastnik nepremičnine",
       "cleaner": "Čistilni strokovnjak"
     },
     "month": "na mesec",

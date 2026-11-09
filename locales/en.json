@@ -41,6 +41,31 @@
     "sl": "SL",
     "switchTo": "Switch language to {language}"
   },
+  "countries": {
+    "HR": {
+      "name": "Croatia",
+      "shortName": "Croatia",
+      "description": "Cleaning jobs and professionals across Croatia"
+    },
+    "US": {
+      "name": "United States",
+      "shortName": "United States",
+      "description": "Cleaning jobs and professionals across the United States"
+    }
+  },
+  "countryGate": {
+    "eyebrow": "Choose your market",
+    "title": "Where do you need cleaning services?",
+    "description": "We will show local jobs, cleaning professionals, cities, and prices for your selected country.",
+    "cityTitle": "Choose a city",
+    "cityDescription": "Choose a city for more relevant results or browse the entire country.",
+    "allCities": "All cities",
+    "back": "Back to countries",
+    "note": "You can change your country from the header at any time."
+  },
+  "countrySwitcher": {
+    "label": "Marketplace country"
+  },
   "header": {
     "brandLabel": "Clean Marketplace - home page",
     "ownerAction": "Post a job",
@@ -158,6 +183,7 @@
       "showPassword": "Show password",
       "hidePassword": "Hide password",
       "phone": "Phone",
+      "country": "Country",
       "city": "City",
       "cityPlaceholder": "Select a city"
     },
@@ -179,6 +205,8 @@
       "roleLegend": "Account type",
       "ownerRole": "Apartment owner",
       "ownerRoleDescription": "I post jobs and accept offers.",
+      "ownerRoleUs": "Property owner",
+      "ownerRoleDescriptionUs": "I post cleaning jobs for houses, apartments, or other properties.",
       "cleanerRole": "I provide cleaning services",
       "cleanerRoleDescription": "I find jobs and submit offers.",
       "passwordHint": "At least 8 characters.",
@@ -462,6 +490,59 @@
     "description_accuracy": "Description accuracy",
     "organization": "Organisation",
     "fairness": "Fairness"
+  },
+  "publicHomeUs": {
+    "metaTitle": "House and apartment cleaning across the United States",
+    "metaDescription": "Find cleaning professionals or post cleaning jobs for houses, apartments, vacation rentals, and other properties across the United States.",
+    "serviceName": "Property cleaning marketplace in the United States",
+    "serviceType": "Connecting property owners with cleaning professionals",
+    "hero": {
+      "eyebrow": "Simpler property cleaning",
+      "title": "Find a reliable cleaner for your property",
+      "description": "Post a cleaning job for a house, apartment, vacation rental, or other property and compare offers before choosing.",
+      "ownerAction": "Post a cleaning job",
+      "visualLabel": "House illustration with a cleaning job",
+      "cardLabel": "Sample job",
+      "cardTitle": "Vacation rental turnover",
+      "cardCity": "Miami, FL"
+    },
+    "propertyCleaning": {
+      "eyebrow": "Property cleaning across the United States",
+      "title": "Cleaning for houses, apartments, and vacation rentals",
+      "description": "Compare profiles, rates, and availability or post a detailed job for regular, deep, move-out, or turnover cleaning.",
+      "citiesLabel": "Cities where you can find cleaning professionals",
+      "cityLink": "Cleaning services in {city}",
+      "action": "Browse cleaning professionals"
+    },
+    "owners": {
+      "eyebrow": "For property owners",
+      "title": "More control over every cleaning job",
+      "description": "Post the details for your house, apartment, vacation rental, or other property and compare offers before deciding.",
+      "items": {
+        "1": "One place for every property and job detail",
+        "2": "Compare prices and availability",
+        "3": "Review professional profiles and ratings",
+        "4": "A clear service history"
+      },
+      "action": "Register as a property owner",
+      "cardTitle": "A job listing with every key detail",
+      "cardDescription": "Date, time, property size, required services, and budget remain clearly recorded."
+    },
+    "pricing": {
+      "description": "Property owners pay about USD 21 and cleaning professionals USD 43 per month, with no commission on cleaning payments."
+    },
+    "faq": {
+      "items": {
+        "1": {
+          "question": "How much does Clean Marketplace cost property owners?",
+          "answer": "The property owner plan is approximately USD 21 per month after a seven-day trial."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready for simpler property cleaning?",
+      "description": "Create an account to post or find cleaning jobs for houses, apartments, vacation rentals, and other properties."
+    }
   },
   "publicHome": {
     "metaTitle": "Apartment cleaning on the Adriatic and across Croatia",
@@ -874,6 +955,7 @@
     "owner": {
       "badge": "7-day trial",
       "title": "Clean Marketplace for apartment owners",
+      "titleUs": "Clean Marketplace for property owners",
       "description": "Post jobs, compare offers, and manage bookings.",
       "trial": "A seven-day trial is included with either billing option.",
       "action": "Start trial",
@@ -930,7 +1012,9 @@
       }
     },
     "metaTitle": "Pricing for owners and cleaning professionals",
-    "metaDescription": "Try Clean Marketplace for 7 days. Plans cost EUR 19 monthly for apartment owners and EUR 39 monthly for cleaning professionals, with no commission."
+    "metaDescription": "Try Clean Marketplace for 7 days. Plans cost EUR 19 monthly for apartment owners and EUR 39 monthly for cleaning professionals, with no commission.",
+    "metaTitleUs": "Pricing for property owners and cleaning professionals",
+    "metaDescriptionUs": "Explore Clean Marketplace pricing in the United States: approximately USD 21 monthly for property owners and USD 43 monthly for cleaning professionals."
   },
   "contact": {
     "eyebrow": "Contact",
@@ -1234,6 +1318,7 @@
       "steps": {
         "basic": "Basic information",
         "apartment": "Apartment",
+        "property": "Property",
         "requirements": "Requirements",
         "budget": "Budget",
         "schedule": "Schedule",
@@ -1242,10 +1327,12 @@
       "fields": {
         "title": "Job title",
         "apartmentName": "Apartment name",
+        "propertyName": "Property name",
         "approximateArea": "Approximate location",
         "address": "Exact address",
         "hideAddress": "Hide the exact address from the public listing",
         "size": "Apartment size",
+        "propertySize": "Property size",
         "bedrooms": "Bedrooms",
         "bathrooms": "Bathrooms",
         "beds": "Beds",
@@ -1340,6 +1427,7 @@
         "personal": "Personal information",
         "contact": "Contact information",
         "apartment": "Apartment information",
+        "property": "Property information",
         "preferences": "Preferences",
         "finish": "Finish"
       },
@@ -1551,6 +1639,8 @@
     "navigation": "Billing",
     "title": "Subscription and billing",
     "description": "Manage your plan, payment method, and invoices.",
+    "marketUnavailableTitle": "United States subscriptions are coming soon",
+    "marketUnavailableDescription": "Browsing and profile setup are available. United States subscription checkout will open after USD Stripe plans are activated.",
     "metaTitle": "Subscription and billing",
     "currentPlan": "Current plan",
     "subscriptionStatus": "Subscription status",
@@ -1560,6 +1650,7 @@
     },
     "planName": {
       "owner": "Apartment Owner",
+      "ownerUs": "Property Owner",
       "cleaner": "Cleaner"
     },
     "month": "per month",

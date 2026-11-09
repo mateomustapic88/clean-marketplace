@@ -1,4 +1,4 @@
-import type { DemoEntity } from '~/domains/shared/types'
+import type { CurrencyCode, DemoEntity } from '~/domains/shared/types'
 
 export type SubscriptionStatus
   = | 'trial'
@@ -22,7 +22,7 @@ export interface Subscription extends DemoEntity {
   unitAmount: number
   billingPeriod: BillingPeriod
   stripeInterval: StripeBillingInterval | null
-  currency: 'EUR'
+  currency: CurrencyCode
   trialStartedAt: string | null
   trialEndsAt: string | null
   trialConsumed: boolean
@@ -42,7 +42,7 @@ export interface BillingInvoice extends DemoEntity {
   userId: string
   number: string
   amountPaid: number
-  currency: 'EUR'
+  currency: CurrencyCode
   status: 'paid' | 'open' | 'void' | 'uncollectible'
   issuedAt: string
   hostedInvoiceUrl: string | null

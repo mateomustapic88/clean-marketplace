@@ -17,7 +17,7 @@
           <section class="detail-page__facts" :aria-label="t('jobDetail.keyFacts')">
             <div><CalendarDays /><span>{{ t('jobDetail.date') }}</span><strong>{{ formatPublicDate(job.preferredDate, locale) }}</strong></div>
             <div><Clock3 /><span>{{ t('jobDetail.time') }}</span><strong>{{ job.preferredStartTime }}</strong></div>
-            <div><WalletCards /><span>{{ t('jobDetail.budget') }}</span><PriceDisplay :value="job.proposedBudget" :suffix="t(`jobs.budgetType.${job.budgetType}`)" /></div>
+            <div><WalletCards /><span>{{ t('jobDetail.budget') }}</span><PriceDisplay :value="job.proposedBudget" :currency="job.currencyCode" :suffix="t(`jobs.budgetType.${job.budgetType}`)" /></div>
             <div><Timer /><span>{{ t('jobDetail.duration') }}</span><strong>{{ t('jobs.card.duration', { value: job.estimatedDurationHours }) }}</strong></div>
           </section>
           <BaseCard class="detail-page__section">
@@ -53,7 +53,7 @@
         </main>
         <aside class="detail-page__aside">
           <BaseCard>
-            <PriceDisplay :value="job.proposedBudget" :suffix="t(`jobs.budgetType.${job.budgetType}`)" />
+            <PriceDisplay :value="job.proposedBudget" :currency="job.currencyCode" :suffix="t(`jobs.budgetType.${job.budgetType}`)" />
             <p>{{ t('jobDetail.offerCount', { count: job.offerCount }) }}</p>
             <BaseButton block size="lg" :to="actionRoute">{{ actionLabel }}</BaseButton>
             <small>{{ actionHint }}</small>

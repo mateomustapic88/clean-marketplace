@@ -8,14 +8,14 @@
       <div class="pricing-page__plans">
         <article v-for="plan in pricingPlans" :key="plan.role" class="pricing-page__plan">
           <BaseBadge variant="premium">{{ t(`pricing.${plan.translationKey}.badge`) }}</BaseBadge>
-          <h2>{{ t(`pricing.${plan.translationKey}.title`) }}</h2>
+          <h2>{{ plan.role === 'owner' && marketplaceStore.effectiveCountryCode === 'US' ? t('pricing.owner.titleUs') : t(`pricing.${plan.translationKey}.title`) }}</h2>
           <p>{{ t(`pricing.${plan.translationKey}.trial`) }}</p>
           <div>
-            <PriceDisplay :value="plan.amount / 100" :suffix="t(`billing.periodSuffix.${billingPeriod}`)" />
+            <PriceDisplay :value="plan.amount / 100" :currency="marketPricing.currency" :suffix="t(`billing.periodSuffix.${billingPeriod}`)" />
             <p v-if="billingPeriod === 'annual'" class="pricing-page__annual-note">
               {{ t('pricing.annualNote', {
-                monthly: formatPrice(plan.monthlyEquivalent / 100, locale),
-                savings: formatPrice(plan.annualSavings.amount / 100, locale),
+                monthly: formatPrice(plan.monthlyEquivalent / 100, locale, marketPricing.currency),
+                savings: formatPrice(plan.annualSavings.amount / 100, locale, marketPricing.currency),
                 percent: plan.annualSavings.percent,
               }) }}
             </p>
@@ -48,28 +48,30 @@
 import { Check } from '@lucide/vue'
 import type { BillingPeriod } from '~/domains/subscriptions/types'
 import { calculateAnnualSavings } from '~/services/billing/billingPresentation'
+import { getMarketplacePlans } from '~/config/saas'
 import { getAppRoute, getRegistrationRoute } from '~/utils/routes'
 import { formatPrice } from '~/utils/formatters'
 
 defineI18nRoute({ paths: { hr: '/cijene', en: '/pricing', sl: '/cene' } })
 const { t, locale } = useI18n()
-const config = useRuntimeConfig()
+const marketplaceStore = useMarketplaceStore()
 const billingPeriod = ref<BillingPeriod>('monthly')
+const marketPricing = computed(() => getMarketplacePlans(marketplaceStore.effectiveCountryCode))
 const pricingPlans = computed(() => [
   {
     role: 'owner',
     translationKey: 'owner',
-    amount: billingPeriod.value === 'annual' ? config.public.plans.owner.annualAmount : config.public.plans.owner.monthlyAmount,
-    monthlyEquivalent: config.public.plans.owner.annualAmount / 12,
-    annualSavings: calculateAnnualSavings(config.public.plans.owner),
+    amount: billingPeriod.value === 'annual' ? marketPricing.value.owner.annualAmount : marketPricing.value.owner.monthlyAmount,
+    monthlyEquivalent: marketPricing.value.owner.annualAmount / 12,
+    annualSavings: calculateAnnualSavings(marketPricing.value.owner),
     featureCount: 5,
   },
   {
     role: 'cleaner',
     translationKey: 'plan',
-    amount: billingPeriod.value === 'annual' ? config.public.plans.cleaner.annualAmount : config.public.plans.cleaner.monthlyAmount,
-    monthlyEquivalent: config.public.plans.cleaner.annualAmount / 12,
-    annualSavings: calculateAnnualSavings(config.public.plans.cleaner),
+    amount: billingPeriod.value === 'annual' ? marketPricing.value.cleaner.annualAmount : marketPricing.value.cleaner.monthlyAmount,
+    monthlyEquivalent: marketPricing.value.cleaner.annualAmount / 12,
+    annualSavings: calculateAnnualSavings(marketPricing.value.cleaner),
     featureCount: 7,
   },
 ] as const)
@@ -81,8 +83,8 @@ const faqItems = computed(() => Array.from({ length: 4 }, (_, index) => ({
   answer: t(`pricing.faq.${index + 1}.answer`),
 })))
 usePublicSeo({
-  title: computed(() => t('pricing.metaTitle')),
-  description: computed(() => t('pricing.metaDescription')),
+  title: computed(() => t(marketplaceStore.effectiveCountryCode === 'US' ? 'pricing.metaTitleUs' : 'pricing.metaTitle')),
+  description: computed(() => t(marketplaceStore.effectiveCountryCode === 'US' ? 'pricing.metaDescriptionUs' : 'pricing.metaDescription')),
   path: computed(() => getAppRoute('pricing', locale.value)),
 })
 </script>

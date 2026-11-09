@@ -1,4 +1,4 @@
-import type { City } from '~/domains/shared/types'
+import type { City, CountryCode } from '~/domains/shared/types'
 import type { PublicCleanerSearch, SearchPage } from '~/domains/search/types'
 import type {
   AdminProfile,
@@ -22,5 +22,5 @@ export interface UserRepository {
   updateOwner(profile: OwnerProfile): Promise<OwnerProfile>
   updateCleaner(profile: CleanerProfile): Promise<CleanerProfile>
   updateAdmin(profile: AdminProfile): Promise<AdminProfile>
-  listCities(): Promise<City[]>
+  listCities(countryCode: CountryCode): Promise<City[]>
 }

@@ -1,6 +1,6 @@
 <template>
   <span class="price-display">
-    <strong>{{ formatPrice(value, locale) }}</strong>
+    <strong>{{ formatPrice(value, locale, currency) }}</strong>
     <span v-if="suffix">{{ suffix }}</span>
   </span>
 </template>
@@ -8,7 +8,9 @@
 <script setup lang="ts">
 import { formatPrice } from '~/utils/formatters'
 
-defineProps<{ value: number, suffix?: string }>()
+withDefaults(defineProps<{ value: number, suffix?: string, currency?: 'EUR' | 'USD' }>(), {
+  currency: 'EUR',
+})
 const { locale } = useI18n()
 </script>
 

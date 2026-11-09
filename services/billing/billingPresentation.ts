@@ -3,6 +3,7 @@ import type {
   Subscription,
   SubscriptionStatus,
 } from '~/domains/subscriptions/types'
+import type { CurrencyCode } from '~/domains/shared/types'
 
 export type BillingRole = 'owner' | 'cleaner'
 export type BillingDisplayStatus = SubscriptionStatus | 'not_subscribed'
@@ -10,7 +11,7 @@ export type BillingDisplayStatus = SubscriptionStatus | 'not_subscribed'
 export interface PublicBillingPlan {
   monthlyAmount: number
   annualAmount: number
-  currency: 'EUR'
+  currency: CurrencyCode
   trialDays: number
 }
 
@@ -19,7 +20,7 @@ export interface BillingPresentation {
   amount: number
   billingPeriod: BillingPeriod
   annualDiscountPercent: number
-  currency: 'EUR'
+  currency: CurrencyCode
   includedTrialDays: number
   status: BillingDisplayStatus
   hasProviderSubscription: boolean

@@ -18,12 +18,14 @@ const cleaners = JSON.parse(
 
 const jobCriteria = (search: string) => ({
   search,
+  countryCode: 'HR' as const,
   sort: 'relevance' as const,
   page: 1,
   pageSize: 20,
 })
 const cleanerCriteria = (search: string) => ({
   search,
+  countryCode: 'HR' as const,
   sort: 'relevance' as const,
   page: 1,
   pageSize: 20,

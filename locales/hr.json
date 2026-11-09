@@ -41,6 +41,31 @@
     "sl": "SL",
     "switchTo": "Promijeni jezik na {language}"
   },
+  "countries": {
+    "HR": {
+      "name": "Hrvatska",
+      "shortName": "Hrvatska",
+      "description": "Poslovi i osobe za čišćenje u Hrvatskoj"
+    },
+    "US": {
+      "name": "Sjedinjene Američke Države",
+      "shortName": "SAD",
+      "description": "Cleaning jobs and professionals in the United States"
+    }
+  },
+  "countryGate": {
+    "eyebrow": "Odaberite tržište",
+    "title": "Gdje tražite usluge čišćenja?",
+    "description": "Prikazat ćemo vam lokalne poslove, osobe za čišćenje, gradove i cijene za odabranu državu.",
+    "cityTitle": "Odaberite grad",
+    "cityDescription": "Odaberite grad za relevantnije rezultate ili pregledajte cijelu državu.",
+    "allCities": "Svi gradovi",
+    "back": "Natrag na države",
+    "note": "Državu možete promijeniti u zaglavlju u bilo kojem trenutku."
+  },
+  "countrySwitcher": {
+    "label": "Država tržišta"
+  },
   "header": {
     "brandLabel": "Clean Marketplace - početna stranica",
     "ownerAction": "Objavi posao",
@@ -158,6 +183,7 @@
       "showPassword": "Prikaži lozinku",
       "hidePassword": "Sakrij lozinku",
       "phone": "Telefon",
+      "country": "Država",
       "city": "Grad",
       "cityPlaceholder": "Odaberite grad"
     },
@@ -179,6 +205,8 @@
       "roleLegend": "Vrsta računa",
       "ownerRole": "Vlasnik apartmana",
       "ownerRoleDescription": "Objavljujem poslove i prihvaćam ponude.",
+      "ownerRoleUs": "Vlasnik nekretnine",
+      "ownerRoleDescriptionUs": "Objavljujem poslove čišćenja za kuće, stanove ili druge nekretnine.",
       "cleanerRole": "Pružam usluge čišćenja",
       "cleanerRoleDescription": "Pronalazim poslove i šaljem ponude.",
       "passwordHint": "Najmanje 8 znakova.",
@@ -462,6 +490,59 @@
     "description_accuracy": "Točnost opisa",
     "organization": "Organizacija",
     "fairness": "Korektnost"
+  },
+  "publicHomeUs": {
+    "metaTitle": "Čišćenje kuća i stanova diljem SAD-a",
+    "metaDescription": "Pronađite osobe za čišćenje ili objavite posao za kuću, stan, smještaj za odmor ili drugu nekretninu u SAD-u.",
+    "serviceName": "Platforma za čišćenje nekretnina u SAD-u",
+    "serviceType": "Povezivanje vlasnika nekretnina s osobama za čišćenje",
+    "hero": {
+      "eyebrow": "Jednostavnije čišćenje nekretnina",
+      "title": "Pronađite pouzdanu osobu za čišćenje nekretnine",
+      "description": "Objavite posao čišćenja kuće, stana, smještaja za odmor ili druge nekretnine i usporedite ponude prije odabira.",
+      "ownerAction": "Objavi posao čišćenja",
+      "visualLabel": "Ilustracija kuće s poslom čišćenja",
+      "cardLabel": "Primjer posla",
+      "cardTitle": "Smjena gostiju",
+      "cardCity": "Miami, FL"
+    },
+    "propertyCleaning": {
+      "eyebrow": "Čišćenje nekretnina diljem SAD-a",
+      "title": "Čišćenje kuća, stanova i smještaja za odmor",
+      "description": "Usporedite profile, cijene i dostupnost ili objavite detaljan posao redovitog, dubinskog ili završnog čišćenja.",
+      "citiesLabel": "Gradovi u kojima možete pronaći osobe za čišćenje",
+      "cityLink": "Usluge čišćenja u gradu {city}",
+      "action": "Pregledaj osobe za čišćenje"
+    },
+    "owners": {
+      "eyebrow": "Za vlasnike nekretnina",
+      "title": "Više kontrole nad svakim čišćenjem",
+      "description": "Objavite podatke o kući, stanu, smještaju za odmor ili drugoj nekretnini i usporedite ponude.",
+      "items": {
+        "1": "Svi podaci o nekretnini i poslu na jednom mjestu",
+        "2": "Usporedba cijena i dostupnosti",
+        "3": "Pregled profesionalnih profila i ocjena",
+        "4": "Jasna povijest usluga"
+      },
+      "action": "Registriraj se kao vlasnik nekretnine",
+      "cardTitle": "Oglas sa svim važnim podacima",
+      "cardDescription": "Datum, vrijeme, površina nekretnine, potrebne usluge i budžet ostaju jasno zabilježeni."
+    },
+    "pricing": {
+      "description": "Vlasnici nekretnina plaćaju približno 21 USD, a osobe za čišćenje 43 USD mjesečno, bez provizije."
+    },
+    "faq": {
+      "items": {
+        "1": {
+          "question": "Koliko Clean Marketplace košta vlasnike nekretnina?",
+          "answer": "Plan za vlasnike nekretnina iznosi približno 21 USD mjesečno nakon sedmodnevnog probnog razdoblja."
+        }
+      }
+    },
+    "cta": {
+      "title": "Spremni za jednostavnije čišćenje nekretnine?",
+      "description": "Izradite račun za objavu ili pronalazak poslova čišćenja kuća, stanova i drugih nekretnina."
+    }
   },
   "publicHome": {
     "metaTitle": "Čišćenje apartmana na Jadranu i u Hrvatskoj",
@@ -874,6 +955,7 @@
     "owner": {
       "badge": "7 dana probno",
       "title": "Clean Marketplace za vlasnike apartmana",
+      "titleUs": "Clean Marketplace za vlasnike nekretnina",
       "description": "Objava poslova, usporedba ponuda i upravljanje rezervacijama.",
       "trial": "Sedam dana probnog razdoblja uključeno je u obje opcije naplate.",
       "action": "Započni probno razdoblje",
@@ -930,7 +1012,9 @@
       }
     },
     "metaTitle": "Cijene za vlasnike i osobe za čišćenje",
-    "metaDescription": "Isprobajte Clean Marketplace 7 dana. Plan za vlasnike apartmana iznosi 19 EUR mjesečno, a za osobe za čišćenje 39 EUR mjesečno, bez provizije."
+    "metaDescription": "Isprobajte Clean Marketplace 7 dana. Plan za vlasnike apartmana iznosi 19 EUR mjesečno, a za osobe za čišćenje 39 EUR mjesečno, bez provizije.",
+    "metaTitleUs": "Cijene za vlasnike nekretnina i osobe za čišćenje",
+    "metaDescriptionUs": "Pregledajte cijene Clean Marketplacea za SAD: približno 21 USD mjesečno za vlasnike nekretnina i 43 USD za osobe za čišćenje."
   },
   "contact": {
     "eyebrow": "Kontakt",
@@ -1234,6 +1318,7 @@
       "steps": {
         "basic": "Osnovni podaci",
         "apartment": "Apartman",
+        "property": "Nekretnina",
         "requirements": "Zahtjevi",
         "budget": "Budžet",
         "schedule": "Raspored",
@@ -1242,10 +1327,12 @@
       "fields": {
         "title": "Naslov posla",
         "apartmentName": "Naziv apartmana",
+        "propertyName": "Naziv nekretnine",
         "approximateArea": "Približna lokacija",
         "address": "Točna adresa",
         "hideAddress": "Sakrij točnu adresu u javnom oglasu",
         "size": "Površina apartmana",
+        "propertySize": "Površina nekretnine",
         "bedrooms": "Spavaće sobe",
         "bathrooms": "Kupaonice",
         "beds": "Kreveti",
@@ -1340,6 +1427,7 @@
         "personal": "Osobni podaci",
         "contact": "Kontaktni podaci",
         "apartment": "Podaci apartmana",
+        "property": "Podaci nekretnine",
         "preferences": "Postavke",
         "finish": "Završetak"
       },
@@ -1551,6 +1639,8 @@
     "navigation": "Naplata",
     "title": "Pretplata i naplata",
     "description": "Upravljajte planom, načinom plaćanja i računima.",
+    "marketUnavailableTitle": "Pretplate za SAD uskoro",
+    "marketUnavailableDescription": "Pregledavanje i izrada profila su dostupni. Naplata pretplate za SAD bit će omogućena nakon aktivacije USD Stripe planova.",
     "metaTitle": "Pretplata i naplata",
     "currentPlan": "Trenutačni plan",
     "subscriptionStatus": "Status pretplate",
@@ -1560,6 +1650,7 @@
     },
     "planName": {
       "owner": "Vlasnik apartmana",
+      "ownerUs": "Vlasnik nekretnine",
       "cleaner": "Osoba za čišćenje"
     },
     "month": "mjesečno",

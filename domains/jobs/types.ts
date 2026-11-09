@@ -1,4 +1,4 @@
-import type { DemoEntity } from '~/domains/shared/types'
+import type { CountryCode, CurrencyCode, DemoEntity } from '~/domains/shared/types'
 
 export type CleaningJobStatus
   = | 'draft'
@@ -59,6 +59,8 @@ export interface CleaningJob extends DemoEntity {
   title: string
   apartmentName: string
   cityCode: string
+  countryCode: CountryCode
+  currencyCode: CurrencyCode
   approximateArea: string
   address: string
   hideExactAddress: boolean
@@ -85,6 +87,7 @@ export interface CleaningJob extends DemoEntity {
 export interface JobFilters {
   search?: string
   cityCode?: string
+  countryCode?: CountryCode
   ownerId?: string
   cleanerId?: string
   status?: CleaningJobStatus

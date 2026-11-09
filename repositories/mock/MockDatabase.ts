@@ -84,11 +84,27 @@ const migrateSnapshot = (source: MockDatabaseSnapshot): MockDatabaseSnapshot => 
   }))
   snapshot.owners = (snapshot.owners ?? []).map((owner) => ({
     ...owner,
+    countryCode: owner.countryCode ?? 'HR',
+    currencyCode: owner.currencyCode ?? 'EUR',
     onboardingCompleted: owner.onboardingCompleted ?? true,
   }))
   snapshot.cleaners = (snapshot.cleaners ?? []).map((cleaner) => ({
     ...cleaner,
+    countryCode: cleaner.countryCode ?? 'HR',
+    currencyCode: cleaner.currencyCode ?? 'EUR',
     onboardingCompleted: cleaner.onboardingCompleted ?? true,
+  }))
+  snapshot.cities = (snapshot.cities ?? []).map((city) => ({
+    ...city,
+    countryCode: city.countryCode ?? 'HR',
+    regionCode: city.regionCode ?? '',
+    regionName: city.regionName ?? city.county,
+    timeZone: city.timeZone ?? 'Europe/Zagreb',
+  }))
+  snapshot.jobs = (snapshot.jobs ?? []).map((job) => ({
+    ...job,
+    countryCode: job.countryCode ?? 'HR',
+    currencyCode: job.currencyCode ?? 'EUR',
   }))
   snapshot.subscriptions = (snapshot.subscriptions ?? []).map((subscription) => {
     const legacy = subscription as Subscription & {

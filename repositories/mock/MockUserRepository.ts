@@ -95,8 +95,8 @@ export class MockUserRepository implements UserRepository {
     return this.updateEntity('admins', profile)
   }
 
-  async listCities() {
-    return clone(this.database.read().cities)
+  async listCities(countryCode: 'HR' | 'US') {
+    return clone(this.database.read().cities.filter((city) => city.countryCode === countryCode))
   }
 
   private updateEntity<

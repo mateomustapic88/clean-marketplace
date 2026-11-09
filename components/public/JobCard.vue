@@ -13,13 +13,14 @@
       <span><Clock3 :size="16" />{{ job.preferredStartTime }}</span>
     </div>
     <div class="job-card__details">
-      <span>{{ t('jobs.card.size', { value: job.sizeSquareMeters }) }}</span>
+      <span>{{ formatArea(job.sizeSquareMeters, job.countryCode === 'US' ? 'imperial' : 'metric') }}</span>
       <span>{{ t('jobs.card.rooms', { bedrooms: job.bedrooms, bathrooms: job.bathrooms }) }}</span>
       <span>{{ t('jobs.card.duration', { value: job.estimatedDurationHours }) }}</span>
     </div>
     <footer class="job-card__footer">
       <PriceDisplay
         :value="job.proposedBudget"
+        :currency="job.currencyCode"
         :suffix="t(`jobs.budgetType.${job.budgetType}`)"
       />
       <span class="job-card__offers">{{ t('jobs.card.offers', { count: job.offerCount }) }}</span>
@@ -31,7 +32,7 @@
 import { CalendarDays, Clock3, MapPin } from '@lucide/vue'
 import type { CleaningJob } from '~/domains/jobs/types'
 import { demoDisplayText } from '~/utils/demoPresentation'
-import { formatPublicDate } from '~/utils/formatters'
+import { formatArea, formatPublicDate } from '~/utils/formatters'
 import { getJobRoute } from '~/utils/routes'
 
 const props = defineProps<{ job: CleaningJob, cityName: string }>()

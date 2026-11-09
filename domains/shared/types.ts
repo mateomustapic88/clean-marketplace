@@ -5,10 +5,25 @@ export interface DemoEntity {
   updatedAt: string
 }
 
+export type CountryCode = 'HR' | 'US'
+export type CurrencyCode = 'EUR' | 'USD'
+export type MeasurementSystem = 'metric' | 'imperial'
+
+export interface Country {
+  code: CountryCode
+  currencyCode: CurrencyCode
+  measurementSystem: MeasurementSystem
+  defaultTimeZone: string
+}
+
 export interface City extends DemoEntity {
   code: string
   name: string
   county: string
+  countryCode: CountryCode
+  regionCode: string
+  regionName: string
+  timeZone: string
 }
 
 export interface ServiceArea {

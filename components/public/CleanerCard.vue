@@ -10,8 +10,8 @@
     <RatingSummary :value="cleaner.averageRating" :count="cleaner.ratingCount" />
     <p class="cleaner-card__bio">{{ cleaner.biography }}</p>
     <div class="cleaner-card__prices">
-      <PriceDisplay :value="cleaner.hourlyRate" :suffix="t('cleaners.card.perHour')" />
-      <span>{{ t('cleaners.card.minimum', { price: formatPrice(cleaner.minimumJobPrice, locale) }) }}</span>
+      <PriceDisplay :value="cleaner.hourlyRate" :currency="cleaner.currencyCode" :suffix="t('cleaners.card.perHour')" />
+      <span>{{ t('cleaners.card.minimum', { price: formatPrice(cleaner.minimumJobPrice, locale, cleaner.currencyCode) }) }}</span>
     </div>
     <div class="cleaner-card__badges">
       <AvailabilityBadge :active="cleaner.bringsSupplies" :label="t('cleaners.card.supplies')" />

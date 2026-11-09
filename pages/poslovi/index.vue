@@ -44,7 +44,9 @@
 
 <script setup lang="ts">
 import { SlidersHorizontal } from '@lucide/vue'
+import { marketplaceCityLabel } from '~/config/marketplaces'
 import { useJobsStore } from '~/stores/jobs'
+import { useMarketplaceStore } from '~/stores/marketplace'
 import { useUserStore } from '~/stores/user'
 import {
   emptyJobFilters,
@@ -59,12 +61,13 @@ const route = useRoute()
 const router = useRouter()
 const config = useRuntimeConfig()
 const jobsStore = useJobsStore()
+const marketplaceStore = useMarketplaceStore()
 const userStore = useUserStore()
 
 const fromQuery = () => ({
   ...emptyJobFilters(),
   search: String(route.query.search ?? ''),
-  city: String(route.query.city ?? ''),
+  city: String(route.query.city ?? marketplaceStore.selectedCityCode ?? ''),
   priceType: String(route.query.priceType ?? ''),
   minimumPrice: route.query.minimumPrice ? Number(route.query.minimumPrice) : null,
   maximumPrice: route.query.maximumPrice ? Number(route.query.maximumPrice) : null,
@@ -85,6 +88,7 @@ let queryTimer: ReturnType<typeof setTimeout> | undefined
 
 const searchCriteria = () => ({
   search: filters.value.search,
+  countryCode: marketplaceStore.effectiveCountryCode,
   page: page.value,
   pageSize,
   sort: sort.value,
@@ -109,13 +113,13 @@ const searchCriteria = () => ({
 })
 await Promise.all([
   jobsStore.searchPublicJobs(searchCriteria()),
-  userStore.loadCities(),
+  userStore.loadCities(marketplaceStore.effectiveCountryCode),
 ])
 const filteredJobs = computed(() => jobsStore.jobs)
 const totalPages = computed(() =>
   Math.max(1, Math.ceil(jobsStore.searchTotal / pageSize)))
 const pagedJobs = computed(() => filteredJobs.value)
-const cityOptions = computed(() => userStore.cities.map((city) => ({ label: city.name, value: city.code })))
+const cityOptions = computed(() => userStore.cities.map((city) => ({ label: marketplaceCityLabel(city), value: city.code })))
 const cityName = (code: string) => userStore.cities.find((city) => city.code === code)?.name ?? code
 const sortOptions = computed(() => (['relevance', 'newest', 'date', 'budget-high', 'budget-low'] as JobSort[])
   .map((value) => ({ value, label: t(`jobs.sort.${value}`) })))
@@ -143,6 +147,17 @@ watch(() => filters.value.search, (search) => {
   if (!search && sort.value === 'relevance') sort.value = 'newest'
 })
 watch(totalPages, (value) => page.value = Math.min(page.value, value))
+watch(
+  [() => marketplaceStore.effectiveCountryCode, () => marketplaceStore.selectedCityCode],
+  async ([countryCode, cityCode]) => {
+    filters.value.city = cityCode ?? ''
+    page.value = 1
+    await Promise.all([
+      userStore.loadCities(countryCode, true),
+      jobsStore.searchPublicJobs(searchCriteria()),
+    ])
+  },
+)
 
 const resetFilters = () => {
   filters.value = emptyJobFilters()

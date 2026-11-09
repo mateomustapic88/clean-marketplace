@@ -120,6 +120,15 @@ export class StripeBillingService {
   }
 
   async checkout(userId: string, role: 'owner' | 'cleaner', billingPeriod: BillingPeriod, email: string, successUrl: string, cancelUrl: string) {
+    const { data: profile, error: profileError } = await this.database
+      .from('profiles')
+      .select('country_code')
+      .eq('id', userId)
+      .single()
+    if (profileError) throw createError({ statusCode: 500, statusMessage: 'Billing market could not be verified' })
+    if (profile.country_code !== 'HR') {
+      throw createError({ statusCode: 409, statusMessage: 'Billing is not yet available in this market' })
+    }
     const existing = await this.subscription(userId)
     if (existing && blocksNewProviderCheckout(existing)) {
       throw createError({ statusCode: 409, statusMessage: 'An active subscription already exists' })

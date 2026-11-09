@@ -2,20 +2,20 @@
   <section class="hero-section">
     <div class="hero-section__inner container">
       <div class="hero-section__content">
-        <p class="hero-section__eyebrow">{{ t('publicHome.hero.eyebrow') }}</p>
-        <h1>{{ t('publicHome.hero.title') }}</h1>
-        <p class="hero-section__description">{{ t('publicHome.hero.description') }}</p>
+        <p class="hero-section__eyebrow">{{ heroT('eyebrow') }}</p>
+        <h1>{{ heroT('title') }}</h1>
+        <p class="hero-section__description">{{ heroT('description') }}</p>
         <div class="hero-section__actions">
-          <BaseButton size="lg" :to="getAppRoute('register', locale)">{{ t('publicHome.hero.ownerAction') }}</BaseButton>
-          <BaseButton size="lg" variant="secondary" :to="getAppRoute('jobs', locale)">{{ t('publicHome.hero.cleanerAction') }}</BaseButton>
+          <BaseButton size="lg" :to="getAppRoute('register', locale)">{{ heroT('ownerAction') }}</BaseButton>
+          <BaseButton size="lg" variant="secondary" :to="getAppRoute('jobs', locale)">{{ heroT('cleanerAction') }}</BaseButton>
         </div>
       </div>
-      <div class="hero-section__visual" role="img" :aria-label="t('publicHome.hero.visualLabel')">
+      <div class="hero-section__visual" role="img" :aria-label="heroT('visualLabel')">
         <div class="hero-section__job">
-          <span>{{ t('publicHome.hero.cardLabel') }}</span>
-          <strong>{{ t('publicHome.hero.cardTitle') }}</strong>
-          <p><MapPin :size="15" />{{ t('publicHome.hero.cardCity') }}</p>
-          <PriceDisplay :value="85" :suffix="t('jobs.budgetType.fixed')" />
+          <span>{{ heroT('cardLabel') }}</span>
+          <strong>{{ heroT('cardTitle') }}</strong>
+          <p><MapPin :size="15" />{{ heroT('cardCity') }}</p>
+          <PriceDisplay :value="marketplaceStore.effectiveCountryCode === 'US' ? 95 : 85" :currency="marketplaceStore.country.currencyCode" :suffix="t('jobs.budgetType.fixed')" />
         </div>
         <div class="hero-section__profile">
           <BaseAvatar :name="t('publicHome.hero.profileName')" size="md" />
@@ -41,7 +41,14 @@
 <script setup lang="ts">
 import { MapPin } from '@lucide/vue'
 import { getAppRoute } from '~/utils/routes'
-const { t, locale } = useI18n()
+const { t, te, locale } = useI18n()
+const marketplaceStore = useMarketplaceStore()
+const heroT = (key: string) => {
+  const marketKey = `publicHomeUs.hero.${key}`
+  return marketplaceStore.effectiveCountryCode === 'US' && te(marketKey)
+    ? t(marketKey)
+    : t(`publicHome.hero.${key}`)
+}
 </script>
 
 <style scoped lang="scss">

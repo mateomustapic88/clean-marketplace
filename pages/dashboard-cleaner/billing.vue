@@ -1,22 +1,30 @@
 <template>
-  <BillingPage role="cleaner" :subscription="store.subscription" :invoices="store.invoices" :payment-method="store.paymentMethod" :trial-days="store.trialDaysRemaining" :is-loading="store.isLoading" :load-error="store.loadError" :action-error="store.actionError" :is-action-loading="store.isActionLoading" @checkout="checkout" @portal="portal" @cancel="cancel" @resume="resume" />
+  <BillingPage role="cleaner" :country-code="countryCode" :subscription="store.subscription" :invoices="store.invoices" :payment-method="store.paymentMethod" :trial-days="store.trialDaysRemaining" :is-loading="store.isLoading" :load-error="store.loadError" :action-error="store.actionError" :is-action-loading="store.isActionLoading" @checkout="checkout" @portal="portal" @cancel="cancel" @resume="resume" />
 </template>
 
 <script setup lang="ts">
 import { useAuthStore } from '~/stores/auth'
 import type { BillingPeriod } from '~/domains/subscriptions/types'
 import { useSubscriptionStore } from '~/stores/subscription'
+import { useUserStore } from '~/stores/user'
 import { getAppRoute } from '~/utils/routes'
 
 definePageMeta({ layout: 'dashboard-cleaner', middleware: ['auth', 'role'], roles: ['cleaner'] })
 defineI18nRoute({ paths: { hr: '/dashboard-cleaner/billing', en: '/dashboard-cleaner/billing', sl: '/nadzorna-plosca-cistilec/obracun' } })
 const auth = useAuthStore()
 const store = useSubscriptionStore()
+const userStore = useUserStore()
 const { t, locale } = useI18n()
 const load = async () => {
   if (auth.user)
-    await store.loadForUser(auth.user.id, auth.user.role)
+    await Promise.all([
+      store.loadForUser(auth.user.id, auth.user.role),
+      userStore.loadCurrentProfile(auth.user.id),
+    ])
 }
+const countryCode = computed(() => userStore.profile && 'countryCode' in userStore.profile
+  ? userStore.profile.countryCode
+  : 'HR')
 watch(() => auth.user?.id, load, { immediate: true })
 const returnUrl = computed(() => getAppRoute('cleanerBilling', locale.value))
 const checkout = async (billingPeriod: BillingPeriod) => {

@@ -37,6 +37,7 @@ export class MockJobRepository implements JobRepository {
         if (!query.split(' ').every((term) => searchable.includes(term))) return false
       }
       if (filters.cityCode && job.cityCode !== filters.cityCode) return false
+      if (filters.countryCode && job.countryCode !== filters.countryCode) return false
       if (filters.ownerId && job.ownerId !== filters.ownerId) return false
       if (filters.cleanerId && job.assignedCleanerId !== filters.cleanerId) return false
       if (filters.status && job.status !== filters.status) return false

@@ -19,6 +19,8 @@ const jobInput = (): CreateCleaningJobInput => ({
   title: 'Čišćenje apartmana za test',
   apartmentName: 'Apartman Mare',
   cityCode: 'zagreb',
+  countryCode: 'HR',
+  currencyCode: 'EUR',
   approximateArea: 'Trešnjevka',
   address: 'Demo ulica 14',
   hideExactAddress: true,

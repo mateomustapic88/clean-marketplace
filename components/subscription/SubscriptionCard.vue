@@ -3,12 +3,12 @@
     <header class="subscription-card__header">
       <div>
         <p class="subscription-card__eyebrow">{{ t('billing.currentPlan') }}</p>
-        <h2 :id="headingId">{{ t(`billing.planName.${role}`) }}</h2>
+        <h2 :id="headingId">{{ t(role === 'owner' && countryCode === 'US' ? 'billing.planName.ownerUs' : `billing.planName.${role}`) }}</h2>
       </div>
       <SubscriptionStatusBadge :status="presentation.status" />
     </header>
     <p class="subscription-card__price">
-      {{ formatPrice(presentation.amount / 100, locale) }}
+      {{ formatPrice(presentation.amount / 100, locale, presentation.currency) }}
       <small>/ {{ t(`billing.periodSuffix.${presentation.billingPeriod}`) }}</small>
     </p>
     <p class="subscription-card__trial">
@@ -28,6 +28,8 @@
 
 <script setup lang="ts">
 import type { BillingPeriod, Subscription } from '~/domains/subscriptions/types'
+import type { CountryCode } from '~/domains/shared/types'
+import { getMarketplacePlans } from '~/config/saas'
 import type { BillingRole, PublicBillingPlan } from '~/services/billing/billingPresentation'
 import { createBillingPresentation } from '~/services/billing/billingPresentation'
 import { formatPrice } from '~/utils/formatters'
@@ -36,14 +38,22 @@ const props = defineProps<{
   role: BillingRole
   subscription: Subscription | null
   billingPeriod: BillingPeriod
+  countryCode?: CountryCode | undefined
 }>()
 const { t, locale } = useI18n()
-const config = useRuntimeConfig()
 const headingId = useId()
+const marketPlan = computed(() => {
+  const market = getMarketplacePlans(props.countryCode ?? 'HR')
+  return {
+    ...market[props.role],
+    currency: market.currency,
+    trialDays: 7,
+  }
+})
 const presentation = computed(() => createBillingPresentation(
   props.role,
   props.subscription,
-  config.public.plans[props.role] as PublicBillingPlan,
+  marketPlan.value as PublicBillingPlan,
   props.billingPeriod,
 ))
 </script>

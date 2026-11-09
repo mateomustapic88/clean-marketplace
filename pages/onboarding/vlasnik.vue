@@ -15,7 +15,7 @@
         <form novalidate @submit.prevent="next">
           <fieldset v-show="current === 0"><legend ref="stepHeading" tabindex="-1">{{ steps[0] }}</legend><div class="owner-onboarding__grid"><BaseInput v-model="draft.firstName" required :label="t('auth.fields.firstName')" /><BaseInput v-model="draft.lastName" required :label="t('auth.fields.lastName')" /></div></fieldset>
           <fieldset v-show="current === 1"><legend tabindex="-1">{{ steps[1] }}</legend><div class="owner-onboarding__grid"><BaseInput v-model="draft.phone" type="tel" required :label="t('auth.fields.phone')" /><BaseSelect v-model="draft.cityCode" required :label="t('auth.fields.city')" :options="cityOptions" /><BaseSelect v-model="draft.preferredContactMethod" :label="t('owner.profile.contactMethod')" :options="contactOptions" /></div></fieldset>
-          <fieldset v-show="current === 2"><legend tabindex="-1">{{ steps[2] }}</legend><div class="owner-onboarding__grid"><BaseInput v-model="draft.apartmentName" required :label="t('owner.job.fields.apartmentName')" /><BaseSelect v-model="draft.apartmentCityCode" required :label="t('catalog.city')" :options="cityOptions" /><BaseInput v-model="draft.apartmentAddress" required :label="t('owner.job.fields.address')" /></div></fieldset>
+          <fieldset v-show="current === 2"><legend tabindex="-1">{{ steps[2] }}</legend><div class="owner-onboarding__grid"><BaseInput v-model="draft.apartmentName" required :label="t(isUsMarketplace ? 'owner.job.fields.propertyName' : 'owner.job.fields.apartmentName')" /><BaseSelect v-model="draft.apartmentCityCode" required :label="t('catalog.city')" :options="cityOptions" /><BaseInput v-model="draft.apartmentAddress" required :label="t('owner.job.fields.address')" /></div></fieldset>
           <fieldset v-show="current === 3"><legend tabindex="-1">{{ steps[3] }}</legend><div class="owner-onboarding__grid"><BaseSelect v-model="draft.preferredLanguage" :label="t('owner.profile.language')" :options="languageOptions" /><BaseSelect v-model="draft.timeZone" :label="t('owner.profile.timeZone')" :options="timeZoneOptions" /><BaseInput v-model="draft.companyName" :label="t('owner.profile.company')" /><BaseInput v-model="draft.agencyName" :label="t('owner.profile.agency')" /></div></fieldset>
           <fieldset v-show="current === 4"><legend tabindex="-1">{{ steps[4] }}</legend><div class="owner-onboarding__summary"><h2>{{ draft.firstName }} {{ draft.lastName }}</h2><p>{{ draft.apartmentName }} · {{ cityName(draft.apartmentCityCode) }}</p><p>{{ t('owner.onboarding.finishDescription') }}</p></div></fieldset>
           <BaseAlert v-if="error" variant="error">{{ error }}</BaseAlert>
@@ -27,6 +27,7 @@
 </template>
 
 <script setup lang="ts">
+import { marketplaceCityLabel } from '~/config/marketplaces'
 import type { OwnerProfile } from '~/domains/users/types'
 import { useAuthStore } from '~/stores/auth'
 import { useUserStore } from '~/stores/user'
@@ -35,14 +36,15 @@ import { getAppRoute } from '~/utils/routes'
 definePageMeta({ middleware: ['auth', 'role'], roles: ['owner'] })
 defineI18nRoute({ paths: { hr: '/onboarding/vlasnik', en: '/onboarding/owner', sl: '/uvajanje/lastnik' } })
 const route = useRoute()
-const { t, locale } = useI18n(), authStore = useAuthStore(), userStore = useUserStore()
+const { t, locale } = useI18n(), authStore = useAuthStore(), userStore = useUserStore(), marketplaceStore = useMarketplaceStore()
 const isMockMode = useRuntimeConfig().public.infrastructureMode === 'mock'
 const profile = computed(() => userStore.profile as OwnerProfile | null)
 const draft = reactive({ firstName: profile.value?.firstName ?? '', lastName: profile.value?.lastName ?? '', phone: profile.value?.phone ?? '', cityCode: profile.value?.cityCode ?? '', preferredContactMethod: profile.value?.preferredContactMethod ?? 'email', companyName: profile.value?.companyName ?? '', agencyName: profile.value?.agencyName ?? '', preferredLanguage: profile.value?.preferredLanguage ?? 'hr', timeZone: profile.value?.timeZone ?? 'Europe/Zagreb', apartmentName: profile.value?.apartmentName ?? '', apartmentCityCode: profile.value?.apartmentCityCode ?? '', apartmentAddress: profile.value?.apartmentAddress ?? '' })
 const current = ref(0), saveStatus = ref<'saved' | 'saving' | 'unsaved'>('saved'), error = ref('')
 const submitting = ref(false)
-const steps = computed(() => ['personal', 'contact', 'apartment', 'preferences', 'finish'].map((key) => t(`owner.onboarding.steps.${key}`)))
-const cityOptions = computed(() => userStore.cities.map((city) => ({ value: city.code, label: city.name }))), contactOptions = computed(() => ['email', 'phone', 'sms'].map((value) => ({ value, label: t(`owner.profile.contact.${value}`) }))), languageOptions = computed(() => ['hr', 'en', 'sl'].map((value) => ({ value, label: t(`languages.${value}`) }))), timeZoneOptions = ['Europe/Zagreb', 'Europe/Ljubljana', 'Europe/London', 'Europe/Berlin'].map((value) => ({ value, label: value }))
+const isUsMarketplace = computed(() => marketplaceStore.effectiveCountryCode === 'US')
+const steps = computed(() => ['personal', 'contact', isUsMarketplace.value ? 'property' : 'apartment', 'preferences', 'finish'].map((key) => t(`owner.onboarding.steps.${key}`)))
+const cityOptions = computed(() => userStore.cities.map((city) => ({ value: city.code, label: marketplaceCityLabel(city) }))), contactOptions = computed(() => ['email', 'phone', 'sms'].map((value) => ({ value, label: t(`owner.profile.contact.${value}`) }))), languageOptions = computed(() => ['hr', 'en', 'sl'].map((value) => ({ value, label: t(`languages.${value}`) }))), timeZoneOptions = ['Europe/Zagreb', 'Europe/Ljubljana', 'Europe/London', 'Europe/Berlin', 'America/New_York', 'America/Chicago', 'America/Denver', 'America/Los_Angeles', 'America/Phoenix', 'Pacific/Honolulu'].map((value) => ({ value, label: value }))
 const cityName = (code: string) => userStore.cities.find((city) => city.code === code)?.name ?? code
 const ownerFromDraft = (onboardingCompleted: boolean): OwnerProfile | null => profile.value
   ? {

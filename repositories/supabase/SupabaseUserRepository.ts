@@ -106,8 +106,9 @@ export class SupabaseUserRepository implements UserRepository {
   async searchCleaners(
     criteria: PublicCleanerSearch,
   ): Promise<SearchPage<CleanerProfile>> {
-    const { data, error } = await this.client.rpc('search_marketplace_cleaners', {
+    const { data, error } = await this.client.rpc('search_marketplace_cleaners_by_country', {
       p_search: criteria.search,
+      p_country_code: criteria.countryCode,
       p_city_code: criteria.cityCode ?? null,
       p_maximum_hourly_rate_cents: criteria.maximumHourlyRate === undefined
         ? null
@@ -220,11 +221,14 @@ export class SupabaseUserRepository implements UserRepository {
     return profile
   }
 
-  async listCities(): Promise<City[]> {
-    const { data, error } = await this.client.from('cities').select('*').order('name')
+  async listCities(countryCode: City['countryCode']): Promise<City[]> {
+    const { data, error } = await this.client.from('cities').select('*').eq('country_code', countryCode).order('name')
     throwIfSupabaseError(error)
     return (data as DbRow[]).map((item) => ({
       ...base(item), code: text(item.code), name: text(item.name), county: text(item.county),
+      countryCode: text(item.country_code, 'HR') as City['countryCode'],
+      regionCode: text(item.region_code), regionName: text(item.region_name, text(item.county)),
+      timeZone: text(item.time_zone, 'Europe/Zagreb'),
     }))
   }
 
@@ -244,7 +248,10 @@ export class SupabaseUserRepository implements UserRepository {
     const contact = await this.privateProfile(text(row.user_id))
     return {
       ...base(profile), userId: text(row.user_id), firstName: text(profile.first_name), lastName: text(profile.last_name),
-      phone: text(contact?.phone), cityCode: text(profile.city_code), preferredContactMethod: (contact?.preferred_contact_method ?? 'email') as OwnerProfile['preferredContactMethod'],
+      phone: text(contact?.phone), cityCode: text(profile.city_code),
+      countryCode: text(profile.country_code, 'HR') as OwnerProfile['countryCode'],
+      currencyCode: text(profile.currency_code, 'EUR') as OwnerProfile['currencyCode'],
+      preferredContactMethod: (contact?.preferred_contact_method ?? 'email') as OwnerProfile['preferredContactMethod'],
       companyName: text(row.company_name) || null, agencyName: text(row.agency_name) || null,
       notificationPreferences: this.preferences(preferences as DbRow | null),
       preferredLanguage: (contact?.preferred_language ?? 'hr') as 'hr' | 'en' | 'sl', timeZone: text(contact?.time_zone, 'Europe/Zagreb'),
@@ -267,7 +274,10 @@ export class SupabaseUserRepository implements UserRepository {
     ])
     return {
       ...base(profile), userId: id, firstName: text(profile.first_name), lastName: text(profile.last_name),
-      phone: text(contact?.phone), cityCode: text(profile.city_code), hourlyRate: number(row.hourly_rate_cents) / 100,
+      phone: text(contact?.phone), cityCode: text(profile.city_code),
+      countryCode: text(profile.country_code, 'HR') as CleanerProfile['countryCode'],
+      currencyCode: text(profile.currency_code, 'EUR') as CleanerProfile['currencyCode'],
+      hourlyRate: number(row.hourly_rate_cents) / 100,
       minimumJobPrice: number(row.minimum_job_price_cents) / 100, serviceRadiusKm: number(row.service_radius_km),
       serviceAreas: (areasResult.data as DbRow[] ?? []).map((area) => ({ cityCode: text(area.city_code), radiusKm: number(area.radius_km) })),
       availability: (availabilityResult.data as DbRow[] ?? []).map((item) => ({
@@ -306,6 +316,7 @@ export class SupabaseUserRepository implements UserRepository {
     const [{ error: profileError }, { error: privateError }] = await Promise.all([
       this.client.from('profiles').update({
         first_name: profile.firstName, last_name: profile.lastName, city_code: profile.cityCode,
+        country_code: profile.countryCode, currency_code: profile.currencyCode,
         ...(newAvatarPath && { avatar_path: newAvatarPath }),
         onboarding_completed: profile.onboardingCompleted,
       }).eq('id', profile.userId),

@@ -58,6 +58,7 @@ describe('production infrastructure', () => {
       '0019_add_makarska_city.sql',
       '0020_hide_incomplete_cleaner_profiles.sql',
       '0021_require_completed_profiles_for_marketplace_actions.sql',
+      '0022_country_marketplaces.sql',
     ])
   })
 
@@ -134,5 +135,13 @@ describe('production infrastructure', () => {
       .toContain("public.has_completed_profile('cleaner')")
     expect(completedProfileActionsMigrationSql)
       .toContain("status = 'withdrawn'")
+  })
+
+  it('isolates marketplace data by country at the database boundary', () => {
+    expect(migrationSql).toContain('profiles_country_city_fk')
+    expect(migrationSql).toContain('jobs_country_city_fk')
+    expect(migrationSql).toContain('function public.enforce_job_market')
+    expect(migrationSql).toContain('function public.search_marketplace_jobs_by_country')
+    expect(migrationSql).toContain('function public.search_marketplace_cleaners_by_country')
   })
 })

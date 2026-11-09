@@ -17,7 +17,7 @@
         <label class="register-page__role" :class="{ 'register-page__role--active': form.role === 'owner' }">
           <input v-model="form.role" type="radio" name="role" value="owner">
           <Home :size="24" aria-hidden="true" />
-          <span><strong>{{ t('auth.register.ownerRole') }}</strong><small>{{ t('auth.register.ownerRoleDescription') }}</small></span>
+          <span><strong>{{ t(form.countryCode === 'US' ? 'auth.register.ownerRoleUs' : 'auth.register.ownerRole') }}</strong><small>{{ t(form.countryCode === 'US' ? 'auth.register.ownerRoleDescriptionUs' : 'auth.register.ownerRoleDescription') }}</small></span>
         </label>
         <label class="register-page__role" :class="{ 'register-page__role--active': form.role === 'cleaner' }">
           <input v-model="form.role" type="radio" name="role" value="cleaner">
@@ -62,6 +62,14 @@
           required
           :label="t('auth.fields.phone')"
           :error="errors.phone ?? ''"
+        />
+        <BaseSelect
+          v-model="form.countryCode"
+          name="countryCode"
+          required
+          :label="t('auth.fields.country')"
+          :options="countryOptions"
+          :error="errors.countryCode ?? ''"
         />
         <BaseSelect
           v-model="form.cityCode"
@@ -111,8 +119,10 @@
 <script setup lang="ts">
 import { Eye, EyeOff, Home, Sparkles } from '@lucide/vue'
 import AuthShell from '~/components/auth/AuthShell.vue'
+import { marketplaceCityLabel } from '~/config/marketplaces'
 import { createRegisterSchema } from '~/schemas/validation'
 import { useAuthStore } from '~/stores/auth'
+import { useMarketplaceStore } from '~/stores/marketplace'
 import { useUserStore } from '~/stores/user'
 import { getAppRoute, getRoleOnboardingRoute } from '~/utils/routes'
 import { getFieldErrors } from '~/utils/validation'
@@ -132,6 +142,7 @@ defineI18nRoute({
 const { t, locale } = useI18n()
 const route = useRoute()
 const authStore = useAuthStore()
+const marketplaceStore = useMarketplaceStore()
 const userStore = useUserStore()
 const initialRole = route.query.role === 'cleaner' ? 'cleaner' : 'owner'
 const form = reactive({
@@ -140,6 +151,7 @@ const form = reactive({
   email: '',
   password: '',
   phone: '',
+  countryCode: marketplaceStore.effectiveCountryCode,
   cityCode: '',
   role: initialRole as 'owner' | 'cleaner',
 })
@@ -149,11 +161,20 @@ const submitError = computed(() => authStore.errorCode
   ? t(`auth.errors.${authStore.errorCode}`)
   : '')
 const cityOptions = computed(() => userStore.cities.map((city) => ({
-  label: city.name,
+  label: marketplaceCityLabel(city),
   value: city.code,
 })))
+const countryOptions = computed(() => (['HR', 'US'] as const).map((countryCode) => ({
+  label: t(`countries.${countryCode}.name`),
+  value: countryCode,
+})))
 
-onMounted(() => userStore.loadDirectory())
+onMounted(() => userStore.loadDirectory(form.countryCode))
+watch(() => form.countryCode, async (countryCode) => {
+  marketplaceStore.selectLocation(countryCode, null)
+  form.cityCode = ''
+  await userStore.loadCities(countryCode, true)
+})
 
 const submit = async () => {
   if (authStore.status === 'loading') return

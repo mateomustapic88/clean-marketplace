@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { City } from '~/domains/shared/types'
+import type { City, CountryCode } from '~/domains/shared/types'
 import type {
   CleanerProfile,
   OwnerProfile,
@@ -7,6 +7,7 @@ import type {
   UserProfile,
 } from '~/domains/users/types'
 import type { PublicCleanerSearch } from '~/domains/search/types'
+import { useMarketplaceStore } from '~/stores/marketplace'
 
 export const useUserStore = defineStore('user', () => {
   const profile = ref<UserProfile | null>(null)
@@ -24,20 +25,23 @@ export const useUserStore = defineStore('user', () => {
     isLoading.value = true
     try {
       profile.value = await repositories().users.getProfile(userId)
+      if (profile.value && 'countryCode' in profile.value) {
+        useMarketplaceStore().selectLocation(profile.value.countryCode, profile.value.cityCode)
+      }
     }
     finally {
       isLoading.value = false
     }
   }
 
-  const loadDirectory = async () => {
+  const loadDirectory = async (countryCode: CountryCode = useMarketplaceStore().effectiveCountryCode) => {
     isLoading.value = true
     try {
       const [userList, ownerList, cleanerList, cityList] = await Promise.all([
         repositories().users.listUsers(),
         repositories().users.listOwners(),
         repositories().users.listCleaners(),
-        repositories().users.listCities(),
+        repositories().users.listCities(countryCode),
       ])
       users.value = userList
       owners.value = ownerList
@@ -49,9 +53,9 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  const loadCities = async () => {
-    if (cities.value.length) return
-    cities.value = await repositories().users.listCities()
+  const loadCities = async (countryCode: CountryCode = useMarketplaceStore().effectiveCountryCode, force = false) => {
+    if (!force && cities.value.length && cities.value.every((city) => city.countryCode === countryCode)) return
+    cities.value = await repositories().users.listCities(countryCode)
   }
 
   const searchCleaners = async (criteria: PublicCleanerSearch) => {

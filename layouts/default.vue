@@ -4,6 +4,7 @@
       {{ t('navigation.skipToContent') }}
     </a>
     <PublicHeader />
+    <CountryGate />
     <main id="main-content" class="default-layout__main" tabindex="-1">
       <slot />
     </main>
@@ -14,6 +15,7 @@
 <script setup lang="ts">
 import PublicFooter from '~/components/public/PublicFooter.vue'
 import PublicHeader from '~/components/public/PublicHeader.vue'
+import CountryGate from '~/components/location/CountryGate.vue'
 
 const { t } = useI18n()
 </script>

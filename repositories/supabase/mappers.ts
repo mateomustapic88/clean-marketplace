@@ -28,6 +28,8 @@ export const mapJob = (record: DbRow): CleaningJob => {
     title: text(record.title),
     apartmentName: text(record.apartment_name),
     cityCode: text(record.city_code),
+    countryCode: text(record.country_code, 'HR') as CleaningJob['countryCode'],
+    currencyCode: text(record.currency_code, 'EUR') as CleaningJob['currencyCode'],
     approximateArea: text(record.approximate_area),
     address: text(location?.exact_address, text(record.approximate_area)),
     hideExactAddress: bool(record.hide_exact_address),

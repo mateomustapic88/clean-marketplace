@@ -4,11 +4,12 @@
     <BaseAlert v-if="showMockWarning" variant="warning" :title="t('billing.mockModeTitle')">{{ t('billing.mockModeDescription') }}</BaseAlert>
     <BaseAlert v-else-if="showWebhookWarning" variant="warning" :title="t('billing.webhookWarningTitle')">{{ t('billing.webhookWarningDescription') }}</BaseAlert>
     <BaseAlert v-if="showPublishRequirement" variant="info" :title="t('billing.publishRequiredTitle')">{{ t('billing.publishRequiredDescription') }}</BaseAlert>
+    <BaseAlert v-if="countryCode === 'US'" variant="info" :title="t('billing.marketUnavailableTitle')">{{ t('billing.marketUnavailableDescription') }}</BaseAlert>
     <BaseAlert v-if="loadError" variant="warning" :title="t('billing.loadErrorTitle')">{{ t('billing.loadErrorDescription') }}</BaseAlert>
     <BaseAlert v-if="actionError" variant="error" :title="t('billing.actionErrorTitle')">{{ t('billing.actionErrorDescription') }}</BaseAlert>
     <TrialBanner :subscription="subscription" :days="trialDays" />
     <div class="billing-page__grid" :aria-busy="isLoading">
-      <SubscriptionCard :role="role" :subscription="subscription" :billing-period="selectedBillingPeriod">
+      <SubscriptionCard :role="role" :country-code="countryCode" :subscription="subscription" :billing-period="selectedBillingPeriod">
         <BillingSummary v-if="subscription" :subscription="subscription" :trial-days="trialDays" />
       </SubscriptionCard>
       <PaymentMethodCard :method="paymentMethod" />
@@ -29,7 +30,9 @@
 
 <script setup lang="ts">
 import type { BillingInvoice, BillingPeriod, PaymentMethod, Subscription } from '~/domains/subscriptions/types'
+import type { CountryCode } from '~/domains/shared/types'
 import type { BillingRole } from '~/services/billing/billingPresentation'
+import { getMarketplacePlans } from '~/config/saas'
 import { calculateAnnualSavings, getBillingCheckoutAction } from '~/services/billing/billingPresentation'
 
 const props = defineProps<{
@@ -42,6 +45,7 @@ const props = defineProps<{
   loadError: boolean
   actionError: boolean
   isActionLoading: boolean
+  countryCode?: CountryCode
 }>()
 defineEmits<{ checkout: [billingPeriod: BillingPeriod], portal: [], cancel: [], resume: [] }>()
 const { t } = useI18n()
@@ -60,9 +64,11 @@ const showPublishRequirement = computed(() =>
   props.role === 'owner' && route.query.reason === 'publish_jobs',
 )
 const hasProviderSubscription = computed(() => Boolean(props.subscription?.stripeSubscriptionId))
-const checkoutAction = computed(() => getBillingCheckoutAction(props.subscription))
+const checkoutAction = computed(() => props.countryCode === 'US'
+  ? null
+  : getBillingCheckoutAction(props.subscription))
 const selectedBillingPeriod = ref<BillingPeriod>(props.subscription?.billingPeriod ?? 'monthly')
-const plan = computed(() => config.public.plans[props.role])
+const plan = computed(() => getMarketplacePlans(props.countryCode ?? 'HR')[props.role])
 const annualDiscountPercent = computed(() => calculateAnnualSavings(plan.value).percent)
 </script>
 

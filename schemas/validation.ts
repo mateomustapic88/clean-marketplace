@@ -28,6 +28,7 @@ export const createRegisterSchema = (t: ValidationTranslator) => z.object({
   password: requiredString(t)
     .min(8, t('validation.passwordLength', { count: 8 })),
   phone: phone(t),
+  countryCode: z.enum(['HR', 'US']),
   cityCode: requiredString(t),
   role: z.enum(['owner', 'cleaner']),
 })

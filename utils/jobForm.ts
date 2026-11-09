@@ -1,4 +1,5 @@
 import type { CleaningJob, CreateCleaningJobInput } from '~/domains/jobs/types'
+import type { CountryCode, CurrencyCode } from '~/domains/shared/types'
 import type { JobFormData } from '~/schemas/validation'
 
 export type EditableJobForm = JobFormData & { photoUrls: string[] }
@@ -54,11 +55,15 @@ export const formToJobInput = (
   form: EditableJobForm,
   ownerId: string,
   status: CreateCleaningJobInput['status'],
+  countryCode: CountryCode,
+  currencyCode: CurrencyCode,
 ): CreateCleaningJobInput => ({
   ...form,
   photoUrls: [...form.photoUrls],
   services: { ...form.services },
   ownerId,
+  countryCode,
+  currencyCode,
   assignedCleanerId: null,
   acceptedOfferId: null,
   status,

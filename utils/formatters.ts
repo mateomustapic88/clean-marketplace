@@ -4,12 +4,17 @@ const localeTag = (locale: string) => locale === 'en'
     ? 'sl-SI'
     : 'hr-HR'
 
-export const formatPrice = (value: number, locale = 'hr') =>
+export const formatPrice = (value: number, locale = 'hr', currency: 'EUR' | 'USD' = 'EUR') =>
   new Intl.NumberFormat(localeTag(locale), {
     style: 'currency',
-    currency: 'EUR',
+    currency,
     maximumFractionDigits: 0,
   }).format(value)
+
+export const formatArea = (squareMeters: number, measurementSystem: 'metric' | 'imperial') =>
+  measurementSystem === 'imperial'
+    ? `${Math.round(squareMeters * 10.7639)} sq ft`
+    : `${squareMeters} m²`
 
 export const formatRating = (value: number | null) =>
   value === null ? null : value.toFixed(1)

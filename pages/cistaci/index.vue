@@ -44,7 +44,9 @@
 
 <script setup lang="ts">
 import { SlidersHorizontal } from '@lucide/vue'
+import { marketplaceCityLabel } from '~/config/marketplaces'
 import { useUserStore } from '~/stores/user'
+import { useMarketplaceStore } from '~/stores/marketplace'
 import {
   emptyCleanerFilters,
   serializeQuery,
@@ -58,10 +60,11 @@ const route = useRoute()
 const router = useRouter()
 const config = useRuntimeConfig()
 const userStore = useUserStore()
+const marketplaceStore = useMarketplaceStore()
 const fromQuery = () => ({
   ...emptyCleanerFilters(),
   search: String(route.query.search ?? ''),
-  city: String(route.query.city ?? ''),
+  city: String(route.query.city ?? marketplaceStore.selectedCityCode ?? ''),
   maximumRate: route.query.maximumRate ? Number(route.query.maximumRate) : null,
   maximumMinimumPrice: route.query.maximumMinimumPrice ? Number(route.query.maximumMinimumPrice) : null,
   minimumRating: route.query.minimumRating ? Number(route.query.minimumRating) : null,
@@ -80,6 +83,7 @@ const drawerOpen = ref(false)
 let queryTimer: ReturnType<typeof setTimeout> | undefined
 const searchCriteria = () => ({
   search: filters.value.search,
+  countryCode: marketplaceStore.effectiveCountryCode,
   page: page.value,
   pageSize,
   sort: sort.value,
@@ -101,13 +105,13 @@ const searchCriteria = () => ({
 })
 await Promise.all([
   userStore.searchCleaners(searchCriteria()),
-  userStore.loadCities(),
+  userStore.loadCities(marketplaceStore.effectiveCountryCode),
 ])
 const filteredCleaners = computed(() => userStore.cleaners)
 const totalPages = computed(() =>
   Math.max(1, Math.ceil(userStore.cleanerSearchTotal / pageSize)))
 const pagedCleaners = computed(() => filteredCleaners.value)
-const cityOptions = computed(() => userStore.cities.map((city) => ({ label: city.name, value: city.code })))
+const cityOptions = computed(() => userStore.cities.map((city) => ({ label: marketplaceCityLabel(city), value: city.code })))
 const cityName = (code: string) => userStore.cities.find((city) => city.code === code)?.name ?? code
 const sortOptions = computed(() => (['relevance', 'rating', 'rate', 'completed', 'newest'] as CleanerSort[])
   .map((value) => ({ value, label: t(`cleaners.sort.${value}`) })))
@@ -134,6 +138,17 @@ watch(() => filters.value.search, (search) => {
   if (!search && sort.value === 'relevance') sort.value = 'newest'
 })
 watch(totalPages, (value) => page.value = Math.min(page.value, value))
+watch(
+  [() => marketplaceStore.effectiveCountryCode, () => marketplaceStore.selectedCityCode],
+  async ([countryCode, cityCode]) => {
+    filters.value.city = cityCode ?? ''
+    page.value = 1
+    await Promise.all([
+      userStore.loadCities(countryCode, true),
+      userStore.searchCleaners(searchCriteria()),
+    ])
+  },
+)
 const resetFilters = () => {
   filters.value = emptyCleanerFilters()
   sort.value = 'newest'
