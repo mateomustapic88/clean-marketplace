@@ -1,7 +1,7 @@
 <template>
-  <div class="language-switcher" role="group" :aria-label="t('language.label')">
+  <div v-if="availableLocales.length > 1" class="language-switcher" role="group" :aria-label="t('language.label')">
     <NuxtLink
-      v-for="item in locales"
+      v-for="item in availableLocales"
       :key="item.code"
       class="language-switcher__option"
       :class="{ 'language-switcher__option--active': locale === item.code }"
@@ -17,8 +17,17 @@
 </template>
 
 <script setup lang="ts">
+import { marketplaceLocaleCodes } from '~/config/marketplaces'
+
 const { locale, locales, t } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
+const marketplaceStore = useMarketplaceStore()
+const availableLocales = computed(() => {
+  const supported = new Set<string>(marketplaceLocaleCodes[marketplaceStore.effectiveCountryCode])
+  return locales.value
+    .map((item) => typeof item === 'string' ? { code: item, name: item } : item)
+    .filter((item) => supported.has(item.code))
+})
 </script>
 
 <style scoped lang="scss">

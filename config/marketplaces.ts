@@ -1,5 +1,15 @@
 import type { City, Country, CountryCode } from '~/domains/shared/types'
 
+export type MarketplaceLocaleCode = 'hr' | 'en'
+
+export const marketplaceLocaleCodes: Record<CountryCode, readonly MarketplaceLocaleCode[]> = {
+  HR: ['hr', 'en'],
+  US: ['en'],
+}
+
+export const getDefaultMarketplaceLocale = (countryCode: CountryCode): MarketplaceLocaleCode =>
+  countryCode === 'US' ? 'en' : 'hr'
+
 export const marketplaceCountries: readonly Country[] = [
   {
     code: 'HR',

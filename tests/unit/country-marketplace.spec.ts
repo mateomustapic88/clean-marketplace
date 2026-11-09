@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import type { CleaningJob } from '~/domains/jobs/types'
 import type { CleanerProfile } from '~/domains/users/types'
+import { getDefaultMarketplaceLocale, marketplaceLocaleCodes } from '~/config/marketplaces'
 import { getMarketplacePlans } from '~/config/saas'
 import { searchLocalCleaners, searchLocalJobs } from '~/services/search/localSearch'
 
@@ -30,6 +31,13 @@ const cleaner = (countryCode: 'HR' | 'US'): CleanerProfile => ({
 })
 
 describe('country marketplace isolation', () => {
+  it('limits languages to the selected marketplace', () => {
+    expect(marketplaceLocaleCodes.HR).toEqual(['hr', 'en'])
+    expect(marketplaceLocaleCodes.US).toEqual(['en'])
+    expect(getDefaultMarketplaceLocale('HR')).toBe('hr')
+    expect(getDefaultMarketplaceLocale('US')).toBe('en')
+  })
+
   it('uses localized display pricing for Croatia and the United States', () => {
     expect(getMarketplacePlans('HR')).toMatchObject({ currency: 'EUR', owner: { monthlyAmount: 1900 } })
     expect(getMarketplacePlans('US')).toMatchObject({
